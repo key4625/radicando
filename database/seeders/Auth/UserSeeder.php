@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         User::create([
             'type' => User::TYPE_ADMIN,
             'name' => 'Super Admin',
-            'email' => 'mihcele.cappannari@keysoluzioni.it',
+            'email' => 'michele.cappannari@keysoluzioni.it',
             'password' => 'key4Straorto8!',
             'email_verified_at' => now(),
             'active' => true,

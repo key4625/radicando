@@ -30,7 +30,7 @@ class CreatePlantsTable extends Migration
             $table->text('richieste_nutrizionali')->nullable();
             $table->double('resa_pianta_kg')->nullable();
             $table->boolean('vendibile')->nullable();
-            $table->double('prezzo_kg')->nullable();
+            $table->double('prezzo_kg')->default(0.0);
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -47,6 +47,7 @@ class CreatePlantsTable extends Migration
         });
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('plant_id')->unique();
             $table->string('nome');
             $table->string('email');
             $table->json('ordine');
