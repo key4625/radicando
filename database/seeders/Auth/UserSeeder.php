@@ -24,23 +24,13 @@ class UserSeeder extends Seeder
         User::create([
             'type' => User::TYPE_ADMIN,
             'name' => 'Super Admin',
-            'email' => 'admin@admin.com',
-            'password' => 'secret',
+            'email' => 'mihcele.cappannari@keysoluzioni.it',
+            'password' => 'key4Straorto8!',
             'email_verified_at' => now(),
             'active' => true,
         ]);
 
-        if (app()->environment(['local', 'testing'])) {
-            User::create([
-                'type' => User::TYPE_USER,
-                'name' => 'Test User',
-                'email' => 'user@user.com',
-                'password' => 'secret',
-                'email_verified_at' => now(),
-                'active' => true,
-            ]);
-        }
-
+     
         $this->enableForeignKeys();
     }
 }

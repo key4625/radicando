@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Traits\TruncateTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DatabaseSeeder.
@@ -27,6 +28,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AuthSeeder::class);
         $this->call(AnnouncementSeeder::class);
+
+        $sqlPiante = base_path('database/plants.sql');
+        DB::unprepared(file_get_contents($sqlPiante));
 
         Model::reguard();
     }
