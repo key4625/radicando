@@ -14,6 +14,6 @@ class Order extends Model
 
     public function plants()
     {
-        return $this->hasMany(Plant::class);
+        return $this->belongsToMany(Plant::class)->withPivot('quantity_kg', 'quantity_num');
     }
 }

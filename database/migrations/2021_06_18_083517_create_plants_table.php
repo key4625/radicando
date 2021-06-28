@@ -47,13 +47,22 @@ class CreatePlantsTable extends Migration
         });
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id')->unique();
             $table->string('nome');
-            $table->string('email');
-            $table->json('ordine');
-            $table->boolean('consegna_domicilio');
-            $table->string('indirizzo');
+            $table->string('email')->nullable();
+            $table->string('tel');
+            $table->date('data');
+            $table->time('ora');
+            $table->boolean('consegna_domicilio')->nullable();
+            $table->string('indirizzo')->nullable();
             $table->timestamps();
+        });
+
+        Schema::create('order_plant', function (Blueprint $table) {
+            $table->bigInteger('order_id')->unique();
+            $table->bigInteger('plant_id')->unique();
+            $table->double('quantity_kg')->unique();
+            $table->double('quantity_num')->unique();
+            $table->double('price_kg')->unique();
         });
     }
 
@@ -65,5 +74,9 @@ class CreatePlantsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('plants');
+        Schema::dropIfExists('orders');
+        Schema::dropIfExists('cultivations');
+        Schema::dropIfExists('order_plant');
+
     }
 }

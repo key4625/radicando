@@ -20,8 +20,8 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
-                :href="route('admin.piante')"
-                :active="activeClass(Route::is('admin.piante'), 'c-active')"
+                :href="route('admin.piante.index')"
+                :active="activeClass(Route::is('admin.piante.index'), 'c-active')"
                 icon="c-sidebar-nav-icon cil-plant"
                 :text="__('Piante')" />
         </li>

@@ -34,8 +34,9 @@ class PlantsTable extends DataTableComponent
         return Plant::query();
     }
 
-    /*public function getTableRowUrl($row): string
+    public function getTableRowUrl($row): string
     {
-        return route('backend.plant.edit', $row);
-    }*/
+        return route('admin.piante.edit', $row);
+    }
+       
 }

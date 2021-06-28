@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <livewire:order />
+    <livewire:orderlivewire />
 </div>
 @endsection
 
