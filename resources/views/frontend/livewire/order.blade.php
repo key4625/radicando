@@ -48,9 +48,9 @@
                             <div class="row g-3 align-items-center">
                                 <div class="col-4">
                                     @if($plant->image != null)
-                                    <img class="img-responsive" style="max-height:40px;" src="{{$plant->image}}" alt="{{$plant->nome}}">
+                                    <img class="img-responsive" style="max-height:40px;" src="{{$plant_ord->image}}" alt="{{$plant_ord->nome}}">
                                     @else 
-                                        <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
+                                        <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$plant_ord->nome}}">
                                     @endif   
                                     <label for="nome" class="col-form-label">{{App\Models\Plant::find($plant_ord)->nome}} </label>
                                 </div>
