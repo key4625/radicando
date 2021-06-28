@@ -24,7 +24,7 @@
             <div class="row">
                 @foreach($plants_available as $plant)
                     <div class="card-group col-6 col-md-4">
-                        <div class="card" wire:click="add({{$plant->id}})">
+                        <div class="card mb-4" wire:click="add({{$plant->id}})">
                             @if($plant->image != null)
                                 <img class="card-img-top" src="{{$plant->image}}" alt="{{$plant->nome}}">
                             @else 
@@ -47,14 +47,18 @@
                         <li class="list-group-item">
                             <div class="row g-3 align-items-center">
                                 <div class="col-4">
-                                <label for="inputPassword6" class="col-form-label">{{App\Models\Plant::find($plant_ord)->nome}} </label>
-                                
+                                    @if($plant->image != null)
+                                    <img class="img-responsive" style="max-height:40px;" src="{{$plant->image}}" alt="{{$plant->nome}}">
+                                    @else 
+                                        <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
+                                    @endif   
+                                    <label for="nome" class="col-form-label">{{App\Models\Plant::find($plant_ord)->nome}} </label>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-8">
                                     <div class="input-group">
                                         <input class="form-control" type="number" wire:model="quantity_kg.{{$plant_ord}}" default="0">
                                         <div class="input-group-append"><span class="input-group-text">Kg</span></div>
-                                        <label for="inputPassword6" class="col-form-label mx-2"> oppure n°</label>
+                                        <label for="num" class="col-form-label mx-2"> oppure n°</label>
                                         <input class="form-control d-inline" type="number" wire:model="quantity_num.{{$plant_ord}}" default="0">
                                     </div>
                                 </div>
