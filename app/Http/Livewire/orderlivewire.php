@@ -17,6 +17,12 @@ class orderlivewire extends Component
 
     public $ordine, $nome, $email, $tel;
 
+    protected $rules = [
+        'nome' => 'required',
+        'email' => 'email',
+        'tel' => 'required'
+    ];
+
     public function mount()
     {
         $this->plant_ordered = array();
@@ -44,6 +50,7 @@ class orderlivewire extends Component
     }
     public function ordina()
     {      
+        $this->validate();
         $ordine = new Order();
         $ordine->nome = $this->nome;
         $ordine->email = $this->email;
