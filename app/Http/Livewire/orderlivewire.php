@@ -34,7 +34,7 @@ class orderlivewire extends Component
     }
     public function render()
     {
-        $plants_available = Plant::all();
+        $plants_available = Plant::where('vendibile',1)->get();
         $plants_available = $plants_available->diff(Plant::whereIn('id', $this->plant_ordered)->get());
         
         return view('frontend.livewire.order',['plants_available' => $plants_available]);

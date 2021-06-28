@@ -13,9 +13,12 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 class PlantsTable extends DataTableComponent
 {
+
     public function columns(): array
     {
         return [
+            Column::make('','image')
+           ,
             Column::make('Nome','nome')
                 ->sortable()
                 ->searchable(),
@@ -31,12 +34,36 @@ class PlantsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Plant::query();
+        return Plant::query()->when($this->getFilter('filter_vendita'), fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1));
     }
 
+
+  
     public function getTableRowUrl($row): string
     {
         return route('admin.piante.edit', $row);
+    }
+    public function rowView(): string
+    {
+        // Becomes /resources/views/location/to/my/row.blade.php
+        return 'backend.plants.row';
+    }
+    public function setTableRowClass($row): ?string
+    {
+        return 'align-items-center';
+    }
+    public function filters(): array
+    {
+        return [
+        
+            'filter_vendita' => Filter::make('In vendita')
+                ->select([
+                    '' => 'Tutti',
+                    '1' => 'Si',
+                    '0' => 'No',
+                ]),
+            
+        ];
     }
        
 }

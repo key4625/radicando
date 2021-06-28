@@ -2,6 +2,12 @@
 
 @section('title', __('Dashboard'))
 
+@push('after-styles')
+<style>
+    .table td {
+        vertical-align: middle;
+    }
+</style>
 @section('content')
     <x-backend.card>
         <x-slot name="header">
