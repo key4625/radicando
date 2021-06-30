@@ -48,10 +48,7 @@ class PlantsTable extends DataTableComponent
         // Becomes /resources/views/location/to/my/row.blade.php
         return 'backend.plants.row';
     }
-    public function setTableRowClass($row): ?string
-    {
-        return 'align-items-center';
-    }
+
     public function filters(): array
     {
         return [

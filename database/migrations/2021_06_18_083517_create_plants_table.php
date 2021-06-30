@@ -49,21 +49,32 @@ class CreatePlantsTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email')->nullable();
-            $table->string('tel');
-            $table->date('data');
-            $table->time('ora');
+            $table->string('tel')->nullable();
+            $table->date('data')->nullable();
+            $table->time('ora')->nullable();
             $table->boolean('consegna_domicilio')->nullable();
             $table->string('indirizzo')->nullable();
             $table->timestamps();
         });
 
         Schema::create('order_plant', function (Blueprint $table) {
-            $table->bigInteger('order_id')->unique();
-            $table->bigInteger('plant_id')->unique();
-            $table->double('quantity_kg')->unique();
-            $table->double('quantity_num')->unique();
-            $table->double('price_kg')->unique();
+            $table->bigInteger('order_id');
+            $table->bigInteger('plant_id');
+            $table->double('quantity_kg');
+            $table->double('quantity_num');
+            $table->double('price_kg');
         });
+
+        Schema::create('collections', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('plant_id');
+            $table->double('quantity_kg');
+            $table->double('quantity_num');  
+            $table->date('data')->nullable();
+            $table->time('ora')->nullable();
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -77,6 +88,7 @@ class CreatePlantsTable extends Migration
         Schema::dropIfExists('orders');
         Schema::dropIfExists('cultivations');
         Schema::dropIfExists('order_plant');
+        Schema::dropIfExists('collections');
 
     }
 }

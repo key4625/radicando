@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Cultivation extends Model
+class Collection extends Model
 {
     use HasFactory;
     protected $guarded = [];

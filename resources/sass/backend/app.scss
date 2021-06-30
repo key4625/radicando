@@ -24,7 +24,9 @@
 .bg-dark {
     background-color: #3a7a42 !important;
 }
-
+.table.table-striped tr td {
+    vertical-align: middle;
+}
 /* FINE BACKEND */
 
 .page-item.active .page-link {

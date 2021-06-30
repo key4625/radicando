@@ -1,11 +1,7 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
-        <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-            <use xlink:href="{{ asset('img/brand/coreui.svg#full') }}"></use>
-        </svg>
-        <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
-            <use xlink:href="{{ asset('img/brand/coreui.svg#signet') }}"></use>
-        </svg>
+        <img src="/img/logo-vb-light.png" height="55">
+       
     </div><!--c-sidebar-brand-->
 
     <ul class="c-sidebar-nav">
@@ -24,6 +20,30 @@
                 :active="activeClass(Route::is('admin.piante.index'), 'c-active')"
                 icon="c-sidebar-nav-icon cil-plant"
                 :text="__('Piante')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.coltivazioni')"
+                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-plant"
+                :text="__('Coltivazioni')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.raccolto')"
+                :active="activeClass(Route::is('admin.raccolto'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-plant"
+                :text="__('Raccolto')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.ordini')"
+                :active="activeClass(Route::is('admin.ordini'), 'c-active')"
+                icon="c-sidebar-nav-icon cil-plant"
+                :text="__('Ordini')" />
         </li>
 
         @if (

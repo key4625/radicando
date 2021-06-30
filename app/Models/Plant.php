@@ -18,6 +18,26 @@ class Plant extends Model
     }
     public function cultivations()
     {
-        return $this->belongsTo(Cultivation::class);
+        return $this->hasMany(Cultivation::class);
+    }
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+    public function raccolti_oggi_kg()
+    {
+        return Collection::where('plant_id',$this->id)->whereDay('created_at', '=', date('d'))->sum('quantity_kg');
+    }
+    public function raccolti_oggi_nr()
+    {
+        return Collection::where('plant_id',$this->id)->whereDay('created_at', '=', date('d'))->sum('quantity_num');
+    }
+    public function raccolti_tot_kg()
+    {
+        return Collection::where('plant_id',$this->id)->sum('quantity_kg');
+    }
+    public function raccolti_tot_nr()
+    {
+        return Collection::where('plant_id',$this->id)->sum('quantity_num');
     }
 }

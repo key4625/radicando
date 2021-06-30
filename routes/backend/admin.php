@@ -13,4 +13,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
     });
 Route::resource('piante',PlantController::class);
 //Route::view('piante','backend.plants' )->name('piante');
+Route::view('ordini','backend.ordini' )->name('ordini');
+Route::view('raccolto','backend.collection' )->name('raccolto');
+Route::view('coltivazioni','backend.cultivations' )->name('coltivazioni');
 
