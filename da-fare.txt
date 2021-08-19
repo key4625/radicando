@@ -1,0 +1,3 @@
+Inserire data e ora in ordine livewire
+Inserire nella schermata di modifica ordine pagato ed evaso o simili
+Sistemare meglio i campi tel ed email
