@@ -29,9 +29,12 @@
                 </div>
             </div>
         @else 
-            <div class="col-12"><h3>Stai raccogliendo</h3></div>
-            
+            <div class="col-12">
+                <div class="float-left"><h3>Stai raccogliendo {{$plant_name}}</h3> </div>
+                <div class="float-right"><button wire:click="resetInputFields()" class="btn btn-secondary"><i class="fas fa-step-backward"></i> Annulla</button></div>
+            </div>
             <div class="col-12 col-md-3 col-xl-2 my-4">     
+
                 <div class="card m-auto">
                     @if($plant_image != null)
                             <img class="card-img-top" src="{{$plant_image}}" alt="{{$plant_name}}">

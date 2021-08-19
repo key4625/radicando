@@ -27,26 +27,6 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 my-4">
-            <h3>Seleziona quello che ti interessa</h3>
-            <div class="row">
-                @foreach($plants_available as $plant)
-                    <div class="card-group col-6 col-md-4">
-                        <div class="card mb-4" wire:click="add({{$plant->id}})">
-                            @if($plant->image != null)
-                                <img class="card-img-top" src="{{$plant->image}}" alt="{{$plant->nome}}">
-                            @else 
-                                <img class="card-img-top" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
-                            @endif    
-                            <div class="card-body text-center">{{$plant->nome}} @if($plant->prezzo_kg!=null)<br />{{$plant->prezzo_kg}}€/kg @endif</div>
-                        </div>
-                    
-                    </div>
-                
-                @endforeach
-            </div>
-        </div>
-       
-        <div class="col-12 col-md-6 my-4">
             @if(count($plant_ordered) > 0)
                 <h3>Stai ordinando</h3>
                 <ul class="list-group"> 
@@ -64,15 +44,22 @@
                                     @endif   
                                     <label for="nome" class="col-form-label">{{$tmp_plant->nome}} </label>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-3 ">
                                     <div class="input-group">
                                         <input class="form-control" type="number" wire:model="quantity_kg.{{$plant_ord}}" default="0">
                                         <div class="input-group-append"><span class="input-group-text">Kg</span></div>
-                                        <label for="num" class="col-form-label mx-2"> oppure n°</label>
-                                        <input class="form-control d-inline" type="number" wire:model="quantity_num.{{$plant_ord}}" default="0">
-                                        <button class="btn btn-danger-outline" wire:click="remove({{$plant_ord}})"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </div>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
+                                        <input class="form-control d-inline" type="number" wire:model="quantity_num.{{$plant_ord}}" default="0">
+                                        <div class="input-group-append"><span class="input-group-text">Pz</span></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-danger-outline" wire:click="remove({{$plant_ord}})"><i class="fas fa-trash"></i></button>
+                                </div>       
                             </div>    
                         </li>
                     @endforeach
@@ -81,11 +68,31 @@
                   
                     <button wire:click="ordina" class="btn btn-primary">Ordina</button>
                 </div>
-            @endif
-        
-           
+            @endif  
         </div>
-        
+        <div class="col-12 col-md-6 my-4 order-md-first">
+            <h3>Seleziona quello che ti interessa</h3>
+            <div class="row card-group">
+                @foreach($plants_available as $plant)
+                    <div class=" col-6 col-md-4">
+                        <div class="card mb-4" wire:click="add({{$plant->id}})">
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-center" style="min-height: 130px;">
+                                    @if($plant->image != null)
+                                        <img class="img-fluid" src="{{$plant->image}}" alt="{{$plant->nome}}">
+                                    @else 
+                                        <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
+                                    @endif    
+                                </div>
+                                {{$plant->nome}} @if($plant->prezzo_kg!=null)<br />{{$plant->prezzo_kg}}€/kg @endif
+                            </div>
+                        </div>
+                    
+                    </div>
+                @endforeach
+            </div>
+        </div>
+       
     </div>
     
 </div>
