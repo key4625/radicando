@@ -1,36 +1,38 @@
 
-    <button wire:click="$set('showMode', false)" class="float-right btn btn-primary">Indietro</button>
-    <div class="row">
-        <div class="col-12 col-md-3 text-center text-md-left">
-            <label for="nome" class="col-form-label">Nome</label>
-            <input type="text" class="form-control" wire:model="nome" required>
-            @error('nome') <span class="error text-danger">Devi inserire un nome</span> @enderror
-        </div>
-        <div class="col-12 col-md-3  text-center text-md-left">
-            <label for="email" class="col-form-label">Email</label>
-            <input type="email" class="form-control" wire:model="email" >
-            @error('email') <span class="error text-danger">Devi inserire una email valida</span> @enderror
-        </div>
-        <div class="col-12 col-md-3  text-center text-md-left">
-            <label for="tel" class="col-form-label">Tel</label>
-            <input type="text" class="form-control" wire:model="tel">
-            @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
-        </div>
-        <div class="col-12 col-md-3  text-center text-md-left">
-            <label for="tipo_cliente" class="col-form-label">Tipo</label>
-            <select class="form-control" wire:model="tipo_cliente" wire:change="ricalcolaPrezzo">
-                <option value="privato">Privato</option>
-                <option value="rivenditore">Rivenditore</option>
-                <option value="gas">Gas</option>
-                <option value="dipendente">Dipendente</option>
-            </select>
-            @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
-        </div>
+    <div class="clearfix">
+        <button wire:click="$set('showMode', false)" class="float-right btn btn-primary">Indietro</button>
     </div>
     <div class="row">
         <div class="col-12 col-md-6 my-4">
+            <h3>Ordine attuale</h3>
+            <div class="row my-2">
+                <div class="col-12 col-md-3 text-center text-md-left">
+                    <label for="nome" class="col-form-label">Nome</label>
+                    <input type="text" class="form-control" wire:model="nome" required>
+                    @error('nome') <span class="error text-danger">Devi inserire un nome</span> @enderror
+                </div>
+                <div class="col-6 col-md-3 text-center text-md-left">
+                    <label for="nome" class="col-form-label">Data</label>
+                    <input type="date" class="form-control" wire:model="data" required>
+                </div>
+                <div class="col-6 col-md-3 text-center text-md-left">
+                    <label for="nome" class="col-form-label">Ora</label>
+                    <input type="time" class="form-control" wire:model="ora" required>
+                </div>
+              
+                <div class="col-12 col-md-3  text-center text-md-left">
+                    <label for="tipo_cliente" class="col-form-label">Tipo</label>
+                    <select class="form-control" wire:model="tipo_cliente" wire:change="ricalcolaPrezzo">
+                        <option value="privato">Privato</option>
+                        <option value="rivenditore">Rivenditore</option>
+                        <option value="gas">Gas</option>
+                        <option value="dipendente">Dipendente</option>
+                    </select>
+                    @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
+                </div>
+            </div>
             @if($sel_order->plants->count() > 0)
-                <h3>Ordine attuale</h3>
+               
                 <ul class="list-group"> 
                     @foreach($sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_ord)
                         <li class="list-group-item">
@@ -79,6 +81,18 @@
                     @error('prezzo_tot') <span class="error text-danger">Prezzo non valido</span> @enderror
                    
                 </div>
+                <div class="row">
+                    <div class="col-12 col-md-6  text-center text-md-left">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control form-control-sm" wire:model="email" >
+                        @error('email') <span class="error text-danger">Devi inserire una email valida</span> @enderror
+                    </div>
+                    <div class="col-12 col-md-6  text-center text-md-left">
+                        <label for="tel" class="col-form-label">Tel</label>
+                        <input type="text" class="form-control form-control-sm" wire:model="tel">
+                        @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
+                    </div>
+                </div>
                 <div class="mt-4 text-center">
                   
                     <button wire:click="ordina(1)" class="btn btn-primary">Salva</button>
@@ -88,7 +102,7 @@
             @endif  
         </div>
         <div class="col-12 col-md-6 my-4 order-md-first">
-            <h3>Seleziona quello che ti interessa</h3>
+            <h3 class="mb-4">Elenco ortaggi disponibili</h3>
             <div class="row card-group">
                 @foreach(App\Models\Plant::whereNotIn('id', $sel_order->plants->pluck('id'))->where('vendibile',1)->get() as $plant)
                     <div class=" col-6 col-md-4">

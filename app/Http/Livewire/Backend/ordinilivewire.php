@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Backend;
 use Livewire\Component;
 use App\Models\Plant;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
@@ -16,7 +17,7 @@ class ordinilivewire extends Component
     public $showMode;
     public $confirming;
     public $quantity_kg, $quantity_num, $prezzo_kg, $plant_sel_id;
-    public $ordine, $nome, $email, $tel, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
+    public $ordine, $nome, $email, $tel, $data, $ora, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
     public $plant_ordered;
     use WithPagination;
 
@@ -65,7 +66,9 @@ class ordinilivewire extends Component
     public function toggleInsert(){
         $this->sel_order = Order::create(['nome'=>'Ordine']);
         $this->nome = "Ordine";
-        $this->showMode = 1;        
+        $this->showMode = 1;    
+        $this->data = Carbon::now()->toDateString(); 
+        $this->ora = Carbon::now()->toTimeString(); 
     }
     public function toggleShow(int $id){
         $this->sel_order = Order::where('id',$id)->first();
@@ -73,6 +76,13 @@ class ordinilivewire extends Component
         $this->email = $this->sel_order->email;
         $this->tel = $this->sel_order->tel;
         $this->prezzo_tot =$this->sel_order->prezzo_tot;
+        if($this->sel_order->data!=null){
+            $this->data = $this->sel_order->data;
+        } else $this->data =Carbon::now()->toDateString(); 
+        if($this->sel_order->ora!=null){
+            $this->ora = $this->sel_order->ora;
+        } else $this->ora = Carbon::now()->toTimeString(); 
+        
         foreach($this->sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_order){ 
             $this->quantity_num[$plant_order->id] = $plant_order->pivot->quantity_num;
             $this->quantity_kg[$plant_order->id] = $plant_order->pivot->quantity_kg;
@@ -130,6 +140,8 @@ class ordinilivewire extends Component
         $this->sel_order->prezzo_tot = $this->prezzo_tot;
         $this->sel_order->tipo_cliente = $this->tipo_cliente;
         $this->sel_order->sconto_perc = $this->sconto_perc;
+        $this->sel_order->data = $this->data;
+        $this->sel_order->ora = $this->ora;
         $this->sel_order->save();
         $this->sel_order->plants()->detach();
         foreach ($this->quantity_kg as $key => $value) {

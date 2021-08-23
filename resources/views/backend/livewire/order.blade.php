@@ -11,7 +11,7 @@
             <button class="btn btn-primary" type="button" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo ordine </button> 
         </div>
         <table class="table  table-striped table-hover">
-            <th>Nome</th><th class="d-none d-lg-table-cell">Per quando</th><th>Importo</th><th class="text-right"></th><th class="text-right" style="min-width: 110px;">Azioni</th>      
+            <th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-right"></th><th class="text-right" style="min-width: 110px;">Azioni</th>      
             @foreach($orders as $order)
                 <tr>
                     <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @endif {{$order->nome}}</td>
@@ -24,9 +24,9 @@
                             </div>
                         </td>
                     @else
-                        <td>{{$order->data}} {{$order->ora}}</td>
-                        <td>{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
-                        <td class="text-right" style="min-width: 160px;">
+                        <td >{{$order->data}} {{$order->ora}}</td>
+                        <td class="d-none d-lg-table-cell">{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
+                        <td class="d-none d-lg-table-cell text-right" style="min-width: 160px;">
                             @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" ><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}})"><i class="far fa-flag"></i></button> @endif
                             @if($order->pagato) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Pagato" ><i class="fas fa-coins"></i></span> @else <button class="btn btn-warning text-white rounded-circle mr-2" wire:click="setPagato({{$order->id}})"><i class="fas fa-coins"></i></button> @endif
                         </td>
