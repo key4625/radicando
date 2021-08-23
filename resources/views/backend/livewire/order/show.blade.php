@@ -6,21 +6,12 @@
         <div class="col-12 col-md-6 my-4">
             <h3>Ordine attuale</h3>
             <div class="row my-2">
-                <div class="col-12 col-md-3 text-center text-md-left">
+                <div class="col-12 col-xl-3 col-md-6 text-center text-md-left">
                     <label for="nome" class="col-form-label">Nome</label>
                     <input type="text" class="form-control" wire:model="nome" required>
                     @error('nome') <span class="error text-danger">Devi inserire un nome</span> @enderror
                 </div>
-                <div class="col-6 col-md-3 text-center text-md-left">
-                    <label for="nome" class="col-form-label">Data</label>
-                    <input type="date" class="form-control" wire:model="data" required>
-                </div>
-                <div class="col-6 col-md-3 text-center text-md-left">
-                    <label for="nome" class="col-form-label">Ora</label>
-                    <input type="time" class="form-control" wire:model="ora" required>
-                </div>
-              
-                <div class="col-12 col-md-3  text-center text-md-left">
+                <div class="col-12 col-xl-3 col-md-6 text-center text-md-left">
                     <label for="tipo_cliente" class="col-form-label">Tipo</label>
                     <select class="form-control" wire:model="tipo_cliente" wire:change="ricalcolaPrezzo">
                         <option value="privato">Privato</option>
@@ -30,6 +21,16 @@
                     </select>
                     @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
                 </div>
+                <div class="col-6 col-xl-3 col-md-6 text-center text-md-left">
+                    <label for="nome" class="col-form-label">Data</label>
+                    <input type="date" class="form-control" wire:model="data" required>
+                </div>
+                <div class="col-6 col-xl-3 col-md-6 text-center text-md-left">
+                    <label for="nome" class="col-form-label">Ora</label>
+                    <input type="time" class="form-control" wire:model="ora" required>
+                </div>
+              
+              
             </div>
             @if($sel_order->plants->count() > 0)
                
@@ -37,7 +38,7 @@
                     @foreach($sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_ord)
                         <li class="list-group-item">
                             <div class="row g-3 align-items-center">
-                                <div class="col-4">
+                                <div class="col-2 col-xl-4">
                                     @if($plant_ord->image != null)
                                         <img class="img-responsive" style="max-height:40px;" src="{{$plant_ord->image}}" alt="{{$plant_ord->nome}}">
                                     @else 
@@ -46,20 +47,20 @@
                                     <label for="nome" class="col-form-label">{{$plant_ord->nome}} </label>
                                     @if($plant_ord->prezzo_kg!=0)<label for="prezzo" class="col-form-label float-right">{{$plant_ord->pivot->price_kg}} € </label>@endif
                                 </div>
-                                <div class="col-3 ">
+                                <div class="col">
                                     <div class="input-group">
                                         <input class="form-control quantity_kg" type="number" wire:model="quantity_kg.{{$plant_ord->id}}" wire:change="ricalcolaPrezzo" default="0">
                                         <div class="input-group-append"><span class="input-group-text">Kg</span></div>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col">
                                     <div class="input-group">
                                         {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
                                         <input class="form-control d-inline" type="number" wire:model="quantity_num.{{$plant_ord->id}}" wire:change="ricalcolaPrezzo" default="0">
                                         <div class="input-group-append"><span class="input-group-text">Pz</span></div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-2">
                                     <button class="btn btn-danger-outline" wire:click="remove({{$plant_ord->id}})"><i class="fas fa-trash"></i></button>
                                 </div>       
                             </div>    
@@ -101,7 +102,7 @@
                 </div>
             @endif  
         </div>
-        <div class="col-12 col-md-6 my-4 order-md-first">
+        <div class="col-12 col-md-6 my-4 order-lg-first">
             <h3 class="mb-4">Elenco ortaggi disponibili</h3>
             <div class="row card-group">
                 @foreach(App\Models\Plant::whereNotIn('id', $sel_order->plants->pluck('id'))->where('vendibile',1)->get() as $plant)
