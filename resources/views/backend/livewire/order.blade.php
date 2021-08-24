@@ -24,7 +24,7 @@
                             </div>
                         </td>
                     @else
-                        <td >{{$order->data}} {{$order->ora}}</td>
+                        <td >{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} {{Carbon\Carbon::create($order->ora)->format('H:i')}}</td>
                         <td class="d-none d-lg-table-cell">{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
                         <td class="d-none d-lg-table-cell text-center">
                             @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" ><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}})"><i class="far fa-flag"></i></button> @endif

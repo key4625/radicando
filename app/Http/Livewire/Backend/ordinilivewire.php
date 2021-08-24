@@ -116,8 +116,8 @@ class ordinilivewire extends Component
             $this->prezzo_tot_consigliato  = 0;     
             foreach($this->sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_order){  
                 if(($plant_order->pivot->price_kg!=null)&&($plant_order->pivot->price_kg!=0)) {
-                    $this->prezzo_tot_consigliato  += $plant_order->pivot->price_kg*$this->quantity_kg[$plant_order->id];     
-                } else $this->prezzo_tot_consigliato  += $plant_order->prezzo_kg*$this->quantity_kg[$plant_order->id];     
+                    $this->prezzo_tot_consigliato  += $plant_order->pivot->price_kg*floatval($this->quantity_kg[$plant_order->id]);     
+                } else $this->prezzo_tot_consigliato  += $plant_order->prezzo_kg*floatval($this->quantity_kg[$plant_order->id]);     
             }   
             $this->sconto_perc = 0;
             if($this->tipo_cliente == "privato") $this->sconto_perc = 0;       
