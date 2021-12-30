@@ -1,6 +1,6 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
-        <img src="/img/logo-vb-light.png" height="55">
+        <img src="/img/logo-bianco-2.png" >
        
     </div><!--c-sidebar-brand-->
 
@@ -10,15 +10,17 @@
                 class="c-sidebar-nav-link"
                 :href="route('admin.dashboard')"
                 :active="activeClass(Route::is('admin.dashboard'), 'c-active')"
-                icon="c-sidebar-nav-icon cil-speedometer"
-                :text="__('Dashboard')" />
+                icon="c-sidebar-nav-icon fas fa-tractor"
+                :text="__('Panoramica')"  />
         </li>
+        
+
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
                 :href="route('admin.piante.index')"
                 :active="activeClass(Route::is('admin.piante.index'), 'c-active')"
-                icon="c-sidebar-nav-icon cil-plant"
+                icon="c-sidebar-nav-icon fas fa-leaf"
                 :text="__('Piante')" />
         </li>
         <li class="c-sidebar-nav-item">
@@ -26,15 +28,31 @@
                 class="c-sidebar-nav-link"
                 :href="route('admin.coltivazioni')"
                 :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
-                icon="c-sidebar-nav-icon cil-plant"
+                icon="c-sidebar-nav-icon fas fa-map"
+                :text="__('Terreni')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.coltivazioni')"
+                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                icon="c-sidebar-nav-icon fas fa-carrot"
                 :text="__('Coltivazioni')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
+                :href="route('admin.coltivazioni')"
+                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                icon="c-sidebar-nav-icon fas fa-book"
+                :text="__('Diario')" />
         </li>
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
                 :href="route('admin.raccolto')"
                 :active="activeClass(Route::is('admin.raccolto'), 'c-active')"
-                icon="c-sidebar-nav-icon cil-plant"
+                icon="c-sidebar-nav-icon fas fa-shopping-basket"
                 :text="__('Raccolto')" />
         </li>
         <li class="c-sidebar-nav-item">
@@ -42,7 +60,7 @@
                 class="c-sidebar-nav-link"
                 :href="route('admin.ordini')"
                 :active="activeClass(Route::is('admin.ordini'), 'c-active')"
-                icon="c-sidebar-nav-icon cil-plant"
+                icon="c-sidebar-nav-icon fas fa-store"
                 :text="__('Ordini')" />
         </li>
 
@@ -62,7 +80,7 @@
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
                 <x-utils.link
                     href="#"
-                    icon="c-sidebar-nav-icon cil-user"
+                    icon="c-sidebar-nav-icon fas fa-user"
                     class="c-sidebar-nav-dropdown-toggle"
                     :text="__('Access')" />
 
@@ -104,7 +122,7 @@
             <li class="c-sidebar-nav-dropdown">
                 <x-utils.link
                     href="#"
-                    icon="c-sidebar-nav-icon cil-list"
+                    icon="c-sidebar-nav-icon fas fa-list"
                     class="c-sidebar-nav-dropdown-toggle"
                     :text="__('Logs')" />
 

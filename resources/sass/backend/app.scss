@@ -4,6 +4,11 @@
 @import '~@coreui/coreui/scss/coreui';
 @import '~@coreui/icons/css/free.min.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
 /* BACKEND */
 .c-sidebar {
     color: #fff;
@@ -26,6 +31,21 @@
 }
 .table.table-striped tr td {
     vertical-align: middle;
+}
+.c-sidebar-brand img {
+    width: 65%;
+    padding: 14px 0px;
+}
+
+.c-sidebar .c-sidebar-nav-link.c-active, .c-sidebar .c-active.c-sidebar-nav-dropdown-toggle {
+    color: #fff;
+    background: rgb(255, 255, 255, 0.17);
+}
+.c-sidebar .c-sidebar-nav-link .c-sidebar-nav-icon, .c-sidebar .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+    color: rgb(32 112 67);
+}
+.c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon, .c-sidebar .c-active.c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+    color: rgb(255, 255, 255, 0.76);
 }
 /* FINE BACKEND */
 

@@ -4,8 +4,8 @@
             @lang('Copyright') &copy; {{ date('Y') }}
             <x-utils.link href="http://laravel-boilerplate.com" target="_blank" :text="__(appName())" />
         </strong>
-
-        @lang('All Rights Reserved')
+        - Agricoltura online -
+        @lang('All Rights Reserved') 
     </div>
 
     <div class="mfs-auto">
