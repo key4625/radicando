@@ -1,10 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <x-utils.link
-            :href="route('frontend.index')"
-            :text="appName()"
-            class="navbar-brand" />
-
+        
+         <a href="{{route('frontend.index')}}" class="navbar-brand"> <img src="img/logotipo_1.png"></a>  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,14 +21,22 @@
                         @include('includes.partials.lang')
                     </li>
                 @endif
-
+                <li class="nav-item">
+                    <x-utils.link
+                        :href="route('frontend.auth.login')"
+                        :active="activeClass(Route::is('frontend.auth.login'))"
+                        :text="__('Contatti')"
+                        icon="fas fa-book"
+                        class="nav-link" />
+                </li>
                 @guest
                     <li class="nav-item">
                         <x-utils.link
                             :href="route('frontend.auth.login')"
                             :active="activeClass(Route::is('frontend.auth.login'))"
-                            :text="__('Login')"
-                            class="nav-link" />
+                            icon="fas fa-key"
+                           
+                            class="nav-link nav-link rounded-circle bn btn-primary text-white p-2 btn-accesso" />
                     </li>
 
                     @if (config('boilerplate.access.user.registration'))
@@ -58,11 +63,12 @@
                         >
                             <x-slot name="text">
                                 <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
-                                {{ $logged_in_user->name }} <span class="caret"></span>
+                                <span class="caret"></span>
                             </x-slot>
                         </x-utils.link>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <span class="dropdown-item">{{ $logged_in_user->name }}</span>
                             @if ($logged_in_user->isAdmin())
                                 <x-utils.link
                                     :href="route('admin.dashboard')"
@@ -96,6 +102,7 @@
                         </div>
                     </li>
                 @endguest
+              
             </ul>
         </div><!--navbar-collapse-->
     </div><!--container-->
