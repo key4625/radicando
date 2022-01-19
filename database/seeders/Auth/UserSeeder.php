@@ -29,6 +29,14 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'active' => true,
         ]);
+        User::create([
+            'type' => User::TYPE_ADMIN,
+            'name' => 'Simone',
+            'email' => 'esseppimultimedia@gmail.com',
+            'password' => 'essepi4Radicando!',
+            'email_verified_at' => now(),
+            'active' => true,
+        ]);
 
      
         $this->enableForeignKeys();
