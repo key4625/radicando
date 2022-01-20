@@ -11,7 +11,7 @@
 @section('content')
     <x-backend.card>
         <x-slot name="header">
-            @lang('Welcome :Name', ['name' => $logged_in_user->name])
+            @lang('Lista piante')
         </x-slot>
 
         <x-slot name="body">

@@ -1,5 +1,8 @@
 @extends('backend.layouts.app')
 
+@push('after-styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('title', __('Dashboard'))
 
 @section('content')
@@ -78,37 +81,119 @@
                             <input type="text" name="prezzo_kg" @if(isset($plant)) value="{{$plant->prezzo_kg}}" @endif class="form-control" placeholder="0.0">
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="text-center">Inserire i mesi divisi con la virgola</div>
-                    </div>
+
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Trapianto</label>
-                            <input type="text" name="trapianto" @if(isset($plant)) value="{{$plant->trapianto}}" @endif class="form-control" placeholder="[0,0,0]">
+                            @php 
+                                $plant_trapianto = json_decode($plant->trapianto); 
+                                $plant_semina = json_decode($plant->semina); 
+                                $plant_semina_out = json_decode($plant->semina_out); 
+                                $plant_raccolta = json_decode($plant->raccolta); 
+                                $plant_gg_campo = json_decode($plant->gg_campo); 
+                            @endphp
+                            <select id="sel_trapianto" class="form-control" name="trapianto[]" multiple="">
+                                <option value="1" @if(($plant_trapianto!=null)&&(in_array(1, $plant_trapianto))) selected @endif >Gennaio</option>
+                                <option value="2" @if(($plant_trapianto!=null)&&(in_array(2, $plant_trapianto))) selected @endif>Febbraio</option>
+                                <option value="3" @if(($plant_trapianto!=null)&&(in_array(3, $plant_trapianto))) selected @endif>Marzo</option>
+                                <option value="4" @if(($plant_trapianto!=null)&&(in_array(4, $plant_trapianto))) selected @endif>Aprile</option>
+                                <option value="5" @if(($plant_trapianto!=null)&&(in_array(5, $plant_trapianto))) selected @endif>Maggio</option>
+                                <option value="6" @if(($plant_trapianto!=null)&&(in_array(6, $plant_trapianto))) selected @endif>Giugno</option>
+                                <option value="7" @if(($plant_trapianto!=null)&&(in_array(7, $plant_trapianto))) selected @endif>Luglio</option>
+                                <option value="8" @if(($plant_trapianto!=null)&&(in_array(8, $plant_trapianto))) selected @endif>Agosto</option>
+                                <option value="9" @if(($plant_trapianto!=null)&&(in_array(9, $plant_trapianto))) selected @endif>Settembre</option>
+                                <option value="10" @if(($plant_trapianto!=null)&&(in_array(10, $plant_trapianto))) selected @endif>Ottobre</option>
+                                <option value="11" @if(($plant_trapianto!=null)&&(in_array(11, $plant_trapianto))) selected @endif>Novembre</option>
+                                <option value="12" @if(($plant_trapianto!=null)&&(in_array(12, $plant_trapianto))) selected @endif>Dicembre</option>
+                            </select>                        
+                            {{--<input type="text" name="trapianto" @if(isset($plant)) value="{{$plant->trapianto}}" @endif class="form-control" placeholder="[0,0,0]">--}}
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Semina</label>
-                            <input type="text" name="semina" @if(isset($plant)) value="{{$plant->semina}}" @endif class="form-control" placeholder="[0,0,0]">
+                            <select id="sel_semina" class="form-control" name="semina[]" multiple="">
+                                <option value="1" @if(($plant_semina!=null)&&(in_array(1, $plant_semina))) selected @endif >Gennaio</option>
+                                <option value="2" @if(($plant_semina!=null)&&(in_array(2, $plant_semina))) selected @endif>Febbraio</option>
+                                <option value="3" @if(($plant_semina!=null)&&(in_array(3, $plant_semina))) selected @endif>Marzo</option>
+                                <option value="4" @if(($plant_semina!=null)&&(in_array(4, $plant_semina))) selected @endif>Aprile</option>
+                                <option value="5" @if(($plant_semina!=null)&&(in_array(5, $plant_semina))) selected @endif>Maggio</option>
+                                <option value="6" @if(($plant_semina!=null)&&(in_array(6, $plant_semina))) selected @endif>Giugno</option>
+                                <option value="7" @if(($plant_semina!=null)&&(in_array(7, $plant_semina))) selected @endif>Luglio</option>
+                                <option value="8" @if(($plant_semina!=null)&&(in_array(8, $plant_semina))) selected @endif>Agosto</option>
+                                <option value="9" @if(($plant_semina!=null)&&(in_array(9, $plant_semina))) selected @endif>Settembre</option>
+                                <option value="10" @if(($plant_semina!=null)&&(in_array(10, $plant_semina))) selected @endif>Ottobre</option>
+                                <option value="11" @if(($plant_semina!=null)&&(in_array(11, $plant_semina))) selected @endif>Novembre</option>
+                                <option value="12" @if(($plant_semina!=null)&&(in_array(12, $plant_semina))) selected @endif>Dicembre</option>
+                            </select>
+                            {{--<input type="text" name="semina" @if(($plant_semina!=null)&&(isset($plant)) value="{{$plant->semina}}" @endif class="form-control" placeholder="[0,0,0]">--}}
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Semina aperto</label>
-                            <input type="text" name="semina_out" @if(isset($plant)) value="{{$plant->semina_out}}" @endif class="form-control" placeholder="[0,0,0]">
+                            <select id="sel_semina_out" class="form-control" name="semina_out[]" multiple="">
+                                <option value="1" @if(($plant_semina_out!=null)&&(in_array(1, $plant_semina_out))) selected @endif >Gennaio</option>
+                                <option value="2" @if(($plant_semina_out!=null)&&(in_array(2, $plant_semina_out))) selected @endif>Febbraio</option>
+                                <option value="3" @if(($plant_semina_out!=null)&&(in_array(3, $plant_semina_out))) selected @endif>Marzo</option>
+                                <option value="4" @if(($plant_semina_out!=null)&&(in_array(4, $plant_semina_out))) selected @endif>Aprile</option>
+                                <option value="5" @if(($plant_semina_out!=null)&&(in_array(5, $plant_semina_out))) selected @endif>Maggio</option>
+                                <option value="6" @if(($plant_semina_out!=null)&&(in_array(6, $plant_semina_out))) selected @endif>Giugno</option>
+                                <option value="7" @if(($plant_semina_out!=null)&&(in_array(7, $plant_semina_out))) selected @endif>Luglio</option>
+                                <option value="8" @if(($plant_semina_out!=null)&&(in_array(8, $plant_semina_out))) selected @endif>Agosto</option>
+                                <option value="9" @if(($plant_semina_out!=null)&&(in_array(9, $plant_semina_out))) selected @endif>Settembre</option>
+                                <option value="10" @if(($plant_semina_out!=null)&&(in_array(10, $plant_semina_out))) selected @endif>Ottobre</option>
+                                <option value="11" @if(($plant_semina_out!=null)&&(in_array(11, $plant_semina_out))) selected @endif>Novembre</option>
+                                <option value="12" @if(($plant_semina_out!=null)&&(in_array(12, $plant_semina_out))) selected @endif>Dicembre</option>
+                            </select>
+                            {{--<input type="text" name="semina_out" @if(($plant_semina!=null)&&(isset($plant))) value="{{$plant->semina_out}}" @endif class="form-control" placeholder="[0,0,0]">--}}
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Raccolta</label>
-                            <input type="text" name="raccolta" @if(isset($plant)) value="{{$plant->raccolta}}" @endif class="form-control" placeholder="[0,0,0]">
+                            <select id="sel_raccolta" class="form-control" name="raccolta[]" multiple="">
+                                <option value="1" @if(($plant_raccolta!=null)&&(in_array(1, $plant_raccolta))) selected @endif >Gennaio</option>
+                                <option value="2" @if(($plant_raccolta!=null)&&(in_array(2, $plant_raccolta))) selected @endif>Febbraio</option>
+                                <option value="3" @if(($plant_raccolta!=null)&&(in_array(3, $plant_raccolta))) selected @endif>Marzo</option>
+                                <option value="4" @if(($plant_raccolta!=null)&&(in_array(4, $plant_raccolta))) selected @endif>Aprile</option>
+                                <option value="5" @if(($plant_raccolta!=null)&&(in_array(5, $plant_raccolta))) selected @endif>Maggio</option>
+                                <option value="6" @if(($plant_raccolta!=null)&&(in_array(6, $plant_raccolta))) selected @endif>Giugno</option>
+                                <option value="7" @if(($plant_raccolta!=null)&&(in_array(7, $plant_raccolta))) selected @endif>Luglio</option>
+                                <option value="8" @if(($plant_raccolta!=null)&&(in_array(8, $plant_raccolta))) selected @endif>Agosto</option>
+                                <option value="9" @if(($plant_raccolta!=null)&&(in_array(9, $plant_raccolta))) selected @endif>Settembre</option>
+                                <option value="10" @if(($plant_raccolta!=null)&&(in_array(10, $plant_raccolta))) selected @endif>Ottobre</option>
+                                <option value="11" @if(($plant_raccolta!=null)&&(in_array(11, $plant_raccolta))) selected @endif>Novembre</option>
+                                <option value="12" @if(($plant_raccolta!=null)&&(in_array(12, $plant_raccolta))) selected @endif>Dicembre</option>
+                            </select>
+                            {{--<input type="text" name="raccolta" @if(isset($plant)) value="{{$plant->raccolta}}" @endif class="form-control" placeholder="[0,0,0]">--}}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label>Giorni in campo (gg)</label>
-                            <input type="text" name="raccolta" @if(isset($plant)) value="{{$plant->gg_campo}}" @endif class="form-control" placeholder="[0,0,0]">
+                            <select id="sel_gg_campo" class="form-control" name="gg_campo[]" multiple="">
+                                <option value="15" @if(($plant_gg_campo!=null)&&(in_array(15, $plant_gg_campo))) selected @endif >15</option>
+                                <option value="30" @if(($plant_gg_campo!=null)&&(in_array(30, $plant_gg_campo))) selected @endif >30</option>
+                                <option value="40" @if(($plant_gg_campo!=null)&&(in_array(40, $plant_gg_campo))) selected @endif >40</option>
+                                <option value="50" @if(($plant_gg_campo!=null)&&(in_array(50, $plant_gg_campo))) selected @endif >50</option>
+                                <option value="60" @if(($plant_gg_campo!=null)&&(in_array(60, $plant_gg_campo))) selected @endif>60</option>
+                                <option value="70" @if(($plant_gg_campo!=null)&&(in_array(70, $plant_gg_campo))) selected @endif>70</option>
+                                <option value="80" @if(($plant_gg_campo!=null)&&(in_array(80, $plant_gg_campo))) selected @endif>80</option>
+                                <option value="90" @if(($plant_gg_campo!=null)&&(in_array(90, $plant_gg_campo))) selected @endif>90</option>
+                                <option value="100" @if(($plant_gg_campo!=null)&&(in_array(100, $plant_gg_campo))) selected @endif>100</option>
+                                <option value="110" @if(($plant_gg_campo!=null)&&(in_array(110, $plant_gg_campo))) selected @endif>110</option>
+                                <option value="120" @if(($plant_gg_campo!=null)&&(in_array(120, $plant_gg_campo))) selected @endif>120</option>
+                                <option value="150" @if(($plant_gg_campo!=null)&&(in_array(150, $plant_gg_campo))) selected @endif>150</option>
+                                <option value="180" @if(($plant_gg_campo!=null)&&(in_array(180, $plant_gg_campo))) selected @endif>180</option>
+                                <option value="210" @if(($plant_gg_campo!=null)&&(in_array(210, $plant_gg_campo))) selected @endif>210</option>
+                                <option value="240" @if(($plant_gg_campo!=null)&&(in_array(240, $plant_gg_campo))) selected @endif>240</option>
+                                <option value="270" @if(($plant_gg_campo!=null)&&(in_array(270, $plant_gg_campo))) selected @endif>270</option>
+                                <option value="300" @if(($plant_gg_campo!=null)&&(in_array(300, $plant_gg_campo))) selected @endif>300</option>
+                                <option value="330" @if(($plant_gg_campo!=null)&&(in_array(330, $plant_gg_campo))) selected @endif>330</option>
+                                <option value="360" @if(($plant_gg_campo!=null)&&(in_array(360, $plant_gg_campo))) selected @endif>360</option>
+                            </select>
+                            {{--<input type="text" name="gg_campo" @if(isset($plant)) value="{{$plant->gg_campo}}" @endif class="form-control" placeholder="[0,0,0]">--}}
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
@@ -132,13 +217,13 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Trattamenti consigliati</label>
                             <input type="text" name="trattamenti_consigliati" @if(isset($plant)) value="{{$plant->trattamenti_consigliati}}" @endif class="form-control" placeholder="">
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Richieste nutrizionali</label>
                             <input type="text" name="richieste_nutrizionali" @if(isset($plant)) value="{{$plant->richieste_nutrizionali}}" @endif class="form-control" placeholder="">
@@ -166,3 +251,32 @@
     </x-backend.card>
 
 @endsection
+
+@push('after-scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#sel_trapianto').select2({
+            placeholder: "Sel. mesi",
+            allowClear: true,
+        });
+        $('#sel_semina').select2({
+            placeholder: "Sel. mesi",
+            allowClear: true,
+        });
+        $('#sel_semina_out').select2({
+            placeholder: "Sel. mesi",
+            allowClear: true,
+        });
+        $('#sel_raccolta').select2({
+            placeholder: "Sel. mesi",
+            allowClear: true,
+        });
+        $('#sel_gg_campo').select2({
+            placeholder: "Sel. gg",
+            allowClear: true,
+        });
+    });
+</script>
+@endpush

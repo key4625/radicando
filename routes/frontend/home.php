@@ -14,6 +14,18 @@ Route::get('/', [HomeController::class, 'index'])
         $trail->push(__('Home'), route('frontend.index'));
     });
 
+    Route::get('/ordina', [HomeController::class, 'order'])
+    ->name('order')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Ordina'), route('frontend.order'));
+    });
+
+    Route::get('/visita', [HomeController::class, 'visit'])
+    ->name('visit')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->push(__('Visita'), route('frontend.visit'));
+    });
+
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
     ->breadcrumbs(function (Trail $trail) {

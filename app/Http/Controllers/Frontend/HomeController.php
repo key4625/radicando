@@ -14,4 +14,12 @@ class HomeController
     {
         return view('frontend.index');
     }
+    public function order()
+    {
+        return view('frontend.order');
+    }
+    public function visit()
+    {
+        return view('frontend.visit');
+    }
 }

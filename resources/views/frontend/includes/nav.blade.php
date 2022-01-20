@@ -2,6 +2,7 @@
     <div class="container">
         
          <a href="{{route('frontend.index')}}" class="navbar-brand"> <img src="img/logotipo_1.png"></a>  
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,20 +24,45 @@
                 @endif
                 <li class="nav-item">
                     <x-utils.link
+                        :href="route('frontend.index')"
+                        :active="activeClass(Route::is('frontend.index'))"
+                        :text="__('Home')"
+                        icon="fas fa-home"
+                        class="nav-link" />
+                </li>
+                <li class="nav-item">
+                    <x-utils.link
+                        :href="route('frontend.visit')"
+                        :active="activeClass(Route::is('frontend.visit'))"
+                        :text="__('Visita')"
+                        icon="fas fa-eye"
+                        class="nav-link" />
+                </li>
+                <li class="nav-item">
+                    <x-utils.link
+                        :href="route('frontend.order')"
+                        :active="activeClass(Route::is('frontend.order'))"
+                        :text="__('Ordina')"
+                        icon="fas fa-shopping-basket"
+                        class="nav-link" />
+                </li>
+              
+                {{--<li class="nav-item">
+                    <x-utils.link
                         :href="route('frontend.auth.login')"
                         :active="activeClass(Route::is('frontend.auth.login'))"
                         :text="__('Contatti')"
                         icon="fas fa-book"
                         class="nav-link" />
-                </li>
+                </li>--}}
                 @guest
                     <li class="nav-item">
                         <x-utils.link
                             :href="route('frontend.auth.login')"
                             :active="activeClass(Route::is('frontend.auth.login'))"
-                            icon="fas fa-key"
+                            icon="fas fa-lock"
                            
-                            class="nav-link nav-link rounded-circle bn btn-primary text-white p-2 btn-accesso" />
+                            class="nav-link btn btn-primary text-white p-2 btn-rotondo" />
                     </li>
 
                     @if (config('boilerplate.access.user.registration'))

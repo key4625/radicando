@@ -19,6 +19,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+
 .navbar-brand img {
     height: 50px;
 }
@@ -94,3 +95,11 @@ a:hover {
     color: white;
 }
 
+.btn-rotondo {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
