@@ -13,7 +13,16 @@ Route::get('dashboard', [DashboardController::class, 'index'])
     });
 Route::resource('piante',PlantController::class);
 //Route::view('piante','backend.plants' )->name('piante');
-Route::view('ordini','backend.ordini' )->name('ordini');
-Route::view('raccolto','backend.collection' )->name('raccolto');
-Route::view('coltivazioni','backend.cultivations' )->name('coltivazioni');
+Route::view('terreni','backend.terreni' )->name('terreni')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Terreni'), route('admin.terreni'));
+});
+Route::view('ordini','backend.ordini' )->name('ordini')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Ordini'), route('admin.ordini'));
+});
+Route::view('raccolto','backend.collection' )->name('raccolto')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Raccolto'), route('admin.raccolto'));
+});
+Route::view('coltivazioni','backend.cultivations' )->name('coltivazioni')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Coltivazioni'), route('admin.coltivazioni'));
+});
 

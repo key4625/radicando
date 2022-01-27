@@ -16,4 +16,8 @@ class Cultivation extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+    public function field()
+    {
+        return $this->belongsTo(Field::class);
+    }
 }

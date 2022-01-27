@@ -26,8 +26,8 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
-                :href="route('admin.coltivazioni')"
-                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                :href="route('admin.terreni')"
+                :active="activeClass(Route::is('admin.terreni'), 'c-active')"
                 icon="c-sidebar-nav-icon fas fa-map"
                 :text="__('Terreni')" />
         </li>

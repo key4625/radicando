@@ -36,8 +36,9 @@ class CreatePlantsTable extends Migration
         });
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->json('points');
+            $table->string('name');
+            $table->string('location')->nullable();
+            $table->json('points')->nullable();
             $table->double('mq')->nullable();
             $table->timestamps();
         });
@@ -98,6 +99,5 @@ class CreatePlantsTable extends Migration
         Schema::dropIfExists('cultivations');
         Schema::dropIfExists('order_plant');
         Schema::dropIfExists('collections');
-
     }
 }
