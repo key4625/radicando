@@ -29,47 +29,29 @@
                         <input type="mq" class="form-control" id="mq" wire:model="mq">
                         @error('mq') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
-
-                    @php 
-                        $totPunti = count($points);
-                    @endphp
-                    
-                    @for ($i=0; $i < $totPunti; $i++)
-                        <div class="row my-2" id="field-{{$i}}">
-                            <div class="col-md-4">
-                                <input type="text" name="points[{{ $i }}][key]" class="form-control" value="{{ $points[$i]['key'] ?? '' }}">
-                            </div>
-                            <div class="col-md-6">
-                                <textarea name="points[{{ $i }}][value]" class="form-control">{{ $points[$i]['value'] ?? '' }}</textarea>
-                            </div>
-                            <div class="col-md-2 text-center text-md-left"> 
-                                <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove ">X</button>
-                            </div>
-                        </div>
-                    @endfor
-                
-                    <div id="dynamic_field">
-                        <div class="row my-2 field-{{$totPunti}}" >
-                            <div class="col-md-4">
-                                <input type="text" name="points[{{$totPunti}}][key]" class="form-control" 
-                                    value="{{ $points[$totPunti]['key'] ?? '' }}">
-                            </div>
-                            <div class="col-md-6">
-                                <textarea name="points[{{$totPunti}}][value]" class="form-control">{{ $points[$totPunti]['value'] ?? '' }}</textarea>
-                            </div>
-                            <div class="col-md-2 text-center text-md-left"> 
-                                    <button type="button" name="btndAddPoints" id="btndAddPoints" class="btn btn-success ">+</button>     
-                            </div>
-                        </div>
-                    </div>
-
+                   
                     <div class="form-group col-12">
-                        <label for="points">Punti</label>
-                        <input type="points" class="form-control" id="points" wire:model="points">
-                        @error('points') <span class="text-danger">{{ $message }}</span>@enderror
+                        <hr>
+                        <div class="row my-2">
+                            <div class="col-6"><label for="point">Lista punti</label></label></div>
+                            <div class="col-6 text-right"><button type="button" wire:click="addPoint()" class="btn btn-success btn-sm">+ Aggiungi</button></div>
+                        </div> 
+                        @if(($points!=null))
+                            @foreach ($points as $key => $item)
+                                    <div class="row my-1">
+                                        @foreach ($item as $key2 => $subitem)
+                                            <div class="col">
+                                                <input type="text" wire:model="points.{{ $key }}.{{$key2}}" class="form-control form-control-sm">
+                                            </div>
+                                        @endforeach
+                                        <div class="col"> 
+                                            <button type="button" name="remove" id="{{$key}}" wire:click="removePoint({{$key}})" class="btn btn-danger btn_remove  btn-sm"><i class="fas fa-trash "></i></button>
+                                        </div>
+                                    </div>
+                            @endforeach
+                        @endif
                     </div>
-                
-                            
+      
                     <div class="form-group col-12 text-center text-md-right">
                         <button wire:click.prevent="resetInputFields()" class="btn btn-danger"><i class="far fa-times-circle m-auto d-block"></i> Annulla</button>
                         <button wire:click.prevent="store()" class="btn btn-success"><i class="fas fa-save m-auto d-block"></i> Salva</button>
@@ -83,7 +65,7 @@
     <div class="col-12 col-md-8">
         <style>
             #map {
-                height: 400px;
+                height: 600px;
                 /* The height is 400 pixels */
                 width: 100%;
                 /* The width is the width of the web page */
@@ -95,20 +77,4 @@
     </div>
 </div>
 
-@push('after-scripts')
-    <script type="text/javascript">
 
-        $(document).ready(function(){  
-            var i={{$totPunti}};     
-            $('#btndAddPoints').click(function(){  
-            i++;  
-            //$('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>'); 
-            $('#dynamic_field').append('<div class="row my-2 dynamic-added" id="field-'+i+'"><div class="col-md-4"><input type="text" name="points['+i+'][key]" class="form-control" value=""></div><div class="col-md-6"><textarea name="points['+i+'][value]" class="form-control"></textarea></div><div class="col-md-2 text-center text-md-left"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></div></div>'); 
-            });  
-            $(document).on('click', '.btn_remove', function(){  
-            var button_id = $(this).attr("id");   
-            $('#field-'+button_id+'').remove();  
-            });  
-        });  
-    </script>
-@endpush

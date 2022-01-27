@@ -17,20 +17,5 @@ class Field extends Model
     public function cultivations()
     {
         return $this->hasMany(Cultivation::class);
-    }
-
-    public function setPointsAttribute($value)
-    {
-        $points = [];
-
-        foreach ($value as $array_item) {
-            if (!is_null($array_item['key'])) {
-                $points[] = $array_item;
-            }
-        }
-
-        $this->attributes['points'] = json_encode($points);
-    }
-
- 
+    } 
 }
