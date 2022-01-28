@@ -6,6 +6,19 @@
         <div class="card-body">
         
                 <button class="btn btn-success mb-3 text-right" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo terreno </button>
+                
+                <style>
+                    #mapindex {
+                        height: 600px;
+                        /* The height is 400 pixels */
+                        width: 100%;
+                        /* The width is the width of the web page */
+                    }
+                </style>
+                <div wire:init="initMapIndexContent" class="map-index-container">
+                    <div id="mapindex" class="mb-2"></div>
+                </div> 
+                
                 <table class="table">
                     <thead>
                     <tr>

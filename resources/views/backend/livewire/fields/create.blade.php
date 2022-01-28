@@ -1,9 +1,10 @@
 <div class="row">
+    <div class="col-12 mb-2 text-right"><button wire:click.prevent="resetInputFields()" class="btn btn-primary"><i class="fas fa-step-backward"></i> Indietro</button></div>
     <div class="col-12 col-md-4">
         <x-backend.card >
             <x-slot name="header">
                 <div class="float-left">    
-                    <h5 class="modal-title">Nuovo terreno</h5>
+                    <h5 class="modal-title">Terreno</h5>
                 </div>
                 <div class="float-right">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="$set('editMode', false)">
@@ -51,11 +52,10 @@
                             @endforeach
                         @endif
                     </div>
-      
-                    <div class="form-group col-12 text-center text-md-right">
-                        <button wire:click.prevent="resetInputFields()" class="btn btn-danger"><i class="far fa-times-circle m-auto d-block"></i> Annulla</button>
-                        <button wire:click.prevent="store()" class="btn btn-success"><i class="fas fa-save m-auto d-block"></i> Salva</button>
-                    </div>
+                    <div class="col-6"><button wire:click.prevent="resetInputFields()" class="btn btn-danger w-100"><i class="far fa-times-circle"></i> Annulla</button></div>
+                    <div class="col-6"><button wire:click.prevent="store()" class="btn btn-success w-100"><i class="fas fa-save"></i> Salva</button></div>
+                 
+                    
                 
                     
                 </form>

@@ -10,8 +10,9 @@ use Livewire\WithPagination;
 class FieldsLivewire extends Component
 {
     use WithPagination;
-    protected $listeners = ['delete','addPointFromMap'];
+    protected $listeners = ['delete','addPointFromMap','addPolygonFromMap','setAreaMq','toggleUpdate'];
     public $field_id, $name, $location, $points = array(), $mq;
+    public $polygons = array();
     public $editMode = false;
     public $showMode = false;
 
@@ -26,6 +27,10 @@ class FieldsLivewire extends Component
 
     public function render()
     {
+        $this->polygons = array();
+        foreach(Field::all() as $tmp_field){
+            array_push($this->polygons,array($tmp_field->id,json_decode($tmp_field->points)));
+        }
         return view('backend.livewire.fields-livewire', ['fields' => Field::orderby('created_at')->paginate(25)]);
     }
 
@@ -61,10 +66,23 @@ class FieldsLivewire extends Component
         }
         $this->refreshMapContent();
     }
-    public function addPointFromMap($cords){
+    /*public function addPointFromMap($cords){
         $new_point = array($cords['lat'],$cords['lng']);
         array_push($this->points,$new_point);
         $this->refreshMapContent();
+    }*/
+
+    public function addPolygonFromMap($layer){
+        //dd($layer);
+        $this->points = array();
+        foreach($layer[0] as $tmp_point){
+            $new_point = array($tmp_point['lat'],$tmp_point['lng']);
+            array_push($this->points,$new_point);
+        }
+    }
+
+    public function setAreaMq($totArea){
+        $this->mq = intval($totArea);
     }
 
     public function store()
@@ -94,6 +112,13 @@ class FieldsLivewire extends Component
             $this->dispatchBrowserEvent('map-created', ['pointList' => $this->points]);
         }
     }
+
+    public function initMapIndexContent(){
+        if((!$this->editMode)&&(!$this->showMode)){
+            $this->dispatchBrowserEvent('map-index-created', ['polList' => $this->polygons]);
+        }
+    }
+
     public function refreshMapContent(){
         if(($this->editMode)||($this->showMode)){
             $this->dispatchBrowserEvent('map-updated', ['pointList' => $this->points]);
