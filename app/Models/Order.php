@@ -14,6 +14,10 @@ class Order extends Model
 
     public function plants()
     {
-        return $this->belongsToMany(Plant::class)->withPivot('quantity_kg', 'quantity_num','price_kg');
+        return $this->morphedByMany(Plant::class, 'orderable')->withPivot('quantity_kg', 'quantity_num','price_kg');
+    }
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'orderable')->withPivot('quantity_kg', 'quantity_num','price_kg');
     }
 }

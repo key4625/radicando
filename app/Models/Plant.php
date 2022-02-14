@@ -14,7 +14,7 @@ class Plant extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->morphToMany(Order::class, 'orderable');
     }
     public function cultivations()
     {

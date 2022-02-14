@@ -32,16 +32,38 @@ class CreatePlantsTable extends Migration
             $table->boolean('vendibile')->nullable();
             $table->double('prezzo_kg')->default(0.0);
             $table->string('image')->nullable();
+            $table->double('quantity_mag')->default(0);
             $table->timestamps();
         });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('plant_id')->nullable();
+            $table->double('quantity_from')->default(0);
+            $table->double('quantity_to')->default(0);
+            $table->double('quantity_mag')->default(0);
+            $table->double('transform_cost')->default(0.0);  
+            $table->string('lot');
+            $table->double('price')->default(0.0);
+            $table->double('yield')->default(0.0);  
+            $table->string('description');
+            $table->string('image');
+            $table->datetime('transform_data')->nullable();
+            $table->timestamps();
+        });
+        
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('location')->nullable();
             $table->json('points')->nullable();
+            $table->bigInteger('parent_id')->default(0);
+            $table->double('length')->default(0);
+            $table->double('width')->default(0);
             $table->double('mq')->nullable();
             $table->timestamps();
         });
+        
         Schema::create('cultivations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('plant_id')->unique();
@@ -67,9 +89,10 @@ class CreatePlantsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('order_plant', function (Blueprint $table) {
+        Schema::create('orderables', function (Blueprint $table) {
             $table->bigInteger('order_id');
-            $table->bigInteger('plant_id');
+            $table->bigInteger('orderable_id');
+            $table->string('orderable_type');
             $table->double('quantity_kg');
             $table->double('quantity_num');
             $table->double('price_kg');
@@ -84,6 +107,9 @@ class CreatePlantsTable extends Migration
             $table->time('ora')->nullable();
             $table->timestamps();
         });
+       
+        
+
 
     }
 

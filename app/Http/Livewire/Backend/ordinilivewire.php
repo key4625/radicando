@@ -96,6 +96,7 @@ class ordinilivewire extends Component
     {
         $plant_sel = Plant::where('id',$plant_id)->first();
         if($plant_sel->prezzo_kg == null) $plant_sel->prezzo_kg = 0;
+        
         $this->sel_order->plants()->attach($plant_id,['quantity_kg' => 0, 'quantity_num' => 0, 'price_kg'=> $plant_sel->prezzo_kg ]);
         $this->sel_order->refresh();
         $this->quantity_num[$plant_id] = 0;
