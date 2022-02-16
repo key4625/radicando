@@ -75,6 +75,8 @@ class CreatePlantsTable extends Migration
             $table->integer('tot_piante')->nullable();
             $table->date('data_inizio')->nullable();
             $table->date('data_fine')->nullable();
+            $table->string('varieta');
+            $table->string('innesto');
             $table->timestamps();
         });
         Schema::create('orders', function (Blueprint $table) {
