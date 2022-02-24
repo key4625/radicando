@@ -66,17 +66,18 @@ class CreatePlantsTable extends Migration
         
         Schema::create('cultivations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id')->unique();
-            $table->bigInteger('field_id')->unique();
-            $table->string('sigla_fila');
+            $table->bigInteger('plant_id');
+            $table->bigInteger('field_id');
+            $table->string('sigla_fila')->nullable();
             $table->double('larghezza')->nullable();
             $table->double('lunghezza')->nullable();
+            $table->string('varieta')->nullable();
             $table->double('superficie_tot')->nullable();
             $table->integer('tot_piante')->nullable();
             $table->date('data_inizio')->nullable();
             $table->date('data_fine')->nullable();
-            $table->string('varieta');
-            $table->string('innesto');
+            $table->json('points')->nullable();
+            $table->string('innesto')->nullable();
             $table->timestamps();
         });
         Schema::create('orders', function (Blueprint $table) {

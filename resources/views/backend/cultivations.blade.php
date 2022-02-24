@@ -18,16 +18,7 @@
 @endpush
 
 @section('content')
-    <x-backend.card>
-        <x-slot name="header">
-            @lang('Welcome :Name', ['name' => $logged_in_user->name])
-        </x-slot>
-
-        <x-slot name="body">
-
-            <livewire:backend.cultivationslivewire />
-        </x-slot>
-    </x-backend.card>
+    <livewire:backend.cultivationslivewire />
 @endsection
 
 @push('after-scripts')
@@ -50,15 +41,13 @@
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
         });
+
+            
         editableLayers2 = new L.FeatureGroup();
         map.addLayer(editableLayers2);
-    }
-   
-    function fillMap() { 
-        /* inizio polygon */
+         /* inizio polygon */    
         var editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
-
         var drawPluginOptions = {
             position: 'topright',
             draw: {
@@ -88,10 +77,6 @@
         // Initialise the draw control and pass it the FeatureGroup of editable layers
         var drawControl = new L.Control.Draw(drawPluginOptions);
         map.addControl(drawControl);
-        
-        var editableLayers = new L.FeatureGroup();
-        map.addLayer(editableLayers);
-
         map.on('draw:created', function(e) {
             //map.removeLayer(polygon);
             var type = e.layerType, layer = e.layer;
@@ -102,9 +87,12 @@
                 Livewire.emit("addPolygonFromMap", layer._latlngs);
                 Livewire.emit("setAreaMq", seeArea);
             }
-        });
+        });         
         /* fine polygon */
-      
+    }
+   
+    function fillMap() { 
+        editableLayers2.clearLayers();
         dynamicPoligonList.forEach(polygon_single => {
             var single_pol = L.polygon([polygon_single[1]]).addTo(map);
             editableLayers2.addLayer(single_pol);
@@ -123,5 +111,15 @@
     });
 
 </script>
-
+<script>
+    Livewire.on("deleteTriggered", (id, name) => {
+        const proceed = confirm(`Sei sicuro che vuoi eliminare la coltivazione di ${name} ?`);
+        if (proceed) {
+            Livewire.emit("delete", id);
+        }
+        window.addEventListener("cultivation-deleted",(event)=>{
+            alert(`La coltivazione è stata eliminata`)
+        })
+    });
+</script>
 @endpush
