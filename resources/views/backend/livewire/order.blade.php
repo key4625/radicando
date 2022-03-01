@@ -11,12 +11,12 @@
             <button class="btn btn-primary" type="button" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo ordine </button> 
         </div>
         <table class="table  table-striped table-hover">
-            <th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell"></th><th class="d-none d-lg-table-cell"></th><th class="text-right" style="min-width: 110px;">Azioni</th>      
+            <th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell">Consegnato</th><th class="d-none d-lg-table-cell">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
             @foreach($orders as $order)
                 <tr>
                     <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @endif {{$order->nome}}</td>
                     @if($confirming===$order->id)
-                        <td colspan="4" class="text-right">
+                        <td colspan="5" class="text-right">
                             Vuoi cancellare?
                             <div class="btn-group ml-2" role="group" aria-label="Basic example">
                                 <button wire:click="delete({{ $order->id }})" class="btn btn-danger hover:bg-red-600">Si</button>
