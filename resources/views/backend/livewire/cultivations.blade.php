@@ -16,7 +16,7 @@
                             @endforeach
                         </select>
                         @error('plant_id') <span class="error text-danger">Devi selezionare un terreno</span> @enderror
-                        @if(($this->points!=0)&&(count($this->points)>0)) <small id="emailHelp" class="form-text text-muted">Hai selezionato un lotto di {{ $superficie_tot }} mq</small>  @endif
+                        @if(($this->points!=0)&&(count($this->points)>0)) <small id="emailHelp" class="form-text text-muted">Hai selezionato un lotto di {{ $superficie_tot }} mq @if($field_id != null) di {{ $field_sel->mq }} mq totali</small>@endif  @endif
                     </div>    
                     <div class="row">
                         <div class="form-group col-12 col-md-6">
