@@ -63,7 +63,7 @@ class cultivationslivewire extends Component
         if($this->mostraTutti){
             $cultiv = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
         } else {
-            $cultiv = Cultivation::where('data_fine', '>',NOW())->paginate(25);
+            $cultiv = Cultivation::where('data_fine', '>',NOW())->orwhere('data_fine',null)->paginate(25);
         }
         //$this->cultivations = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
         return view('backend.livewire.cultivations',[
