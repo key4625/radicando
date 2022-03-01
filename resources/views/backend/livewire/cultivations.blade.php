@@ -42,11 +42,11 @@
                             <input type="text" wire:model="sigla_fila" class="form-control">
                         </div>
                         <div class="form-group col-12 col-md-4">
-                            <label for="larghezza">Larghezza</label>
+                            <label for="larghezza">Larghezza fila</label>
                             <input type="number" wire:model="larghezza" class="form-control">
                         </div>
                         <div class="form-group col-12 col-md-4">
-                            <label for="lunghezza">Lunghezza</label>
+                            <label for="lunghezza">Lunghezza fila</label>
                             <input type="number" wire:model="lunghezza" class="form-control"> 
                         </div>
                         <div class="form-group col-12 col-md-6">
