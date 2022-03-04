@@ -78,6 +78,7 @@ class CreatePlantsTable extends Migration
             $table->date('data_fine')->nullable();
             $table->json('points')->nullable();
             $table->string('innesto')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
         Schema::create('orders', function (Blueprint $table) {

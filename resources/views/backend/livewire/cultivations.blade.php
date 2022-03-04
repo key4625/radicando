@@ -1,9 +1,7 @@
-
 <div>
+    @if($editMode)
     <div class="card">
-        <div class="card-body row">
-
-    
+        <div class="card-body row">       
             <div class="col-6">
                 <h3>Nuova coltivazione</h3>
                 <form class="mt-4" action="">
@@ -77,51 +75,62 @@
             
             </div>
             <div class="col-6">
+                <button type="button" class="close pb-2" data-dismiss="modal" aria-label="Close" wire:click="toggleEdit">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <div wire:init="initMapContent" class="map-container" wire:ignore>
                     <div id="map" class="mb-2"></div>
                 </div> 
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header">
-            <div class="d-flex justify-content-between">
-                <div>Coltivazioni</div>
-                <div class="d-flex align-items-center">
-                    <span class="mr-2">Mostra coltivazioni passate</span>
-                    <label class="c-switch c-switch-pill c-switch-info">  
-                        <input class="c-switch-input" type="checkbox" checked="" wire:model="mostraTutti"><span class="c-switch-slider"></span>
-                    </label>
+    @else
+
+   
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>Coltivazioni</div>
+                    <div class="d-flex align-items-center">
+                        <span class="mr-2">Mostra coltivazioni passate</span>
+                        <label class="c-switch c-switch-pill c-switch-info">  
+                            <input class="c-switch-input" type="checkbox" checked="" wire:model="mostraTutti"><span class="c-switch-slider"></span>
+                        </label>
+                    </div>
+                    <div><button class="btn btn-primary" wire:click="toggleEdit"><i class="fas fa-plus"></i> Nuova coltivazione</button></div>
                 </div>
             </div>
+            <div wire:init="initIndexMapContent" class="map-index-container">
+                <div id="map-index" class="mb-2"></div>
+            </div>   
+            <div class="card-body"> 
+               
+                @if($cultivations!=null)
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            @foreach($cultivations as $single_cult)
+                                <tr >
+                                    <td>@if($single_cult->plant->image != null)<img class="img-fluid" style="height:50px;" src="{{ $single_cult->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
+                                    <td>{{ $single_cult->plant->nome }}<br><span>{{ $single_cult->varieta }}</span></td>
+                                    <td>@if($single_cult->data_inizio!=null){{ Carbon\Carbon::parse($single_cult->data_inizio )->format('d M Y')}}@else non prevista @endif</td>
+                                    <td>{!! $single_cult->getFormattedDataFine() !!}</td>
+                                    <td>{{ $single_cult->field->name }}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-dark" wire:click="setCultivation({{$single_cult->id}})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" wire:click="$emit('deleteTriggered',{{$single_cult->id}},'{{$single_cult->plant->nome}}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                    {{ $cultivations->links() }}
+                @endif  
+            </div>
         </div>
-
-        <div class="card-body">   
-            @if($cultivations!=null)
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        @foreach($cultivations as $single_cult)
-                            <tr >
-                                <td>@if($single_cult->plant->image != null)<img class="img-fluid" style="height:50px;" src="{{ $single_cult->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
-                                <td>{{ $single_cult->plant->nome }}<br><span>{{ $single_cult->varieta }}</span></td>
-                                <td>@if($single_cult->data_inizio!=null){{ Carbon\Carbon::parse($single_cult->data_inizio )->format('d M Y')}}@else non prevista @endif</td>
-                                <td>{!! $single_cult->getFormattedDataFine() !!}</td>
-                                <td>{{ $single_cult->field->name }}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-dark" wire:click="setCultivation({{$single_cult->id}})">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-danger" wire:click="$emit('deleteTriggered',{{$single_cult->id}},'{{$single_cult->plant->nome}}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-                {{ $cultivations->links() }}
-            @endif  
-        </div>
-    </div>
+    @endif
 </div>
 

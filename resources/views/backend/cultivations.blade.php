@@ -9,12 +9,13 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw.css" />
 
 <style>
-    #map {
+    #map, #map-index {
         height: 400px;
         /* The height is 400 pixels */
         width: 100%;
         /* The width is the width of the web page */
     }
+   
 </style>
 @endpush
 
@@ -27,10 +28,21 @@
 <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
 <script>
-    var dynamicPointsList, dynamicPoligonList;
-    var map;
+    var dynamicPointsList, dynamicPoligonList, indexPoligonList;
+    var map, mapindex;
     var polygon;
-    var editableLayers2;
+    var editableLayers, editableLayers2;
+    var editableLayersIndex;
+
+    var LeafIcon = L.Icon.extend({
+        options: {
+            iconSize:     [40, 40],
+            shadowSize:   [50, 64],
+            iconAnchor:   [22, 22],
+            shadowAnchor: [4, 62],
+            popupAnchor:  [-3, -76]
+        }
+    });
     function createMap() {         
         var container = L.DomUtil.get('map'); 
         if(container != null){ container._leaflet_id = null; }
@@ -51,7 +63,7 @@
         editableLayers2 = new L.FeatureGroup();
         map.addLayer(editableLayers2);
          /* inizio polygon */    
-        var editableLayers = new L.FeatureGroup();
+        editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
         var drawPluginOptions = {
             position: 'topright',
@@ -94,25 +106,66 @@
             }
         });         
         /* fine polygon */
+        
     }
-   
+    function createIndexMap() {   
+        var container_index = L.DomUtil.get('map-index'); 
+        var pol_exist = false;
+        if(container_index != null){ container_index._leaflet_id = null; }
+        mapindex = L.map('map-index').setView([43.520933, 13.225302], 10); 
+        var OpenSatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        }).addTo(mapindex);
+        editableLayersIndex = new L.FeatureGroup();
+        mapindex.addLayer(editableLayersIndex);
+        indexPoligonList.forEach(polygon_single => {
+            if(polygon_single[1]!= null){
+                var single_pol = L.polygon([polygon_single[1]]).addTo(mapindex);
+                editableLayersIndex.addLayer(single_pol);              
+                single_pol.on("click", function (e) {
+                    //console.log('hai cliccato'+ polygon_single[0]);
+                    Livewire.emit("setCultivation", polygon_single[0]);
+                });
+                if(polygon_single[2]!= null){
+                    var cult_icon = new LeafIcon({iconUrl: polygon_single[2]});
+                    L.marker(single_pol.getBounds().getCenter(), {icon: cult_icon}).addTo(mapindex).bindPopup("I am a green leaf.");
+                }
+            }
+            pol_exist = true;
+        });
+        if(pol_exist) mapindex.fitBounds(editableLayersIndex.getBounds());
+    }
+
     function fillMap() { 
         editableLayers2.clearLayers();
+       
         dynamicPoligonList.forEach(polygon_single => {
             var single_pol = L.polygon([polygon_single[1]]).addTo(map);
             editableLayers2.addLayer(single_pol);
         });
-        map.fitBounds(editableLayers2.getBounds());
-        
+        if(dynamicPointsList!=null){
+            editableLayers.clearLayers();
+            polygon = L.polygon([dynamicPointsList]).addTo(map);
+            editableLayers.addLayer(polygon);
+
+            map.fitBounds(editableLayers.getBounds()); 
+        } else 
+            map.fitBounds(editableLayers2.getBounds());    
     }
 
     window.addEventListener('map-created', event => { 
         createMap();      
     });
     
-   window.addEventListener('map-updated', event => { 
+    window.addEventListener('map-updated', event => { 
         dynamicPoligonList = event.detail.polList;
+        dynamicPointsList = event.detail.pointList;
+        
         fillMap();      
+    });
+    window.addEventListener('map-index-created', event => { 
+        indexPoligonList = event.detail.polList;
+        createIndexMap();      
     });
 
 </script>
