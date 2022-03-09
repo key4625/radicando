@@ -47,13 +47,13 @@
         var container = L.DomUtil.get('map'); 
         if(container != null){ container._leaflet_id = null; }
         map = L.map('map').setView([43.520933, 13.225302], 10); 
-        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {            
+        /*var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {            
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
         var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        });
+        });*/
         var OpenSatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 17,
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -120,10 +120,11 @@
         mapindex.addLayer(editableLayersIndex);
         indexPoligonList.forEach(polygon_single => {
             if(polygon_single[1]!= null){
-                var single_pol = L.polygon([polygon_single[1]]).addTo(mapindex);
+                var single_pol = L.polygon([polygon_single[1]]);
+                single_pol.setStyle({fillColor: polygon_single[4], color: polygon_single[3]});
+                single_pol.addTo(mapindex);
                 editableLayersIndex.addLayer(single_pol);              
                 single_pol.on("click", function (e) {
-                    //console.log('hai cliccato'+ polygon_single[0]);
                     Livewire.emit("setCultivation", polygon_single[0]);
                 });
                 if(polygon_single[2]!= null){
@@ -138,19 +139,30 @@
 
     function fillMap() { 
         editableLayers2.clearLayers();
-       
+        var pol_exist = false;
         dynamicPoligonList.forEach(polygon_single => {
-            var single_pol = L.polygon([polygon_single[1]]).addTo(map);
-            editableLayers2.addLayer(single_pol);
+            if(polygon_single[1]!= null){
+                var single_pol = L.polygon([polygon_single[1]])
+                single_pol.setStyle({fillColor: polygon_single[4], color: polygon_single[3]});
+                single_pol.addTo(map);
+                editableLayers2.addLayer(single_pol);
+                
+                if(polygon_single[2]!= null){
+                    var cult_icon = new LeafIcon({iconUrl: polygon_single[2]});
+                    L.marker(single_pol.getBounds().getCenter(), {icon: cult_icon}).addTo(map).bindPopup("I am a green leaf.");
+                }
+            }
+            pol_exist = true;
         });
-        if(dynamicPointsList!=null){
+        if((dynamicPointsList!=null)&&(dynamicPointsList.length > 0)){
             editableLayers.clearLayers();
             polygon = L.polygon([dynamicPointsList]).addTo(map);
             editableLayers.addLayer(polygon);
 
             map.fitBounds(editableLayers.getBounds()); 
-        } else 
-            map.fitBounds(editableLayers2.getBounds());    
+        } else {
+            if(pol_exist) map.fitBounds(editableLayers2.getBounds());    
+        }
     }
 
     window.addEventListener('map-created', event => { 
@@ -159,8 +171,7 @@
     
     window.addEventListener('map-updated', event => { 
         dynamicPoligonList = event.detail.polList;
-        dynamicPointsList = event.detail.pointList;
-        
+        dynamicPointsList = event.detail.pointList;       
         fillMap();      
     });
     window.addEventListener('map-index-created', event => { 

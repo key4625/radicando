@@ -3,7 +3,9 @@
     <div class="card">
         <div class="card-body row">       
             <div class="col-6">
-                <h3>Nuova coltivazione</h3>
+                @if($cult_id==null)<h3>Nuova coltivazione</h3>
+                @else <h3>Modifica coltivazione</h3>
+                @endif
                 <form class="mt-4" action="">
                     <div class="form-group">
                         <label for="field_id"> Seleziona terreno</label>

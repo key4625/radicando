@@ -58,26 +58,30 @@ class cultivationslivewire extends Component
     }
     public function render()
     {
-        $this->polygons = array();
        
+        $this->polygons = array();
         $this->field_sel =  Field::where('id',$this->field_id)->first();
-        if(($this->field_id!=null)&&($this->editMode)){
-            array_push($this->polygons,array($this->field_sel->id,json_decode($this->field_sel->points)));
-            $this->refreshMapContent();
-        }
+        
         
         if($this->mostraTutti){
             $cultiv = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
         } else {
             $cultiv = Cultivation::where('data_fine', '>',NOW())->orwhere('data_fine',null)->paginate(25);
         }
-        if(!$this->editMode){
-            $this->polygons_cult = array();
-            foreach($cultiv as $cult){
-                if($cult->plant != null) { $img_cult = $cult->plant->image; } else { $img_cult = null; }
-                array_push($this->polygons_cult,array($cult->id,json_decode($cult->points),$cult->plant->image));
+        foreach($cultiv as $cult){
+            if($cult->plant != null) { $img_cult = $cult->plant->image; } else { $img_cult = null; }
+            if(($this->editMode)&&($this->field_id!=null)){    
+                if(($cult->field->id == $this->field_id )&&($this->cult_id!=$cult->id)){
+                    array_push($this->polygons,array($cult->id,json_decode($cult->points),$cult->plant->icon, "#c3c3c3", "#c3c3c3"));               
+                }
+            } else {
+                array_push($this->polygons,array($cult->id,json_decode($cult->points),$cult->plant->icon, $cult->plant->color, $cult->plant->border_color));        
             }
         }
+        if($this->editMode){
+            if($this->field_id!=null)  array_push($this->polygons,array("field_".$this->field_sel->id,json_decode($this->field_sel->points),null, "#000","#888"));  
+            $this->refreshMapContent();
+        } 
         //$this->cultivations = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
         return view('backend.livewire.cultivations',[
             'cultivations' => $cultiv ,
@@ -129,7 +133,7 @@ class cultivationslivewire extends Component
 
     public function initIndexMapContent(){
         if((!$this->editMode)){
-            $this->dispatchBrowserEvent('map-index-created', ['polList' => $this->polygons_cult]);
+            $this->dispatchBrowserEvent('map-index-created', ['polList' => $this->polygons]);
         }
     }
 
@@ -138,9 +142,7 @@ class cultivationslivewire extends Component
     }
 
     public function refreshMapContent(){
-        if($this->field_id!=null){
-            $this->dispatchBrowserEvent('map-updated', ['polList' => $this->polygons,'pointList' => $this->points]);
-        }
+        $this->dispatchBrowserEvent('map-updated', ['polList' => $this->polygons,'pointList' => $this->points]);      
     }
 
     public function setCultivation($cult_id){
@@ -157,7 +159,7 @@ class cultivationslivewire extends Component
         $this->data_inizio = $cultiv_sel->data_inizio;
         $this->data_fine = $cultiv_sel->data_fine;
         $this->innesto = $cultiv_sel->innesto;
-        $this->points = json_decode($cultiv_sel->innesto);
+        $this->points = json_decode($cultiv_sel->points);
     }
 
     public function saveCultivation(){

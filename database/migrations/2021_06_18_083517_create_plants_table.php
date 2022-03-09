@@ -33,6 +33,7 @@ class CreatePlantsTable extends Migration
             $table->double('prezzo_kg')->default(0.0);
             $table->string('image')->nullable();
             $table->double('quantity_mag')->default(0);
+         
             $table->timestamps();
         });
 
@@ -78,7 +79,7 @@ class CreatePlantsTable extends Migration
             $table->date('data_fine')->nullable();
             $table->json('points')->nullable();
             $table->string('innesto')->nullable();
-            $table->string('color')->nullable();
+            
             $table->timestamps();
         });
         Schema::create('orders', function (Blueprint $table) {
