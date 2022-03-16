@@ -34,6 +34,14 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
+                :href="route('admin.lotti')"
+                :active="activeClass(Route::is('admin.lotti'), 'c-active')"
+                icon="c-sidebar-nav-icon fas fa-map"
+                :text="__('Lotti')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
                 :href="route('admin.coltivazioni')"
                 :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
                 icon="c-sidebar-nav-icon fas fa-carrot"

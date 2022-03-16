@@ -25,4 +25,7 @@ Route::view('raccolto','backend.collection' )->name('raccolto')->breadcrumbs(fun
 Route::view('coltivazioni','backend.cultivations' )->name('coltivazioni')->breadcrumbs(function (Trail $trail) {
     $trail->push(__('Coltivazioni'), route('admin.coltivazioni'));
 });
+Route::view('lotti','backend.lots' )->name('lotti')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Lotti'), route('admin.lotti'));
+});
 

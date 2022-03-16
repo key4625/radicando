@@ -18,4 +18,9 @@ class Field extends Model
     {
         return $this->hasMany(Cultivation::class);
     } 
+    public function actual_cultivation() 
+    {
+        $cult = Cultivation::where('field_id',$this->id)->get()->first();
+        return $cult ;
+    }
 }
