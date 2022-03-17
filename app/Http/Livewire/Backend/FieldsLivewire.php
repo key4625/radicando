@@ -28,10 +28,10 @@ class FieldsLivewire extends Component
     public function render()
     {
         $this->polygons = array();
-        foreach(Field::all() as $tmp_field){
+        foreach(Field::where('parent_id',0)->get() as $tmp_field){
             array_push($this->polygons,array($tmp_field->id,json_decode($tmp_field->points)));
         }
-        return view('backend.livewire.fields-livewire', ['fields' => Field::orderby('created_at')->paginate(25)]);
+        return view('backend.livewire.fields-livewire', ['fields' => Field::where('parent_id',0)->orderby('created_at')->paginate(25)]);
     }
 
     public function toggleInsert(){

@@ -18,6 +18,16 @@ class Field extends Model
     {
         return $this->hasMany(Cultivation::class);
     } 
+    public function parent()
+	{
+    	return $this->hasOne(Field::class, 'id', 'parent_id');
+	}
+
+	public function children()
+	{
+	   	return $this->hasMany(Field::class, 'parent_id', 'id');
+	}
+
     public function actual_cultivation() 
     {
         $cult = Cultivation::where('field_id',$this->id)->get()->first();
