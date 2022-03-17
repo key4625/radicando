@@ -19,7 +19,7 @@ class lotslivewire extends Component
     public $fields;
     //public $cultivations;
     public $field_sel;
-    public $field_id, $name, $location, $length, $width, $points = array(), $mq;
+    public $field_id,$parent_id, $name, $location, $length, $width, $points = array(), $mq;
     public $mostraTutti = false;
     public $polygons = array();
     public $polygons_cult = array();
@@ -38,6 +38,7 @@ class lotslivewire extends Component
     }
     public function resetInputFields(){
         $this->field_id = null;
+        $this->parent_id = null;
         $this->name = null;
         $this->location = null;
         $this->length = null;
@@ -49,9 +50,10 @@ class lotslivewire extends Component
     public function render()
     {       
         $this->polygons = array();
+        $fields_tmp = Field::all();
         if(!$this->editMode){
             //se siamo in index allora mostro tutti i terreni e tutti i lotti, se sono lotti coloro e metto icona
-            $fields_tmp = Field::all();
+          
             foreach($fields_tmp as $field_tmp){
                 if($field_tmp->actual_cultivation() != null) { 
                     $img_cult = $field_tmp->actual_cultivation()->plant->icon; 
@@ -65,6 +67,7 @@ class lotslivewire extends Component
                 }   
             }
         } else {
+           
             if($this->field_sel!=null){ 
                 array_push($this->polygons,array($this->field_sel->id,json_decode($this->field_sel->points),null, "#000","#888"));  
             }

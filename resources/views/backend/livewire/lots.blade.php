@@ -3,13 +3,13 @@
     <div class="card">
         <div class="card-body row">       
             <div class="col-6">
-                @if($cult_id==null)<h3>Nuovo lotto</h3>
+                @if($field_id==null)<h3>Nuovo lotto</h3>
                 @else <h3>Modifica lotto</h3>
                 @endif
                 <form class="mt-4" action="">
                     <div class="form-group">
-                        <label for="field_id"> Seleziona terreno</label>
-                        <select name="field_id" wire:model="field_id" class="form-control">
+                        <label for="parent_id"> Seleziona terreno</label>
+                        <select name="parent_id" wire:model="parent_id" class="form-control">
                             <option value=''>Seleziona un terreno</option>
                             @foreach($fields as $field)
                                 <option value={{ $field->id }}>{{ $field->name }}</option>
@@ -86,11 +86,10 @@
                         <table class="table table-striped">
                             @foreach($fields as $lot)
                                 <tr >
-                                    <td>@if($lot->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $lot->actual_cultivazion->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
                                     <td>{{ $lot->name }}</td>
-                                  
+                                    <td>@if($lot->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $lot->actual_cultivation()->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
                                     <td class="text-right">
-                                        <button class="btn btn-dark" wire:click="setCultivation({{$lot->id}})">
+                                        <button class="btn btn-dark" wire:click="setLots({{$lot->id}})">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                         <button class="btn btn-danger" wire:click="$emit('deleteTriggered',{{$lot->id}},'{{$lot->name}}')">
@@ -101,7 +100,7 @@
                             @endforeach
                         </table>
                     </div>
-                    {{ $fields->links() }}
+                    {{-- $fields->links() --}}
                 @endif  
             </div>
         </div>
