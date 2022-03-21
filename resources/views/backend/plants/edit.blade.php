@@ -236,6 +236,21 @@
                             <input type="text" name="image" @if(isset($plant)) value="{{$plant->image}}" @endif class="form-control" placeholder="">
                         </div>
                     </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label>Url marcatore</label>
+                            <input type="text" name="icon" @if(isset($plant)) value="{{$plant->icon}}" @endif class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <label for="colorInput" class="form-label">Colore</label>
+                        <input id="colorInput"  type="color" name="color" @if(isset($plant)) value="{{$plant->color}}" @endif class="form-control form-control-color" title="Scegli colore">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <label for="borderColInput" class="form-label">Bordo</label>
+                        <input id="borderColInput"  type="color" name="border_color" @if(isset($plant)) value="{{$plant->border_color}}" @endif class="form-control form-control-color" title="Scegli colore">
+                        
+                    </div>
                     
                     
                  
