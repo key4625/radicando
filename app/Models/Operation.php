@@ -12,9 +12,17 @@ class Operation extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function type()
+    public function operationtype()
     {
         return $this->belongsTo(Operationtype::class);
+    }
+    public function field()
+    {
+        return $this->belongsTo(Field::class);
+    }
+    public function cultivation()
+    {
+        return $this->belongsTo(Cultivation::class);
     }
     
 }

@@ -1,6 +1,8 @@
 <div>
     @if($editMode)
-       
+        <div class="w-100 text-right">
+            <button type="button" class="btn btn-primary mb-2" aria-label="Close" wire:click="toggleEdit">Indietro</button>
+        </div>
             @if($operationtype_id==null)
                 <div class="row">
                     @foreach($operationtypes as $otype)
@@ -91,6 +93,33 @@
                 </div>
             </div>
             <div class="card-body"> 
+                @if($actual_operations!=null)
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    @foreach($actual_operations as $single_op)
+                                        <tr >
+                                            <td>@if($single_op->operationtype->icon != null)<img class="img-fluid" style="height:50px;" src="/img/operazioni/{{ $single_op->operationtype->icon }}">@else <img class="img-fluid" style="height:50px;" src="/img/operazioni/operazioni.png">@endif</td>
+                                            <td>{{ $single_op->operationtype->name }}</td>
+                                            <td>
+                                                @if($single_op->field!=null){{ $single_op->field->name }}@endif
+                                                @if($single_op->cultivation!=null){{ $single_op->cultivation->plant->name }}@endif
+                                            </td>
+                                            <td>@if($single_op->date_start!=null){{ Carbon\Carbon::parse($single_op->date_start )->format('d M Y')}}@else non prevista @endif</td>
+                                            <td>{{ $single_op->name }}</td>
+                                            <td class="text-right">
+                                                <button class="btn btn-dark" wire:click="setOperation({{$single_op->id}})">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-danger" wire:click="$emit('deleteTriggered',{{$single_op->id}},'{{$single_op->operationtype->name}}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                            {{ $actual_operations->links() }}
+                        @endif 
             </div>
         </div>
     @endif
