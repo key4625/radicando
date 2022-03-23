@@ -21,6 +21,10 @@ class Cultivation extends Model
     {
         return $this->belongsTo(Field::class);
     }
+    public static function filtra_attive()
+    {
+       return Cultivation::where('data_fine', '>',NOW())->orwhere('data_fine',null);
+    }
     public function getFormattedDataFine(){
         if($this->data_fine!=null){
             $datenow = Carbon::now();

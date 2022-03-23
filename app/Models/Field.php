@@ -44,13 +44,13 @@ class Field extends Model
 			//$child_categories = collect());
 			$fields = $fields->merge(static::getAllChild($fieldFather, ''));	
 		}
-		//dd($categories);
-		$fields = $fields->pluck('name','id');
+		//$fields = $fields->pluck('name','id');
+		//$fields = $fields->get();
 		return $fields->all();
 	}
     public static function getAllChild(Field $field, string $pre){
 		$fieldChilds = collect(new Field);
-		$pre .= " -> ";
+		$pre .= $field->name." -> ";
 		if ($field->children->count() > 0)	{	
 			foreach($field->children as $field_child){
 				//$arr_categories->push([' - '.$field_child->name => $field_child->id]);

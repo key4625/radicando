@@ -11,8 +11,9 @@
                             <label for="field_id"> Seleziona terreno</label>
                             <select name="field_id" wire:model="field_id" class="form-control">
                                 <option value=''>Seleziona un terreno</option>
-                                @foreach($fields as $key=>$value)
-                                    <option value={{ $key }}>{{ $value }}</option>
+                                @foreach($fields as $tmp_field)
+                                   
+                                    <option value={{ $tmp_field['id'] }}>{{ $tmp_field['name'] }}</option>
                                 @endforeach
                             </select>
                             @error('plant_id') <span class="error text-danger">Devi selezionare un terreno</span> @enderror

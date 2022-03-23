@@ -39,6 +39,7 @@ class cultivationslivewire extends Component
     {
       $this->plants = Plant::orderBy('nome')->get();
       $this->fields = Field::treeAll();
+      //dd($this->fields);
       $this->data_inizio = date("Y-m-d");
     }
     public function resetInputFields(){
@@ -66,7 +67,7 @@ class cultivationslivewire extends Component
         if($this->mostraTutti){
             $cultiv = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
         } else {
-            $cultiv = Cultivation::where('data_fine', '>',NOW())->orwhere('data_fine',null)->paginate(25);
+            $cultiv = Cultivation::filtra_attive()->paginate(25);
         }
        
         if($this->editMode){

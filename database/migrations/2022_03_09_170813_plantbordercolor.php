@@ -27,6 +27,8 @@ class Plantbordercolor extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('plants', function (Blueprint $table) {
+            $table->dropColumn(['color', 'border_color', 'icon']);
+        });
     }
 }

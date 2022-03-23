@@ -27,31 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `plants`
 --
 
-DROP TABLE IF EXISTS `plants`;
-CREATE TABLE IF NOT EXISTS `plants` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `abbreviazione` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sulla_fila` int(11) DEFAULT NULL,
-  `tra_file` int(11) DEFAULT NULL,
-  `trapianto` json DEFAULT NULL,
-  `semina` json DEFAULT NULL,
-  `semina_out` json DEFAULT NULL,
-  `raccolta` json DEFAULT NULL,
-  `gg_campo` json DEFAULT NULL,
-  `consumatore` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stagione` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trattamenti_consigliati` text COLLATE utf8mb4_unicode_ci,
-  `richieste_nutrizionali` text COLLATE utf8mb4_unicode_ci,
-  `resa_pianta_kg` double DEFAULT NULL,
-  `vendibile` tinyint(1) DEFAULT NULL,
-  `prezzo_kg` double DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `plants_abbreviazione_unique` (`abbreviazione`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DELETE FROM plants;
 
 --
 -- Dumping data for table `plants`
