@@ -28,4 +28,7 @@ Route::view('coltivazioni','backend.cultivations' )->name('coltivazioni')->bread
 Route::view('lotti','backend.lots' )->name('lotti')->breadcrumbs(function (Trail $trail) {
     $trail->push(__('Lotti'), route('admin.lotti'));
 });
+Route::view('diario','backend.diario' )->name('diario')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Diario'), route('admin.diario'));
+});
 

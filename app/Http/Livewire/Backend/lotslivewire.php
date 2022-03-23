@@ -2,16 +2,9 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Models\Cultivation;
 use App\Models\Field;
 use Livewire\Component;
-use App\Models\Plant;
-use App\Models\Order;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-//use Livewire\WithPagination;
-
-use function PHPUnit\Framework\isNull;
 
 class lotslivewire extends Component
 {

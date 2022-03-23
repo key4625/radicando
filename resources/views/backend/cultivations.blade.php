@@ -28,10 +28,10 @@
 <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
 <script>
-    var dynamicPointsList, dynamicPoligonList, indexPoligonList;
+    var dynamicPoligonList, indexPoligonList;
     var map, mapindex;
     var polygon;
-    var editableLayers, editableLayers2;
+    var editableLayers2;
     var editableLayersIndex;
 
     var LeafIcon = L.Icon.extend({
@@ -62,50 +62,7 @@
             
         editableLayers2 = new L.FeatureGroup();
         map.addLayer(editableLayers2);
-         /* inizio polygon */    
-        editableLayers = new L.FeatureGroup();
-        map.addLayer(editableLayers);
-        var drawPluginOptions = {
-            position: 'topright',
-            draw: {
-                polygon: {
-                    allowIntersection: false, // Restricts shapes to simple polygons
-                    drawError: {
-                        color: '#e1e100', // Color the shape will turn when intersects
-                        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-                    },
-                    shapeOptions: {
-                        color: '#97009c'
-                    }
-                },
-                // disable toolbar item by setting it to false
-                polyline: false,
-                circle: false, // Turns off this drawing tool
-                rectangle: false,
-                marker: false,
-                circlemarker: false,
-            },
-            edit: {
-                featureGroup: editableLayers, //REQUIRED!!
-                remove: false
-            }
-        };
-
-        // Initialise the draw control and pass it the FeatureGroup of editable layers
-        var drawControl = new L.Control.Draw(drawPluginOptions);
-        map.addControl(drawControl);
-        map.on('draw:created', function(e) {
-            //map.removeLayer(polygon);
-            var type = e.layerType, layer = e.layer;
-            if (type === 'polygon') {
-                editableLayers.addLayer(layer);
-                var seeArea = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
-                //console.log(seeArea);
-                Livewire.emit("addPolygonFromMap", layer._latlngs);
-                Livewire.emit("setAreaMq", seeArea);
-            }
-        });         
-        /* fine polygon */
+  
         
     }
     function createIndexMap() {   
@@ -154,15 +111,7 @@
             }
             pol_exist = true;
         });
-        if((dynamicPointsList!=null)&&(dynamicPointsList.length > 0)){
-            editableLayers.clearLayers();
-            polygon = L.polygon([dynamicPointsList]).addTo(map);
-            editableLayers.addLayer(polygon);
-
-            map.fitBounds(editableLayers.getBounds()); 
-        } else {
-            if(pol_exist) map.fitBounds(editableLayers2.getBounds());    
-        }
+        if(pol_exist) map.fitBounds(editableLayers2.getBounds());  
     }
 
     window.addEventListener('map-created', event => { 
@@ -170,8 +119,7 @@
     });
     
     window.addEventListener('map-updated', event => { 
-        dynamicPoligonList = event.detail.polList;
-        dynamicPointsList = event.detail.pointList;       
+        dynamicPoligonList = event.detail.polList;  
         fillMap();      
     });
     window.addEventListener('map-index-created', event => { 

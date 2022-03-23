@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $sqlPiante = base_path('database/plants.sql');
         DB::unprepared(file_get_contents($sqlPiante));
 
+        $this->call(OperationTypeSeeder::class);
+
         Model::reguard();
     }
 }

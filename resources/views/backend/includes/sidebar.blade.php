@@ -50,8 +50,8 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
-                :href="route('admin.coltivazioni')"
-                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                :href="route('admin.diario')"
+                :active="activeClass(Route::is('admin.diario'), 'c-active')"
                 icon="c-sidebar-nav-icon fas fa-book"
                 :text="__('Diario')" />
         </li>

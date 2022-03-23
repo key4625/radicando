@@ -34,5 +34,10 @@ class Cultivation extends Model
         } else  $data_formatted = '<span class="text-info">non specificata</span>';
         return $data_formatted;
     }
+
+    public function operations()
+    {
+        return $this->hasMany(Operation::class);
+    }
     
 }
