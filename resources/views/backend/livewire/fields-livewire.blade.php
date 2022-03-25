@@ -37,6 +37,7 @@
                             <td>{{ $field->location }}</td>
                             <td>{{ $field->mq }}</td>
                             <td class="text-right" style="max-width:150px;">
+                                <a class="btn btn-sm btn-info" href="/admin/terreno?idField={{$field->id}}"><i class="fas fa-eye"></i></a>
                                 <button class="btn btn-sm btn-dark" wire:click="toggleUpdate({{$field->id}})">
                                     <i class="fas fa-edit"></i>
                                 </button>

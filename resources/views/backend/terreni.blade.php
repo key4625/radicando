@@ -36,7 +36,8 @@
         var OpenSatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
         }).addTo(map);
-
+        //  geometry: "POLYGON ((43.61446166192095 13.315908046701132, 43.612861504022575 13.315650634393423, 43.612426502282005 13.320605821317045, 43.612628467767145 13.320627272342682, 43.61283043257404 13.318632326957877, 43.61307900371295 13.318675229009147, 43.61301686102455 13.319297308752823, 43.6132654313929 13.319361661829731, 43.61317221762516 13.32002664362468, 43.613636343079065 13.319963980651591, 43.498332083879276 13.214171959175536, 43.49655761641179 13.213099407893349, 43.49567036312313 13.215694981996197, 43.49756938056825 13.216295610714237, 43.497942950740665 13.215180157380779, 43.49844104070869 13.215630628919289, 43.498612258186235 13.214965647124341))",
+  
         /* inizio polygon */
         var editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
@@ -97,6 +98,8 @@
         var container_index = L.DomUtil.get('mapindex'); 
         if(container_index != null){ container_index._leaflet_id = null; }
         mapindex = L.map('mapindex').setView([43.520933, 13.225302], 10); 
+
+        
         var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {            
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });

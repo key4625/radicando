@@ -16,6 +16,9 @@ Route::resource('piante',PlantController::class);
 Route::view('terreni','backend.terreni' )->name('terreni')->breadcrumbs(function (Trail $trail) {
     $trail->push(__('Terreni'), route('admin.terreni'));
 });
+Route::view('terreno','backend.terreni_sat' )->name('terreno')->breadcrumbs(function (Trail $trail) {
+    $trail->push(__('Terreno'), route('admin.terreno'));
+});
 Route::view('ordini','backend.ordini' )->name('ordini')->breadcrumbs(function (Trail $trail) {
     $trail->push(__('Ordini'), route('admin.ordini'));
 });
