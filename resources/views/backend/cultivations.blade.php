@@ -105,7 +105,10 @@
                 editableLayers2.addLayer(single_pol);
                 
                 if(polygon_single[2]!= null){
-                    var cult_icon = new LeafIcon({iconUrl: polygon_single[2]});
+                    var cult_icon = new LeafIcon({
+                        iconUrl: polygon_single[2],
+                        shadowUrl: '/img/piante/ombra marker.png'
+                    });
                     L.marker(single_pol.getBounds().getCenter(), {icon: cult_icon}).addTo(map).bindPopup("I am a green leaf.");
                 }
             }
