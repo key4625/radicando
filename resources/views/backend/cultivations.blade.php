@@ -37,10 +37,10 @@
     var LeafIcon = L.Icon.extend({
         options: {
             iconSize:     [40, 40],
-            shadowSize:   [50, 64],
-            iconAnchor:   [22, 22],
-            shadowAnchor: [4, 62],
-            popupAnchor:  [-3, -76]
+            shadowSize:   [40, 40],
+            iconAnchor:   [22, 32],
+            shadowAnchor: [8, 32],
+            popupAnchor:  [-3, -30]
         }
     });
     function createMap() {         
@@ -85,7 +85,7 @@
                     Livewire.emit("setCultivation", polygon_single[0]);
                 });
                 if(polygon_single[2]!= null){
-                    var cult_icon = new LeafIcon({iconUrl: polygon_single[2]});
+                    var cult_icon = new LeafIcon({iconUrl: polygon_single[2],   shadowUrl: '/img/piante/ombra marker.png'});
                     L.marker(single_pol.getBounds().getCenter(), {icon: cult_icon}).addTo(mapindex).bindPopup("I am a green leaf.");
                 }
             }
