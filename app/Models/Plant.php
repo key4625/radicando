@@ -5,11 +5,12 @@ namespace App\Models;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
 class Plant extends Model
 {
     use HasFactory;
+    use UsesLandlordConnection;
     protected $guarded = [];
 
     public function orders()

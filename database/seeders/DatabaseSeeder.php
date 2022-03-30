@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AuthSeeder::class);
         $this->call(AnnouncementSeeder::class);
 
-        $sqlPiante = base_path('database/plants.sql');
-        DB::unprepared(file_get_contents($sqlPiante));
-
+        //$sqlPiante = base_path('database/plants.sql');
+        //DB::unprepared(file_get_contents($sqlPiante));
+        $this->call(PlantSeeder::class);
         $this->call(OperationTypeSeeder::class);
 
         Model::reguard();

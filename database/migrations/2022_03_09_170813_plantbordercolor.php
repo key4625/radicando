@@ -13,11 +13,11 @@ class Plantbordercolor extends Migration
      */
     public function up()
     {
-        Schema::table('plants', function (Blueprint $table) {
+        /*Schema::table('plants', function (Blueprint $table) {
             $table->string('color')->default("#3388ff");
             $table->string('border_color')->default("#3388ff");
             $table->string('icon')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -27,8 +27,8 @@ class Plantbordercolor extends Migration
      */
     public function down()
     {
-        Schema::table('plants', function (Blueprint $table) {
+        /*Schema::table('plants', function (Blueprint $table) {
             $table->dropColumn(['color', 'border_color', 'icon']);
-        });
+        });*/
     }
 }

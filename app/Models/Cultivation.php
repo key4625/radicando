@@ -6,11 +6,12 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Cultivation extends Model
 {
     use HasFactory;
+    use UsesTenantConnection;
     protected $guarded = [];
 
     public function plant()
