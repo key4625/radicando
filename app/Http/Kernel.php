@@ -58,6 +58,10 @@ class Kernel extends HttpKernel
             'password.expires',
             'is_admin',
         ],
+        'tenant' => [
+            \Spatie\Multitenancy\Http\Middleware\NeedsTenant::class,
+            \Spatie\Multitenancy\Http\Middleware\EnsureValidTenantSession::class
+        ]
     ];
 
     /**

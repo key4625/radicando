@@ -22,4 +22,8 @@ class HomeController
     {
         return view('frontend.visit');
     }
+    public function landing()
+    {
+        return view('frontend.landing');
+    }
 }

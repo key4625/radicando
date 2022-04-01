@@ -5,10 +5,9 @@ namespace App\Models;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class Plant extends Model
+class Infoplant extends Model
 {
     use HasFactory;
     use UsesTenantConnection;
@@ -18,14 +17,12 @@ class Plant extends Model
     {
         return $this->morphToMany(Order::class, 'orderable');
     }
-    public function cultivations()
+    public function plant()
     {
-        return $this->hasMany(Cultivation::class);
+        return $this->belongsTo(Plant::class);
     }
-    public function collections()
-    {
-        return $this->hasMany(Collection::class);
-    }
+    
+  
     public function raccolti_oggi_kg()
     {
         return Collection::where('plant_id',$this->id)->whereDay('created_at', '=', date('d'))->sum('quantity_kg');

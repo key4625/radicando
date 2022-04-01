@@ -1,3 +1,17 @@
 Inserire data e ora in ordine livewire
 Inserire nella schermata di modifica ordine pagato ed evaso o simili
 Sistemare meglio i campi tel ed email
+
+Per migrare Landlord
+php artisan migrate --path=database/migrations/landlord --database=landlord
+
+Per migrare i Tenant
+php artisan tenants:artisan "migrate --path=database/migrations/tenant --database=tenant" 
+
+Per seed sui Tenant
+php artisan tenants:artisan "migrate --database=tenant --seed"
+
+Seed su solo un tenant
+php artisan tenants:artisan "migrate --seed" --tenant=2
+
+php artisan tenants:artisan "migrate --database=tenant --seed" --tenant=2

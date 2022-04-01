@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Multitenancy\Exceptions\NoCurrentTenant;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Throwable;
 
@@ -73,6 +74,12 @@ class Handler extends ExceptionHandler
             return redirect()
                 ->route(homeRoute())
                 ->withFlashDanger(__('The requested resource was not found.'));
+        }
+
+        if ($exception instanceof NoCurrentTenant) {
+            return redirect()
+                ->route(homeRoute())
+                ->withFlashDanger(__('Nessuna azienda selezionata'));
         }
 
         return parent::render($request, $exception);

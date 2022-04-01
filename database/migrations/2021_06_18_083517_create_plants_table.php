@@ -13,14 +13,39 @@ class CreatePlantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('infoplants', function (Blueprint $table) {
+        Schema::create('plants', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id')->unique();
+            $table->string('abbreviazione')->unique();
+            $table->string('nome');
+            $table->integer('sulla_fila')->nullable();
+            $table->integer('tra_file')->nullable();
+            $table->json('trapianto')->nullable();
+            $table->json('semina')->nullable();
+            $table->json('semina_out')->nullable();
+            $table->json('raccolta')->nullable();
+            $table->json('gg_campo')->nullable();
+            $table->string('consumatore')->nullable();
+            $table->string('stagione')->nullable();
+            $table->text('trattamenti_consigliati')->nullable();
+            $table->text('richieste_nutrizionali')->nullable();
+            $table->string('image')->nullable();   
+            $table->string('color')->default("#3388ff");
+            $table->string('border_color')->default("#3388ff");
+            $table->string('icon')->nullable();
+
             $table->double('quantity_mag')->default(0);
-             $table->double('resa_pianta_kg')->nullable();
+            $table->double('resa_pianta_kg')->nullable();
             $table->boolean('vendibile')->nullable();
             $table->double('prezzo_kg')->default(0.0);
+
             $table->timestamps();
+        });
+        Schema::create('operationtypes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('icon')->nullable();
+            $table->string('color')->nullable();  
+            $table->boolean('visible')->default(1);  
         });
 
         Schema::create('products', function (Blueprint $table) {
