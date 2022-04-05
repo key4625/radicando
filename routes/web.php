@@ -14,6 +14,18 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 /*
  * Frontend Routes
  */
+
+Route::domain('straorto')->group(function () {
+    
+    Route::view('/','landlord.landing' );
+    
+    // Catch All Route
+    Route::any('{any}', function () {
+        abort(404);
+    })->where('any', '.*');
+});
+
+
 Route::group(['as' => 'frontend.'], function () {
     includeRouteFiles(__DIR__.'/frontend/');
 });
