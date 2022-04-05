@@ -81,7 +81,7 @@ return [
     
         'landlord' => [
             'driver' => 'mysql',
-            'database' => 'landlord',
+            'database' => 'landlord_radicando_db',
             'host' =>  env('DB_HOST', '127.0.0.1'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
