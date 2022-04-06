@@ -1,9 +1,8 @@
 <div>
     {{--@if($editMode)--}}
-        <div class="w-100 text-right">
-            <button type="button" class="btn btn-primary mb-2" aria-label="Close" wire:click="toggleEdit">Indietro</button>
-        </div>
+       
             @if($operationtype_id==null)
+                <h3 class="mb-3 text-center">Seleziona tipo operazione</h3>
                 <div class="row">
                     @foreach($operationtypes as $otype)
                         @if($otype->id != 9)
@@ -18,18 +17,22 @@
                         </div>
                         @else 
                         <div class="col-12">
-                            <div class="" wire:click="setOtype({{$otype->id}})">
-                                <img class="" src="/img/operazioni/{{$otype->icon}}" alt="{{$otype->name}}">
-                                <div class="d-inline">
-                                    <h5 class="card-title text-center">{{$otype->name}}</h5>
+                            <div class="card" wire:click="setOtype({{$otype->id}})">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div><img class="d-inline m-2" style="height:50px;" src="/img/operazioni/{{$otype->icon}}" alt="{{$otype->name}}"></div>
+                                    <div><h5 class="d-inline card-title text-center">{{$otype->name}}</h5></div>
                                     <a href="#" class="stretched-link"></a>
                                 </div>
+                               
                             </div>
                         </div>
                         @endif
                     @endforeach
                 </div>
             @else 
+                <div class="w-100 text-right">
+                    <button type="button" class="btn btn-primary mb-2" aria-label="Close" wire:click="toggleEdit">Indietro</button>
+                </div>
                 <div class="card">
                     <div class="card-header text-center"><img  height="40px" src="/img/operazioni/{{$operationtype_selected->icon}}" alt="{{$operationtype_selected->name}}"> Inserimento {{$operationtype_selected->name}}</div>
                     <div class="card-body row">
@@ -94,14 +97,14 @@
                 </div>
             @endif
     {{--@else--}}
+        <h3 class="my-3 text-center">Elenco operazioni effettuate</h3>
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>Diario</div>
-                    <div class="d-flex align-items-center">
-                        
+                    <div>Elenco operazioni effettuate</div>
+                    <div class="d-flex align-items-center">                   
                     </div>
-                    <div><button class="btn btn-primary" wire:click="toggleEdit"><i class="fas fa-plus"></i> Nuova operazione</button></div>
+                    <div></div>
                 </div>
             </div>
             <div class="card-body"> 

@@ -60,6 +60,7 @@ class operationlivewire extends Component
         }  
     }
     public function setOtype($id_type){
+        $this->editMode = true; 
         $this->operationtype_id = $id_type;
         $this->operationtype_selected = Operationtype::find($id_type);
     }

@@ -18,4 +18,21 @@ class Product extends Model
         return $this->morphToMany(Order::class, 'orderable');
     }
 
+    public function getPriceAttribute($value)
+    {
+        return str_replace('.', ',', $value);
+    }
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = str_replace(',', '.', $value);
+    }
+    public function getDimensionAttribute($value)
+    {
+        return str_replace('.', ',', $value);
+    }
+    public function setDimensionAttribute($value)
+    {
+        $this->attributes['dimension'] = str_replace(',', '.', $value);
+    }
+
 }

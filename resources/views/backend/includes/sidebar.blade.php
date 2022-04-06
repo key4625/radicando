@@ -58,6 +58,14 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
+                :href="route('admin.prodotti.index')"
+                :active="activeClass(Route::is('admin.prodotti'), 'c-active')"
+                icon="c-sidebar-nav-icon fas fa-shopping-basket"
+                :text="__('Prodotti')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
                 :href="route('admin.raccolto')"
                 :active="activeClass(Route::is('admin.raccolto'), 'c-active')"
                 icon="c-sidebar-nav-icon fas fa-shopping-basket"

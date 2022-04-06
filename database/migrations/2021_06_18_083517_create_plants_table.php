@@ -50,16 +50,19 @@ class CreatePlantsTable extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id')->nullable();
+            $table->string('name');
+            $table->bigInteger('cultivation_id')->nullable();
             $table->double('quantity_from')->default(0);
             $table->double('quantity_to')->default(0);
             $table->double('quantity_mag')->default(0);
-            $table->double('transform_cost')->default(0.0);  
-            $table->string('lot');
-            $table->double('price')->default(0.0);
-            $table->double('yield')->default(0.0);  
-            $table->string('description');
-            $table->string('image');
+            $table->double('transform_cost')->default(0);  
+            $table->string('lot')->nullable();
+            $table->double('dimension')->default(0.0);
+            $table->double('price')->default(0);
+            $table->double('yield')->default(0);  
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('vendibile')->nullable();
             $table->datetime('transform_data')->nullable();
             $table->timestamps();
         });

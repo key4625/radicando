@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\DashboardController;
 use Tabuna\Breadcrumbs\Trail;
 use App\Http\Controllers\Backend\PlantController;
+use App\Http\Controllers\Backend\ProductController;
 
 // All route names are prefixed with 'admin.'.
 
@@ -16,6 +17,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 
 Route::middleware('tenant')->group(function() {
     Route::resource('piante',PlantController::class);
+    Route::resource('prodotti',ProductController::class);
     //Route::view('piante','backend.plants' )->name('piante');
     Route::view('terreni','backend.terreni' )->name('terreni')->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Terreni'), route('admin.terreni'));
