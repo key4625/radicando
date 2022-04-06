@@ -24,6 +24,15 @@ Route::domain('radicando.it')->group(function () {
         abort(404);
     })->where('any', '.*');
 });
+Route::domain('www.radicando.it')->group(function () {
+    
+    Route::view('/','landlord.landing' );
+    
+    // Catch All Route
+    Route::any('{any}', function () {
+        abort(404);
+    })->where('any', '.*');
+});
 Route::domain('straorto')->group(function () {
     
     Route::view('/','landlord.landing' );
