@@ -26,10 +26,8 @@ class collectionlivewire extends Component
     }
     public function render()
     {
-        //$plants_available = Plant::where('vendibile',1)->get();
-        $plants_available = Plant::whereHas('infoplant', function (Builder $query) {
-            $query->where('vendibile', 1);
-        })->get();
+        $plants_available = Plant::where('vendibile',1)->get();
+        
         //$plants_available = $plants_available->diff(Plant::whereIn('id', $this->plant_collected)->get());    
         return view('backend.livewire.collection',['plants_available' => $plants_available]);
     }

@@ -16,23 +16,23 @@ class OperationTypeSeeder extends Seeder
     {
         Operationtype::create([
             'name' => "Lavorazione del terreno",
-            'icon' => 'operazioni.png'
+            'icon' => 'movimento_terra_image.png'
         ]);
         Operationtype::create([
             'name' => "Potatura",
-            'icon' => 'operazioni.png'
+            'icon' => 'potatura_image.png'
         ]);
         Operationtype::create([
             'name' => "Trattamento",
-            'icon' => 'operazioni.png'
+            'icon' => 'trattamento_image.png'
         ]);
         Operationtype::create([
             'name' => "Concimazione",
-            'icon' => 'operazioni.png'
+            'icon' => 'concimazione_image.png'
         ]);
         Operationtype::create([
             'name' => "Irrigazione",
-            'icon' => 'operazioni.png'
+            'icon' => 'irrigazione_image.png'
         ]);
         Operationtype::create([
             'name' => "Trapianto",
@@ -45,8 +45,12 @@ class OperationTypeSeeder extends Seeder
             'visible' => '0'
         ]);
         Operationtype::create([
+            'name' => "Analisi chimica",
+            'icon' => 'analisi chimica_image.png'
+        ]);
+        Operationtype::create([
             'name' => "Altro",
-            'icon' => 'operazioni.png'
+            'icon' => 'manutenzione_image.png'
         ]);
     }
 }

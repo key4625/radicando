@@ -1,20 +1,32 @@
 <div>
-    @if($editMode)
+    {{--@if($editMode)--}}
         <div class="w-100 text-right">
             <button type="button" class="btn btn-primary mb-2" aria-label="Close" wire:click="toggleEdit">Indietro</button>
         </div>
             @if($operationtype_id==null)
                 <div class="row">
                     @foreach($operationtypes as $otype)
-                        <div class="col-4 col-xl-2">
+                        @if($otype->id != 9)
+                        <div class="col-4 col-md-2">
                             <div class="card" wire:click="setOtype({{$otype->id}})">
-                                <img class="card-img-top" src="/img/operazioni/{{$otype->icon}}" alt="{{$otype->name}}">
+                                <img class="card-img-top p-4" src="/img/operazioni/{{$otype->icon}}" alt="{{$otype->name}}">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$otype->name}}</h5>
+                                    <h5 class="card-title text-center">{{$otype->name}}</h5>
                                     <a href="#" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
+                        @else 
+                        <div class="col-12">
+                            <div class="" wire:click="setOtype({{$otype->id}})">
+                                <img class="" src="/img/operazioni/{{$otype->icon}}" alt="{{$otype->name}}">
+                                <div class="d-inline">
+                                    <h5 class="card-title text-center">{{$otype->name}}</h5>
+                                    <a href="#" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     @endforeach
                 </div>
             @else 
@@ -81,7 +93,7 @@
                    
                 </div>
             @endif
-    @else
+    {{--@else--}}
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
@@ -122,5 +134,5 @@
                         @endif 
             </div>
         </div>
-    @endif
+    {{--@endif--}}
 </div>
