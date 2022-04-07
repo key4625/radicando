@@ -40,5 +40,8 @@ Route::middleware('tenant')->group(function() {
     Route::view('diario','backend.diario' )->name('diario')->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Diario'), route('admin.diario'));
     });
+
+    Route::get('settings', 'Backend\SettingController@index')->name('settings');
+    Route::post('settings/update', 'Backend\SettingController@updateAll');
 });
 
