@@ -38,11 +38,22 @@ class SettingController extends Controller
         /*request()->validate([
             'name' => 'unique'
         ]);*/
-
+        $curr_ten = app('currentTenant');
+        if($curr_ten==null) {
+            $curr_ten = "generale";
+        } else $curr_ten = $curr_ten->name;   
         foreach($request->except('_token') as $k => $v){         
             if($k == "app_logo"){
-                $v->storeAs('public/', "logo.".($v->extension()));
-                $v = 'logo.'.($v->extension());
+                $v = $v->storeAs('public/tenant/'.$curr_ten.'/profilo', "logo.".($v->extension()));
+                //$v = 'logo.'.($v->extension());
+            }
+            if($k == "app_img_copertina"){
+                $v = $v->storeAs('public/tenant/'.$curr_ten.'/profilo', "copertina.".($v->extension()));
+                //$v = 'copertina.'.($v->extension());
+            }
+            if($k == "app_img"){
+                $v = $v->storeAs('public/tenant/'.$curr_ten.'/profilo', "generale.".($v->extension()));
+                //$v = 'generale.'.($v->extension());
             }
             $tmpSet = Setting::find($k); 
             if ($tmpSet != null) { 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use Tabuna\Breadcrumbs\Trail;
 use App\Http\Controllers\Backend\PlantController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SettingController;
 
 // All route names are prefixed with 'admin.'.
 
@@ -43,7 +44,7 @@ Route::middleware('tenant')->group(function() {
         $trail->push(__('Diario'), route('admin.diario'));
     });
 
-    Route::get('settings', 'Backend\SettingController@index')->name('settings');
-    Route::post('settings/update', 'Backend\SettingController@updateAll');
+    Route::get('settings', 'App\Http\Controllers\Backend\SettingController@index')->name('settings');
+    Route::post('settings/update', 'App\Http\Controllers\Backend\SettingController@updateAll');
 });
 

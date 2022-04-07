@@ -52,5 +52,6 @@ class OperationTypeSeeder extends Seeder
             'name' => "Altro",
             'icon' => 'manutenzione_image.png'
         ]);
+        
     }
 }

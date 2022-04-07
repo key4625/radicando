@@ -100,14 +100,22 @@
             )
         )
             <li class="c-sidebar-nav-title">@lang('System')</li>
-
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.settings')"
+                    :active="activeClass(Route::is('admin.settings'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-cog"
+                    :text="__('Impostazioni')" />
+            </li>
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
+                
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon fas fa-user"
                     class="c-sidebar-nav-dropdown-toggle"
                     :text="__('Access')" />
-
+                  
                 <ul class="c-sidebar-nav-dropdown-items">
                     @if (
                         $logged_in_user->hasAllAccess() ||
@@ -120,6 +128,7 @@
                             $logged_in_user->can('admin.access.user.change-password')
                         )
                     )
+                    
                         <li class="c-sidebar-nav-item">
                             <x-utils.link
                                 :href="route('admin.auth.user.index')"

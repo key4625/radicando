@@ -45,6 +45,39 @@ class DatabaseSeeder extends Seeder
         $this->call(AnnouncementSeeder::class);
         $this->call(PlantSeeder::class);
         $this->call(OperationTypeSeeder::class);    
+        //IMPOSTAZIONI
+        DB::table('settings')->insert([ //,
+            'name' => "app_company_name",
+            'value' => "Nome Azienda",
+            'type' => "Generale"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "app_logo",
+            'value' => "/img/demo/logo.png",
+            'type' => "Generale"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "app_img_copertina",
+            'value' => "/img/demo/copertina.jpg",
+            'type' => "Generale"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "app_img",
+            'value' => "/img/demo/generale.jpg",
+            'type' => "Generale"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "app_descrizione_breve",
+            'value' => "Descrzione breve dell'azienda",
+            'type' => "Generale"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "app_descrizione",
+            'value' => "Descrzione generale dell'azienda",
+            'type' => "Generale"
+        ]);
+       
+
     }
 
     public function runLandlordSpecificSeeders()
