@@ -53,17 +53,17 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('settings')->insert([ //,
             'name' => "app_logo",
-            'value' => "/img/demo/logo.png",
+            'value' => "public/tenant/demo/profilo/logo.png",
             'type' => "Generale"
         ]);
         DB::table('settings')->insert([ //,
             'name' => "app_img_copertina",
-            'value' => "/img/demo/copertina.jpg",
+            'value' => "public/tenant/demo/profilo/copertina.jpg",
             'type' => "Generale"
         ]);
         DB::table('settings')->insert([ //,
             'name' => "app_img",
-            'value' => "/img/demo/generale.jpg",
+            'value' => "public/tenant/demo/profilo/generale.jpg",
             'type' => "Generale"
         ]);
         DB::table('settings')->insert([ //,
