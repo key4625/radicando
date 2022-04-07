@@ -14,9 +14,9 @@ class Cultivation extends Model
     use UsesTenantConnection;
     protected $guarded = [];
 
-    public function plant()
+    public function cultivable()
     {
-        return $this->belongsTo(Plant::class);
+        return $this->morphTo();
     }
     public function field()
     {

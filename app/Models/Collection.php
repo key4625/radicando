@@ -17,4 +17,8 @@ class Collection extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+    public function collectionable()
+    {
+        return $this->morphTo();
+    }
 }

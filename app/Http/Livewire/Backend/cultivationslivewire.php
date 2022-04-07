@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend;
 
+use App\Models\Animal;
 use App\Models\Cultivation;
 use App\Models\Field;
 use Livewire\Component;
@@ -16,9 +17,9 @@ use function PHPUnit\Framework\isNull;
 class cultivationslivewire extends Component
 {
  
-    public $plants, $fields;
+    public $plants, $fields, $animals;
     //public $cultivations;
-    public $plant_id, $field_id;
+    public $cultivable_id, $cultivable_type, $field_id;
     public $field_sel;
     public $cult_id, $varieta,$sigla_fila, $larghezza, $lunghezza, $data_inizio, $data_fine, $innesto;
     public $points;
@@ -32,19 +33,22 @@ class cultivationslivewire extends Component
     use WithPagination;
 
     protected $rules = [
-        'plant_id' => 'required',
+        'cultivable_id' => 'required',
+        'cultivable_type' => 'required',
         'field_id' => 'required'   
     ];
     public function mount()
     {
       $this->plants = Plant::orderBy('nome')->get();
+      $this->animals = Animal::orderBy('nome')->get();
       $this->fields = Field::treeAll();
       //dd($this->fields);
       $this->data_inizio = date("Y-m-d");
     }
     public function resetInputFields(){
         $this->cult_id = null;
-        $this->plant_id = null;
+        $this->cultivable_id = null;
+        $this->cultivable_type = null;
         $this->field_id = null;
         $this->varieta = null;
         $this->sigla_fila = null;
@@ -75,8 +79,8 @@ class cultivationslivewire extends Component
             $this->refreshMapContent();
         } else {
             foreach($cultiv as $cult){
-                if($cult->plant != null) { $img_cult = $cult->plant->image; } else { $img_cult = null; }
-                array_push($this->polygons,array($cult->id,json_decode($cult->field->points),$cult->plant->icon, $cult->plant->color, $cult->plant->border_color));        
+                if($cult->cultivable != null) { $img_cult = $cult->cultivable->image; } else { $img_cult = null; }
+                array_push($this->polygons,array($cult->id,json_decode($cult->field->points),$cult->cultivable->icon, $cult->cultivable->color, $cult->cultivable->border_color));        
             }
         }
         //$this->cultivations = Cultivation::orderby('data_inizio', 'desc')->paginate(25);
@@ -85,7 +89,8 @@ class cultivationslivewire extends Component
         ]);
     }
 
-    public function toggleEdit(){
+    public function toggleEdit(int $type){
+        
         if($this->editMode){
             $this->initIndexMapContent();
             $this->editMode = false; 
@@ -93,6 +98,8 @@ class cultivationslivewire extends Component
         } else {
             $this->initMapContent();
             $this->editMode = true; 
+            if($type == 1) $this->cultivable_type = "Plant";
+            if($type == 2) $this->cultivable_type = "Animal";
         }
         //$this->showMode = false;      
     }
@@ -147,7 +154,9 @@ class cultivationslivewire extends Component
         $this->initMapContent();
         $cultiv_sel = Cultivation::find($cult_id);
         $this->cult_id = $cult_id;
-        $this->plant_id = $cultiv_sel->plant_id;
+        $this->cultivable_id = $cultiv_sel->cultivable_id;
+        $this->cultivable_type = $cultiv_sel->cultivable_type;
+        
         $this->field_id = $cultiv_sel->field_id;
         $this->varieta = $cultiv_sel->varieta;
         $this->sigla_fila = $cultiv_sel->sigla_fila;
@@ -165,7 +174,8 @@ class cultivationslivewire extends Component
             $newCultivation = Cultivation::find($this->cult_id);
         } else  $newCultivation = new Cultivation();
       
-        $newCultivation->plant_id = $this->plant_id;
+        $newCultivation->cultivable_id = $this->cultivable_id;
+        $newCultivation->cultivable_type = $this->cultivable_type;
         $newCultivation->field_id = $this->field_id;
         $newCultivation->varieta = $this->varieta;
         $newCultivation->sigla_fila = $this->sigla_fila;

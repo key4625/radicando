@@ -26,6 +26,14 @@
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
+                :href="route('admin.animali.index')"
+                :active="activeClass(Route::is('admin.animali.index'), 'c-active')"
+                icon="c-sidebar-nav-icon fas fa-paw"
+                :text="__('Animali')" />
+        </li>
+        <li class="c-sidebar-nav-item">
+            <x-utils.link
+                class="c-sidebar-nav-link"
                 :href="route('admin.terreni')"
                 :active="activeClass(Route::is('admin.terreni'), 'c-active')"
                 icon="c-sidebar-nav-icon fas fa-map"
@@ -60,7 +68,7 @@
                 class="c-sidebar-nav-link"
                 :href="route('admin.prodotti.index')"
                 :active="activeClass(Route::is('admin.prodotti'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-shopping-basket"
+                icon="c-sidebar-nav-icon fas fa-wine-bottle"
                 :text="__('Prodotti')" />
         </li>
         <li class="c-sidebar-nav-item">

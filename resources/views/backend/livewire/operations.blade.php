@@ -51,7 +51,7 @@
                             <select name="cultivation_id" wire:model="cultivation_id" class="form-control">
                                 <option value=''>Seleziona una coltivazione</option>
                                 @foreach($cultivations as $cultiv_tmp)
-                                    <option value={{ $cultiv_tmp->id }}>{{ $cultiv_tmp->plant->nome }}</option>
+                                    <option value={{ $cultiv_tmp->id }}>{{ $cultiv_tmp->cultivable->nome }}</option>
                                 @endforeach
                             </select>
                             @error('cultivation_id') <span class="error text-danger">Devi selezionare una pianta</span> @enderror
@@ -117,7 +117,7 @@
                                             <td>{{ $single_op->operationtype->name }}</td>
                                             <td>
                                                 @if($single_op->field!=null){{ $single_op->field->name }}@endif
-                                                @if($single_op->cultivation!=null){{ $single_op->cultivation->plant->name }}@endif
+                                                @if($single_op->cultivation!=null){{ $single_op->cultivation->cultivable->name }}@endif
                                             </td>
                                             <td>@if($single_op->date_start!=null){{ Carbon\Carbon::parse($single_op->date_start )->format('d M Y')}}@else non prevista @endif</td>
                                             <td>{{ $single_op->name }}</td>

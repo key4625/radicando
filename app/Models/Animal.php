@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
-class Plant extends Model
+class Animal extends Model
 {
     use HasFactory;
     use UsesTenantConnection;
@@ -28,18 +28,18 @@ class Plant extends Model
     }
     public function raccolti_oggi_kg()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity_kg');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Animal')->whereDay('created_at', '=', date('d'))->sum('quantity_kg');
     }
     public function raccolti_oggi_nr()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity_num');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Animal')->whereDay('created_at', '=', date('d'))->sum('quantity_num');
     }
     public function raccolti_tot_kg()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity_kg');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Animal')->sum('quantity_kg');
     }
     public function raccolti_tot_nr()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity_num');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Animal')->sum('quantity_num');
     }
 }

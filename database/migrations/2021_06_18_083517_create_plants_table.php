@@ -15,8 +15,10 @@ class CreatePlantsTable extends Migration
     {
         Schema::create('plants', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('plantcategories_id')->nullable();
             $table->string('abbreviazione')->unique();
             $table->string('nome');
+            $table->json('parti_utilizzabili')->nullable();
             $table->integer('sulla_fila')->nullable();
             $table->integer('tra_file')->nullable();
             $table->json('trapianto')->nullable();
@@ -45,6 +47,7 @@ class CreatePlantsTable extends Migration
             $table->string('name');
             $table->string('icon')->nullable();
             $table->string('color')->nullable();  
+            $table->boolean('foranimals')->default(1);
             $table->boolean('visible')->default(1);  
         });
 
@@ -81,7 +84,8 @@ class CreatePlantsTable extends Migration
         
         Schema::create('cultivations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id');
+            $table->bigInteger('cultivable_id');
+            $table->string('cultivable_type');
             $table->bigInteger('field_id');
             $table->string('sigla_fila')->nullable();
             $table->double('larghezza')->nullable();
@@ -119,7 +123,9 @@ class CreatePlantsTable extends Migration
 
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('plant_id');
+            $table->bigInteger('collectionable_id');
+            $table->string('collectionable_type');
+            $table->string('part');
             $table->double('quantity_kg');
             $table->double('quantity_num');  
             $table->date('data')->nullable();

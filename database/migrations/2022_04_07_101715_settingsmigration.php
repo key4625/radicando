@@ -35,6 +35,7 @@ class Settingsmigration extends Migration
             $table->string('specie')->nullable();
             $table->text('trattamenti_consigliati')->nullable();
             $table->text('richieste_nutrizionali')->nullable();
+            $table->json('prodotti_utilizzabili')->nullable();
             $table->string('image')->nullable();   
             $table->string('color')->default("#3388ff");
             $table->string('border_color')->default("#3388ff");
