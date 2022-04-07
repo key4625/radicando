@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         
-         <a href="{{route('frontend.index')}}" class="navbar-brand"> <img src="img/logotipo_1.png"></a>  
+         <a href="{{route('frontend.index')}}" class="navbar-brand"><img style="max-height:250px;" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value)}}"></a>  
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
             <span class="navbar-toggler-icon"></span>
