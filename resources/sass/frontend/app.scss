@@ -15,8 +15,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
 
+
 body {
     font-family: 'Roboto', sans-serif;
+    color:#383838;
 }
 
 
@@ -94,6 +96,13 @@ a:hover {
     background-color:#48984e;
     color: white;
 }
+.bg-verdolino {
+    background-color:#e0ebc4;
+    color:#383838;
+}
+.bg-lightgreen {
+    background-color:#91cd79;
+}
 .bg-green {
     background-color:#3a7a42;
     color: white;
@@ -113,21 +122,58 @@ img.img-copertina {
     object-fit: cover;
     object-position: bottom;
 }
+.div-sfondo-home {
+    height: 80vh;
+    min-height:700px;
+    background-image: url(/storage/tenant/demo/profilo/copertina.jpg);
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .div-copertina{
     position:relative;
 }
-.div-present {
-    position:absolute;
-    left:10%;
-    top:10%;
-    text-align:center;
-    z-index: 99;
-}
-.clip-me {  
-    clip-path: polygon(54% 0, 100% 0, 100% 68%, 64% 95%, 37% 70%, 28% 33%, 21% 0)
-} 
+
 .autentica {
     position:fixed;
     right:0px;
     bottom:100px;
+}
+.titolo-1 {
+    font-size:2.5rem;
+}
+.sottotitolo-1 {
+    font-size:2rem;
+}
+
+@media only screen and (min-width: 769px) {
+    .clip-me {  
+        clip-path: polygon(54% 0, 100% 0, 100% 74%, 64% 100%, 37% 83%, 22% 33%, 15% 0);
+    } 
+    .div-present {
+        position:absolute;
+        left:10%;
+        top:25%;
+        text-align:left;
+        z-index: 99;
+    }
+    .logo-landlord {
+        max-height:120px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .clip-me {  
+        clip-path: polygon(54% 0, 100% 0, 100% 100%,  80% 95%, 31% 88%,0% 68%, 0% 0);
+        max-height: 320px !important;
+    } 
+    .div-present {
+        position: relative;
+        text-align: left;
+        margin: 0px 40px;
+        z-index: 99;
+    }
+    .logo-landlord {
+        max-height:120px;
+    }
 }
