@@ -100,6 +100,10 @@ a:hover {
     background-color:#e0ebc4;
     color:#383838;
 }
+.bg-white {
+    background-color:#fff;
+    color:#383838;
+}
 .bg-lightgreen {
     background-color:#91cd79;
 }
@@ -107,6 +111,16 @@ a:hover {
     background-color:#3a7a42;
     color: white;
 }
+.orange {
+    color: #f7ab39;
+}
+.titolo-h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+}
+
 
 .btn-rotondo {
     width: 37px;
@@ -146,17 +160,28 @@ img.img-copertina {
 .sottotitolo-1 {
     font-size:2rem;
 }
+.card-home {
+    background:transparent;
+    border:none;
+    text-align:center;
+}
+.card-home .card-img-top {
+    max-width: 170px;
+    /* text-align: center; */
+    margin: 0 auto;
+}
 
 @media only screen and (min-width: 769px) {
     .clip-me {  
         clip-path: polygon(54% 0, 100% 0, 100% 74%, 64% 100%, 37% 83%, 22% 33%, 15% 0);
     } 
     .div-present {
-        position:absolute;
-        left:10%;
-        top:25%;
-        text-align:left;
+        position: absolute;
+        left: 0%;
+        top: 25%;
+        text-align: left;
         z-index: 99;
+        width: 100%;
     }
     .logo-landlord {
         max-height:120px;
@@ -170,7 +195,6 @@ img.img-copertina {
     .div-present {
         position: relative;
         text-align: left;
-        margin: 0px 40px;
         z-index: 99;
     }
     .logo-landlord {

@@ -18,6 +18,7 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 Route::domain('radicando.it')->group(function () {
     
     Route::view('/','landlord.landing' );
+    Route::view('/landing','landlord.landing2' );
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -27,6 +28,7 @@ Route::domain('radicando.it')->group(function () {
 Route::domain('www.radicando.it')->group(function () {
     
     Route::view('/','landlord.landing' );
+    Route::view('/landing','landlord.landing2' );
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -36,6 +38,7 @@ Route::domain('www.radicando.it')->group(function () {
 Route::domain('straorto')->group(function () {
     
     Route::view('/','landlord.landing' );
+    Route::view('/landing','landlord.landing2' );
     
     // Catch All Route
     Route::any('{any}', function () {
