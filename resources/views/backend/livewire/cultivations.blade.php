@@ -3,8 +3,14 @@
         <div class="card">
             <div class="card-body row">       
                 <div class="col-6">
-                    @if($cult_id==null)<h3>Nuova coltivazione</h3>
-                    @else <h3>Modifica coltivazione</h3>
+                    @if($cult_id==null)
+                        @if($cultivable_type =="App\Models\Plant")<h3>Nuova coltivazione</h3>   
+                        @else <h3>Nuovo allevamento</h3>
+                        @endif
+                    @else 
+                        @if($cultivable_type =="App\Models\Plant")<h3>Modifica coltivazione</h3>   
+                        @else <h3>Modifica allevamento</h3>
+                        @endif    
                     @endif
                     <form class="mt-4" action="">
                         <div class="form-group">
@@ -82,14 +88,20 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>Coltivazioni</div>
+                    @if((App\Models\Setting::find('att_coltivazione')->value == "on")&&(App\Models\Setting::find('att_allevamento')->value == "on"))
+                        Coltivazioni ed Allevamenti
+                    @elseif(App\Models\Setting::find('att_allevamento')->value == "on")
+                        Allevamenti
+                    @elseif(App\Models\Setting::find('att_coltivazione')->value == "on")
+                        Coltivazioni
+                    @endif
                     <div class="d-flex align-items-center">
                         <span class="mr-2">Mostra coltivazioni passate</span>
                         <label class="c-switch c-switch-pill c-switch-info">  
                             <input class="c-switch-input" type="checkbox" checked="" wire:model="mostraTutti" wire:change="initIndexMapContent"><span class="c-switch-slider"></span>
                         </label>
                     </div>
-                    <div><button class="btn btn-primary" wire:click="toggleEdit(2)"><i class="fas fa-plus"></i> Nuovo allevamento</button> <button class="btn btn-primary" wire:click="toggleEdit(1)"><i class="fas fa-plus"></i> Nuova coltivazione</button></div>
+                    <div>@if(App\Models\Setting::find('att_allevamento')->value == "on")<button class="btn btn-primary" wire:click="toggleEdit(2)"><i class="fas fa-plus"></i> Nuovo allevamento</button>@endif @if(App\Models\Setting::find('att_coltivazione')->value == "on")<button class="btn btn-primary" wire:click="toggleEdit(1)"><i class="fas fa-plus"></i> Nuova coltivazione</button>@endif</div>
                 </div>
             </div>
             @if(!$this->mostraTutti)

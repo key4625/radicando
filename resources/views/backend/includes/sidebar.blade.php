@@ -14,7 +14,7 @@
                 :text="__('Panoramica')"  />
         </li>
         
-
+        @if(App\Models\Setting::find('att_coltivazione')->value == "on")
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
@@ -23,6 +23,8 @@
                 icon="c-sidebar-nav-icon fas fa-leaf"
                 :text="__('Piante')" />
         </li>
+        @endif
+        @if(App\Models\Setting::find('att_allevamento')->value == "on")
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
@@ -31,6 +33,7 @@
                 icon="c-sidebar-nav-icon fas fa-paw"
                 :text="__('Animali')" />
         </li>
+        @endif
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"

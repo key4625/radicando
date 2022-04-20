@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Cultivation;
 use App\Models\Product;
+use App\Models\Productcategory;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -23,15 +24,17 @@ class ProductController
     public function create()
     {
         $cultivations = Cultivation::all();
-        return view('backend.products.edit', compact('cultivations'));
+        $productcategories = Productcategory::all();
+        return view('backend.products.edit', compact('cultivations','productcategories'));
     }
 
     public function edit($id)
     {
         $cultivations = Cultivation::all();
         $product = Product::find($id);
+        $productcategories = Productcategory::all();
         //$utenti_enti = User::role('Ente')->get();
-        return view('backend.products.edit', compact('product','cultivations'));
+        return view('backend.products.edit', compact('product','cultivations','productcategories'));
     }
    
     /**

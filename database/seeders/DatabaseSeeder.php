@@ -76,6 +76,37 @@ class DatabaseSeeder extends Seeder
             'value' => "Descrzione generale dell'azienda",
             'type' => "Generale"
         ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_coltivazione",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_allevamento",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_seminativo",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_orto",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_frutteto",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+        DB::table('settings')->insert([ //,
+            'name' => "att_officinali",
+            'value' => "on",
+            'type' => "Attività"
+        ]);
+
        
 
     }

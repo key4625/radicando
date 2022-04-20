@@ -86,13 +86,15 @@
                         <div class="form-group">
                             <label>Trapianto</label>
                             @php 
-                                $plant_trapianto = json_decode($plant->trapianto); 
-                                $plant_semina = json_decode($plant->semina); 
-                                $plant_semina_out = json_decode($plant->semina_out); 
-                                $plant_raccolta = json_decode($plant->raccolta); 
-                                $plant_gg_campo = json_decode($plant->gg_campo); 
+                                $plant_trapianto = json_decode(str_replace('"','',$plant->trapianto)); 
+                                $plant_semina = json_decode(str_replace('"','',$plant->semina)); 
+                                $plant_semina_out = json_decode(str_replace('"','',$plant->semina_out)); 
+                                $plant_raccolta = json_decode(str_replace('"','',$plant->raccolta)); 
+                                $plant_gg_campo = json_decode(str_replace('"','',$plant->gg_campo)); 
+                                //dd($plant_trapianto);
                             @endphp
                             <select id="sel_trapianto" class="form-control" name="trapianto[]" multiple="">
+                                
                                 <option value="1" @if(($plant_trapianto!=null)&&(in_array(1, $plant_trapianto))) selected @endif >Gennaio</option>
                                 <option value="2" @if(($plant_trapianto!=null)&&(in_array(2, $plant_trapianto))) selected @endif>Febbraio</option>
                                 <option value="3" @if(($plant_trapianto!=null)&&(in_array(3, $plant_trapianto))) selected @endif>Marzo</option>

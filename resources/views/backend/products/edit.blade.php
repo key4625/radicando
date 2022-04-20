@@ -57,13 +57,24 @@
                             <input type="text" name="price" @if(isset($product)) value="{{$product->price}}" @else value=0 @endif class="form-control" placeholder="0.0">
                         </div>
                     </div>
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label>Tipologia prodotto</label>
+                            <select name="cultivation_id" class="form-control">
+                                <option value="0">Seleziona una tipologia</option>
+                                @foreach($productcategories as $single_cat)
+                                    <option value="{{$single_cat->id}}" @if(isset($product)&&($product->productcategories_id == $single_cat->id)) selected="selected" @endif>{{$single_cat->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label>Coltivazione associata</label>
                             <select name="cultivation_id" class="form-control">
                                 <option value="0">Seleziona una coltivazione</option>
                                 @foreach($cultivations as $single_cult)
-                                    <option value="{{$single_cult->id}}" @if(isset($product)&&($product->cultivation_id == $single_cult->id)) selected="selected" @endif>{{$single_cult->plant->name}} - {{$single_cult->data_inizio}}</option>
+                                    <option value="{{$single_cult->id}}" @if(isset($product)&&($product->cultivation_id == $single_cult->id)) selected="selected" @endif>{{$single_cult->cultivable->name}} - {{$single_cult->data_inizio}}</option>
                                 @endforeach
                             </select>
                         </div>

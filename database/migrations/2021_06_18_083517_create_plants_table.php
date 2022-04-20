@@ -55,6 +55,7 @@ class CreatePlantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('cultivation_id')->nullable();
+            $table->bigInteger('productcategories_id')->nullable();
             $table->double('quantity_from')->default(0);
             $table->double('quantity_to')->default(0);
             $table->double('quantity_mag')->default(0);

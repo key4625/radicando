@@ -27,6 +27,7 @@
     @csrf    
     <ul class="nav nav-tabs auto">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true" href="#">Generali</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true" href="#">Attività</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true" href="#">Notifiche</a></li>
     </ul> 
     <div class="tab-content" id="settingstab">  
@@ -85,6 +86,48 @@
                 </div>  
                 
             </div>  
+        </div>
+        <div class="tab-pane p-4 fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+            <div class="row">
+                <div class="col-6">         
+                    <h5 class="mb-3">Settore di attività</h5>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='att_coltivazione'>
+                        <input type="checkbox" class="form-check-input" id="att_coltivazione" name="att_coltivazione" @if($settings['att_coltivazione']=="on") checked @endif>
+                        <label class="form-check-label" for="att_coltivazione">Coltivazione</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline">
+                        <input type='hidden' value='off' name='att_allevamento'>
+                        <input type="checkbox" class="form-check-input" id="att_allevamento" name="att_allevamento" @if($settings['att_allevamento']=="on") checked @endif>
+                        <label class="form-check-label" for="att_allevamento">Allevamento</label>
+                    </div>
+                </div>
+                <div class="col-6">         
+                    <h5 class="mb-3">Tipo di coltivazioni</h5>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='att_seminativo'>
+                        <input type="checkbox" class="form-check-input" id="att_seminativo" name="att_seminativo" @if($settings['att_seminativo']=="on") checked @endif>
+                        <label class="form-check-label" for="att_seminativo">Seminativo</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='att_orto'>
+                        <input type="checkbox" class="form-check-input" id="att_orto" name="att_orto" @if($settings['att_orto']=="on") checked @endif>
+                        <label class="form-check-label" for="att_orto" >Orto</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='att_frutteto'>
+                        <input type="checkbox" class="form-check-input" id="att_frutteto" name="att_frutteto" @if($settings['att_frutteto']=="on") checked @endif>
+                        <label class="form-check-label" for="att_frutteto">Frutteto</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='att_officinali'>
+                        <input type="checkbox" class="form-check-input" id="att_officinali" name="att_officinali" @if($settings['att_officinali']=="on") checked @endif>
+                        <label class="form-check-label" for="att_officinali">Piante officinali</label>
+                    </div>
+                  
+                </div>
+               
+            </div>
         </div>
         <div class="tab-pane p-4 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
           

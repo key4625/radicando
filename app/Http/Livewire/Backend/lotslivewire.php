@@ -47,9 +47,9 @@ class lotslivewire extends Component
      
         foreach($fields_tmp as $field_tmp){
             if($field_tmp->actual_cultivation() != null) { 
-                $img_cult = $field_tmp->actual_cultivation()->plant->icon; 
-                $color_cult = $field_tmp->actual_cultivation()->plant->color; 
-                $border_color_cult = $field_tmp->actual_cultivation()->plant->border_color; 
+                $img_cult = $field_tmp->actual_cultivation()->cultivable->icon; 
+                $color_cult = $field_tmp->actual_cultivation()->cultivable->color; 
+                $border_color_cult = $field_tmp->actual_cultivation()->cultivable->border_color; 
                 array_push($this->polygons,array($field_tmp->id,json_decode($field_tmp->points),$img_cult, $color_cult, $border_color_cult)); 
             } else { 
                 if($field_tmp->parent_id==0){

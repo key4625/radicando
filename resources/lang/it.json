@@ -187,5 +187,25 @@
     "You can not set a password that you have previously used within the last 3 times.": "Non è possibile impostare una password utilizzata in precedenza nelle ultime 3 volte.",
     "These credentials do not match our records.": "Queste credenziali non corrispondono ai nostri record.",
     "Editing :role": "Modifica :role",
-    "Home": "Home"
+    "Home": "Home",
+
+    "You have selected": "Hai selezionato",
+    "rows, do you want to select all": "righe, vuoi selezionarle tutte",
+    "Select All": "Seleziona tutto",
+    "You are currently selecting all": "Stai selezionato tutto",
+    "rows": "righe",
+    "Unselect All": "Deseleziona tutto",
+    "Applied Sorting": "Applica ordinamento",
+    "Remove sort option": "Rimuovi ordinamento",
+    "Clear": "Pulisci",
+    "Bulk Actions": "Azioni massive",
+    "Filters": "Filtra",
+    "Applied Filters": "Filtri attivi",
+    "Remove filter option": "Rimuovi filtri",
+    "Search": "Cerca",
+    "Showing": "mostrando",
+    "results": "risultati",
+    "You are not connected to the internet.": "Non sei connesso ad internet.",
+    "to": "to",
+    "of": "of"
 }

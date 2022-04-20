@@ -12,8 +12,13 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    {{$row->nome_cat}} 
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     {{ $row->resa_pianta_kg }}
 </x-livewire-tables::table.cell>
+
 
 <x-livewire-tables::table.cell>
     {{ $row->prezzo_kg }}

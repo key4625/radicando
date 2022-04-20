@@ -22,9 +22,11 @@ class ProductsTable extends DataTableComponent
             Column::make('Nome','name')
                 ->sortable()
                 ->searchable(),
+            Column::make('Dimens.','dimension'),
+            Column::make('Tipo','plantcategory.name'),
             Column::make('Magazzino','quantity_mag')
                 ->sortable(),
-            Column::make('Dimens.','dimension'),
+        
             Column::make('Prezzo','price')
                 ->sortable(),
             Column::make('In vendita', 'vendibile'),
@@ -34,7 +36,11 @@ class ProductsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Product::query()->when($this->getFilter('filter_vendita'), fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1));
+        return Product::query()
+            ->join('productcategories', 'products.productcategories_id', '=', 'productcategories.id')
+            ->select('products.*','productcategories.name as nome_cat')    
+            ->when($this->getFilter('filter_vendita'), fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1))
+            ->when($this->getFilter('tipologia'), fn ($query, $cat_id) => $query->where('productcategories_id', $cat_id));
     }
 
 
@@ -58,6 +64,19 @@ class ProductsTable extends DataTableComponent
                     '' => 'Tutti',
                     '1' => 'Si',
                     '0' => 'No',
+                ]),
+
+                'tipologia' => Filter::make('Categoria')
+                ->select([
+                    '0' => 'Tutti',
+                    '1' => 'Farine',
+                    '2' => 'Vini e distillati',
+                    '3' => 'Marmellate, salse e confetture',
+                    '4' => 'Formaggi',
+                    '5' => 'Olio',
+                    '6' => 'Carne',
+                    '7' => 'Uova',
+                    '8' => 'Cosmetica e detergenti',
                 ]),
             
         ];

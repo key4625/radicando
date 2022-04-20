@@ -12,6 +12,10 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    {{$row->nome_cat}} 
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     {{ $row->quantity_mag }}
 </x-livewire-tables::table.cell>
 

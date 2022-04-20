@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Plant;
+use App\Models\Plantcategory;
+use App\Models\Productcategory;
 use Illuminate\Database\Seeder;
 
 class PlantSeeder extends Seeder
@@ -21,11 +23,66 @@ class PlantSeeder extends Seeder
         $records = $this->import_CSV($file);
         //dd($records);
         // add each record to the posts table in DB       
+        Plantcategory::create([
+            'id' => 1,
+            'name' => 'Verdura'
+        ]);
+        Plantcategory::create([
+            'id' => 2,
+            'name' => 'Frutta'
+        ]);
+        Plantcategory::create([
+            'id' => 3,
+            'name' => 'Seminativo'
+        ]);
+        Plantcategory::create([
+            'id' => 4,
+            'name' => 'Piante officinali'
+        ]);
+        Plantcategory::create([
+            'id' => 5,
+            'name' => 'Coltivazioni di avvicendamento'
+        ]);
+
+        Productcategory::create([
+            'id' => 1,
+            'name' => 'Farine'
+        ]);
+        Productcategory::create([
+            'id' => 2,
+            'name' => 'Vini e distillati'
+        ]);
+        Productcategory::create([
+            'id' => 3,
+            'name' => 'Marmellate, salse e confetture'
+        ]);
+        Productcategory::create([
+            'id' => 4,
+            'name' => 'Formaggi'
+        ]);
+        Productcategory::create([
+            'id' => 5,
+            'name' => 'Olio'
+        ]);
+        Productcategory::create([
+            'id' => 6,
+            'name' => 'Carne'
+        ]);
+        Productcategory::create([
+            'id' => 7,
+            'name' => 'Uova'
+        ]);
+        Productcategory::create([
+            'id' => 8,
+            'name' => 'Cosmetica e detergenti'
+        ]);
+
         foreach ($records as $key => $record) {
             Plant::create([
                 'id' => $record['id'],
                 'abbreviazione' => $record['abbreviazione'],
                 'nome' => $record['nome'],
+                'plantcategories_id' => $record['plantcategories_id'],
                 'sulla_fila'=> $record['sulla_fila'],	
                 'tra_file' => $record['tra_file'],	
                 'trapianto'=> json_encode($record['trapianto']),	

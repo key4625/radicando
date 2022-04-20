@@ -18,6 +18,10 @@ class Plant extends Model
     {
         return $this->morphToMany(Order::class, 'orderable');
     }
+    public function plantcategory()
+    {
+        return $this->belongsTo(Plantcategory::class);
+    }
     public function cultivations()
     {
         return $this->morphMany(Cultivation::class, 'cultivable');

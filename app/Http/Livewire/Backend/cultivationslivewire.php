@@ -98,8 +98,8 @@ class cultivationslivewire extends Component
         } else {
             $this->initMapContent();
             $this->editMode = true; 
-            if($type == 1) $this->cultivable_type = "Plant";
-            if($type == 2) $this->cultivable_type = "Animal";
+            if($type == 1) $this->cultivable_type = "App\Models\Plant";
+            if($type == 2) $this->cultivable_type = "App\Models\Animal";
         }
         //$this->showMode = false;      
     }
@@ -195,7 +195,7 @@ class cultivationslivewire extends Component
         $cultivation = Cultivation::findOrFail($id);
         
         Cultivation::find($id)->delete();
-        $this->dispatchBrowserEvent('cultivation-deleted',['cult_name'=>$cultivation->plant->name]);
+        $this->dispatchBrowserEvent('cultivation-deleted',['cult_name'=>$cultivation->cultivable->name]);
     }
 
  

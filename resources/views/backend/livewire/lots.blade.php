@@ -83,14 +83,14 @@
                                 <tr >
                                     <td style="font-weight:bold;">{{ $field->name }}</td>
                                     <td>{{$field->mq}} mq</td>
-                                    <td>@if($field->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $field->actual_cultivation()->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
+                                    <td>@if($field->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $field->actual_cultivation()->cultivable->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
                                     <td class="text-right"></td>
                                 </tr>
                                 @foreach($field->children()->get() as $lot)
                                     <tr>
                                         <td style="padding-left:40px;">{{ $lot->name }}</td>
                                         <td>{{$field->mq}} mq</td>
-                                        <td>@if($lot->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $lot->actual_cultivation()->plant->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
+                                        <td>@if($lot->actual_cultivation() != null)<img class="img-fluid" style="height:50px;" src="{{ $lot->actual_cultivation()->cultivable->image }}">@else <img class="img-fluid" style="height:50px;" src="/img/img-placeholder.png">@endif</td>
                                         
                                         <td class="text-right">
                                             <button class="btn btn-dark" wire:click="setLots({{$lot->id}})">
