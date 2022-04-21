@@ -27,13 +27,16 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js" integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ==" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js" integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA==" crossorigin=""></script>
+
 <script>
     var dynamicPoligonList, indexPoligonList;
     var map, mapindex;
     var polygon;
     var editableLayers2;
     var editableLayersIndex;
-
+    const apiKey = "AAPK040b11dc8945485a9cd0c442c8c98f86V5u3L_UFUNXL6_LxZe9LvE7qsR3yu6BvmhpbyxjsuijgNQmJGN5gSmdpj67tamri";
     var LeafIcon = L.Icon.extend({
         options: {
             iconSize:     [40, 40],
@@ -53,10 +56,13 @@
         var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxZoom: 17,
             attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        });*/
+        });
         var OpenSatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 17,
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        }).addTo(map);*/
+        L.esri.Vector.vectorBasemapLayer("ArcGIS:Imagery", {
+            apikey: apiKey
         }).addTo(map);
 
             
@@ -70,8 +76,8 @@
         var pol_exist = false;
         if(container_index != null){ container_index._leaflet_id = null; }
         mapindex = L.map('map-index').setView([43.520933, 13.225302], 10); 
-        var OpenSatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        L.esri.Vector.vectorBasemapLayer("ArcGIS:Imagery", {
+            apikey: apiKey
         }).addTo(mapindex);
         editableLayersIndex = new L.FeatureGroup();
         mapindex.addLayer(editableLayersIndex);
