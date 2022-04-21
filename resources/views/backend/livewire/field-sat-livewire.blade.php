@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <div><a class="btn btn-sm" href="/admin/terreni"><i class="fas fa-home"></i></a> Terreni</div>     
+            
                 <div>
                     <select name="field_id" wire:model="field_id" wire:change="initMapIndexContent" class="form-control">
                         <option value=''>Seleziona un terreno</option>
@@ -13,7 +13,10 @@
                     </select>
                    
                 </div>
-                
+                <div class="w-100 text-center">
+                    <label class="form-label" for="customRange1">Giorno selezionato <br />{{$date_form}}</label>
+                    <input class="form-range w-100" id="customRange1" type="range" wire:model="minusdays" wire:change="initMapIndexContent" min="-720" max="0" step="10">
+                </div>
                 <div> 
                     <select name="layer_id" wire:model="layer_id" wire:change="initMapIndexContent" class="form-control">
                         <option value=''>Seleziona un indice</option>
@@ -25,10 +28,7 @@
                     </select>
                 </div>
             </div>
-            <div class="w-100 text-center">
-                <label class="form-label" for="customRange1">Giorno selezionato <br />{{$date_form}}</label>
-                <input class="form-range w-100" id="customRange1" type="range" wire:model="minusdays" wire:change="initMapIndexContent" min="-720" max="0" step="10">
-            </div>
+           
         </div>
         <style>
             #mapindex {

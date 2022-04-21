@@ -33,6 +33,7 @@ class FieldSatLivewire extends Component
     public function render()
     {
         $this->date_sel = date("Y-m-d", strtotime($this->minusdays.' days'));
+        $this->date_form = date("d-m-Y", strtotime($this->minusdays.' days'));
         return view('backend.livewire.field-sat-livewire');
     }
 
