@@ -64,13 +64,8 @@
             </div>
         </div>
     @else
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>Lotti</div>
-                    <div><button class="btn btn-primary" wire:click="toggleEdit"><i class="fas fa-plus"></i> Nuovo lotto</button></div>
-                </div>
-            </div>
+        <div class="clearfix"><button class="btn btn-success mb-3 float-right" wire:click="toggleEdit"><i class="fas fa-plus"></i> Nuovo lotto</button></div>
+        <div class="card"> 
             <div wire:init="initIndexMapContent" class="map-index-container">
                 <div id="map-index" class="mb-2"></div>
             </div>   

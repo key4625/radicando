@@ -42,8 +42,7 @@
             });
             strPolygon+= polygon_single[1][0][1] + " " + polygon_single[1][0][0]+"))";
         });
-       
-       
+         
         let sentinelHub = L.tileLayer.wms(baseUrl, {
             tileSize: 512,
             attribution: '&copy; <a href="http://www.sentinel-hub.com/" target="_blank">Sentinel Hub</a>',	 	 	
@@ -60,8 +59,8 @@
             geometry: strPolygon, 
         });
 
-        let baseMaps = {'OpenStreetMap': osm };
-        let overlayMaps = {'Sentinel Hub WMS': sentinelHub }
+        //let baseMaps = {'OpenStreetMap': osm };
+        //let overlayMaps = {'Sentinel Hub WMS': sentinelHub }
 
         mapindex = L.map('mapindex', {
             center: [43.520933, 13.225302], // lat/lng in EPSG:4326
@@ -69,9 +68,7 @@
             layers: [osm, sentinelHub]
         }); 
         
-        L.control.layers(baseMaps, overlayMaps).addTo(mapindex);
-
-       
+        //L.control.layers(baseMaps, overlayMaps).addTo(mapindex);
         var editableLayers2 = new L.FeatureGroup();
         mapindex.addLayer(editableLayers2);
         dynamicPoligonList.forEach(polygon_single => {
@@ -89,12 +86,7 @@
         date_pam = event.detail.date_pam;
         createIndexMap();      
     });
-
-
-  
-
 </script>
-
 
 @endpush
 

@@ -1,14 +1,10 @@
+<div>
 @if($editMode)    
     @include('backend.livewire.fields.create')
 @endif
 @if(!$editMode)
+    <div class="clearfix"><button class="btn btn-success mb-3 float-right" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo terreno </button></div>
     <div class="card">
-        <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>Terreni</div>
-                <button class="btn btn-success mb-3 text-right" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo terreno </button>
-            </div>
-        </div>
         <style>
             #mapindex {
                 height: 400px;
@@ -58,5 +54,4 @@
         </div>
     </div>
 @endif
-
-   
+</div>

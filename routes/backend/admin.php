@@ -26,7 +26,7 @@ Route::middleware('tenant')->group(function() {
         $trail->push(__('Terreni'), route('admin.terreni'));
     });
     Route::view('terreno','backend.terreni_sat' )->name('terreno')->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Terreno'), route('admin.terreno'));
+        $trail->parent('admin.terreni', route('admin.terreni'))->push(__('Informazioni terreno'), route('admin.terreno'));
     });
     Route::view('ordini','backend.ordini' )->name('ordini')->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Ordini'), route('admin.ordini'));
@@ -38,7 +38,7 @@ Route::middleware('tenant')->group(function() {
         $trail->push(__('Coltivazioni'), route('admin.coltivazioni'));
     });
     Route::view('lotti','backend.lots' )->name('lotti')->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Lotti'), route('admin.lotti'));
+        $trail->parent('admin.terreni', route('admin.terreni'))->push(__('Lotti'), route('admin.lotti'));
     });
     Route::view('diario','backend.diario' )->name('diario')->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Diario'), route('admin.diario'));

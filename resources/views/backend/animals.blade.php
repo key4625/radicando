@@ -9,14 +9,5 @@
     }
 </style>
 @section('content')
-    <x-backend.card>
-        <x-slot name="header">
-            @lang('Lista animali')
-        </x-slot>
-
-        <x-slot name="body">
-
-            <livewire:backend.animals-table />
-        </x-slot>
-    </x-backend.card>
+    <livewire:backend.animals-table />
 @endsection
