@@ -3,7 +3,8 @@
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
             
-                <div>
+                <div class="pr-3 border-right">
+                    <label class="form-label" for="customRange1">Seleziona terreno</label>
                     <select name="field_id" wire:model="field_id" wire:change="initMapIndexContent" class="form-control">
                         <option value=''>Seleziona un terreno</option>
                         @foreach($fields as $tmp_field)
@@ -13,11 +14,12 @@
                     </select>
                    
                 </div>
-                <div class="w-100 text-center">
+                <div class="px-3 w-100 text-center">
                     <label class="form-label" for="customRange1">Giorno selezionato <br />{{$date_form}}</label>
                     <input class="form-range w-100" id="customRange1" type="range" wire:model="minusdays" wire:change="initMapIndexContent" min="-720" max="0" step="10">
                 </div>
-                <div> 
+                <div class="pl-3 border-left text-right"> 
+                    <label class="form-label" for="customRange1">Scegli indice</label>
                     <select name="layer_id" wire:model="layer_id" wire:change="initMapIndexContent" class="form-control">
                         <option value=''>Seleziona un indice</option>
                         <option value="AGRICULTURE">Superficie coltivata</option>
