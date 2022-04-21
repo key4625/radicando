@@ -11,6 +11,7 @@ class FieldSatLivewire extends Component
     public $field_id, $field_sel, $layer_id;
     public $gain, $gamma;
     public $fields;
+    public $minusdays, $date_sel, $date_form;
     public $polygon = array();
 
 
@@ -24,12 +25,14 @@ class FieldSatLivewire extends Component
         $this->layer_id = "NDVI";
         $this->gain = 1;
         $this->gamma = 1;
+        $this->minusdays = 0;
+        $this->date_sel = date("Y-m-d", strtotime($this->minusdays.' days'));
+        $this->date_form = date("d-m-Y", strtotime($this->minusdays.' days'));
     }
 
     public function render()
     {
-       
-        
+        $this->date_sel = date("Y-m-d", strtotime($this->minusdays.' days'));
         return view('backend.livewire.field-sat-livewire');
     }
 
@@ -40,7 +43,7 @@ class FieldSatLivewire extends Component
             $this->field_sel = Field::where('id',$this->field_id)->first();
             array_push($this->polygon,array($this->field_id,json_decode($this->field_sel->points))); 
             
-            $this->dispatchBrowserEvent('map-index-created', ['polList' => $this->polygon, 'layerSel'=> $this->layer_id, 'gamma_pam' => $this->gamma, 'gain_pam' => $this->gain]);
+            $this->dispatchBrowserEvent('map-index-created', ['polList' => $this->polygon, 'layerSel'=> $this->layer_id, 'gamma_pam' => $this->gamma, 'gain_pam' => $this->gain, 'date_pam' => $this->date_sel]);
         }
         
     }

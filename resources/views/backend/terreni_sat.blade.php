@@ -19,7 +19,7 @@
 <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
 <script>
-    var dynamicPoligonList, layer_sel, gain_pam, gamma_pam;
+    var dynamicPoligonList, layer_sel, gain_pam, gamma_pam, date_pam;
     var map, mapindex;
     var polygon;
    
@@ -50,11 +50,10 @@
             maxcc:"20", 
             minZoom:6, 
             maxZoom:20, 
-        
             layers:layer_sel, 
             gain: gain_pam,
             gamma: gamma_pam,
-            time:"2021-09-01/2022-03-24", 
+            time:date_pam, 
             format: 'image/png',
             transparent:true,
             crs: L.CRS.EPSG4326,
@@ -87,6 +86,7 @@
         layer_sel = event.detail.layerSel;
         gain_pam = event.detail.gain_pam;
         gamma_pam = event.detail.gamma_pam;
+        date_pam = event.detail.date_pam;
         createIndexMap();      
     });
 
