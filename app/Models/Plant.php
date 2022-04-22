@@ -30,6 +30,14 @@ class Plant extends Model
     {
         return $this->morphMany(Collection::class, 'collectionable');
     }
+    public function getImage()
+    {
+        if( $this->image !=null){
+            return $this->image;
+        } else {  
+            return "/img/img-placeholder.png";
+        }    
+    }
     public function raccolti_oggi_kg()
     {
         return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity_kg');
@@ -45,5 +53,17 @@ class Plant extends Model
     public function raccolti_tot_nr()
     {
         return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity_num');
+    }
+    public static function piante_semina_mese($actual_month) 
+    {
+        return Plant::whereJsonContains('semina',$actual_month)->get();
+    }
+    public static function piante_semina_out_mese($actual_month) 
+    {
+        return Plant::whereJsonContains('semina_out',$actual_month)->get();
+    }
+    public static function piante_trapianto_mese($actual_month) 
+    {
+        return Plant::whereJsonContains('trapianto',$actual_month)->get();
     }
 }

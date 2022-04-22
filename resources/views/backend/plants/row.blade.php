@@ -1,10 +1,6 @@
 
 <td>
-    @if( $row->image !=null)
-        <img class="img-responsive" src="{{ $row->image }}" style="height:45px;">
-    @else 
-        <img class="img-responsive" src="/img/img-placeholder.png"  style="height:45px;">
-    @endif
+    <img class="img-responsive" src="{{ $row->getImage() }}" style="height:45px;">
 </td> 
 
 <x-livewire-tables::table.cell>
