@@ -1,26 +1,48 @@
 @extends('landlord.layouts.app')
-
-{{--@section('Ordina', __('Ordina'))--}}
+@push('after-styles')
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+/>
 <style>
-.new-app-banner-bg-shape {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    width: 100%;
-}
-.new-app-main-banner-area {
-    background-position: bottom center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 180px;
-    padding-bottom: 200px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-</style>
+    .new-app-banner-bg-shape {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 100%;
+    }
+    .new-app-main-banner-area {
+        background-position: bottom center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 180px;
+        padding-bottom: 200px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .swiper {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+    }
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+    }
+    </style>
+@endpush
+{{--@section('Ordina', __('Ordina'))--}}
+
 @section('content')
 <div class="div-copertina new-app-main-banner-area" style="background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
     {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
@@ -155,6 +177,62 @@
             </div>
         </div>
     </div>
+    <div class="container-xxl">
+        <!-- Slider main container -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+    </div>
 </div>
 @endsection
 
+@push('after-scripts')
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+    </script>
+@endpush
