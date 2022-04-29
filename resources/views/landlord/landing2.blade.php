@@ -1,26 +1,44 @@
 @extends('landlord.layouts.app')
 
 {{--@section('Ordina', __('Ordina'))--}}
-
+<style>
+.new-app-banner-bg-shape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+}
+.new-app-main-banner-area {
+    background-position: bottom center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 180px;
+    padding-bottom: 200px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+</style>
 @section('content')
-<div class="div-copertina">
+<div class="div-copertina new-app-main-banner-area" style="background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
     {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
-    <div class="clip-me div-sfondo-home" style="background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}')"></div>
-    <div class="div-present">
-        <div class="container-xxl">
-            <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
-            <h3 class="mt-3 titolo-1">Agricoltura innovativa</h3>
-            <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
-            <div>
-                <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-3x mr-3"></i></a>
-                <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-3x mr-3"></i></a>
-                <a href="mailto:info@radicando.it" target="blank" class="green"> <i class="fas fa-envelope-square fa-3x mr-3"></i></a>
-                <a href="tel:+393384533261" target="blank" class="green"> <i class="fab fa-whatsapp-square fa-3x"></i></a>
-            
-            </div>
+    <!--<div class="clip-me div-sfondo-home" style=""></div>-->
+
+    <div class="container-xxl">
+        <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
+        <h3 class="mt-3 titolo-1">Agricoltura innovativa</h3>
+        <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
+        <div>
+            <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-3x mr-3"></i></a>
+            <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-3x mr-3"></i></a>
+            <a href="mailto:info@radicando.it" target="blank" class="green"> <i class="fas fa-envelope-square fa-3x mr-3"></i></a>
+            <a href="tel:+393384533261" target="blank" class="green"> <i class="fab fa-whatsapp-square fa-3x"></i></a>
+        
         </div>
     </div>
-    
+    <div class="new-app-banner-bg-shape"><img src="/img/presentazione/banner-shape.png" alt="image"></div>
 </div>
 <div class="bg-verdolino">
     <div class="py-5 container-xxl">
