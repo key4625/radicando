@@ -1,7 +1,5 @@
 @extends('backend.layouts.app')
 
-@push('after-styles')
-@endpush
 @section('title', __('Prodotti'))
 
 @section('content')
@@ -12,16 +10,7 @@
         </div>
 
         <div class="card-body">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Error!</strong> 
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li></li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+           
             @if(isset($product))
                 <form action="{{ route('admin.prodotti.update',$product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -37,6 +26,7 @@
                         <div class="form-group">
                             <label>Nome</label>
                             <input type="text" name="name" @if(isset($product)) value="{{$product->name}}" @endif class="form-control" placeholder="Nome">
+                            @error('name')<div class="text-danger">Inserire un nome</div>@enderror
                         </div>
                     </div>
                     <div class="col-4 col-md-2">
@@ -55,17 +45,19 @@
                         <div class="form-group">
                             <label>Prezzo</label>
                             <input type="text" name="price" @if(isset($product)) value="{{$product->price}}" @else value=0 @endif class="form-control" placeholder="0.0">
+                            @error('price')<div class="text-danger">Inserire un prezzo</div>@enderror
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label>Tipologia prodotto</label>
-                            <select name="cultivation_id" class="form-control">
+                            <select name="productcategories_id" class="form-control">
                                 <option value="0">Seleziona una tipologia</option>
                                 @foreach($productcategories as $single_cat)
                                     <option value="{{$single_cat->id}}" @if(isset($product)&&($product->productcategories_id == $single_cat->id)) selected="selected" @endif>{{$single_cat->name}}</option>
                                 @endforeach
                             </select>
+                            @error('productcategories_id')<div class="text-danger">Selezionare una tipologia</div>@enderror
                         </div>
                     </div>
                     <div class="col-12 col-md-4">

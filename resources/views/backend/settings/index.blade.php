@@ -126,6 +126,37 @@
                     </div>
                   
                 </div>
+                <div class="col-6">         
+                    <h5 class="mb-3">Che cosa vorresti gestire?</h5>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='gest_terreni'>
+                        <input type="checkbox" class="form-check-input" id="gest_terreni" name="gest_terreni" @if($settings['gest_terreni']=="on") checked @endif>
+                        <label class="form-check-label" for="gest_terreni">Terreni</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='gest_coltivazioni'>
+                        <input type="checkbox" class="form-check-input" id="gest_coltivazioni" name="gest_coltivazioni" @if($settings['gest_coltivazioni']=="on") checked @endif>
+                        <label class="form-check-label" for="gest_coltivazioni">Coltivazioni</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='gest_raccolto'>
+                        <input type="checkbox" class="form-check-input" id="gest_raccolto" name="gest_raccolto" @if($settings['gest_raccolto']=="on") checked @endif>
+                        <label class="form-check-label" for="gest_raccolto">Raccolto</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='gest_magazzino'>
+                        <input type="checkbox" class="form-check-input" id="gest_magazzino" name="gest_magazzino" @if($settings['gest_magazzino']=="on") checked @endif>
+                        <label class="form-check-label" for="gest_magazzino">Magazzino per i prodotti</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='gest_diario'>
+                        <input type="checkbox" class="form-check-input" id="gest_diario" name="gest_diario" @if($settings['gest_diario']=="on") checked @endif>
+                        <label class="form-check-label" for="gest_diario">Diario delle lavorazioni</label>
+                    </div>
+                   
+                   
+                  
+                </div>
                
             </div>
         </div>
@@ -146,4 +177,26 @@
 </form>
 
 @endsection
+
+@push('after-scripts')
+<script>
+    $(document).ready(function() {
+        //set initial state.
+       
+        $('#gest_terreni').change(function() {
+            if(!this.checked) {
+                $('#gest_coltivazioni').prop("checked", false);
+                $('#gest_raccolto').prop("checked", false);  
+            }   
+        });
+        $('#gest_coltivazioni').change(function() {
+            if(!this.checked) {    
+                $('#gest_raccolto').prop("checked", false);  
+            }   
+        });
+
+
+    });
+</script>
+@endpush
 

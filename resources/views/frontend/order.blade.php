@@ -3,7 +3,7 @@
 @section('Ordina', __('Ordina'))
 
 @section('content')
-<div class="container">
+<div class="container-xxl">
     <livewire:orderlivewire />
 </div>
 @endsection

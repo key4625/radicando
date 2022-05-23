@@ -25,47 +25,53 @@
         </li>
         @endif
         @if(App\Models\Setting::find('att_allevamento')->value == "on")
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.animali.index')"
-                :active="activeClass(Route::is('admin.animali.index'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-paw"
-                :text="__('Animali')" />
-        </li>
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.animali.index')"
+                    :active="activeClass(Route::is('admin.animali.index'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-paw"
+                    :text="__('Animali')" />
+            </li>
         @endif
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.terreni')"
-                :active="activeClass(Route::is('admin.terreni'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-map"
-                :text="__('Terreni')" />
-        </li>
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.lotti')"
-                :active="activeClass(Route::is('admin.lotti'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-map"
-                :text="__('Lotti')" />
-        </li>
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.coltivazioni')"
-                :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-carrot"
-                :text="__('Coltivazioni')" />
-        </li>
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.diario')"
-                :active="activeClass(Route::is('admin.diario'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-book"
-                :text="__('Diario')" />
-        </li>
+        @if(App\Models\Setting::find('gest_terreni')->value == "on")
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.terreni')"
+                    :active="activeClass(Route::is('admin.terreni'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-map"
+                    :text="__('Terreni')" />
+            </li>
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.lotti')"
+                    :active="activeClass(Route::is('admin.lotti'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-map"
+                    :text="__('Lotti')" />
+            </li>
+        @endif
+        @if(App\Models\Setting::find('gest_coltivazioni')->value == "on")
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.coltivazioni')"
+                    :active="activeClass(Route::is('admin.coltivazioni'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-carrot"
+                    :text="__('Coltivazioni')" />
+            </li>
+        @endif
+        @if(App\Models\Setting::find('gest_diario')->value == "on")
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.diario')"
+                    :active="activeClass(Route::is('admin.diario'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-book"
+                    :text="__('Diario')" />
+            </li>
+        @endif
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"
@@ -74,14 +80,16 @@
                 icon="c-sidebar-nav-icon fas fa-wine-bottle"
                 :text="__('Prodotti')" />
         </li>
-        <li class="c-sidebar-nav-item">
-            <x-utils.link
-                class="c-sidebar-nav-link"
-                :href="route('admin.raccolto')"
-                :active="activeClass(Route::is('admin.raccolto'), 'c-active')"
-                icon="c-sidebar-nav-icon fas fa-shopping-basket"
-                :text="__('Raccolto')" />
-        </li>
+        @if(App\Models\Setting::find('gest_raccolto')->value == "on")
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.raccolto')"
+                    :active="activeClass(Route::is('admin.raccolto'), 'c-active')"
+                    icon="c-sidebar-nav-icon fas fa-shopping-basket"
+                    :text="__('Raccolto')" />
+            </li>
+        @endif
         <li class="c-sidebar-nav-item">
             <x-utils.link
                 class="c-sidebar-nav-link"

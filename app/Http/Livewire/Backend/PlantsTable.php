@@ -23,6 +23,7 @@ class PlantsTable extends DataTableComponent
             Column::make('Resa/kg','resa_pianta_kg')->sortable(),    
             Column::make('Prezzo/kg','prezzo_kg')->sortable(),
             Column::make('In vendita', 'vendibile'),
+            Column::make('Vedi', ''),
            
         ];
     }
@@ -37,11 +38,23 @@ class PlantsTable extends DataTableComponent
     }
 
 
-  
-    public function getTableRowUrl($row): string
+    public function setVendibile($row,$invendita){
+        
+        $plant = Plant::find($row['id']);
+       
+        //$row['vendibile'] = $invendita;
+        $plant->vendibile = $invendita;
+        $plant->save();
+        //dd($invendita);
+
+    }
+    public function editPianta($id){
+        return route('admin.piante.edit', $id);
+    }
+    /*public function getTableRowUrl($row): string
     {
         return route('admin.piante.edit', $row);
-    }
+    }*/
 
     public function rowView(): string
     {

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Traits\TruncateTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+
 use Spatie\Multitenancy\Models\Tenant;
 /**
  * Class DatabaseSeeder.
@@ -43,72 +43,10 @@ class DatabaseSeeder extends Seeder
         //$this->call(OperationTypeSeeder::class);    
         $this->call(AuthSeeder::class);
         $this->call(AnnouncementSeeder::class);
+        $this->call(SettingSeeder::class);    
         $this->call(PlantSeeder::class);
         $this->call(OperationTypeSeeder::class);    
-        //IMPOSTAZIONI
-        DB::table('settings')->insert([ //,
-            'name' => "app_company_name",
-            'value' => "Nome Azienda",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "app_logo",
-            'value' => "tenant/demo/profilo/logo.png",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "app_img_copertina",
-            'value' => "tenant/demo/profilo/copertina.jpg",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "app_img",
-            'value' => "tenant/demo/profilo/generale.jpg",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "app_descrizione_breve",
-            'value' => "Descrzione breve dell'azienda",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "app_descrizione",
-            'value' => "Descrzione generale dell'azienda",
-            'type' => "Generale"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_coltivazione",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_allevamento",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_seminativo",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_orto",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_frutteto",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-        DB::table('settings')->insert([ //,
-            'name' => "att_officinali",
-            'value' => "on",
-            'type' => "Attività"
-        ]);
-
-       
-
+        
     }
 
     public function runLandlordSpecificSeeders()

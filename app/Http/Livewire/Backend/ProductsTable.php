@@ -17,8 +17,7 @@ class ProductsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('','image')
-           ,
+            Column::make('','image'),
             Column::make('Nome','name')
                 ->sortable()
                 ->searchable(),

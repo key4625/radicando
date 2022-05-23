@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
+    <div class="container-xxl">
         
          <a href="{{route('frontend.index')}}" class="navbar-brand"><img style="max-height:250px;" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value)}}"></a>  
 
