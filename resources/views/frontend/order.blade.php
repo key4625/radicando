@@ -10,6 +10,7 @@
             perspective: 1000px; /* Remove this if you don't want the 3D effect */
         }
         .flipcard {
+            display: block;
             transform: rotateY(180deg);
             -moz-transform: rotateY(180deg);
             -webkit-transform: rotateY(180deg);
@@ -38,6 +39,7 @@
             background: #919191;
             color: white;
             text-align:center;   
+             display: block;
              transform: rotateY(180deg);
             -moz-transform: rotateY(180deg);
             -webkit-transform: rotateY(180deg);
