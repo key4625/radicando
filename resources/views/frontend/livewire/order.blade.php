@@ -39,7 +39,7 @@
                                             <div class="input-group-append"><span class="input-group-text">Pz</span></div>
                                         </div>
                                         
-                                        <button class="btn btn-primary" wire:click="add({{$product->id}},'product',{{$product->price}})">Aggiungi</button>
+                                        <button class="btn btn-primary" @if($quantity==0) disabled @endif wire:click="add({{$product->id}},'product',{{$product->price}})">Aggiungi</button>
                                     </div>
                                 @else 
                                     <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product')" >
@@ -82,7 +82,7 @@
                                                 <option value="kg">Kg</option>
                                             </select>
                                         </div>
-                                        <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price_kg}})">Aggiungi</button>
+                                        <button class="btn btn-primary" @if($quantity==0) disabled @endif wire:click="add({{$plant->id}},'vegetable',{{$plant->price_kg}})">Aggiungi</button>
                                     </div>
                                 @else 
                                     <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable')" >
