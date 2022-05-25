@@ -27,12 +27,14 @@
         }
         .front {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             background: #f3f3f3;
             color: #333;
             text-align:center;   
         }
         .back {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             background: #919191;
             color: white;
             text-align:center;   
