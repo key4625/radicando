@@ -82,7 +82,7 @@
                                                 <option value="kg">Kg</option>
                                             </select>
                                         </div>
-                                        <button class="btn btn-primary" @if($quantity==0) disabled @endif wire:click="add({{$plant->id}},'vegetable',{{$plant->price_kg}})">Aggiungi</button>
+                                        <button class="btn btn-primary" @if($quantity==0) disabled @endif wire:click="add({{$plant->id}},'vegetable',{{$plant->prezzo_kg}})">Aggiungi</button>
                                     </div>
                                 @else 
                                     <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable')" >
