@@ -24,7 +24,7 @@
                 <div class="tab-pane  @if($showProd == 0) show active fade @endif" wire:loading.class="fade">
                     <div class="card-deck flip-card p-4">
                         @foreach($products_available as $product)
-                            <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
+                            <div style="max-width: 400px;" class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
                                     <div class="card-body text-center back">
                                         <div class="d-flex align-items-center justify-content-center">
