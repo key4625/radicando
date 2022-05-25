@@ -22,7 +22,7 @@ class ProductsTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Dimens.','dimension'),
-            Column::make('Tipo','plantcategory.name'),
+            Column::make('Tipo','productcategories.name'),
             Column::make('Magazzino','quantity_mag')
                 ->sortable(),
         

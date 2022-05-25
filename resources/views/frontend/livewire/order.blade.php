@@ -22,37 +22,81 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane  @if($showProd == 0) show active fade @endif" wire:loading.class="fade">
-                    <div class="card-deck p-4">
+                    <div class="card-deck flip-card p-4">
                         @foreach($products_available as $product)
-                            <div class="card mb-4" wire:click="add({{$product->id}},'product')">
-                                <div class="card-body text-center">
-                                    <div class="d-flex align-items-center" style="min-height: 130px;">
-                                        @if($product->image != null)
-                                            <img class="img-fluid" src="{{$product->image}}" alt="{{$product->name}}">
-                                        @else 
-                                            <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$product->name}}">
-                                        @endif    
+                            <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
+                                @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
+                                    <div class="card-body text-center back">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            {{$product->name}} 
+                                          
+                                        </div>
+                                        @if($product->price!=null) <br /><span class="price">{{$product->price}}€</span> @endif
+                                        @if($product->dimension!=0) <span class="price">{{$product->dimension}}</span> @endif
+                                        <div class="input-group my-4">
+                                            {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
+                                            <input class="form-control d-inline" type="number" wire:model="quantity" default="0">
+                                            <div class="input-group-append"><span class="input-group-text">Pz</span></div>
+                                        </div>
+                                        
+                                        <button class="btn btn-primary" wire:click="add({{$product->id}},'product',{{$product->price}})">Aggiungi</button>
                                     </div>
-                                    {{$product->name}} @if($product->prezzo_kg!=null)<br />{{$product->prezzo_kg}}€/kg @endif
-                                </div>
-                            </div>  
+                                @else 
+                                    <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product')" >
+                                        <div class="d-flex align-items-center" style="min-height: 130px;">
+                                            @if($product->image != null)
+                                                <img class="img-fluid" src="{{$product->image}}" alt="{{$product->name}}">
+                                            @else 
+                                                <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$product->name}}">
+                                            @endif    
+                                        </div>
+                                        <div>{{$product->name}} </div>
+                                        @if($product->price!=null)<br /><span class="price">{{$product->price}}€</span> @endif
+                                        @if($product->dimension!=0) <span class="price">{{$product->dimension}}</span> @endif
+                                    </div>
+                                @endif
+                            </div>
                         @endforeach
                     </div>
                 </div>
                 <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
                     <div class="card-deck p-4">
                         @foreach($plants_available as $plant)
-                            <div class="card mb-4" wire:click="add({{$plant->id}},'vegetable')">
-                                <div class="card-body text-center">
-                                    <div class="d-flex align-items-center" style="min-height: 130px;">
-                                        @if($plant->image != null)
-                                            <img class="img-fluid" src="{{$plant->image}}" alt="{{$plant->nome}}">
-                                        @else 
-                                            <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
-                                        @endif    
+                            <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
+                                @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
+                                    <div class="card-body text-center back">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            {{$plant->nome}} 
+                                            @if($plant->prezzo_kg!=null)<br />
+                                                <span class="prezzo">{{$plant->prezzo_kg}}€/kg </span>
+                                            @endif
+                                        </div>
+                                        <div class="input-group my-4">
+                                            <input class="form-control" type="number" wire:model="quantity" default="0">
+                                            <div class="input-group-append"><span class="input-group-text">{{$quantity_type}}</span></div>
+                                        </div>
+                                        <div class="input-group my-4">
+                                            {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
+                                            <select class="form-control d-inline" wire:model="quantity_type" >
+                                                <option value="pz">Pezzi</option>
+                                                <option value="kg">Kg</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price_kg}})">Aggiungi</button>
                                     </div>
-                                    {{$plant->nome}} @if($plant->prezzo_kg!=null)<br />{{$plant->prezzo_kg}}€/kg @endif
-                                </div>
+                                @else 
+                                    <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable')" >
+                                        <div class="d-flex align-items-center" style="min-height: 130px;">
+                                            @if($plant->image != null)
+                                                <img class="img-fluid" src="{{$plant->image}}" alt="{{$plant->nome}}">
+                                            @else 
+                                                <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
+                                            @endif    
+                                        </div>
+                                        {{$plant->nome}} @if($plant->prezzo_kg!=null)<br />
+                                        <span class="prezzo">{{$plant->prezzo_kg}}€/kg @endif</span>
+                                    </div>
+                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -83,52 +127,49 @@
                                     @else 
                                         <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_item->nome}}">
                                     @endif   
-                                    <label for="nome" class="col-form-label">{{$tmp_item->nome}} </label>
+                                    <label for="nome" class="col-form-label">@if($item_ord['type'] == "vegetable") {{$tmp_item->nome}} @else {{$tmp_item->name}} @endif</label>
                                 </div>
                                 <div class="col-3 ">
                                     <div class="input-group">
-                                        <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id']}}.quantity_kg" default="0">
-                                        <div class="input-group-append"><span class="input-group-text">Kg</span></div>
+                                        <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id']}}.quantity" default="0">
+                                        <div class="input-group-append"><span class="input-group-text">{{$item_ord['quantity_type']}}</span></div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
-                                        <input class="form-control d-inline" type="number" wire:model="item_ordered.{{$item_ord['id']}}.quantity_num" default="0">
-                                        <div class="input-group-append"><span class="input-group-text">Pz</span></div>
-                                    </div>
+                                <div class="col-3 ">
+                                    {{$item_ord['quantity']*$item_ord['price']}} €
                                 </div>
+                              
                                 <div class="col">
-                                    <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id']}})"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id']}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
                                 </div>       
                             </div>    
                         </li>
                     @endforeach
                 </ul>
-                <div class="mt-4 text-center">
-                  
+                <div class="mt-4 text-center"> 
                     <button wire:click="ordina" class="btn btn-primary">Ordina</button>
                 </div>
             @endif  
         </div>
+        <div class="col-12 col-md-6 my-4">
+            <div class="form-group">
+                <label for="nome" class="col-form-label">Nome</label>
+                <input type="text" class="form-control" wire:model="nome" required>
+                @error('nome') <span class="error text-danger">Devi inserire un nome</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-form-label">Email</label>
+                <input type="email" class="form-control" wire:model="email" >
+                @error('email') <span class="error text-danger">Devi inserire una email valida</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="tel" class="col-form-label">Numero di telefono</label>
+                <input type="text" class="form-control" wire:model="tel">
+                @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-4 text-center text-md-left">
-            <label for="nome" class="col-form-label">Nome</label>
-            <input type="text" class="form-control" wire:model="nome" required>
-            @error('nome') <span class="error text-danger">Devi inserire un nome</span> @enderror
-        </div>
-        <div class="col-12 col-md-4  text-center text-md-left">
-            <label for="email" class="col-form-label">Email</label>
-            <input type="email" class="form-control" wire:model="email" >
-            @error('email') <span class="error text-danger">Devi inserire una email valida</span> @enderror
-        </div>
-        <div class="col-12 col-md-4  text-center text-md-left">
-            <label for="tel" class="col-form-label">Tel</label>
-            <input type="text" class="form-control" wire:model="tel">
-            @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
-        </div>
-    </div>
+    
     
 </div>
 

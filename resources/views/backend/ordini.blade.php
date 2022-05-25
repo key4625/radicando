@@ -1,10 +1,14 @@
 @extends('backend.layouts.app')
 
-@section('title', __('Coltivazioni'))
+@section('title', __('Ordini'))
 
-@push('after-styles')
+
 
 @section('content')
     <livewire:backend.ordinilivewire />
 @endsection
+
+
+
+
 
