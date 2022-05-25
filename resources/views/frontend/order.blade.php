@@ -11,6 +11,9 @@
         }
         .flipcard {
             transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
         }
         .card-flip {
             position: relative;
@@ -18,6 +21,8 @@
             height: 100%;
             text-align: center;
             transition: transform 0.8s;
+            -moz-transition: -moz-transform 0.8s;
+            -webkit-transition: -webkit-transform 0.8s;
             transform-style: preserve-3d;
         }
         .front {
@@ -31,7 +36,10 @@
             background: #919191;
             color: white;
             text-align:center;   
-            transform: rotateY(180deg);
+             transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
         }
     </style>
 @endpush
