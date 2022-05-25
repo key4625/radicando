@@ -16,7 +16,7 @@ class orderlivewire extends Component
 {
     public $plant_ordered,  $product_ordered, $item_ordered;
     public $quantity, $quantity_type, $plant_sel_id;
-    public $ordine, $nome, $email, $tel;
+    public $ordine, $nome, $email, $tel, $price;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
 
@@ -55,7 +55,6 @@ class orderlivewire extends Component
       
     }
     public function resetQuantity(){
-        $this->showProd = 0;
         $this->showQuant = 0;
         $this->idQuant = 0;
         $this->typeQuant = null;
