@@ -50,6 +50,11 @@ body {
     background-color: #3a7a42;
     border-color: #3a7a42;
 }
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #282828;
+    background-color: #d5d5d5;
+    border-color: #46ac4c;
+}
 .btn-primary:focus, .btn-primary.focus {
     color: #fff;
     background-color: #3a7a42;

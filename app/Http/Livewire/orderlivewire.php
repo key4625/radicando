@@ -16,7 +16,7 @@ class orderlivewire extends Component
 {
     public $plant_ordered,  $product_ordered, $item_ordered;
     public $quantity, $quantity_type, $plant_sel_id;
-    public $ordine, $nome, $email, $tel;
+    public $ordine, $nome, $email, $tel, $price;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $passo;
@@ -58,7 +58,6 @@ class orderlivewire extends Component
       
     }
     public function resetQuantity(){
-        $this->showProd = 0;
         $this->showQuant = 0;
         $this->idQuant = 0;
         $this->typeQuant = null;
@@ -92,13 +91,15 @@ class orderlivewire extends Component
     }
     public function add($item_id,$type,$price)
     {
-        $new_item = array('id'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_type'=> $this->quantity_type,'price'=>$price);
-        array_push($this->item_ordered, $new_item);
-        session()->put('items_in_order', $this->item_ordered);
-        session()->put('name_order', $this->nome);
-        session()->put('name_email', $this->email);
-        session()->put('name_tel', $this->tel);
-        $this->resetQuantity();
+        if($this->quantity != 0){
+            $new_item = array('id'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_type'=> $this->quantity_type,'price'=>$price);
+            array_push($this->item_ordered, $new_item);
+            session()->put('items_in_order', $this->item_ordered);
+            session()->put('name_order', $this->nome);
+            session()->put('name_email', $this->email);
+            session()->put('name_tel', $this->tel);
+            $this->resetQuantity();
+        }
     }
     public function remove($id,$type)
     {
