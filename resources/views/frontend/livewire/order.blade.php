@@ -9,7 +9,7 @@
     </div>
     <div class="row no-gutters">
         <div class="col-4"><button class="btn btn-muted btn-scegli w-100 text-center" wire:click="$set('passo', '0')">1. Seleziona prodotti</button></div>
-        <div class="col-4"><button class="btn btn-muted btn-scegli  w-100 text-center  @if(count($item_ordered) == 0) disabled @endif" wire:click="$set('passo', '1')" >2. Rivedi il tuo ordine</button></div>
+        <div class="col-4"><button class="btn btn-muted btn-scegli  w-100 text-center  @if(count($item_ordered) == 0) disabled @endif" wire:click="$set('passo', '1')" >2. Rivedi il tuo ordine ({{ count($item_ordered) }} pezzi)</button></div>
         <div class="col-4"><button class="btn btn-muted btn-scegli w-100 text-center" @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '2')" >3. Dati anagrifici</button></div>
     </div>
     
@@ -31,7 +31,7 @@
                         <div class="card-deck card-flip-container">
                             @foreach($products_available as $product)
                                 <div class="col-6 col-lg-3 col-xl-2">
-                                    <div class="card card-flip @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
+                                    <div class="card card-flip mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
                                         @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
                                             <div class="card-body text-center back">
                                                 <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
@@ -68,7 +68,7 @@
                         <div class="card-deck">
                             @foreach($plants_available as $plant)
                                 <div class="col-6 col-lg-3 col-xl-2">
-                                    <div class="card card-flip @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
+                                    <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
                                         @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
                                             <div class="card-body text-center back">
                                                 <div class="d-flex align-items-center justify-content-center">
@@ -88,7 +88,7 @@
                                                         <option value="kg">Kg</option>
                                                     </select>
                                                 </div>
-                                                <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price_kg}})">Aggiungi</button>
+                                                <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->prezzo_kg}})">Aggiungi</button>
                                             </div>
                                         @else 
                                             <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable')" >
