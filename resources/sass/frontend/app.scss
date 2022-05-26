@@ -170,6 +170,58 @@ img.img-copertina {
     /* text-align: center; */
     margin: 0 auto;
 }
+.bg-lightgrey {
+    background-color: #f3f3f3;
+    color: #4e4e4e;
+}
+.card-flip-container {
+    background-color: transparent;
+    border: none;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipcard {
+    transform: rotateY(180deg);
+}
+.card-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+.front {
+    backface-visibility: hidden;
+    background: transparent;
+    color: #333;
+    text-align:center;   
+}
+.back {
+    backface-visibility: hidden;
+    background: #919191;
+    color: white;
+    text-align:center;   
+    transform: rotateY(180deg);
+}
+.btn-scegli {
+    border: 1px solid grey;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+}
+.nav-product button.nav-link {
+    width: 77%;
+    margin: 0px;
+    margin: 0 auto;
+    border: none;
+    padding: 5px;
+}
+.nav-product button.nav-link:hover {
+    background-color: #dbdbdb;
+}
+.nav-product button.nav-link.active:hover {
+    background-color: #5faff1;
+}
 
 @media only screen and (min-width: 769px) {
     .clip-me {  

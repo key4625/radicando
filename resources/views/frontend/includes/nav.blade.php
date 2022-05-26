@@ -138,4 +138,4 @@
 
 @if (config('boilerplate.frontend_breadcrumbs'))
     @include('frontend.includes.partials.breadcrumbs')
-@endif
+@endif 

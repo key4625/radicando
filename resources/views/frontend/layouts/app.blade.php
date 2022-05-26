@@ -43,6 +43,7 @@
         @include('includes.partials.messages')
 
         <main>
+            @yield('top')
             @yield('content')
         </main>
     </div><!--app-->

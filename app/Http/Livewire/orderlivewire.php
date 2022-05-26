@@ -19,6 +19,7 @@ class orderlivewire extends Component
     public $ordine, $nome, $email, $tel;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
+    public $passo;
 
     protected $rules = [
         'nome' => 'required'   
@@ -32,6 +33,7 @@ class orderlivewire extends Component
         $this->ordine = array();
         $this->showProd = 0;
         $this->showQuant = 0;
+        $this->passo = 0;
         $this->nome = session()->get('name_order');
         $this->email = session()->get('name_email');
         $this->tel = session()->get('name_tel');
@@ -50,6 +52,7 @@ class orderlivewire extends Component
         $this->item_ordered = array();  
         $this->ordine = array();
         $this->showMode = false;  
+        $this->passo = 0;
         session()->put('items_in_order', null);
         $this->resetQuantity();
       
