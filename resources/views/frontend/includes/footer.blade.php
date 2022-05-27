@@ -6,6 +6,6 @@
     @endguest
 
 </div>
-<footer class="bg-green p-4" >
-   
+<footer class="bg-green p-4 text-center" >
+   Copyright &copy; 2022 <a class="lightgreen" href="https://radicando.it">Radicando</a> - <span class="orange">Agircoltura online</span> - Tutti i diritti riservati
 </footer>

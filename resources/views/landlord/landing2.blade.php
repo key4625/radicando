@@ -5,40 +5,7 @@
   href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
 />
 <style>
-    .new-app-banner-bg-shape {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        width: 100%;
-    }
-    .new-app-main-banner-area {
-        background-position: bottom center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        padding-top: 180px;
-        padding-bottom: 200px;
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-    }
-    .swiper {
-        width: 100%;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
-        width: 300px;
-        height: 300px;
-    }
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-    }
+  
     </style>
 @endpush
 {{--@section('Ordina', __('Ordina'))--}}

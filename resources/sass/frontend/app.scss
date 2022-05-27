@@ -97,6 +97,7 @@ a:hover {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 25%);
 }
+/** COLORI ***/
 .bg-red{ 
     background-color:#48984e;
     color: white;
@@ -116,17 +117,40 @@ a:hover {
     background-color:#3a7a42;
     color: white;
 }
+.bg-orange {
+    background-color: #f7ab39;
+    color: white;
+}
+.green {
+    color:#3a7a42;
+}
+.mid-green {
+    color: #63a958;
+}
+.lightgreen{
+    color:#91cd79;
+}
+a.lightgreen:hover {
+    color: white;
+}
+.grigetto {
+    color:#383838; 
+}
 .orange {
     color: #f7ab39;
 }
+/** FINE COLORI ***/
+
+/** TITOLI ***/
 .titolo-h1 {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 3.5rem;
     line-height: 3.5rem;
 }
+/** FINE TITOLI ***/
 
-
+/** BOTTONI ***/
 .btn-rotondo {
     width: 37px;
     height: 37px;
@@ -135,6 +159,11 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
+.btn-passo{
+    text-transform: uppercase;
+}
+/** FINE BOTTONI ***/
+
 img.img-copertina {
     max-height: 90vh;
     width: 100%;
@@ -149,6 +178,44 @@ img.img-copertina {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.new-app-banner-bg-shape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+}
+.new-app-main-banner-area {
+    background-position: bottom center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 180px;
+    padding-bottom: 200px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.ordina-main-banner-area {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+.swiper-slide img {
+    display: block;
+    width: 100%;
 }
 .div-copertina{
     position:relative;
@@ -194,6 +261,9 @@ img.img-copertina {
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 2px 2px 6px 0px #dbd9d9;
 }
 .front {
     backface-visibility: hidden;
@@ -207,25 +277,30 @@ img.img-copertina {
     color: white;
     text-align:center;   
     transform: rotateY(180deg);
-}
-.btn-scegli {
-    border: 1px solid grey;
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0px;
-}
-.nav-product button.nav-link {
-    width: 77%;
-    margin: 0px;
-    margin: 0 auto;
+    border-radius: 25px;
     border: none;
-    padding: 5px;
+    box-shadow: 2px 2px 6px 0px #dbd9d9;
+}
+
+.nav-product button.nav-link {
+      margin: 0px;
+      margin: 0 auto;
+      border: none;
+      padding: 7px 40px;
+      border-radius: 10px;
+      border: 1px solid #63a958;
+}
+.nav-product button.nav-link.active {
+    background-color: #63a958;
+    border:none;
+    color: white;
 }
 .nav-product button.nav-link:hover {
-    background-color: #dbdbdb;
+    background-color: #63a958;
+    color: white;
 }
 .nav-product button.nav-link.active:hover {
-    background-color: #5faff1;
+    background-color: #91cd79;
 }
 
 @media only screen and (min-width: 769px) {
