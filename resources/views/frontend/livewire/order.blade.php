@@ -67,7 +67,7 @@
                                                     <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','{{$product->price_um}}')" >
                                                         <div class="d-flex align-items-center">
                                                             @if($product->image != null)
-                                                                <img class="img-fluid" src="{{$product->image}}" alt="{{$product->name}}">
+                                                                <img class="img-fluid" src="{{ Storage::url($product->image) }}" alt="{{$product->name}}">
                                                             @else 
                                                                 <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$product->name}}">
                                                             @endif    
