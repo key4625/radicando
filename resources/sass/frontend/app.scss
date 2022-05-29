@@ -97,6 +97,12 @@ a:hover {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 25%);
 }
+.senzabordo {
+    border:none;
+}
+.bordotondo {
+    border-radius: 0.5rem;
+}
 /** COLORI ***/
 .bg-red{ 
     background-color:#48984e;
@@ -225,6 +231,12 @@ img.img-copertina {
     position:fixed;
     right:0px;
     bottom:100px;
+}
+
+li.list-group-item.list-ordini {
+    margin: 10px 0px;
+    border: none;
+    border-radius: 20px;
 }
 .titolo-1 {
     font-size:2.5rem;

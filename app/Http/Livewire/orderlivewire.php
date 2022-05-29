@@ -15,8 +15,8 @@ use function PHPUnit\Framework\isNull;
 class orderlivewire extends Component
 {
     public $plant_ordered,  $product_ordered, $item_ordered;
-    public $quantity, $quantity_type, $plant_sel_id;
-    public $ordine, $nome, $email, $tel, $price;
+    public $quantity, $quantity_um, $plant_sel_id;
+    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $consegna_domicilio, $price;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $passo;
@@ -34,10 +34,15 @@ class orderlivewire extends Component
         $this->showProd = 0;
         $this->showQuant = 0;
         $this->passo = 0;
+        $this->consegna_domicilio = 1;
         $this->nome = session()->get('name_order');
         $this->email = session()->get('name_email');
         $this->tel = session()->get('name_tel');
+        $this->indirizzo = session()->get('name_indir');
+        $this->citta = session()->get('name_citta');
+        $this->citta = session()->get('consegna_domicilio');
         $tmpordered = session()->get('items_in_order');
+        //session()->put('items_in_order', null);
         if($tmpordered != null) {
             $this->item_ordered = $tmpordered;
         } else $this->item_ordered = array();
@@ -47,6 +52,8 @@ class orderlivewire extends Component
         $this->nome = "";
         $this->email = "";
         $this->tel = "";
+        $this->indirizzo = "";
+        $this->citta = "";
         $this->plant_ordered = array();   
         $this->product_ordered = array(); 
         $this->item_ordered = array();  
@@ -81,23 +88,27 @@ class orderlivewire extends Component
         $this->showProd = $val;
     }
 
-    public function selProd($item_id,$type)
+    public function selProd($item_id,$type,$price_um)
     {
         $this->showQuant = 1;
         $this->idQuant = $item_id;
         $this->typeQuant = $type;
         $this->quantity = 0;
-        $this->quantity_type = "pz";
+        $this->quantity_um = $price_um;
+        
+       
     }
-    public function add($item_id,$type,$price)
+    public function add($item_id,$type,$price, $price_um)
     {
         if($this->quantity != 0){
-            $new_item = array('id'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_type'=> $this->quantity_type,'price'=>$price);
+            $new_item = array('id'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
             session()->put('name_email', $this->email);
             session()->put('name_tel', $this->tel);
+            session()->put('name_indir', $this->indirizzo);
+            session()->put('name_citta', $this->citta);
             $this->resetQuantity();
         }
     }
@@ -115,24 +126,30 @@ class orderlivewire extends Component
         $ordine->nome = $this->nome;
         $ordine->email = $this->email;
         $ordine->tel = $this->tel;
+        $ordine->indirizzo = $this->indirizzo;
+        $ordine->citta = $this->citta;
+        $ordine->consegna_domicilio = $this->consegna_domicilio;
         $ordine->save();
         session()->put('name_order', $this->nome);
         session()->put('name_email', $this->email);
         session()->put('name_tel', $this->tel);
+        session()->put('name_indir', $this->indirizzo);
+        session()->put('name_citta', $this->citta);
       
         foreach ($this->item_ordered as $tmp_item_ordered) {
             if($tmp_item_ordered['type']=="vegetable"){
                 //$tmp_type = 'App\Models\Plant';
-                $ordine->plants()->attach($tmp_item_ordered['item_id'], ['quantity_kg' => $tmp_item_ordered['quantity'], 'quantity_num' => $tmp_item_ordered['quantity'], 'price_kg' => $tmp_item_ordered['price']]);
+                $ordine->plants()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'],'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
             
             } else  {
                 //$tmp_type = 'App\Models\Product';
-                $ordine->products()->attach($tmp_item_ordered['item_id'], ['quantity_kg' => $tmp_item_ordered['quantity'], 'quantity_num' => $tmp_item_ordered['quantity'], 'price_kg' => $tmp_item_ordered['price']]);
+                $ordine->products()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'], 'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
             
             }  
                 
         }  
         $this->resetInputFields();
+        $this->passo = 3;
         session()->flash('message', 'Grazie per il tuo ordine!');
     }
 

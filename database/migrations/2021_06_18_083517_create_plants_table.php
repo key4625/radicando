@@ -38,8 +38,9 @@ class CreatePlantsTable extends Migration
             $table->double('quantity_mag')->default(0);
             $table->double('resa_pianta_kg')->nullable();
             $table->boolean('vendibile')->nullable();
-            $table->double('prezzo_kg')->default(0.0);
-
+            $table->double('price')->default(0.0);
+            $table->string('price_um')->default("kg");
+            $table->string('quantity_um')->nullable();
             $table->timestamps();
         });
         Schema::create('operationtypes', function (Blueprint $table) {
@@ -62,10 +63,12 @@ class CreatePlantsTable extends Migration
             $table->double('transform_cost')->default(0);  
             $table->string('lot')->nullable();
             $table->double('dimension')->default(0.0);
-            $table->double('price')->default(0);
+            $table->double('price')->default(0.0);
+            $table->string('price_um')->default("kg");
             $table->double('yield')->default(0);  
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('quantity_um')->nullable();
             $table->boolean('vendibile')->nullable();
             $table->datetime('transform_data')->nullable();
             $table->timestamps();
@@ -108,8 +111,9 @@ class CreatePlantsTable extends Migration
             $table->string('tel')->nullable();
             $table->date('data')->nullable();
             $table->time('ora')->nullable();
-            $table->boolean('consegna_domicilio')->nullable();
+            $table->boolean('consegna_domicilio')->default(1);
             $table->string('indirizzo')->nullable();
+            $table->string('citta')->nullable();
             $table->timestamps();
         });
 
@@ -117,9 +121,10 @@ class CreatePlantsTable extends Migration
             $table->bigInteger('order_id');
             $table->bigInteger('orderable_id');
             $table->string('orderable_type');
-            $table->double('quantity_kg');
-            $table->double('quantity_num');
-            $table->double('price_kg');
+            $table->double('quantity');
+            $table->string('quantity_um');
+            $table->double('price');
+            $table->string('price_um');
         });
 
         Schema::create('collections', function (Blueprint $table) {
@@ -127,8 +132,8 @@ class CreatePlantsTable extends Migration
             $table->bigInteger('collectionable_id');
             $table->string('collectionable_type');
             $table->string('part');
-            $table->double('quantity_kg');
-            $table->double('quantity_num');  
+            $table->double('quantity');
+            $table->string('quantity_um');  
             $table->date('data')->nullable();
             $table->time('ora')->nullable();
             $table->timestamps();
