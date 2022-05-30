@@ -40,19 +40,19 @@ class Plant extends Model
     }
     public function raccolti_oggi_kg()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity_kg');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity');
     }
     public function raccolti_oggi_nr()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity_num');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity');
     }
     public function raccolti_tot_kg()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity_kg');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity');
     }
     public function raccolti_tot_nr()
     {
-        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity_num');
+        return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->sum('quantity');
     }
     public static function piante_semina_mese($actual_month) 
     {

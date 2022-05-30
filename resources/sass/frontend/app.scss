@@ -20,7 +20,9 @@ body {
     font-family: 'Roboto', sans-serif;
     color:#383838;
 }
-
+div#app {
+    min-height: 96vh;
+}
 
 .navbar-brand img {
     height: 50px;
@@ -268,7 +270,6 @@ li.list-group-item.list-ordini {
 }
 .card-flip {
     position: relative;
-    width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.8s;

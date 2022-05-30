@@ -4,19 +4,29 @@
             {{ session('message') }}
         </div>
     @endif
-    <div class="container-xxl py-4">
+    <div class="d-none d-md-block container-xxl py-4">
         <div class="row no-gutters">
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" wire:click="$set('passo', '0')">1. Seleziona prodotti</button></div>
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center"  @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '1')" >2. Rivedi il tuo ordine ({{ count($item_ordered) }} pezzi)</button></div>
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '2')" >3. Dati anagrifici</button></div>
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '3')" >4. Completa</button></div>
-          
             <div class="col-12">
                 <div class="progress">
                     <div class="progress-bar  bg-orange" role="progressbar" style="width: @if($passo==0) 25% @elseif($passo==1) 50% @elseif($passo==2) 75% @else 100% @endif" aria-valuenow="  @if($passo==0) 25 @elseif($passo==1) 50 @elseif($passo==2) 75 @else 100 @endif" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
-        </div>
+        </div> 
+       
+    </div>
+    <div class="d-block d-md-none container-xxl bg-orange py-4">
+        <div class="row no-gutters">
+            <div class="col-12 text-center"><h3 class="h3 green text-uppercase">@if(count($item_ordered)==0) Seleziona prodotti @elseif($passo==4) Ordine concluso! @else  Il tuo ordine ({{ count($item_ordered) }} pezzi) @endif</h3></div>
+            <div class="col-12">
+                <div class="progress">
+                    <div class="progress-bar  bg-green" role="progressbar" style="width: @if($passo==0) 25% @elseif($passo==1) 50% @elseif($passo==2) 75% @else 100% @endif" aria-valuenow="  @if($passo==0) 25 @elseif($passo==1) 50 @elseif($passo==2) 75 @else 100 @endif" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div> 
     </div>
     
     <div class="bg-lightgrey">
@@ -43,7 +53,7 @@
                                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
                                                     <div class="card-body text-center back">
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
-                                                        @if($product->price!=null) <br /><span class="price">{{$product->price}}€</span> @endif
+                                                        @if($product->price!=null) <span class="price">{{$product->price}}€</span> @endif
                                                         @if($product->dimension!=0) <span class="price">{{$product->dimension}}</span> @endif
                                                         <div class="input-group my-4">
                                                             {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
@@ -91,7 +101,7 @@
                                                     <div class="card-body text-center back">
                                                         <div class="d-flex align-items-center justify-content-center">
                                                             <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
-                                                            @if($plant->price!=null)<br />
+                                                            @if($plant->price!=null)
                                                                 <span class="prezzo">{{$plant->price}}€/kg </span>
                                                             @endif
                                                         </div>
@@ -132,7 +142,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class="text-center my-4">
+                        <div class="text-center my-4">                          
                             <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '1')">Avanti <i class="fas fa-forward"></i></button>
                         </div>
                     </div>
@@ -165,7 +175,7 @@
                                             </div>
                                             <div class="col-3 ">
                                                 <div class="input-group">
-                                                    <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id']}}.quantity" default="0">
+                                                    <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id_num']}}.quantity" default="0">
                                                     <div class="input-group-append"><span class="input-group-text">{{$item_ord['quantity_um']}}</span></div>
                                                 </div>
                                             </div>
@@ -179,7 +189,7 @@
                                             </div>
                                         
                                             <div class="col">
-                                                <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id']}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id_num']}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
                                             </div>       
                                         </div>    
                                     </li>
@@ -187,6 +197,7 @@
                             </ul>
                         @endif  
                         <div class="text-center my-4">
+                            <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '0')"><i class="fas fa-backward"></i> Indietro</button>
                             <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '2')">Avanti <i class="fas fa-forward"></i></button>
                         </div>
                     </div>
@@ -238,6 +249,7 @@
                             </div>
                         </div>
                         <div class="mt-4 text-center"> 
+                            <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '1')"><i class="fas fa-backward"></i> Indietro </button>
                             <button wire:click="ordina" class="btn btn-primary bordotondo">Ordina</button>
                         </div>
                     </div>

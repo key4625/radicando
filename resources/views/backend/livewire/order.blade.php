@@ -11,10 +11,11 @@
             <button class="btn btn-primary" type="button" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo ordine </button> 
         </div>
         <table class="table  table-striped table-hover">
-            <th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell">Consegnato</th><th class="d-none d-lg-table-cell">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
+            <th>Consegna</th><th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-center">Consegnato</th><th class="d-none d-lg-table-cell  text-center">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
             @foreach($orders as $order)
                 <tr>
-                    <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @endif {{$order->nome}}</td>
+                    <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @else <i class="fas fa-store"></i> @endif</td>
+                    <td>{{$order->nome}}  {{$order->cognome}}</td>
                     @if($confirming===$order->id)
                         <td colspan="5" class="text-right">
                             Vuoi cancellare?
@@ -24,7 +25,7 @@
                             </div>
                         </td>
                     @else
-                        <td >{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} {{Carbon\Carbon::create($order->ora)->format('H:i')}}</td>
+                        <td >{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </td>
                         <td class="d-none d-lg-table-cell">{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
                         <td class="d-none d-lg-table-cell text-center">
                             @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" ><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}})"><i class="far fa-flag"></i></button> @endif

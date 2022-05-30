@@ -15,10 +15,10 @@ class Order extends Model
 
     public function plants()
     {
-        return $this->morphedByMany(Plant::class, 'orderable')->withPivot('quantity_kg', 'quantity_num','price_kg');
+        return $this->morphedByMany(Plant::class, 'orderable')->withPivot('quantity', 'quantity_um','price_um','price');
     }
     public function products()
     {
-        return $this->morphedByMany(Product::class, 'orderable')->withPivot('quantity_kg', 'quantity_num','price_kg');
+        return $this->morphedByMany(Product::class, 'orderable')->withPivot('quantity', 'quantity_um','price_um','price');
     }
 }

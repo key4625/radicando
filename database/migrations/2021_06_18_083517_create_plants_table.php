@@ -107,6 +107,7 @@ class CreatePlantsTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->string('cognome');
             $table->string('email')->nullable();
             $table->string('tel')->nullable();
             $table->date('data')->nullable();

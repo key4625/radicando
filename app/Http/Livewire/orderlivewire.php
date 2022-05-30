@@ -14,7 +14,7 @@ use function PHPUnit\Framework\isNull;
 
 class orderlivewire extends Component
 {
-    public $plant_ordered,  $product_ordered, $item_ordered;
+    public $item_ordered;
     public $quantity, $quantity_um, $plant_sel_id;
     public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $consegna_domicilio, $price;
     public $showProd;
@@ -27,8 +27,7 @@ class orderlivewire extends Component
 
     public function mount()
     {
-        $this->product_ordered = array();   
-        $this->plant_ordered = array();
+
         //$this->item_ordered = array();
         $this->ordine = array();
         $this->showProd = 0;
@@ -49,13 +48,11 @@ class orderlivewire extends Component
         $this->resetQuantity();
     }
     public function resetInputFields(){
-        $this->nome = "";
+        /*$this->nome = "";
         $this->email = "";
         $this->tel = "";
         $this->indirizzo = "";
-        $this->citta = "";
-        $this->plant_ordered = array();   
-        $this->product_ordered = array(); 
+        $this->citta = "";*/
         $this->item_ordered = array();  
         $this->ordine = array();
         $this->showMode = false;  
@@ -72,15 +69,15 @@ class orderlivewire extends Component
     public function render()
     {
         $plants_available = Plant::where('vendibile',1)->get();
-        $plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
-            return $value['type'] == 1;
+        /*$plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
+            return $value['type'] == "vegetable";
         });
         $product_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
-            return $value['type'] == 2;
-        });
-        $plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered)->get());    
+            return $value['type'] == "product";
+        });*/
+        //$plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered)->get());    
         $products_available = Product::where('vendibile',1)->get();
-        $products_available = $products_available->diff(Product::whereIn('id', $product_filtered)->get());    
+        //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered)->get());    
         return view('frontend.livewire.order',['plants_available' => $plants_available, 'products_available' => $products_available]);
     }
 
@@ -94,14 +91,12 @@ class orderlivewire extends Component
         $this->idQuant = $item_id;
         $this->typeQuant = $type;
         $this->quantity = 0;
-        $this->quantity_um = $price_um;
-        
-       
+        $this->quantity_um = $price_um; 
     }
     public function add($item_id,$type,$price, $price_um)
     {
         if($this->quantity != 0){
-            $new_item = array('id'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
@@ -114,7 +109,7 @@ class orderlivewire extends Component
     }
     public function remove($id,$type)
     {
-        $key = array_search( $id, array_column($this->item_ordered, 'id')); 
+        $key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
         unset( $this->item_ordered[$key]);
         session()->put('items_in_order', $this->item_ordered);
     }
@@ -129,6 +124,10 @@ class orderlivewire extends Component
         $ordine->indirizzo = $this->indirizzo;
         $ordine->citta = $this->citta;
         $ordine->consegna_domicilio = $this->consegna_domicilio;
+        $ordine->data = date('Y-m-d');
+        $ordine->prezzo_tot = 0;
+        $ordine->sconto_perc = 0;
+        $ordine->tipo_cliente = 'privato';
         $ordine->save();
         session()->put('name_order', $this->nome);
         session()->put('name_email', $this->email);
@@ -138,12 +137,13 @@ class orderlivewire extends Component
       
         foreach ($this->item_ordered as $tmp_item_ordered) {
             if($tmp_item_ordered['type']=="vegetable"){
-                //$tmp_type = 'App\Models\Plant';
-                $ordine->plants()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'],'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
+                $tmp_plant = Plant::where('id',$tmp_item_ordered['item_id'])->first();
+                $ordine->plants()->attach($tmp_plant, ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'],'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
             
             } else  {
                 //$tmp_type = 'App\Models\Product';
-                $ordine->products()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'], 'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
+                $tmp_prod = Product::where('id',$tmp_item_ordered['item_id'])->first();
+                $ordine->products()->attach($tmp_prod, ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'], 'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
             
             }  
                 

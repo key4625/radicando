@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Backend;
 use Livewire\Component;
 use App\Models\Plant;
 use App\Models\Order;
+use App\Models\Product;
+use Arr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
@@ -16,9 +18,11 @@ class ordinilivewire extends Component
     public $sel_order;
     public $showMode;
     public $confirming;
-    public $quantity_kg, $quantity_num, $prezzo_kg, $plant_sel_id;
-    public $ordine, $nome, $email, $tel, $data, $ora, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
-    public $plant_ordered;
+    public $quantity, $quantity_um, $price, $price_um;
+    public $ordine, $nome, $cognome, $indirizzo, $consegna_domicilio,$citta, $email, $tel, $data, $ora, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
+    public $item_ordered;
+    public $showProd;
+    public $showQuant, $idQuant, $typeQuant;
     use WithPagination;
 
     protected $rules = [
@@ -30,27 +34,51 @@ class ordinilivewire extends Component
     public function mount()
     {
         $this->showMode = 0;
+        $this->showProd = 0;
+        $this->consegna_domicilio = 1;
+        $this->item_ordered = array();
     }
     public function resetInputFields(){
-
+        $this->item_ordered = array(); 
         $this->showMode = 0;
         $this->nome = null;
+        $this->cognome = null;
         $this->email = null;
         $this->tel = null;
-        $this->plant_ordered = array();   
-        $this->quantity_kg = null;
-        $this->quantity_num = null;
-        $this->prezzo_kg = null;
+        $this->indirizzo = null;
+        $this->citta = null;
+        $this->item_ordered = array();   
+        $this->showProd = 0;
         $this->prezzo_tot = null;
         $this->prezzo_tot_consigliato = null;
         $this->tipo_cliente = "normale";
     }
+    public function resetQuantity(){
+        $this->showQuant = 0;
+        $this->idQuant = 0;
+        $this->typeQuant = null;
+    }
     public function render()
     { 
         if( $this->showMode ==1 ) $this->ricalcolaPrezzo();
+
+        $plants_available = Plant::where('vendibile',1)->get();
+        /*$plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
+            return $value['type'] == "vegetable";
+        });
+        $product_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
+            return $value['type'] == "product";
+        });*/
+        //$plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered->pluck('id_num'))->get());    
+        $products_available = Product::where('vendibile',1)->get();
+        //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered->pluck('id_num'))->get());    
+
         return view('backend.livewire.order', [
-            'orders' => Order::orderby('created_at')->paginate(25),
+            'orders' => Order::orderby('created_at')->paginate(25),'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
+    }
+    public function viewProd($val){
+        $this->showProd = $val;
     }
 
     public function setEvaso(int $id){
@@ -74,6 +102,8 @@ class ordinilivewire extends Component
         $this->sel_order = Order::where('id',$id)->first();
         $this->nome = $this->sel_order->nome;
         $this->email = $this->sel_order->email;
+        $this->indirizzo = $this->sel_order->indirizzo;
+        $this->citta = $this->sel_order->citta;
         $this->tel = $this->sel_order->tel;
         $this->prezzo_tot =$this->sel_order->prezzo_tot;
         if($this->sel_order->data!=null){
@@ -83,42 +113,52 @@ class ordinilivewire extends Component
             $this->ora = $this->sel_order->ora;
         } else $this->ora = Carbon::now()->toTimeString(); 
         
-        foreach($this->sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_order){ 
-            $this->quantity_num[$plant_order->id] = $plant_order->pivot->quantity_num;
-            $this->quantity_kg[$plant_order->id] = $plant_order->pivot->quantity_kg;
-            $this->prezzo_kg[$plant_order->id] = $plant_order->pivot->price_kg;          
+        $this->item_ordered = array();
+        foreach($this->sel_order->plants()->withPivot('quantity','quantity_um','price','price_um')->get() as $tmp_item_order){ 
+            $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$tmp_item_order->id,'type'=>'vegetable','quantity'=> $tmp_item_order->pivot->quantity, 'quantity_um'=> $tmp_item_order->pivot->quantity_um, 'price_um'=> $tmp_item_order->pivot->price_um,'price'=>$tmp_item_order->pivot->price);
+            array_push($this->item_ordered, $new_item);     
+        }
+        foreach($this->sel_order->products()->withPivot('quantity','quantity_um','price','price_um')->get() as $tmp_item_order){ 
+            $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$tmp_item_order->id,'type'=>'product','quantity'=> $tmp_item_order->pivot->quantity, 'quantity_um'=> $tmp_item_order->pivot->quantity_um, 'price_um'=> $tmp_item_order->pivot->price_um,'price'=>$tmp_item_order->pivot->price);
+            array_push($this->item_ordered, $new_item);    
         }
         $this->ricalcolaPrezzo();
         $this->showMode = 1;       
     }
-    
-    public function add($plant_id)
+
+    public function selProd($item_id,$type,$price_um)
     {
-        $plant_sel = Plant::where('id',$plant_id)->first();
-        if($plant_sel->prezzo_kg == null) $plant_sel->prezzo_kg = 0;
+        $this->showQuant = 1;
+        $this->idQuant = $item_id;
+        $this->typeQuant = $type;
+        $this->quantity = 0;
+        $this->quantity_um = $price_um;
         
-        $this->sel_order->plants()->attach($plant_id,['quantity_kg' => 0, 'quantity_num' => 0, 'price_kg'=> $plant_sel->prezzo_kg ]);
-        $this->sel_order->refresh();
-        $this->quantity_num[$plant_id] = 0;
-        $this->quantity_kg[$plant_id] = 0;  
-        $this->ricalcolaPrezzo(); 
+       
     }
-    public function remove($plant_id)
+    public function add($item_id,$type,$price, $price_um)
     {
-        $this->sel_order->plants()->detach($plant_id);
-        $this->sel_order->refresh();
-        $this->quantity_num[$plant_id] = 0;
-        $this->quantity_kg[$plant_id] = 0;
-        $this->ricalcolaPrezzo();
+        if($this->quantity != 0){
+            $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            array_push($this->item_ordered, $new_item);
+            $this->showProd = 0;
+            $this->resetQuantity();
+            $this->ricalcolaPrezzo(); 
+        }
+    }
+    public function remove($id,$type)
+    {
+        $key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
+        unset( $this->item_ordered[$key]);
+        session()->put('items_in_order', $this->item_ordered);
     }
 
     public function ricalcolaPrezzo(){
         if($this->sel_order != null){
             $this->prezzo_tot_consigliato  = 0;     
-            foreach($this->sel_order->plants()->withPivot('quantity_kg','quantity_num','price_kg')->get() as $plant_order){  
-                if(($plant_order->pivot->price_kg!=null)&&($plant_order->pivot->price_kg!=0)) {
-                    $this->prezzo_tot_consigliato  += $plant_order->pivot->price_kg*floatval($this->quantity_kg[$plant_order->id]);     
-                } else $this->prezzo_tot_consigliato  += $plant_order->prezzo_kg*floatval($this->quantity_kg[$plant_order->id]);     
+            foreach($this->item_ordered as $single_item_order){  
+               //qui faccio somma in base all'unità di misura
+                $this->prezzo_tot_consigliato  += $single_item_order['price']*floatval($single_item_order['quantity']);     
             }   
             $this->sconto_perc = 0;
             if($this->tipo_cliente == "privato") $this->sconto_perc = 0;       
@@ -136,6 +176,8 @@ class ordinilivewire extends Component
         $this->validate();
         $this->sel_order->nome = $this->nome;
         $this->sel_order->email = $this->email;
+        $this->sel_order->indirizzo = $this->indirizzo;
+        $this->sel_order->citta = $this->citta;
         $this->sel_order->tel = $this->tel;
         if(($this->prezzo_tot == null)||($this->prezzo_tot == 0)) $this->prezzo_tot = $this->prezzo_tot_consigliato_scontato;
         $this->sel_order->prezzo_tot = $this->prezzo_tot;
@@ -143,14 +185,16 @@ class ordinilivewire extends Component
         $this->sel_order->sconto_perc = $this->sconto_perc;
         $this->sel_order->data = $this->data;
         $this->sel_order->ora = $this->ora;
+        $this->sel_order->consegna_domicilio = $this->consegna_domicilio;
         $this->sel_order->save();
         $this->sel_order->plants()->detach();
-        foreach ($this->quantity_kg as $key => $value) {
-            if(($this->quantity_kg[$key]!=0)||($this->quantity_num[$key]!=0)){
-                $price_kg = Plant::where('id',$key)->first()->prezzo_kg;
-                if($price_kg == null) $price_kg = 0;
-                $this->sel_order->plants()->attach($key, ['quantity_kg' => $this->quantity_kg[$key], 'quantity_num' => $this->quantity_num[$key], 'price_kg' => $price_kg]);
-            }
+        $this->sel_order->products()->detach(); 
+        foreach ($this->item_ordered as $tmp_item_ordered) {
+            if($tmp_item_ordered['type']=="vegetable"){
+                $this->sel_order->plants()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'],'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);
+            } else  {
+                $this->sel_order->products()->attach($tmp_item_ordered['item_id'], ['quantity' => $tmp_item_ordered['quantity'], 'quantity_um' => $tmp_item_ordered['quantity_um'], 'price_um' => $tmp_item_ordered['price_um'], 'price' => $tmp_item_ordered['price']]);         
+            }         
         }  
 
         if($azione == 1)  {
