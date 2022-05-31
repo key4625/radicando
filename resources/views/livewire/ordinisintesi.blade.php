@@ -1,14 +1,11 @@
 <div>
-    <div class="row my-2">
-        <div class="col-6"><h3>Riassunto ordini</h3></div>
-        <div class="col-6 d-inline text-right">
-            <label>per </label>
-            <select class="form-control  d-inline w-auto" wire:model="filter_data">
-                <option value="oggi">oggi</option>
-                <option value="domani">domani</option>
-                <option value="settimana">settimana</option>
-            </select>
-        </div>
+    <div class="text-center my-2">
+        <h3 class="d-inline">Ordini per </h3>
+        <select class="form-control  d-inline w-auto" wire:model="filter_data">
+            <option value="oggi">oggi</option>
+            <option value="domani">domani</option>
+            <option value="settimana">settimana</option>
+        </select>
     </div>
     <div id="accordion">
         @foreach($orders->get() as $order)

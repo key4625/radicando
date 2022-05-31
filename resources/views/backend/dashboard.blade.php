@@ -50,6 +50,8 @@
         <div class="col-12 col-xl-6">
             <livewire:ordinisintesi />
         </div>
-        
+        <div class="col-12 col-xl-6">
+            <livewire:ordinisintesi2 />
+        </div>        
     </div>   
 @endsection

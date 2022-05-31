@@ -15,7 +15,7 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->morphToMany(Order::class, 'orderable');
+        return $this->morphToMany(Order::class, 'orderable')->withPivot('quantity','quantity_um','price','price_um');;;
     }
 
     public function getPriceAttribute($value)
