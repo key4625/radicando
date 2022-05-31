@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Arr;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
@@ -23,7 +24,9 @@ class ordinilivewire extends Component
     public $item_ordered;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
+    public $filter_consegnato, $filter_pagato, $filter_data;
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     protected $rules = [
         'nome' => 'required'   
@@ -36,6 +39,9 @@ class ordinilivewire extends Component
         $this->showMode = 0;
         $this->showProd = 0;
         $this->consegna_domicilio = 1;
+        $this->filter_consegnato = "da_consegnare";
+        $this->filter_pagato = "tutti";
+        $this->filter_data = null;
         $this->item_ordered = array();
     }
     public function resetInputFields(){
@@ -72,9 +78,16 @@ class ordinilivewire extends Component
         //$plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered->pluck('id_num'))->get());    
         $products_available = Product::where('vendibile',1)->get();
         //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered->pluck('id_num'))->get());    
+        $orders_list = Order::query();
+        if($this->filter_consegnato=="da_consegnare") $orders_list->where("evaso",0);
+        if($this->filter_consegnato=="consegnati") $orders_list->where("evaso",1);
+        if($this->filter_pagato=="da_pagare") $orders_list->where("pagato",0);
+        if($this->filter_pagato=="pagati") $orders_list->where("pagato",1);
+        if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
+        $orders_list->orderby('created_at')->paginate(25);
 
         return view('backend.livewire.order', [
-            'orders' => Order::orderby('created_at')->paginate(25),'plants_available' => $plants_available, 'products_available' => $products_available
+            'orders' => $orders_list,'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
     }
     public function viewProd($val){

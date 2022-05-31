@@ -7,12 +7,47 @@
     @if($showMode)    
         @include('backend.livewire.order.show')
     @else
-        <div class="text-right mb-2">   
-            <button class="btn btn-primary" type="button" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo ordine </button> 
+    
+        <div class="row">
+            <div class="col-12">
+                <div class="text-right mb-2">   
+                    <button class="btn btn-primary" type="button" wire:click="toggleInsert()"><i class="fas fa-plus"></i> Nuovo ordine </button> 
+                </div>   
+            </div>
+           
+            <div class="col my-3">
+                <div class="form-group"> 
+                    <label>Filtra per consegna</label>
+                    <select class="form-control" wire:model="filter_consegnato">
+                        <option value="da_consegnare">da consegnare</option>
+                        <option value="consegnati">consegnati</option>
+                        <option value="tutti">tutti</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col  my-3">
+                <div class="form-group"> 
+                    <label>Filtra per pagamento</label>
+                    <select class="form-control" wire:model="filter_pagato">
+                        <option value="da_pagare">da pagare</option>
+                        <option value="pagati">pagati</option>
+                        <option value="tutti">tutti</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col  my-3">
+                <div class="form-group">
+                    <label>A partire dal </label>
+                    <input wire:model="filter_data" type="date" class="form-control">.
+                </div>
+            </div>
+           
         </div>
+         
         <table class="table  table-striped table-hover">
             <th>Consegna</th><th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-center">Consegnato</th><th class="d-none d-lg-table-cell  text-center">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
-            @foreach($orders as $order)
+           
+            @foreach($orders->get() as $order)
                 <tr>
                     <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @else <i class="fas fa-store"></i> @endif</td>
                     <td>{{$order->nome}}  {{$order->cognome}}</td>

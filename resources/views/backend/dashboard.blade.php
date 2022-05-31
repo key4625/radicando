@@ -48,7 +48,7 @@
             </div>
         @endif
         <div class="col-12 col-xl-6">
-            <div class="col-12 my-4"><h3>Ultimi ordini</h3></div>
+            <livewire:ordinisintesi />
         </div>
         
     </div>   
