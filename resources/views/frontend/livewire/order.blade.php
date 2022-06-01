@@ -103,11 +103,11 @@
                                                             @if($plant->price!=null)
                                                                 <span class="prezzo">{{$plant->price}}€/kg </span>
                                                             @endif
-                                                        <div class="input-group my-4">
+                                                        <div class="input-group mt-4 mb-2">
                                                             <input class="form-control" type="number" wire:model="quantity" default="0">
                                                             <div class="input-group-append"><span class="input-group-text">{{$quantity_um}}</span></div>
                                                         </div>
-                                                        <div class="input-group my-4">
+                                                        <div class="input-group mt-2 mb-4">
                                                             @php ($arr_quant = explode(',',$plant->quantity_um)) @endphp
                                                             @if(count($arr_quant) >1 )
                                                                 <select class="form-control d-inline" wire:model="quantity_um">
