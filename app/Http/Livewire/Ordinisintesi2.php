@@ -28,8 +28,8 @@ class Ordinisintesi2 extends Component
             $orders_list->whereDate("data",Carbon::tomorrow()->toDateString());
         }
         if($this->filter_data=="settimana") {
-            $orders_list->whereDate("data",">",Carbon::now()->adddays(-3)->toDateString());
-            $orders_list->whereDate("data","<",Carbon::now()->adddays(3)->toDateString());
+            $orders_list->whereDate("data",">",Carbon::now()->toDateString());
+            $orders_list->whereDate("data","<",Carbon::now()->adddays(7)->toDateString());
         }
         $orders_list->orderby('data');
         $arr_plants = array();
