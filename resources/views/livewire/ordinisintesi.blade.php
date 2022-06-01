@@ -57,7 +57,7 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-3">
                                         @if($tmp_prod->image != null)
-                                            <img class="img-responsive" style="max-height:40px;" src="{{$tmp_prod->image}}" alt="{{$tmp_prod->name}}">
+                                            <img class="img-responsive" style="max-height:40px;" src="{{Storage::url($tmp_prod->image)}}" alt="{{$tmp_prod->name}}">
                                         @else 
                                             <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_prod->name}}">
                                         @endif   
