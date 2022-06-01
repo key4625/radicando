@@ -28,6 +28,11 @@ class PermissionRoleSeeder extends Seeder
             'type' => User::TYPE_ADMIN,
             'name' => 'Administrator',
         ]);
+        Role::create([
+            'id' => 2,
+            'type' => User::TYPE_ADMIN,
+            'name' => 'Gestione',
+        ]);
 
         // Non Grouped Permissions
         //

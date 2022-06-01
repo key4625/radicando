@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Plant;
+use App\Models\Plantcategory;
 use Illuminate\Http\Request;
 
 /**
@@ -20,14 +21,16 @@ class PlantController
 
     public function create()
     {
-        return view('backend.plants.edit');
+        $plant_categories = Plantcategory::all()->pluck('name','id');
+        return view('backend.plants.edit', compact('plant_categories'));
     }
 
     public function edit($id)
     {
         $plant = Plant::find($id);
+        $plant_categories = Plantcategory::all()->pluck('name','id');
         //$utenti_enti = User::role('Ente')->get();
-        return view('backend.plants.edit', compact('plant'));
+        return view('backend.plants.edit', compact('plant','plant_categories'));
     }
    
     /**
@@ -36,19 +39,18 @@ class PlantController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    /*public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'entity_id' => 'required',
-            'text' => 'required',
+            'nome' => 'required',
         ]);
-        $request->request->add(['user_id' => Auth::id()]);
+        //$request->request->add(['user_id' => Auth::id()]);
         //array_merge($request->all(), ['user_id' => Auth::id()]);
         Plant::create($request->all());
 
-        return redirect()->route('admin.messaggi.index')
-            ->with('flash_success', 'Messaggio registrato con successo');
-    }*/
+        return redirect()->route('admin.piante.index')
+            ->with('flash_success', 'Pianta registrata con successo');
+    }
     public function update(Request $request, $id)
     {
         $request->validate([

@@ -37,6 +37,14 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'active' => true,
         ]);
+        User::create([
+            'type' => User::TYPE_ADMIN,
+            'name' => 'Gestione',
+            'email' => 'gestione@radicando.it',
+            'password' => 'gestione',
+            'email_verified_at' => now(),
+            'active' => true,
+        ]);
 
      
         $this->enableForeignKeys();

@@ -31,25 +31,47 @@ class PlantsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        $filter_vendita = $this->getFilter('solo_vendita');
-        if($filter_vendita!=null){
-            session()->put('plants_tipo_solo_vendita', $filter_vendita);
+        if($this->getFilter('solo_vendita')!=null){ 
+            if($this->getFilter('solo_vendita')=="all"){
+                $this->filters['solo_vendita'] = '';
+                session()->put('plants_tipo_solo_vendita', '');
+            } else session()->put('plants_tipo_solo_vendita', $this->getFilter('solo_vendita'));
+            
         } else {
-            $filter_vendita = session()->get('plants_tipo_solo_vendita');
-        }
-        $filter_tipo = $this->getFilter('solo_vendita');
-        if($filter_tipo!=null){
-            session()->put('plants_tipo_filter', $filter_tipo);
-        } else {
-            $filter_tipo = session()->get('plants_tipo_filter');
+            $this->filters['solo_vendita'] = session()->get('plants_tipo_solo_vendita');
         } 
+        //dd($this->getFilter('solo_vendita'));
+        if($this->getFilter('tipologia')!=null){
+            if($this->getFilter('tipologia')=="all"){
+                $this->filters['tipologia'] = null;
+                session()->put('plants_tipo_filter', null);
+            } else session()->put('plants_tipo_filter', $this->getFilter('tipologia'));
+        } else {
+            $this->filters['tipologia'] = session()->get('plants_tipo_filter');
+        }
         return Plant::query()
             ->join('plantcategories', 'plants.plantcategories_id', '=', 'plantcategories.id')
             ->select('plants.*','plantcategories.name as nome_cat')
-            ->when($filter_vendita, fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1))
-            ->when($filter_tipo, fn ($query, $cat_id) => $query->where('plantcategories_id', $cat_id));
+            ->when( $this->getFilter('solo_vendita'), function ($query, $vendibile) { 
+                return $query->where('vendibile', $vendibile);
+            })
+            ->when( $this->getFilter('tipologia'), function ($query, $cat_id) { 
+                return $query->where('plantcategories_id', $cat_id);
+            });
+            //fn ($query, $vendit) => $query->where('vendibile', 0))
+            //->when( $this->getFilter('solo_vendita')==1, fn ($query, $vendit) => $query->where('vendibile', 1))
+            //->when( $this->getFilter('tipologia'), fn ($query, $cat_id) => $query->where('plantcategories_id', $cat_id));
     }
 
+    public function resetFilters(): void
+    {
+        $search = $this->filters['search'] ?? null;
+        session()->put('plants_tipo_solo_vendita', '');
+        session()->put('plants_tipo_filter', null);
+        $this->reset('filters');
+
+        $this->filters['search'] = $search;
+    }
 
     public function setVendibile($row,$invendita){
         
@@ -81,13 +103,13 @@ class PlantsTable extends DataTableComponent
         
             'solo_vendita' => Filter::make('In vendita')
                 ->select([
-                    '' => 'Tutti',
+                    'all' => 'Tutti',
                     '1' => 'Si',
                     '0' => 'No',
                 ]),
             'tipologia' => Filter::make('Categoria')
                 ->select([
-                    '0' => 'Tutti',
+                    'all' => 'Tutti',
                     '1' => 'Orticole',
                     '2' => 'Frutta',
                     '3' => 'Seminativo',
