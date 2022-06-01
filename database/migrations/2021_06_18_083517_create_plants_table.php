@@ -64,7 +64,7 @@ class CreatePlantsTable extends Migration
             $table->string('lot')->nullable();
             $table->double('dimension')->default(0.0);
             $table->double('price')->default(0.0);
-            $table->string('price_um')->default("kg");
+            $table->string('price_um')->default("pz");
             $table->double('yield')->default(0);  
             $table->string('description')->nullable();
             $table->string('image')->nullable();
