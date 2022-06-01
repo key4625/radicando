@@ -17,7 +17,7 @@
 
 
 <x-livewire-tables::table.cell>
-    {{ $row->prezzo_kg }}
+    @if($row->price!=0) {{ $row->price }} €/{{ $row->price_um }} @else - @endif
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>

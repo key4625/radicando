@@ -14,6 +14,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class PlantsTable extends DataTableComponent
 {
 
+   
     public function columns(): array
     {
         return [
@@ -30,6 +31,8 @@ class PlantsTable extends DataTableComponent
 
     public function query(): Builder
     {
+        session()->put('plants_tipo_solo_vendita', $this->getFilter('solo_vendita'));
+        session()->put('plants_tipo_filter', $this->getFilter('tipologia'));
         return Plant::query()
             ->join('plantcategories', 'plants.plantcategories_id', '=', 'plantcategories.id')
             ->select('plants.*','plantcategories.name as nome_cat')
@@ -83,6 +86,9 @@ class PlantsTable extends DataTableComponent
                 ]),
             
         ];
-    }
-       
+    } 
+    /*public array $filters = [
+        'solo_vendita' => session()->get('plants_tipo_solo_vendita'),
+        'tipologia' => session()->get('plants_tipo_filter'),
+    ];*/
 }
