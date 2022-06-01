@@ -9,7 +9,7 @@
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" wire:click="$set('passo', '0')">1. Seleziona prodotti</button></div>
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center"  @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '1')" >2. Rivedi il tuo ordine ({{ count($item_ordered) }} pezzi)</button></div>
             <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '2')" >3. Dati anagrifici</button></div>
-            <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center" @if(count($item_ordered) == 0) disabled @endif wire:click="$set('passo', '3')" >4. Completa</button></div>
+            <div class="col-3"><button class="btn btn-muted btn-passo w-100 text-center"  disabled   >4. Completa</button></div>
             <div class="col-12">
                 <div class="progress">
                     <div class="progress-bar  bg-orange" role="progressbar" style="width: @if($passo==0) 25% @elseif($passo==1) 50% @elseif($passo==2) 75% @else 100% @endif" aria-valuenow="  @if($passo==0) 25 @elseif($passo==1) 50 @elseif($passo==2) 75 @else 100 @endif" aria-valuemin="0" aria-valuemax="100"></div>
@@ -142,9 +142,11 @@
                                 </div>
                             </div>
                         </div> 
+                        @if(count($item_ordered) > 0) 
                         <div class="text-center my-4">                          
                             <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '1')">Avanti <i class="fas fa-forward"></i></button>
                         </div>
+                        @endif
                     </div>
                 </div>
             @elseif($passo==1)
