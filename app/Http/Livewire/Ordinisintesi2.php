@@ -15,7 +15,7 @@ class Ordinisintesi2 extends Component
     public function mount()
     {
         $this->filter_consegnato="da_consegnare";
-        $this->filter_data="settimana";
+        $this->filter_data="oggi";
     }
     public function render()
     {
@@ -28,7 +28,7 @@ class Ordinisintesi2 extends Component
             $orders_list->whereDate("data",Carbon::tomorrow()->toDateString());
         }
         if($this->filter_data=="settimana") {
-            $orders_list->whereDate("data",">",Carbon::now()->toDateString());
+            $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
             $orders_list->whereDate("data","<",Carbon::now()->adddays(7)->toDateString());
         }
         $orders_list->orderby('data');

@@ -22,7 +22,7 @@ class Ordinisintesi extends Component
         if($this->filter_data=="oggi") $orders_list->whereDate("data",Carbon::now()->toDateString());
         if($this->filter_data=="domani") $orders_list->whereDate("data",Carbon::tomorrow()->toDateString());
         if($this->filter_data=="settimana") {
-            $orders_list->whereDate("data",">",Carbon::now()->toDateString());
+            $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
             $orders_list->whereDate("data","<",Carbon::now()->adddays(7)->toDateString());
         }
         $orders_list->orderby('created_at')->paginate(25);

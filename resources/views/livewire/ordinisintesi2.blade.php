@@ -7,7 +7,7 @@
             <option value="settimana">settimana</option>
         </select>
     </div>
-   
+   <h6 class="text-center">Verdure</h6>
     <ul class="list-group bg-white"> 
         @foreach($plants as $tmp_plant)           
             <li class="list-group-item">
@@ -29,13 +29,14 @@
             </li>
         @endforeach
     </ul>
+    <h6 class="text-center mt-3">Prodotti</h6>
     <ul class="list-group bg-white"> 
         @foreach($products as $tmp_prod)           
         <li class="list-group-item">
             <div class="row g-3 align-items-center">
                 <div class="col-4">
                     @if($tmp_prod['image'] != null)
-                        <img class="img-responsive" style="max-height:40px;" src="{{$tmp_prod['image']}}" alt="{{$tmp_prod['name']}}">
+                        <img class="img-responsive" style="max-height:40px;" src="{{ Storage::url($tmp_prod['image']) }}" alt="{{$tmp_prod['name']}}">
                     @else 
                         <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_prod['name']}}">
                     @endif   
