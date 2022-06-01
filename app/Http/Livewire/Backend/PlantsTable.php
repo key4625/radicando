@@ -31,13 +31,23 @@ class PlantsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        session()->put('plants_tipo_solo_vendita', $this->getFilter('solo_vendita'));
-        session()->put('plants_tipo_filter', $this->getFilter('tipologia'));
+        $filter_vendita = $this->getFilter('solo_vendita');
+        if($filter_vendita!=null){
+            session()->put('plants_tipo_solo_vendita', $filter_vendita);
+        } else {
+            $filter_vendita = session()->get('plants_tipo_solo_vendita');
+        }
+        $filter_tipo = $this->getFilter('solo_vendita');
+        if($filter_tipo!=null){
+            session()->put('plants_tipo_filter', $filter_tipo);
+        } else {
+            $filter_tipo = session()->get('plants_tipo_filter');
+        } 
         return Plant::query()
             ->join('plantcategories', 'plants.plantcategories_id', '=', 'plantcategories.id')
             ->select('plants.*','plantcategories.name as nome_cat')
-            ->when($this->getFilter('solo_vendita'), fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1))
-            ->when($this->getFilter('tipologia'), fn ($query, $cat_id) => $query->where('plantcategories_id', $cat_id));
+            ->when($filter_vendita, fn ($query, $vendibile) => $query->where('vendibile', $vendibile === 1))
+            ->when($filter_tipo, fn ($query, $cat_id) => $query->where('plantcategories_id', $cat_id));
     }
 
 

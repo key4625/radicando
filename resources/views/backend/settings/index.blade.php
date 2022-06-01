@@ -155,7 +155,15 @@
                     </div>
                    
                    
-                  
+                    
+                </div>
+                <div class="col-6">         
+                    <h5 class="mb-3">Al pubblico vuoi mostrare</h5>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='view_only_order'>
+                        <input type="checkbox" class="form-check-input" id="view_only_order" name="view_only_order" @if($settings['view_only_order']=="on") checked @endif>
+                        <label class="form-check-label" for="view_only_order">Solo la pagina degli ordini</label>
+                    </div>
                 </div>
                
             </div>

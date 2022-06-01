@@ -9,43 +9,34 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
-                    <li class="nav-item dropdown">
+                @if(App\Models\Setting::find('view_only_order')->value == "on")
+                   
+                @else
+                    <li class="nav-item">
                         <x-utils.link
-                            :text="__(getLocaleName(app()->getLocale()))"
-                            class="nav-link dropdown-toggle"
-                            id="navbarDropdownLanguageLink"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false" />
-
-                        @include('includes.partials.lang')
+                            :href="route('frontend.index')"
+                            :active="activeClass(Route::is('frontend.index'))"
+                            :text="__('Home')"
+                            icon="fas fa-home"
+                            class="nav-link" />
+                    </li>
+                    <li class="nav-item">
+                        <x-utils.link
+                            :href="route('frontend.visit')"
+                            :active="activeClass(Route::is('frontend.visit'))"
+                            :text="__('Visita')"
+                            icon="fas fa-eye"
+                            class="nav-link" />
+                    </li>
+                    <li class="nav-item">
+                        <x-utils.link
+                            :href="route('frontend.order')"
+                            :active="activeClass(Route::is('frontend.order'))"
+                            :text="__('Ordina')"
+                            icon="fas fa-shopping-basket"
+                            class="nav-link" />
                     </li>
                 @endif
-                <li class="nav-item">
-                    <x-utils.link
-                        :href="route('frontend.index')"
-                        :active="activeClass(Route::is('frontend.index'))"
-                        :text="__('Home')"
-                        icon="fas fa-home"
-                        class="nav-link" />
-                </li>
-                <li class="nav-item">
-                    <x-utils.link
-                        :href="route('frontend.visit')"
-                        :active="activeClass(Route::is('frontend.visit'))"
-                        :text="__('Visita')"
-                        icon="fas fa-eye"
-                        class="nav-link" />
-                </li>
-                <li class="nav-item">
-                    <x-utils.link
-                        :href="route('frontend.order')"
-                        :active="activeClass(Route::is('frontend.order'))"
-                        :text="__('Ordina')"
-                        icon="fas fa-shopping-basket"
-                        class="nav-link" />
-                </li>
               
                 {{--<li class="nav-item">
                     <x-utils.link

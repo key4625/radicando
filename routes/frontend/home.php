@@ -9,12 +9,20 @@ use Tabuna\Breadcrumbs\Trail;
  * All route names are prefixed with 'frontend.'.
  */
 
-    Route::get('/', [HomeController::class, 'index'])
+    if(App\Models\Setting::find('view_only_order')->value == "on"){
+        Route::get('/', [HomeController::class, 'order'])
         ->name('index')
         ->breadcrumbs(function (Trail $trail) {
             $trail->push(__('Home'), route('frontend.index'));
         });
 
+    } else {
+        Route::get('/', [HomeController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->push(__('Home'), route('frontend.index'));
+        });
+    
         Route::get('/ordina', [HomeController::class, 'order'])
         ->name('order')
         ->breadcrumbs(function (Trail $trail) {
@@ -26,6 +34,7 @@ use Tabuna\Breadcrumbs\Trail;
         ->breadcrumbs(function (Trail $trail) {
             $trail->push(__('Visita'), route('frontend.visit'));
         });
+    }
 
     Route::get('terms', [TermsController::class, 'index'])
         ->name('pages.terms')
