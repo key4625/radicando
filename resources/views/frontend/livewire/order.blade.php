@@ -99,12 +99,10 @@
                                             <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
                                                 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
                                                     <div class="card-body text-center back">
-                                                        <div class="d-flex align-items-center justify-content-center">
                                                             <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                             @if($plant->price!=null)
                                                                 <span class="prezzo">{{$plant->price}}€/kg </span>
                                                             @endif
-                                                        </div>
                                                         <div class="input-group my-4">
                                                             <input class="form-control" type="number" wire:model="quantity" default="0">
                                                             <div class="input-group-append"><span class="input-group-text">{{$quantity_um}}</span></div>
