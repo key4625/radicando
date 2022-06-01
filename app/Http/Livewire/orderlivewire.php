@@ -35,6 +35,7 @@ class orderlivewire extends Component
         $this->passo = 0;
         $this->consegna_domicilio = 1;
         $this->nome = session()->get('name_order');
+        $this->cognome = session()->get('surname_order');
         $this->email = session()->get('name_email');
         $this->tel = session()->get('name_tel');
         $this->indirizzo = session()->get('name_indir');
@@ -100,6 +101,7 @@ class orderlivewire extends Component
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
+            session()->put('surname_order', $this->cognome);
             session()->put('name_email', $this->email);
             session()->put('name_tel', $this->tel);
             session()->put('name_indir', $this->indirizzo);
@@ -119,6 +121,7 @@ class orderlivewire extends Component
         $this->validate();
         $ordine = new Order();
         $ordine->nome = $this->nome;
+        $ordine->cognome = $this->cognome;
         $ordine->email = $this->email;
         $ordine->tel = $this->tel;
         $ordine->indirizzo = $this->indirizzo;
@@ -130,6 +133,7 @@ class orderlivewire extends Component
         $ordine->tipo_cliente = 'privato';
         $ordine->save();
         session()->put('name_order', $this->nome);
+        session()->put('surname_order', $this->cognome);
         session()->put('name_email', $this->email);
         session()->put('name_tel', $this->tel);
         session()->put('name_indir', $this->indirizzo);
