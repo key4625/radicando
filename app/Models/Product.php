@@ -6,6 +6,8 @@ use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use Storage;
+use Str;
 
 class Product extends Model
 {
@@ -16,6 +18,16 @@ class Product extends Model
     public function orders()
     {
         return $this->morphToMany(Order::class, 'orderable')->withPivot('quantity','quantity_um','price','price_um');;;
+    }
+    public function getImage()
+    {
+        if( $this->image !=null){
+            if(Str::startsWith($this->image,'public/tenant/')){
+                return Storage::url($this->image);
+            } else return  $this->image;
+        } else {  
+            return "/img/img-placeholder.png";
+        }    
     }
 
     public function getPriceAttribute($value)

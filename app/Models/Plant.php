@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
+use Storage;
+use Str;
 
 class Plant extends Model
 {
@@ -33,11 +35,24 @@ class Plant extends Model
     public function getImage()
     {
         if( $this->image !=null){
-            return $this->image;
+            if(Str::startsWith($this->image,'public/tenant/')){
+                return Storage::url($this->image);
+            } else return  $this->image;
         } else {  
             return "/img/img-placeholder.png";
         }    
     }
+
+    public function getPriceAttribute($value)
+    {
+        return str_replace('.', ',', $value);
+    }
+    
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = str_replace(',', '.', $value);
+    }
+
     public function raccolti_oggi_kg()
     {
         return Collection::where('collectionable_id',$this->id)->where('collectionable_type','App\Models\Plant')->whereDay('created_at', '=', date('d'))->sum('quantity');

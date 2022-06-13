@@ -62,6 +62,7 @@ class orderlivewire extends Component
         $this->resetQuantity();
       
     }
+
     public function resetQuantity(){
         $this->showQuant = 0;
         $this->idQuant = 0;
@@ -86,18 +87,27 @@ class orderlivewire extends Component
         $this->showProd = $val;
     }
 
-    public function selProd($item_id,$type,$price_um)
+    public function selProd($item_id,$type,$price_um,$quantity_um)
     {
         $this->showQuant = 1;
         $this->idQuant = $item_id;
         $this->typeQuant = $type;
         $this->quantity = 0;
-        $this->quantity_um = $price_um; 
+        $arr_quant = explode(',',$quantity_um);
+        if($arr_quant[0]!=null){
+            $this->quantity_um =$arr_quant[0]; 
+        } else $this->quantity_um =$price_um; 
     }
     public function add($item_id,$type,$price, $price_um)
     {
         if($this->quantity != 0){
-            $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            $findmax = 0;
+            if(($this->item_ordered!=null)&&(count($this->item_ordered)>0)){
+                foreach($this->item_ordered as $single){
+                    if($single['id_num'] > $findmax)  $findmax = $single['id_num'];
+                }
+            }
+            $new_item = array('id_num'=>$findmax+1,'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
@@ -112,6 +122,7 @@ class orderlivewire extends Component
     public function remove($id,$type)
     {
         $key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
+        //dd($key);
         unset( $this->item_ordered[$key]);
         session()->put('items_in_order', $this->item_ordered);
     }

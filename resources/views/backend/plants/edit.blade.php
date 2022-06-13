@@ -15,7 +15,7 @@
         </x-slot>
 
         <x-slot name="body">
-            @if ($errors->any())
+            {{--@if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Error!</strong> 
                     <ul>
@@ -24,13 +24,13 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif--}}
             @if(isset($plant))
-                <form action="{{ route('admin.piante.update',$plant->id) }}" method="POST">
+                <form action="{{ route('admin.piante.update',$plant->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             @else
-                <form action="{{ route('admin.piante.store') }}" method="POST" >
+                <form action="{{ route('admin.piante.store') }}" method="POST" enctype="multipart/form-data" >
                     @csrf
             @endif
                 
@@ -57,7 +57,7 @@
                            </select>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Tipologia</label>
                            <select class="form-control" name="plantcategories_id">
@@ -69,28 +69,41 @@
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="form-group">
-                            <label>Prezzo al kg</label>
-                            <input type="text" name="price" @if(isset($plant)) value="{{$plant->price}}" @endif class="form-control" placeholder="0.0">
+                            <label>Prezzo</label>
+                            <input type="text" name="price" @if(isset($plant)) value="{{$plant->price}}" @endif class="form-control" placeholder="0,0">
+                            @error('price')<div class="text-danger">Inserire un prezzo</div>@enderror
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="form-group">
-                            <label>Unità di misura per il prezzo</label>
-                            <input type="text" name="price_um" @if(isset($plant)) value="{{$plant->price_um}}" @endif class="form-control" placeholder="kg">
+                            <label>U.M. per il prezzo</label>
+                            <input type="text" name="price_um" @if(isset($plant)) value="{{$plant->price_um}}" @else value="kg" @endif class="form-control" placeholder="kg">
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-6 col-md-3">
                         <div class="form-group">
-                            <label>Unità di misura per la selezione di acquisto</label>
-                            <input type="text" name="quantity_um" @if(isset($plant)) value="{{$plant->quantity_um}}" @endif class="form-control" placeholder="kg,pz..">
+                            <label>U.M. per la selezione</label>
+                            <input type="text" name="quantity_um" @if(isset($plant)) value="{{$plant->quantity_um}}" @else value="kg"  @endif class="form-control" placeholder="kg,pz..">
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    {{--<div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Url immagine</label>
                             <input type="text" name="image" @if(isset($plant)) value="{{$plant->image}}" @endif class="form-control" placeholder="">
                         </div>
+                    </div>--}}
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Immagine</label>
+                            <input type="file" class="form-control-file" name="file_upload">
+                        </div>
+                        <div class="form-group">
+                            @if(isset($plant)&&($plant->image!=null)) 
+                            <img class="img-fluid" style="max-height:200px;" src="{{ $plant->getImage() }}">
+                            @endif
+                        </div>
                     </div>
+                   
                  
                 </div>
                     @if(App\Models\Setting::find('gest_coltivazioni')->value == "on")
@@ -268,26 +281,29 @@
                   
 
                     
-                   
+           
                 <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label>Url marcatore</label>
-                            <input type="text" name="icon" @if(isset($plant)) value="{{$plant->icon}}" @endif class="form-control" placeholder="">
+                    @if(App\Models\Setting::find('gest_coltivazioni')->value == "on")  
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label>Url marcatore</label>
+                                <input type="text" name="icon" @if(isset($plant)) value="{{$plant->icon}}" @endif class="form-control" placeholder="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        <label for="colorInput" class="form-label">Colore</label>
-                        <input id="colorInput"  type="color" name="color" @if(isset($plant)) value="{{$plant->color}}" @endif class="form-control form-control-color" title="Scegli colore">
-                    </div>
-                    <div class="col-12 col-md-2">
-                        <label for="borderColInput" class="form-label">Bordo</label>
-                        <input id="borderColInput"  type="color" name="border_color" @if(isset($plant)) value="{{$plant->border_color}}" @endif class="form-control form-control-color" title="Scegli colore">                      
-                    </div>
+                        <div class="col-12 col-md-2">
+                            <label for="colorInput" class="form-label">Colore</label>
+                            <input id="colorInput"  type="color" name="color" @if(isset($plant)) value="{{$plant->color}}" @endif class="form-control form-control-color" title="Scegli colore">
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <label for="borderColInput" class="form-label">Bordo</label>
+                            <input id="borderColInput"  type="color" name="border_color" @if(isset($plant)) value="{{$plant->border_color}}" @endif class="form-control form-control-color" title="Scegli colore">                      
+                        </div>
+                    @endif
                     <div class="col-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-primary">@if(isset($plant)) <i class="fas fa-save"></i> Salva @else <i class="fas fa-plus"></i> Crea @endif</button>
                     </div>
                 </div>
+           
         
             </form>
 

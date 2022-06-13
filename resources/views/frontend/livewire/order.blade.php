@@ -76,11 +76,7 @@
                                                 @else 
                                                     <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','{{$product->price_um}}')" >
                                                         <div class="d-flex align-items-center">
-                                                            @if($product->image != null)
-                                                                <img class="img-fluid" src="{{ Storage::url($product->image) }}" alt="{{$product->name}}">
-                                                            @else 
-                                                                <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$product->name}}">
-                                                            @endif    
+                                                            <img class="img-fluid" src="{{$plant->getImage()}}" alt="{{$product->name}}">
                                                         </div>
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                         @if($product->price!=null)<span class="price">{{$product->price}}€</span> @endif
@@ -101,7 +97,7 @@
                                                     <div class="card-body text-center back py-2">
                                                             <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                             @if($plant->price!=null)
-                                                                <span class="prezzo">{{$plant->price}}€/kg </span>
+                                                                <span class="prezzo">{{$plant->price}}€/{{$plant->price_um}} </span>
                                                             @endif
                                                         <div class="input-group mt-4 mb-2">
                                                             <input class="form-control" type="number" wire:model="quantity" default="0">
@@ -120,17 +116,13 @@
                                                         <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price}},'{{$plant->price_um}}')">Aggiungi</button>
                                                     </div>
                                                 @else 
-                                                    <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable','{{$plant->price_um}}')" >
+                                                    <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable','{{$plant->price_um}}','{{$plant->quantity_um}}')" >
                                                         <div class="d-flex align-items-center">
-                                                            @if($plant->image != null)
-                                                                <img class="img-fluid" src="{{$plant->image}}" alt="{{$plant->nome}}">
-                                                            @else 
-                                                                <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
-                                                            @endif    
+                                                            <img class="img-fluid" src="{{$plant->getImage()}}" alt="{{$plant->nome}}">
                                                         </div>
                                                         <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                         @if($plant->price!=null)
-                                                            <span class="prezzo">{{$plant->price}}€/kg </span>
+                                                            <span class="prezzo">{{$plant->price}}€/{{$plant->price_um}} </span>
                                                         @endif
                                                     </div>
                                                 @endif
@@ -155,7 +147,7 @@
                             <h1 class="text-center green">COSA STAI PRENOTANDO</h1>
                             <ul class="list-group  my-4 py-4" style="border-top: 0.13rem solid #c1c1c1;"> 
                             
-                                @foreach($item_ordered as $item_ord)
+                                @foreach($item_ordered as $key=>$item_ord)
                                 
                                     @if($item_ord['type'] == "vegetable")
                                         @php $tmp_item = App\Models\Plant::find($item_ord['item_id']) @endphp
@@ -175,7 +167,7 @@
                                             </div>
                                             <div class="col-3 ">
                                                 <div class="input-group">
-                                                    <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id_num']}}.quantity" default="0">
+                                                    <input class="form-control" type="number" wire:model="item_ordered.{{$key}}.quantity" default="0">
                                                     <div class="input-group-append"><span class="input-group-text">{{$item_ord['quantity_um']}}</span></div>
                                                 </div>
                                             </div>
@@ -195,7 +187,10 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        @endif  
+                            <div class="text-center">
+                                <button class="btn btn-sm btn-ghost-danger bordotondo px-4 text-center"  wire:click="resetInputFields"><i class="fas fa-trash"></i> Svuota ordine</button>
+                            </div>
+                        @endif 
                         <div class="text-center my-4">
                             <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '0')"><i class="fas fa-backward"></i> Indietro</button>
                             <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '2')">Avanti <i class="fas fa-forward"></i></button>
