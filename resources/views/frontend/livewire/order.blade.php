@@ -76,7 +76,7 @@
                                                 @else 
                                                     <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','{{$product->price_um}}')" >
                                                         <div class="d-flex align-items-center">
-                                                            <img class="img-fluid" src="{{$plant->getImage()}}" alt="{{$product->name}}">
+                                                            <img class="img-fluid" src="{{$product->getImage()}}" alt="{{$product->name}}">
                                                         </div>
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                         @if($product->price!=null)<span class="price">{{$product->price}}€</span> @endif
