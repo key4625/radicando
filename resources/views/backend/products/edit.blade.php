@@ -22,7 +22,7 @@
                 
               
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label>Nome</label>
                             <input type="text" name="name" @if(isset($product)) value="{{$product->name}}" @endif class="form-control" placeholder="Nome">
@@ -39,6 +39,19 @@
                         <div class="form-group">
                             <label>Quantità mag</label>
                             <input type="number" name="quantity_mag" @if(isset($product)) value="{{$product->quantity_mag}}" @else value=0 @endif class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <div class="form-group">
+                            <label>Fragilità</label>
+                           <select class="form-control" name="fragile">
+                               <option value="0" @if(isset($plant)&&($plant->fragile==0)) selected="selected" @endif>0</option>
+                               <option value="1" @if(isset($plant)&&($plant->fragile==1)) selected="selected" @endif>1</option>
+                               <option value="2" @if(isset($plant)&&($plant->fragile==2)) selected="selected" @endif>2</option>
+                               <option value="3" @if(isset($plant)&&($plant->fragile==3)) selected="selected" @endif>3</option>
+                               <option value="4" @if(isset($plant)&&($plant->fragile==4)) selected="selected" @endif>4</option>
+                               <option value="5" @if(isset($plant)&&($plant->fragile==5)) selected="selected" @endif>5</option>
+                           </select>
                         </div>
                     </div>
                     <div class="col-4 col-md-2">

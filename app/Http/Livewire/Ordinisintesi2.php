@@ -9,18 +9,27 @@ use DB;
 use Livewire\Component;
 class Ordinisintesi2 extends Component
 {
-    public $filter_consegnato, $filter_pagato, $filter_data, $datafilter;
+    public $filter_consegnato, $filter_pagato, $filter_data,$filter_data2, $datafilter;
     public $tmparray, $tmparray2;
 
     public function mount()
     {
         $this->filter_consegnato="da_consegnare";
-        $this->filter_data="oggi";
+        $this->filter_data=Carbon::now()->toDateString();
+        $this->filter_data2=Carbon::now()->toDateString();
     }
     public function render()
     {
         $orders_list = Order::query();
         if($this->filter_consegnato=="da_consegnare") $orders_list->where("evaso",0);
+
+        if($this->filter_data != null){
+            $orders_list->whereDate("data",">=",$this->filter_data);
+            if($this->filter_data2 != null){
+                $orders_list->whereDate("data","<",$this->filter_data2);
+            }
+        } else $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
+        /*
         if($this->filter_data=="oggi") {
             $orders_list->whereDate("data",Carbon::now()->toDateString());
         }
@@ -30,7 +39,8 @@ class Ordinisintesi2 extends Component
         if($this->filter_data=="settimana") {
             $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
             $orders_list->whereDate("data","<",Carbon::now()->adddays(7)->toDateString());
-        }
+        }*/
+
         $orders_list->orderby('data');
         $arr_plants = array();
         foreach($orders_list->get() as $single_order){

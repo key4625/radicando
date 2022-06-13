@@ -71,7 +71,7 @@
             <div class="my-4" style="border-top: 0.13rem solid #c1c1c1;"> </div>
             @if(count($item_ordered) > 0)
                 <ul class="list-group"> 
-                    @foreach($item_ordered as $item_ord)           
+                    @foreach($item_ordered as $key=>$item_ord)           
                         @if($item_ord['type'] == "vegetable")
                             @php $tmp_item = App\Models\Plant::find($item_ord['item_id']) @endphp
                         @else 
@@ -80,17 +80,12 @@
                         <li class="list-group-item list-ordini">
                             <div class="row g-3 align-items-center">
                                 <div class="col-4">
-                                
-                                    @if($tmp_item->image != null)
-                                        <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->image}}" alt="{{$tmp_item->nome}}">
-                                    @else 
-                                        <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_item->nome}}">
-                                    @endif   
+                                    <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->getImage()}}" alt="{{$tmp_item->nome}}">
                                     <label for="nome" class="col-form-label">@if($item_ord['type'] == "vegetable") {{$tmp_item->nome}} @else {{$tmp_item->name}} @endif</label>
                                 </div>
                                 <div class="col-3 ">
                                     <div class="input-group">
-                                        <input class="form-control" type="number" wire:model="item_ordered.{{$item_ord['id_num']}}.quantity" default="0">
+                                        <input class="form-control" type="number" wire:model="item_ordered.{{$key}}.quantity" default="0">
                                         <div class="input-group-append"><span class="input-group-text">{{$item_ord['quantity_um']}}</span></div>
                                     </div>
                                 </div>
@@ -104,7 +99,7 @@
                                 </div>
                             
                                 <div class="col">
-                                    <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id_num']}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-danger-outline" wire:click="remove({{$key}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
                                 </div>       
                             </div>    
                         </li>
@@ -185,11 +180,7 @@
                                         @else 
                                             <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','{{$product->price_um}}')" >
                                                 <div class="d-flex align-items-center">
-                                                    @if($product->image != null)
-                                                        <img class="img-fluid" src="{{ Storage::url($product->image) }}" alt="{{$product->name}}">
-                                                    @else 
-                                                        <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$product->name}}">
-                                                    @endif    
+                                                    <img class="img-fluid" src="{{ $product->getImage() }}" alt="{{$product->name}}">
                                                 </div>
                                                 <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                 @if($product->price!=null)<span class="price">{{$product->price}}€</span> @endif
@@ -233,11 +224,7 @@
                                         @else 
                                             <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable','{{$plant->price_um}}')" >
                                                 <div class="d-flex align-items-center">
-                                                    @if($plant->image != null)
-                                                        <img class="img-fluid" src="{{$plant->image}}" alt="{{$plant->nome}}">
-                                                    @else 
-                                                        <img class="img-fluid" src="/img/img-placeholder.png" alt="{{$plant->nome}}">
-                                                    @endif    
+                                                    <img class="img-fluid" src="{{$plant->getImage()}}" alt="{{$plant->nome}}">                                                
                                                 </div>
                                                 <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                 @if($plant->price!=null)

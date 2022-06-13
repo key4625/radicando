@@ -159,9 +159,9 @@ class ordinilivewire extends Component
             $this->ricalcolaPrezzo(); 
         }
     }
-    public function remove($id,$type)
+    public function remove($key)
     {
-        $key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
+        //$key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
         unset( $this->item_ordered[$key]);
         session()->put('items_in_order', $this->item_ordered);
     }

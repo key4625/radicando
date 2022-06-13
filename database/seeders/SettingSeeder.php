@@ -100,5 +100,11 @@ class SettingSeeder extends Seeder
             'value' => "on",
             'type' => "Attività"
         ]);
+        DB::table('settings')->insert([ //,
+            'name' => "view_only_order",
+            'value' => "on",
+            'type' => "Vista"
+        ]);
+
     }
 }

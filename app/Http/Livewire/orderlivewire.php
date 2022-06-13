@@ -16,7 +16,7 @@ class orderlivewire extends Component
 {
     public $item_ordered;
     public $quantity, $quantity_um, $plant_sel_id;
-    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $consegna_domicilio, $price;
+    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $price;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $passo;
@@ -33,6 +33,7 @@ class orderlivewire extends Component
         $this->showProd = 0;
         $this->showQuant = 0;
         $this->passo = 0;
+        $this->data_consegna = date('Y-m-d');
         $this->consegna_domicilio = 1;
         $this->nome = session()->get('name_order');
         $this->cognome = session()->get('surname_order');
@@ -101,13 +102,14 @@ class orderlivewire extends Component
     public function add($item_id,$type,$price, $price_um)
     {
         if($this->quantity != 0){
-            $findmax = 0;
+            /*$findmax = 0;
             if(($this->item_ordered!=null)&&(count($this->item_ordered)>0)){
                 foreach($this->item_ordered as $single){
                     if($single['id_num'] > $findmax)  $findmax = $single['id_num'];
                 }
-            }
-            $new_item = array('id_num'=>$findmax+1,'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            }*/
+            //$new_item = array('id_num'=>$findmax+1,'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            $new_item = array('item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
@@ -119,9 +121,9 @@ class orderlivewire extends Component
             $this->resetQuantity();
         }
     }
-    public function remove($id,$type)
+    public function remove($key)
     {
-        $key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
+        //$key = array_search( $id, array_column($this->item_ordered, 'id_num')); 
         //dd($key);
         unset( $this->item_ordered[$key]);
         session()->put('items_in_order', $this->item_ordered);
@@ -138,7 +140,7 @@ class orderlivewire extends Component
         $ordine->indirizzo = $this->indirizzo;
         $ordine->citta = $this->citta;
         $ordine->consegna_domicilio = $this->consegna_domicilio;
-        $ordine->data = date('Y-m-d');
+        $ordine->data =  $this->data_consegna;
         $ordine->prezzo_tot = 0;
         $ordine->sconto_perc = 0;
         $ordine->tipo_cliente = 'privato';

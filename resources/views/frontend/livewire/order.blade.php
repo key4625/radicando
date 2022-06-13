@@ -181,7 +181,7 @@
                                             </div>
                                         
                                             <div class="col">
-                                                <button class="btn btn-danger-outline" wire:click="remove({{$item_ord['id_num']}},'{{$item_ord['type']}}')"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-danger-outline" wire:click="remove({{$key}})"><i class="fas fa-trash"></i></button>
                                             </div>       
                                         </div>    
                                     </li>
@@ -230,11 +230,16 @@
                                     <label class="form-check-label" for="consegna_domicilio">Consegna a domicilio</label>
                                 </div>
                                 @if($consegna_domicilio)
+                                    <div class="form-group col-12 offset-md-4 col-md-4">
+                                        <label for="indirizzo" class="col-form-label">Data di consegna</label>
+                                        <input type="date" class="form-control senzabordo bordotondo" wire:model="data_consegna">
+                                        @error('indirizzo') <span class="error text-danger">Data non valida</span> @enderror
+                                    </div>
                                     <div class="form-group  col-12 col-md-6">
                                         <label for="indirizzo" class="col-form-label">Indirizzo di spedizione</label>
                                         <input type="text" class="form-control senzabordo bordotondo" wire:model="indirizzo">
                                         @error('indirizzo') <span class="error text-danger">Indirzzo non valido</span> @enderror
-                                    </div>
+                                    </div>                               
                                     <div class="form-group  col-12 col-md-6">
                                         <label for="citta" class="col-form-label">Città</label>
                                         <input type="text" class="form-control senzabordo bordotondo" wire:model="citta">

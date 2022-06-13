@@ -1,11 +1,16 @@
 <div>
     <div class="text-center my-2">
-        <h3 class="d-inline">Ordini per </h3>
-        <select class="form-control  d-inline w-auto" wire:model="filter_data">
+        <h3>Ordini</h3>
+        <span>dal </span>
+        <input type="date" wire:model="filter_data" class="form-control d-inline w-auto">
+        <span>al </span>
+        <input type="date" wire:model="filter_data2" class="form-control d-inline w-auto">
+      
+        {{--<select class="form-control  d-inline w-auto" wire:model="filter_data">
             <option value="oggi">oggi</option>
             <option value="domani">domani</option>
             <option value="settimana">settimana</option>
-        </select>
+        </select>--}}
     </div>
     <div id="accordion">
         @foreach($orders->get() as $order)
@@ -14,6 +19,7 @@
                     <h5 class="mb-0">
                         <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse-{{$order->id}}" aria-expanded="true" aria-controls="collapse-{{$order->id}}">
                             <div>@if($order->consegna_domicilio) <i class="fas fa-home mr-3"></i> @else <i class="fas fa-store mr-3"></i> @endif 
+                                {{ Carbon\Carbon::createFromFormat('Y-m-d', $order->data)->format('d-m')}}
                                 {{ $order->nome }} {{ $order->cognome }} - {{ $order->citta }}
                             </div>
                             <div> 

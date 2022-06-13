@@ -38,7 +38,13 @@
             <div class="col  my-3">
                 <div class="form-group">
                     <label>A partire dal </label>
-                    <input wire:model="filter_data" type="date" class="form-control">.
+                    <input wire:model="filter_data" type="date" class="form-control">
+                </div>
+            </div>
+            <div class="col my-3">
+                <div class="form-group float-right">
+                    <label>&nbsp;</label>
+                   <button class="btn btn-primary d-block" wire:click="stampa"><i class="fas fa-print"></i></button>
                 </div>
             </div>
            
@@ -69,7 +75,7 @@
                             @if($order->pagato) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Pagato" ><i class="fas fa-coins"></i></span> @else <button class="btn btn-warning text-white rounded-circle mr-2" wire:click="setPagato({{$order->id}})"><i class="fas fa-coins"></i></button> @endif
                         </td>
                         <td class="text-right" style="min-width: 160px;">
-                            <button class="btn btn-primary" wire:click="toggleShow({{$order->id}})"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-primary" wire:click="toggleShow({{$order->id}})"><i class="fas fa-edit"></i></button>
                             @can('admin.orders.trash')
                                 <button class="btn btn-outline-danger my-1" wire:click="confirmDelete({{ $order->id }})" data-toggle="tooltip"  data-original-title="Cancella"><i class="fas fa-trash"></i></button>                  
                             @endcan
