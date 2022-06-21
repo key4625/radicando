@@ -43,7 +43,7 @@ class Plant extends Model
         }    
     }
 
-    public function getPriceAttribute($value)
+    /*public function getPriceAttribute($value)
     {
         return str_replace('.', ',', $value);
     }
@@ -51,7 +51,7 @@ class Plant extends Model
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = str_replace(',', '.', $value);
-    }
+    }*/
 
     public function raccolti_oggi_kg()
     {
