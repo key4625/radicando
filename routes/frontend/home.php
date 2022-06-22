@@ -9,7 +9,7 @@ use Tabuna\Breadcrumbs\Trail;
  * All route names are prefixed with 'frontend.'.
  */
 
-    if(App\Models\Setting::find('view_only_order')->value == "on"){
+    if((Spatie\Multitenancy\Models\Tenant::current() != null)&&(App\Models\Setting::find('view_only_order')->value == "on")){
         Route::get('/', [HomeController::class, 'order'])
         ->name('index')
         ->breadcrumbs(function (Trail $trail) {
@@ -35,6 +35,7 @@ use Tabuna\Breadcrumbs\Trail;
             $trail->push(__('Visita'), route('frontend.visit'));
         });
     }
+
 
     Route::get('terms', [TermsController::class, 'index'])
         ->name('pages.terms')
