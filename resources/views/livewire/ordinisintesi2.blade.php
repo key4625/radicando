@@ -1,6 +1,6 @@
 <div>
     <div class="text-center my-2">
-        <h3>Da prepare</h3>
+        <h3>Da preparare</h3>
         <span>dal </span>
         <input type="date" wire:model="filter_data" class="form-control d-inline w-auto">
         <span>al </span>

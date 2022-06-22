@@ -180,8 +180,9 @@
             </div>
         </div>
     </div>
+    <input type="submit" class="btn btn-primary w-100 my-4" value="Salva tutte le impostazioni">
 
-    <input type="submit" class="btn btn-primary w-100 mt-4" value="Salva tutte le impostazioni">
+   
 </form>
 
 @endsection

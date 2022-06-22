@@ -94,11 +94,16 @@ class orderlivewire extends Component
         $this->idQuant = $item_id;
         $this->typeQuant = $type;
         $this->quantity = 0;
-        $arr_quant = explode(',',$quantity_um);
-        if($arr_quant[0]!=null){
-            $this->quantity_um =$arr_quant[0]; 
-        } else $this->quantity_um =$price_um; 
+        if($type == 'product'){
+            $this->quantity_um = "pz";
+        } else {
+            $arr_quant = explode(',',$quantity_um);
+            if($arr_quant[0]!=null){
+                $this->quantity_um =$arr_quant[0]; 
+            } else $this->quantity_um =$price_um; 
+        }
     }
+
     public function add($item_id,$type,$price, $price_um)
     {
         if($this->quantity != 0){
