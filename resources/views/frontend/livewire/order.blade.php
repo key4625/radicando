@@ -51,6 +51,7 @@
                                         <div class="col-6 col-lg-3 col-xl-2 mb-4">
                                             <div class="card card-flip mx-0 mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
                                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
+                                                
                                                     <div class="card-body text-center back py-2">
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                         @if($product->price!=null) <span class="price">{{$product->price}}€</span> @endif
@@ -58,6 +59,7 @@
                                                         <div class="input-group my-4">
                                                             {{--<label for="num" class="col-form-label mx-2">Quanti pezzi?</label>--}}
                                                             <input class="form-control d-inline" type="number" wire:model="quantity" default="0">
+                                                            
                                                             <div class="input-group-append"><span class="input-group-text">{{$quantity_um}}</span></div>
                                                         </div>
                                                         <div class="input-group my-4">
@@ -74,7 +76,7 @@
                                                         <button class="btn btn-primary" wire:click="add({{$product->id}},'product',{{$product->price}},'{{$product->price_um}}')">Aggiungi</button>
                                                     </div>
                                                 @else 
-                                                    <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','{{$product->price_um}}')" >
+                                                    <div class="card-body text-center front " wire:click="selProd({{$product->id}},'product','pz','{{$product->price_um}}')" >
                                                         <div class="d-flex align-items-center">
                                                             <img class="img-fluid" src="{{$product->getImage()}}" alt="{{$product->name}}">
                                                         </div>
