@@ -61,7 +61,7 @@
                                                             <div class="input-group-append"><span class="input-group-text">{{$quantity_um}}</span></div>
                                                         </div>
                                                         <div class="input-group my-4">
-                                                            @php ($arr_quant = explode(',',$product->quantity_um)) @endphp
+                                                            @php ($arr_quant = explode(',',$quantity_um)) @endphp
                                                             @if(count($arr_quant) >1 )
                                                                 <select class="form-control d-inline" wire:model="quantity_um">
                                                                     @foreach($arr_quant as $sing_quant)
