@@ -47,11 +47,11 @@ class Plant extends Model
     {
         return str_replace('.', ',', $value);
     }
-    
+    */
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = str_replace(',', '.', $value);
-    }*/
+    }
 
     public function raccolti_oggi_kg()
     {

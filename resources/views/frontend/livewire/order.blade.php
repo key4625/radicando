@@ -49,10 +49,10 @@
                                 <div class="row card-deck card-flip-container">
                                     @foreach($products_available as $product)
                                         <div class="col-6 col-lg-3 col-xl-2 mb-4">
-                                            <div class="card card-flip mx-0 mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
+                                            <div class="card card-flip mx-0 mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif " wire:key="prod-{{ $product->id }}" >
                                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
-                                                
                                                     <div class="card-body text-center back py-2">
+                                                        <button class="btn btn-ghost-muted btn-sm" wire:click="resetQuantity"><i class="fas fa-times"></i></button>
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                         @if($product->price!=null) <span class="price">{{$product->price}}€</span> @endif
                                                         @if($product->dimension!=0) <span class="price">{{$product->dimension}}</span> @endif
@@ -94,9 +94,10 @@
                                 <div class="row card-deck card-flip-container">
                                     @foreach($plants_available as $plant)
                                         <div class="col-6 col-lg-3 col-xl-2  mb-4">
-                                            <div class="card card-flip mx-0 mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
+                                            <div class="card card-flip mx-0 mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif " wire:key="plant-{{ $plant->id }}">
                                                 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
                                                     <div class="card-body text-center back py-2">
+                                                            <button class="btn btn-ghost-muted btn-sm" wire:click="resetQuantity"><i class="fas fa-times"></i></button>
                                                             <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                             @if($plant->price!=null)
                                                                 <span class="prezzo">{{$plant->price}}€/{{$plant->price_um}} </span>

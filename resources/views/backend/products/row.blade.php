@@ -1,10 +1,6 @@
 
 <td>
-    @if( $row->image !=null)
-        <img class="img-responsive" src="{{ Storage::url($row->image) }}" style="height:45px;">
-    @else 
-        <img class="img-responsive" src="/img/img-placeholder.png"  style="height:45px;">
-    @endif
+    <img class="img-responsive" src="{{ $row->getImage() }}" style="height:45px;">
 </td> 
 
 <x-livewire-tables::table.cell>
@@ -24,14 +20,21 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
+    {{ $row->fragile }}
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
     {{ $row->price }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
     @if($row->vendibile  == 1) 
-        <button class="btn btn-success  btn-sm"><i class="fas fa-check "></i></button>
+        <button type="button"  class="btn btn-success  btn-sm" wire:click.stop.prevent="setVendibile({{$row}},0)"><i class="fas fa-check "></i></button>
     @else
-    <button class="btn btn-danger btn-sm"><i class="fas fa-times bg-danger"></i>  </button>    
-    
+        <button type="button" class="btn btn-danger btn-sm" wire:click.stop.prevent="setVendibile({{$row}},1)"><i class="fas fa-times bg-danger"></i>  </button>    
     @endif
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <a href="{{route('admin.prodotti.edit', $row['id'])}}" class="btn btn-sm btn-dark"><i class="fas fa-edit"></i></a>
 </x-livewire-tables::table.cell>

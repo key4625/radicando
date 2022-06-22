@@ -52,6 +52,8 @@ class PlantSeeder extends Seeder
             'id' => 2,
             'name' => 'Vini e distillati'
         ]);
+   
+
         Productcategory::create([
             'id' => 3,
             'name' => 'Marmellate, salse e confetture'
@@ -76,7 +78,15 @@ class PlantSeeder extends Seeder
             'id' => 8,
             'name' => 'Cosmetica e detergenti'
         ]);
-
+        Productcategory::create([
+            'id' => 9,
+            'name' => 'Prodotti da forno'
+        ]);
+        Productcategory::create([
+            'id' => 10,
+            'name' => 'Altro'
+        ]);
+  
         foreach ($records as $key => $record) {
             Plant::create([
                 'id' => $record['id'],

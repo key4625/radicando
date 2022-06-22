@@ -18,17 +18,14 @@ class ProductsTable extends DataTableComponent
     {
         return [
             Column::make('','image'),
-            Column::make('Nome','name')
-                ->sortable()
-                ->searchable(),
+            Column::make('Nome','name')->sortable()->searchable(),
             Column::make('Dimens.','dimension'),
             Column::make('Tipo','productcategories.name'),
-            Column::make('Magazzino','quantity_mag')
-                ->sortable(),
-        
-            Column::make('Prezzo','price')
-                ->sortable(),
+            Column::make('Magazzino','quantity_mag')->sortable(),
+            Column::make('Fragilità','fragile')->sortable(),
+            Column::make('Prezzo','price')->sortable(),
             Column::make('In vendita', 'vendibile'),
+            Column::make('Vedi', '')
            
         ];
     }
@@ -42,12 +39,21 @@ class ProductsTable extends DataTableComponent
             ->when($this->getFilter('tipologia'), fn ($query, $cat_id) => $query->where('productcategories_id', $cat_id));
     }
 
+    public function setVendibile($row,$invendita){
+        
+        $product = Product::find($row['id']);
+       
+        //$row['vendibile'] = $invendita;
+        $product->vendibile = $invendita;
+        $product->save();
+        //dd($invendita);
 
+    }
   
-    public function getTableRowUrl($row): string
+    /*public function getTableRowUrl($row): string
     {
         return route('admin.prodotti.edit', $row);
-    }
+    }*/
     public function rowView(): string
     {
         // Becomes /resources/views/location/to/my/row.blade.php
@@ -76,6 +82,8 @@ class ProductsTable extends DataTableComponent
                     '6' => 'Carne',
                     '7' => 'Uova',
                     '8' => 'Cosmetica e detergenti',
+                    '10' => 'Forno',
+                    '9' => 'Altro',
                 ]),
             
         ];

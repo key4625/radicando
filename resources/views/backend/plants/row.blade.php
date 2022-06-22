@@ -12,7 +12,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    {{ $row->resa_pianta_kg }}
+    {{ $row->fragile }}
 </x-livewire-tables::table.cell>
 
 

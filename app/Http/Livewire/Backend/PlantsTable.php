@@ -21,7 +21,7 @@ class PlantsTable extends DataTableComponent
             Column::make('','image'),
             Column::make('Nome','nome')->sortable()->searchable(),
             Column::make('Tipo','plantcategory.name'),
-            Column::make('Resa/kg','resa_pianta_kg')->sortable(),    
+            Column::make('Fragilità','fragile')->sortable(),   
             Column::make('Prezzo/kg','prezzo_kg')->sortable(),
             Column::make('In vendita', 'vendibile'),
             Column::make('Vedi', ''),
