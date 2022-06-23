@@ -40,42 +40,26 @@
                         <div class="form-group">
                             <label>Nome</label>
                             <input type="text" name="nome" @if(isset($plant)) value="{{$plant->nome}}" @endif class="form-control" placeholder="Nome">
+                            <input type="hidden" name="abbreviazione" @if(isset($plant)) value="{{$plant->abbreviazione}}" @endif >
+             
                         </div>
                     </div> 
-                    <!--<div class="col-12 col-md-2">
+                    {{--<div class="col-12 col-md-2">
                         <div class="form-group">
                             <label>Abbreviazione</label>
                             <input type="text" name="abbreviazione" @if(isset($plant)) value="{{$plant->abbreviazione}}" @endif class="form-control" placeholder="Abbreviazione">
                         </div>
-                    </div>-->
+                    </div>--}}
                     <div class="col-12 col-md-2">
                         <div class="form-group">
                             <label>Fragilità</label>
-                           <select class="form-control" name="fragile">
-                               <option value="0" @if(isset($plant)&&($plant->fragile==0)) selected="selected" @endif>0</option>
-                               <option value="1" @if(isset($plant)&&($plant->fragile==1)) selected="selected" @endif>1</option>
-                               <option value="2" @if(isset($plant)&&($plant->fragile==2)) selected="selected" @endif>2</option>
-                               <option value="3" @if(isset($plant)&&($plant->fragile==3)) selected="selected" @endif>3</option>
-                               <option value="4" @if(isset($plant)&&($plant->fragile==4)) selected="selected" @endif>4</option>
-                               <option value="5" @if(isset($plant)&&($plant->fragile==5)) selected="selected" @endif>5</option>
-                           </select>
+                            <input type="number"class="form-control" name="priority" @if(isset($plant)) value="{{$plant->fragile}}" @else value="1" @endif>
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
                         <div class="form-group">
-                            <label>Ordinamento</label>
-                           <select class="form-control" name="priority">
-                               <option value="1" @if(isset($plant)&&($plant->priority==1)) selected="selected" @endif>1</option>
-                               <option value="2" @if(isset($plant)&&($plant->priority==2)) selected="selected" @endif>2</option>
-                               <option value="3" @if(isset($plant)&&($plant->priority==3)) selected="selected" @endif>3</option>
-                               <option value="4" @if(isset($plant)&&($plant->priority==4)) selected="selected" @endif>4</option>
-                               <option value="5" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>5</option>
-                               <option value="6" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>6</option>
-                               <option value="7" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>7</option>
-                               <option value="8" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>8</option>
-                               <option value="9" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>9</option>
-
-                           </select>
+                            <label>Ordinamento (1-10)</label>
+                            <input type="number"class="form-control" name="priority" @if(isset($plant)) value="{{$plant->priority}}" @else value="5" @endif>
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
