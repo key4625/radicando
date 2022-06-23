@@ -152,7 +152,7 @@
                     <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
                         <div class="card-deck card-flip-container">
                             @foreach($products_available as $product)
-                                <div class="col-6 col-lg-3 col-xl-2 mb-4">
+                                <div class="col-6 col-lg-4 col-xl-3 mb-4">
                                     <div class="card card-flip mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
                                         @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
                                             <div class="card-body text-center back">
@@ -195,7 +195,7 @@
                     <div class="tab-pane  @if($showProd == 2) show active fade @endif" wire:loading.class="fade">
                         <div class="card-deck">
                             @foreach($plants_available as $plant)
-                                <div class="col-6 col-lg-3 col-xl-2  mb-4">
+                                <div class="col-6 col-lg-4 col-xl-3  mb-4">
                                     <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">
                                         @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
                                             <div class="card-body text-center back">
