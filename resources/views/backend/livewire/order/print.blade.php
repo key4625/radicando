@@ -2,6 +2,7 @@
 	x-data="{
 		printDiv() {
             document.getElementById('dastampare').style.display = 'block';
+            document.getElementById('buttonstampa').style.display = 'none';
 			var printContents = this.$refs.container.innerHTML;
             
 			var originalContents = document.body.innerHTML;
@@ -9,6 +10,7 @@
 			window.print();
 			document.body.innerHTML = originalContents;
             document.getElementById('dastampare').style.display = 'none';
+            document.getElementById('buttonstampa').style.display = 'block';
 		}
 	}" 
 	x-cloak
@@ -18,8 +20,8 @@
 	@isset($printButton)
 		{{ $printButton }}
 	@else
-		<div class="print:hidden absolute top-3 right-4">
-            <button class="btn btn-primary d-block" type="button" x-on:click="printDiv()" ><i class="fas fa-print"></i></button>
+		<div id="buttonstampa" class="print:hidden absolute top-3 right-4" style="display:block;">
+            <button class="btn btn-primary d-block mb-3" type="button" x-on:click="printDiv()" ><i class="fas fa-print"></i> Stampa ordini</button> 
 		</div>
 	@endisset
 
@@ -85,7 +87,7 @@
                     </tbody>
                 </table>
             @endif  
-            <h5>TOTALE: {{$order->prezzo_tot}}</h5>      
+            <h5>TOTALE: {{$order->prezzo_tot}} €</h5>      
             <hr>     
         @endforeach
     </div>

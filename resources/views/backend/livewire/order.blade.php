@@ -44,7 +44,6 @@
             <div class="col my-3">
                 <div class="form-group float-right">
                     <label>&nbsp;</label>
-                   <button class="btn btn-primary d-block" x-on:click="printDiv()"><i class="fas fa-print"></i></button>
                 </div>
             </div>
            
