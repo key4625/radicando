@@ -72,7 +72,7 @@ class orderlivewire extends Component
     }
     public function render()
     {
-        $plants_available = Plant::where('vendibile',1)->orderby('priority','asc')->orderby('nome','desc')->get();
+        $plants_available = Plant::where('vendibile',1)->orderby('priority','asc')->orderby('nome','asc')->get();
        
         /*$plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
             return $value['type'] == "vegetable";
@@ -81,7 +81,7 @@ class orderlivewire extends Component
             return $value['type'] == "product";
         });*/
         //$plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered)->get());    
-        $products_available = Product::where('vendibile',1)->orderby('priority','asc')->orderby('name','desc')->get();
+        $products_available = Product::where('vendibile',1)->orderby('priority','asc')->orderby('name','asc')->get();
         $this->ricalcola_tot();
         //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered)->get());    
         return view('frontend.livewire.order',['plants_available' => $plants_available, 'products_available' => $products_available]);
