@@ -44,7 +44,8 @@ class PlantController
     {
         $request->validate([
             'nome' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'abbreviazione' => 'unique'
         ]);
         if($request->has('file_upload')!=null){
             $curr_ten = app('currentTenant');
@@ -59,7 +60,7 @@ class PlantController
         //array_merge($request->all(), ['user_id' => Auth::id()]);
      
         if($request->abbreviazione==null){
-            $request->merge(['abbreviazione' => substr(trim($request->nome),0,5)]);
+            $request->merge(['abbreviazione' => trim($request->nome)]);
         }
         Plant::create($request->except('file_upload'));
 
@@ -70,8 +71,8 @@ class PlantController
     {
         $request->validate([
             'nome' => 'required',
-            'price' => 'required'
-           
+            'price' => 'required',
+            'abbreviazione' => 'unique'  
         ]);
         $tmpPlant = Plant::where('id',$id)->first();
         if($request->has('file_upload')!=null){

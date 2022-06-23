@@ -148,7 +148,7 @@
                         @if(count($item_ordered) > 0)
                             <h5 class="text-center orange">Fai il punto della situazione</h5>
                             <h1 class="text-center green">COSA STAI PRENOTANDO</h1>
-                            <ul class="list-group  my-4 py-4" style="border-top: 0.13rem solid #c1c1c1;"> 
+                            <ul class="list-group  my-4 pb-0 pt-4 " style="border-top: 0.13rem solid #c1c1c1;"> 
                             
                                 @foreach($item_ordered as $key=>$item_ord)
                                 
@@ -182,7 +182,7 @@
                                                    - 
                                                 @endif
                                             </div>
-                                        
+                                         
                                             <div class="col">
                                                 <button class="btn btn-danger-outline" wire:click="remove({{$key}})"><i class="fas fa-trash"></i></button>
                                             </div>       
@@ -191,6 +191,16 @@
                                 @endforeach
                             </ul>
                             <div class="text-center">
+                                @if((!$ordine_non_completo)&&($ordine_tot > 0))
+                                    Totale ordine: {{$ordine_tot}}€
+                                @else 
+                                    Totale ordine: -
+                                @endif
+                            </div>
+                            <div class="text-center">
+                                
+                                   
+                               
                                 <button class="btn btn-sm btn-ghost-danger bordotondo px-4 text-center"  wire:click="resetInputFields"><i class="fas fa-trash"></i> Svuota ordine</button>
                             </div>
                         @endif 

@@ -16,7 +16,8 @@ class orderlivewire extends Component
 {
     public $item_ordered;
     public $quantity, $quantity_um, $plant_sel_id;
-    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $price;
+    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $price, $ordine_tot;
+    public $ordine_non_completo = false;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $passo;
@@ -72,6 +73,7 @@ class orderlivewire extends Component
     public function render()
     {
         $plants_available = Plant::where('vendibile',1)->get();
+       
         /*$plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
             return $value['type'] == "vegetable";
         });
@@ -80,6 +82,7 @@ class orderlivewire extends Component
         });*/
         //$plants_available = $plants_available->diff(Plant::whereIn('id', $plant_filtered)->get());    
         $products_available = Product::where('vendibile',1)->get();
+        $this->ricalcola_tot();
         //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered)->get());    
         return view('frontend.livewire.order',['plants_available' => $plants_available, 'products_available' => $products_available]);
     }
@@ -112,6 +115,7 @@ class orderlivewire extends Component
             }*/
             //$new_item = array('id_num'=>$findmax+1,'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             $new_item = array('item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
+            
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
             session()->put('name_order', $this->nome);
@@ -130,7 +134,18 @@ class orderlivewire extends Component
         unset( $this->item_ordered[$key]);
         session()->put('items_in_order', $this->item_ordered);
     }
-
+    public function ricalcola_tot() {
+        $this->ordine_tot = 0;
+        $this->ordine_non_completo = false;
+        foreach ($this->item_ordered as $tmp_item_ordered) {
+            if($tmp_item_ordered['quantity_um']==$tmp_item_ordered['price_um']) {
+                $this->ordine_tot +=  $tmp_item_ordered['quantity']* $tmp_item_ordered['price'];
+            } else {
+                $this->ordine_non_completo = true;
+            }
+        }
+        if( $this->ordine_non_completo) $this->ordine_tot = 0;
+    }
     public function ordina()
     {      
         $this->validate();
@@ -143,7 +158,7 @@ class orderlivewire extends Component
         $ordine->citta = $this->citta;
         $ordine->consegna_domicilio = $this->consegna_domicilio;
         $ordine->data =  $this->data_consegna;
-        $ordine->prezzo_tot = 0;
+        $ordine->prezzo_tot = $this->ordine_tot;
         $ordine->sconto_perc = 0;
         $ordine->tipo_cliente = 'privato';
         $ordine->save();
