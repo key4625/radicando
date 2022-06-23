@@ -29,16 +29,12 @@
                             @error('name')<div class="text-danger">Inserire un nome</div>@enderror
                         </div>
                     </div>
-                    <div class="col-4 col-md-2">
+                  
+                
+                    <div class="col-12 col-md-2">
                         <div class="form-group">
-                            <label>Dimensioni (kg o litri)</label>
-                            <input type="number" name="dimension" @if(isset($product)) value="{{$product->dimension}}" @else value=0 @endif class="form-control" placeholder="0.0">
-                        </div>
-                    </div> 
-                    <div class="col-4 col-md-2">
-                        <div class="form-group">
-                            <label>Quantità mag</label>
-                            <input type="number" name="quantity_mag" @if(isset($product)) value="{{$product->quantity_mag}}" @else value=0 @endif class="form-control" placeholder="0">
+                            <label>Ordinamento (1-10)</label>
+                            <input type="number"class="form-control" name="priority" @if(isset($plant)) value="{{$plant->priority}}" @else value="5" @endif>
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
@@ -61,6 +57,15 @@
                             @error('price')<div class="text-danger">Inserire un prezzo</div>@enderror
                         </div>
                     </div>
+                    <div class="col-6 col-md-2">
+                        <div class="form-group">
+                            <label>In vendita</label>
+                           <select class="form-control" name="vendibile">
+                               <option value="1" @if(isset($product)&&($product->vendibile == 1)) selected="selected" @endif>Si</option>
+                               <option value="0" @if(isset($product)&&($product->vendibile == 0)) selected="selected" @endif>No</option>
+                           </select>
+                        </div>
+                    </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label>Tipologia prodotto</label>
@@ -73,15 +78,11 @@
                             @error('productcategories_id')<div class="text-danger">Selezionare una tipologia</div>@enderror
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                   
+                    <div class="col-4 col-md-2">
                         <div class="form-group">
-                            <label>Coltivazione associata</label>
-                            <select name="cultivation_id" class="form-control">
-                                <option value="0">Seleziona una coltivazione</option>
-                                @foreach($cultivations as $single_cult)
-                                    <option value="{{$single_cult->id}}" @if(isset($product)&&($product->cultivation_id == $single_cult->id)) selected="selected" @endif>{{$single_cult->cultivable->name}} - {{$single_cult->data_inizio}}</option>
-                                @endforeach
-                            </select>
+                            <label>Quantità mag</label>
+                            <input type="number" name="quantity_mag" @if(isset($product)) value="{{$product->quantity_mag}}" @else value=0 @endif class="form-control" placeholder="0">
                         </div>
                     </div>
                     <div class="col-6 col-md-2">
@@ -90,15 +91,13 @@
                             <input type="text" name="lot" @if(isset($product)) value="{{$product->lot}}" @endif class="form-control" placeholder="lotto n°">
                         </div>
                     </div>
-                    <div class="col-6 col-md-2">
+                    <div class="col-4 col-md-2">
                         <div class="form-group">
-                            <label>In vendita</label>
-                           <select class="form-control" name="vendibile">
-                               <option value="1" @if(isset($product)&&($product->vendibile == 1)) selected="selected" @endif>Si</option>
-                               <option value="0" @if(isset($product)&&($product->vendibile == 0)) selected="selected" @endif>No</option>
-                           </select>
+                            <label>Dimensioni (kg o litri)</label>
+                            <input type="number" name="dimension" @if(isset($product)) value="{{$product->dimension}}" @else value=0 @endif class="form-control" placeholder="0.0">
                         </div>
-                    </div>
+                    </div> 
+                   
                     <div class="col-12">
                         <div class="form-group">
                             <label>Descrizione</label>
@@ -120,7 +119,19 @@
                     </div>
                  
                    
-                   
+                    @if(App\Models\Setting::find('gest_coltivazioni')->value == "on")
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label>Coltivazione associata</label>
+                                <select name="cultivation_id" class="form-control">
+                                    <option value="0">Seleziona una coltivazione</option>
+                                    @foreach($cultivations as $single_cult)
+                                        <option value="{{$single_cult->id}}" @if(isset($product)&&($product->cultivation_id == $single_cult->id)) selected="selected" @endif>{{$single_cult->cultivable->name}} - {{$single_cult->data_inizio}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                     
 
                     <div class="col-12 col-md-12 text-center">

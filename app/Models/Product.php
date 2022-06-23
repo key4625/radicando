@@ -5,6 +5,7 @@ namespace App\Models;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 use Storage;
 use Str;
@@ -12,6 +13,7 @@ use Str;
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     use UsesTenantConnection;
     protected $guarded = [];
 

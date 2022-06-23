@@ -42,12 +42,12 @@
                             <input type="text" name="nome" @if(isset($plant)) value="{{$plant->nome}}" @endif class="form-control" placeholder="Nome">
                         </div>
                     </div> 
-                    <div class="col-12 col-md-2">
+                    <!--<div class="col-12 col-md-2">
                         <div class="form-group">
                             <label>Abbreviazione</label>
                             <input type="text" name="abbreviazione" @if(isset($plant)) value="{{$plant->abbreviazione}}" @endif class="form-control" placeholder="Abbreviazione">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-12 col-md-2">
                         <div class="form-group">
                             <label>Fragilità</label>
@@ -58,6 +58,23 @@
                                <option value="3" @if(isset($plant)&&($plant->fragile==3)) selected="selected" @endif>3</option>
                                <option value="4" @if(isset($plant)&&($plant->fragile==4)) selected="selected" @endif>4</option>
                                <option value="5" @if(isset($plant)&&($plant->fragile==5)) selected="selected" @endif>5</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <div class="form-group">
+                            <label>Ordinamento</label>
+                           <select class="form-control" name="priority">
+                               <option value="1" @if(isset($plant)&&($plant->priority==1)) selected="selected" @endif>1</option>
+                               <option value="2" @if(isset($plant)&&($plant->priority==2)) selected="selected" @endif>2</option>
+                               <option value="3" @if(isset($plant)&&($plant->priority==3)) selected="selected" @endif>3</option>
+                               <option value="4" @if(isset($plant)&&($plant->priority==4)) selected="selected" @endif>4</option>
+                               <option value="5" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>5</option>
+                               <option value="6" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>6</option>
+                               <option value="7" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>7</option>
+                               <option value="8" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>8</option>
+                               <option value="9" @if(isset($plant)&&($plant->priority==5)) selected="selected" @endif>9</option>
+
                            </select>
                         </div>
                     </div>
@@ -83,7 +100,7 @@
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <label>Prezzo</label>
-                            <input type="text" name="price" @if(isset($plant)) value="{{$plant->price}}" @endif class="form-control" placeholder="0,0">
+                            <input type="text" name="price" @if(isset($plant)) value="{{$plant->price}}" @endif class="form-control" placeholder="00">
                             @error('price')<div class="text-danger">Inserire un prezzo</div>@enderror
                         </div>
                     </div>
@@ -97,6 +114,12 @@
                         <div class="form-group">
                             <label>U.M. per la selezione</label>
                             <input type="text" name="quantity_um" @if(isset($plant)) value="{{$plant->quantity_um}}" @else value="kg"  @endif class="form-control" placeholder="kg,pz..">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Descrizione</label>
+                            <textarea name="description"  class="form-control" rows="3">@if(isset($plant)) {{$plant->description}} @endif</textarea>
                         </div>
                     </div>
                     {{--<div class="col-12 col-md-6">
@@ -143,14 +166,24 @@
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label>Trapianto</label>
+                                    
                                     @php 
+                                    if(isset($plant)){
                                         $plant_trapianto = json_decode(str_replace('"','',$plant->trapianto)); 
                                         $plant_semina = json_decode(str_replace('"','',$plant->semina)); 
                                         $plant_semina_out = json_decode(str_replace('"','',$plant->semina_out)); 
                                         $plant_raccolta = json_decode(str_replace('"','',$plant->raccolta)); 
-                                        $plant_gg_campo = json_decode(str_replace('"','',$plant->gg_campo)); 
+                                        $plant_gg_campo = json_decode(str_replace('"','',$plant->gg_campo));
+                                    } else {
+                                        $plant_trapianto = null; 
+                                        $plant_semina = null; 
+                                        $plant_semina_out = null; 
+                                        $plant_raccolta = null; 
+                                        $plant_gg_campo = null;
+                                    } 
                                         //dd($plant_trapianto);
                                     @endphp
+                                   
                                     <select id="sel_trapianto" class="form-control" name="trapianto[]" multiple="">
                                         
                                         <option value="1" @if(($plant_trapianto!=null)&&(in_array(1, $plant_trapianto))) selected @endif >Gennaio</option>

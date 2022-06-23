@@ -45,7 +45,7 @@ class PlantController
         $request->validate([
             'nome' => 'required',
             'price' => 'required',
-            'abbreviazione' => 'unique'
+            'abbreviazione' => 'unique:plants'
         ]);
         if($request->has('file_upload')!=null){
             $curr_ten = app('currentTenant');
@@ -72,7 +72,7 @@ class PlantController
         $request->validate([
             'nome' => 'required',
             'price' => 'required',
-            'abbreviazione' => 'unique'  
+            'abbreviazione' => 'unique:plants'  
         ]);
         $tmpPlant = Plant::where('id',$id)->first();
         if($request->has('file_upload')!=null){

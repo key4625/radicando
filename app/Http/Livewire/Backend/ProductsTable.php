@@ -13,19 +13,18 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 class ProductsTable extends DataTableComponent
 {
-
+    public $confirming;
     public function columns(): array
     {
         return [
             Column::make('','image'),
-            Column::make('Nome','products.name')->sortable()->searchable(),
-            Column::make('Dimens.','dimension'),
+            Column::make('Nome','products.name')->sortable()->searchable(),       
             Column::make('Tipo','productcategories.name'),
-            Column::make('Magazzino','quantity_mag')->sortable(),
+            Column::make('Ordine','priority')->sortable(),
             Column::make('Fragilità','fragile')->sortable(),
             Column::make('Prezzo','price')->sortable(),
             Column::make('In vendita', 'vendibile'),
-            Column::make('Vedi', '')
+            Column::make('', '')
            
         ];
     }
@@ -58,6 +57,15 @@ class ProductsTable extends DataTableComponent
     {
         // Becomes /resources/views/location/to/my/row.blade.php
         return 'backend.products.row';
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->confirming = $id;
+    }
+    public function delete($id)
+    {
+        Product::destroy($id);
     }
 
     public function filters(): array

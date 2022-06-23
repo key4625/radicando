@@ -13,21 +13,23 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
  */
 class PlantsTable extends DataTableComponent
 {
+    public $confirming;
 
-   
     public function columns(): array
     {
         return [
             Column::make('','image'),
             Column::make('Nome','nome')->sortable()->searchable(),
             Column::make('Tipo','plantcategory.name'),
+            Column::make('Ordine','priority')->sortable(),
             Column::make('Fragilità','fragile')->sortable(),   
             Column::make('Prezzo/kg','prezzo_kg')->sortable(),
             Column::make('In vendita', 'vendibile'),
-            Column::make('Vedi', ''),
+            Column::make('', ''),
            
         ];
     }
+   
 
     public function query(): Builder
     {
@@ -90,6 +92,15 @@ class PlantsTable extends DataTableComponent
     {
         return route('admin.piante.edit', $row);
     }*/
+
+    public function confirmDelete($id)
+    {
+        $this->confirming = $id;
+    }
+    public function delete($id)
+    {
+        Plant::destroy($id);
+    }
 
     public function rowView(): string
     {
