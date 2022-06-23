@@ -23,7 +23,7 @@
 		</div>
 	@endisset
 
-    <div id="dastampare" style="display:block;">
+    <div id="dastampare" style="display:none;">
         @foreach($orders->get() as $order)
             <h3 class="d-inline">{{$order->nome}} {{$order->cognome}}</h3>
             <h5  class="d-inline">{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </h5>
