@@ -25,8 +25,9 @@
 		</div>
 	@endisset
 
-    <div id="dastampare" style="display:none;">
+    <div id="dastampare" class="row" style="display:none;">
         @foreach($orders->get() as $order)
+        <div class="col-6">
             <h3 class="d-inline">{{$order->nome}} {{$order->cognome}}</h3>
             <h5  class="d-inline">{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </h5>
             <p>Tel. {{$order->telefono}} - Indirizzo {{$order->citta}} {{$order->indirizzo}}</p>
@@ -58,6 +59,7 @@
                     </tbody>
                 </table>
             @endif
+            
             @if($order->products()->count()>0)
                 <table class="table table-sm table-bordered w-full">
                     <thead>
@@ -72,7 +74,7 @@
                     <tbody>
                         @foreach($order->products()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','desc')->get() as $tmp_item_order)
                             <tr> 
-                                <td>{{$tmp_item_order->nome}}</td>
+                                <td>{{$tmp_item_order->name}}</td>
                                 <td>{{ $tmp_item_order->pivot->quantity}} {{ $tmp_item_order->pivot->quantity_um}}</td>
                                 <td>{{$tmp_item_order->pivot->price}}€ / {{$tmp_item_order->pivot->price_um}}</td>
                                 <td>
@@ -90,6 +92,7 @@
             <h5>TOTALE: {{$order->prezzo_tot}} €</h5>      
             <hr>     
         @endforeach
+        </div>
     </div>
 
 </div>
