@@ -25,7 +25,7 @@
 		</div>
 	@endisset
 
-    <div id="dastampare" style="display:block;">
+    <div id="dastampare" style="display:none;">
         <div class="row">
             @foreach($orders->get() as $order)
                 <div class="col-6">
