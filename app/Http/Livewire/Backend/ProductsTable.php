@@ -18,7 +18,7 @@ class ProductsTable extends DataTableComponent
     {
         return [
             Column::make('','image'),
-            Column::make('Nome','name')->sortable()->searchable(),
+            Column::make('Nome','products.name')->sortable()->searchable(),
             Column::make('Dimens.','dimension'),
             Column::make('Tipo','productcategories.name'),
             Column::make('Magazzino','quantity_mag')->sortable(),
