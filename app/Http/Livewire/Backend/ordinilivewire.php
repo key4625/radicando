@@ -25,6 +25,7 @@ class ordinilivewire extends Component
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $filter_consegnato, $filter_pagato, $filter_data;
+    public $showPrintDiv = false;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
