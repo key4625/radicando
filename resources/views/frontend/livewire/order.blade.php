@@ -48,7 +48,7 @@
                             <div class="tab-pane  @if($showProd == 0) show active fade @endif" wire:loading.class="fade">
                                 <div class="row card-deck card-flip-container">
                                     @foreach($products_available as $product)
-                                        <div class="col-6 col-lg-3 col-xl-2 mb-4">
+                                        <div class="col-12 col-lg-4 col-xl-2 mb-4">
                                             <div class="card card-flip mx-0 mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif " wire:key="prod-{{ $product->id }}" >
                                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
                                                     <div class="card-body text-center back py-2">
@@ -93,7 +93,7 @@
                             <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
                                 <div class="row card-deck card-flip-container">
                                     @foreach($plants_available as $plant)
-                                        <div class="col-6 col-lg-3 col-xl-2  mb-4">
+                                        <div class="col-12 col-lg-4 col-xl-2  mb-4">
                                             <div class="card card-flip mx-0 mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif " wire:key="plant-{{ $plant->id }}">
                                                 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
                                                     <div class="card-body text-center back py-2">
