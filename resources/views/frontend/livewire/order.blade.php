@@ -21,10 +21,11 @@
     <div class="d-block d-md-none container-xxl bg-orange py-4">
         <div class="row no-gutters">
             <div class="col-12 text-center"><h3 class="h3 green text-uppercase">@if(count($item_ordered)==0) Seleziona prodotti @elseif($passo==4) Ordine concluso! @else  Il tuo ordine ({{ count($item_ordered) }} pezzi) @endif</h3></div>
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <div class="progress">
                     <div class="progress-bar  bg-green" role="progressbar" style="width: @if($passo==0) 25% @elseif($passo==1) 50% @elseif($passo==2) 75% @else 100% @endif" aria-valuenow="  @if($passo==0) 25 @elseif($passo==1) 50 @elseif($passo==2) 75 @else 100 @endif" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
+                @if(count($item_ordered) != 0)<button class="btn btn-primary bordotondo text-center mt-3 "  wire:click="$set('passo', {{$passo+1}})">Avanti <i class="fas fa-forward"></i></button>@endif
             </div>
         </div> 
     </div>
@@ -48,10 +49,10 @@
                             <div class="tab-pane  @if($showProd == 0) show active fade @endif" wire:loading.class="fade">
                                 <div class="row card-deck card-flip-container">
                                     @foreach($products_available as $product)
-                                        <div class="col-6 col-lg-3 col-xl-2 mb-4">
+                                        <div class="col-6 col-lg-3 col-xl-2 px-2  mb-4">
                                             <div class="card card-flip mx-0 mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif " wire:key="prod-{{ $product->id }}" >
                                                 @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product'))
-                                                    <div class="card-body text-center back py-2">
+                                                    <div class="card-body text-center back px-2 px-md-3 py-2">
                                                         <button class="btn btn-ghost-muted btn-sm" wire:click="resetQuantity"><i class="fas fa-times"></i></button>
                                                         <h5 class="mt-3 text-uppercase">{{$product->name}}</h5>
                                                         @if($product->price!=null) <span class="price">{{$product->price}}€</span> @endif
@@ -93,10 +94,10 @@
                             <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
                                 <div class="row card-deck card-flip-container">
                                     @foreach($plants_available as $plant)
-                                        <div class="col-6 col-lg-3 col-xl-2  mb-4">
+                                        <div class="col-6 col-lg-3 col-xl-2 px-2  mb-4">
                                             <div class="card card-flip mx-0 mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif " wire:key="plant-{{ $plant->id }}">
                                                 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable'))
-                                                    <div class="card-body text-center back py-2">
+                                                    <div class="card-body text-center back  px-2 px-md-3 py-2">
                                                             <button class="btn btn-ghost-muted btn-sm" wire:click="resetQuantity"><i class="fas fa-times"></i></button>
                                                             <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                             @if($plant->price!=null)
@@ -237,6 +238,11 @@
                                     <label for="tel" class="col-form-label">Numero di telefono</label>
                                     <input type="text" class="form-control senzabordo bordotondo" wire:model="tel">
                                     @error('tel') <span class="error text-danger">Telefono non valido</span> @enderror
+                                </div>
+                                <div class="form-group  col-12">
+                                    <label for="notes" class="col-form-label">Note</label>
+                                    <textarea class="form-control senzabordo bordotondo" wire:model="notes"></textarea>
+                                    @error('notes') <span class="error text-danger">Note non valide</span> @enderror
                                 </div>
                                 <div class="form-check my-2 col-12 col-md-12 text-center">
                                     <input class="form-check-input" type="checkbox" wire:model="consegna_domicilio" id="consegna_domicilio">

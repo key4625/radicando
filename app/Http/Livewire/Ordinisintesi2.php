@@ -26,7 +26,7 @@ class Ordinisintesi2 extends Component
         if($this->filter_data != null){
             $orders_list->whereDate("data",">=",$this->filter_data);
             if($this->filter_data2 != null){
-                $orders_list->whereDate("data","<",$this->filter_data2);
+                $orders_list->whereDate("data","<=",$this->filter_data2);
             }
         } else $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
         /*

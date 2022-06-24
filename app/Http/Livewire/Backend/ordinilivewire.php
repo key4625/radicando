@@ -20,7 +20,7 @@ class ordinilivewire extends Component
     public $showMode;
     public $confirming;
     public $quantity, $quantity_um, $price, $price_um;
-    public $ordine, $nome, $cognome, $indirizzo, $consegna_domicilio,$citta, $email, $tel, $data, $ora, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
+    public $ordine, $nome, $cognome, $indirizzo, $consegna_domicilio,$citta, $email, $tel, $notes, $data, $ora, $prezzo_tot, $prezzo_tot_consigliato, $prezzo_tot_consigliato_scontato, $tipo_cliente, $sconto_perc, $evaso, $pagato;
     public $item_ordered;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
@@ -49,6 +49,7 @@ class ordinilivewire extends Component
         $this->item_ordered = array(); 
         $this->showMode = 0;
         $this->nome = null;
+        $this->notes = null;
         $this->cognome = null;
         $this->email = null;
         $this->tel = null;
@@ -119,6 +120,7 @@ class ordinilivewire extends Component
         $this->indirizzo = $this->sel_order->indirizzo;
         $this->citta = $this->sel_order->citta;
         $this->tel = $this->sel_order->tel;
+        $this->notes = $this->sel_order->notes;
         $this->prezzo_tot =$this->sel_order->prezzo_tot;
         if($this->sel_order->data!=null){
             $this->data = $this->sel_order->data;
@@ -199,6 +201,7 @@ class ordinilivewire extends Component
         $this->sel_order->sconto_perc = $this->sconto_perc;
         $this->sel_order->data = $this->data;
         $this->sel_order->ora = $this->ora;
+        $this->sel_order->notes = $this->notes;
         $this->sel_order->consegna_domicilio = $this->consegna_domicilio;
         $this->sel_order->save();
         $this->sel_order->plants()->detach();

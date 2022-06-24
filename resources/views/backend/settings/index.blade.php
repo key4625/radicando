@@ -28,7 +28,9 @@
     <ul class="nav nav-tabs auto">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true" href="#">Generali</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true" href="#">Attività</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true" href="#">Ordini</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true" href="#">Notifiche</a></li>
+     
     </ul> 
     <div class="tab-content" id="settingstab">  
         <div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">        
@@ -157,7 +159,14 @@
                    
                     
                 </div>
-                <div class="col-6">         
+             
+               
+            </div>
+        </div>
+        <div class="tab-pane p-4 fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+          
+            <div class="row">
+                <div class="col-12">         
                     <h5 class="mb-3">Al pubblico vuoi mostrare</h5>
                     <div class="form-group form-check">
                         <input type='hidden' value='off' name='view_only_order'>
@@ -165,6 +174,32 @@
                         <label class="form-check-label" for="view_only_order">Solo la pagina degli ordini</label>
                     </div>
                 </div>
+                <div class="col-sm-12">    
+                    <h5 class="mb-3">Informazioni Pagina ordini</h5>
+                    <div class="form-group">
+                        <label for="app_ordini_descrizione">Titolo</label>
+                        <div>
+                            <input type="text" id="app_ordini_titolo" class="form-control" name="app_ordini_titolo" value="@if(isset($settings['app_ordini_titolo'])){{$settings['app_ordini_titolo']}}@endif">
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-sm-12">    
+                    <div class="form-group">
+                        <label for="app_ordini_sottotitolo">Sottotitolo</label>
+                        <div>
+                            <input type="text" id="app_ordini_sottotitolo" class="form-control" name="app_ordini_sottotitolo" value="@if(isset($settings['app_ordini_sottotitolo'])){{$settings['app_ordini_sottotitolo']}}@endif">
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-sm-12">    
+                    <div class="form-group">
+                        <label for="app_ordini_descrizione">Descrizione breve</label>
+                        <div>
+                            <textarea id="app_ordini_descrizione" rows="2" class="form-control" name="app_ordini_descrizione">@if(isset($settings['app_ordini_descrizione'])){{$settings['app_ordini_descrizione']}}@endif</textarea>
+                        </div>
+                    </div>
+                </div>   
+              
                
             </div>
         </div>
@@ -179,6 +214,7 @@
                
             </div>
         </div>
+      
     </div>
     <input type="submit" class="btn btn-primary w-100 my-4" value="Salva tutte le impostazioni">
 

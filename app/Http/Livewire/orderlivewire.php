@@ -16,7 +16,7 @@ class orderlivewire extends Component
 {
     public $item_ordered;
     public $quantity, $quantity_um, $plant_sel_id;
-    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $price, $ordine_tot;
+    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $notes, $price, $ordine_tot;
     public $ordine_non_completo = false;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
@@ -43,6 +43,7 @@ class orderlivewire extends Component
         $this->indirizzo = session()->get('name_indir');
         $this->citta = session()->get('name_citta');
         $this->citta = session()->get('consegna_domicilio');
+        $this->notes = session()->get('notes');
         $tmpordered = session()->get('items_in_order');
         //session()->put('items_in_order', null);
         if($tmpordered != null) {
@@ -124,6 +125,7 @@ class orderlivewire extends Component
             session()->put('name_tel', $this->tel);
             session()->put('name_indir', $this->indirizzo);
             session()->put('name_citta', $this->citta);
+            session()->put('notes', $this->notes);
             $this->resetQuantity();
         }
     }
@@ -159,6 +161,7 @@ class orderlivewire extends Component
         $ordine->consegna_domicilio = $this->consegna_domicilio;
         $ordine->data =  $this->data_consegna;
         $ordine->prezzo_tot = $this->ordine_tot;
+        $ordine->notes = $this->notes;
         $ordine->sconto_perc = 0;
         $ordine->tipo_cliente = 'privato';
         $ordine->save();

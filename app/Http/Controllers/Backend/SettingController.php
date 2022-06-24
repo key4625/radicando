@@ -59,7 +59,14 @@ class SettingController extends Controller
             if ($tmpSet != null) { 
                 $tmpSet->value= $v;
                 $tmpSet->save();
-            } else return redirect()->back()->with('error','Errore sul salvataggio delle impostazioni, '.$k.' non trovato');
+            } else {
+                $tmpSet = Setting::create([
+                    'name' => $k,
+                    'value' => $v,
+                    'type' => "Altro"
+                ]);
+                //return redirect()->back()->with('error','Errore sul salvataggio delle impostazioni, '.$k.' non trovato');
+            } 
         }        
         return redirect()->back()->with('success','Impostazioni aggiornate');
     }

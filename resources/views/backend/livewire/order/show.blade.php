@@ -62,6 +62,11 @@
                         @error('citta') <span class="error text-danger">Città non valida</span> @enderror
                     </div>
                 @endif
+                <div class="form-group  col-12">
+                    <label for="notes" class="col-form-label">Note</label>
+                    <textarea class="form-control senzabordo bordotondo" wire:model="notes"></textarea>
+                    @error('notes') <span class="error text-danger">Note non valide</span> @enderror
+                </div>
             </div>
         </div>
     </div>
