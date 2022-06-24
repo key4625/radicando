@@ -32,10 +32,10 @@ class Product extends Model
         }    
     }
 
-    public function getPriceAttribute($value)
+    /*public function getPriceAttribute($value)
     {
         return str_replace('.', ',', $value);
-    }
+    }*/
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = str_replace(',', '.', $value);
