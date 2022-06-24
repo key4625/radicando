@@ -163,7 +163,7 @@
                                             <div class="col-4">
                                             
                                                 @if($tmp_item->image != null)
-                                                    <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->image}}" alt="{{$tmp_item->nome}}">
+                                                    <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->getImage()}}" alt="{{$tmp_item->nome}}">
                                                 @else 
                                                     <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_item->nome}}">
                                                 @endif   
