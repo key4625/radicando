@@ -44,16 +44,14 @@ class Plant extends Model
             return "/img/img-placeholder.png";
         }    
     }
-
     /*public function getPriceAttribute($value)
     {
         return str_replace('.', ',', $value);
     }
-    */
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = str_replace(',', '.', $value);
-    }
+    }*/
 
     public function raccolti_oggi_kg()
     {

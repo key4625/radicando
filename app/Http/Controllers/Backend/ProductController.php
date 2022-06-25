@@ -60,6 +60,7 @@ class ProductController
 
             $request->request->add(['image' => $path]);
         }
+        $request->merge(['price' => str_replace(',', '.', $request->price)]);
         //array_merge($request->all(), ['user_id' => Auth::id()]);
         Product::create($request->except('file_upload'));
 
@@ -85,7 +86,7 @@ class ProductController
             //dd($tmpProd->image);
             Storage::delete($tmpProd->image);
         }
-       
+        $request->merge(['price' => str_replace(',', '.', $request->price)]);
         $tmpProd->update($request->except(['_token', '_method','file_upload' ]));
         return redirect()->route('admin.prodotti.index')
             ->with('flash_success', 'Prodotto aggiornato con successo');

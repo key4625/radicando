@@ -62,6 +62,8 @@ class PlantController
         if($request->abbreviazione==null){
             $request->merge(['abbreviazione' => trim($request->nome)]);
         }
+        $request->merge(['price' => str_replace(',', '.', $request->price)]);
+
         Plant::create($request->except('file_upload'));
 
         return redirect()->route('admin.piante.index')
@@ -90,6 +92,7 @@ class PlantController
         if($request->abbreviazione==null){
             $request->merge(['abbreviazione' => substr(trim($request->nome),0,5)]);
         }
+        $request->merge(['price' => str_replace(',', '.', $request->price)]);
         Plant::where('id',$id)->update($request->except(['_token', '_method','file_upload']));
         return redirect()->route('admin.piante.index')
             ->with('flash_success', 'Coltura aggiornata con successo');
