@@ -23,7 +23,9 @@ class orderlivewire extends Component
     public $passo;
 
     protected $rules = [
-        'nome' => 'required'   
+        'nome' => 'required' ,  
+        'cognome' => 'required',
+        'citta' =>'required_if:consegna_domicilio,1'
     ];
 
     public function mount()

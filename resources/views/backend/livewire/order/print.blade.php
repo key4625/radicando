@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($order->plants()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','desc')->get() as $tmp_item_order)
+                                @foreach($order->plants()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
                                     <tr> 
                                         <td>{{$tmp_item_order->nome}}</td>
                                         <td>{{ $tmp_item_order->pivot->quantity}} {{ $tmp_item_order->pivot->quantity_um}}</td>
@@ -90,6 +90,7 @@
                             </tbody>
                         </table>
                     @endif  
+                    <p><b>NOTE</b>: {{$order->notes}} </p>     
                     <h5>TOTALE: {{$order->prezzo_tot}} €</h5>      
                     <hr>
                 </div>     
