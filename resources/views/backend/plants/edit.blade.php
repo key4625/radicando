@@ -53,7 +53,7 @@
                     <div class="col-12 col-md-2">
                         <div class="form-group">
                             <label>Fragilità</label>
-                            <input type="number"class="form-control" name="priority" @if(isset($plant)) value="{{$plant->fragile}}" @else value="1" @endif>
+                            <input type="number"class="form-control" name="fragile" @if(isset($plant)) value="{{$plant->fragile}}" @else value="1" @endif>
                         </div>
                     </div>
                     <div class="col-12 col-md-2">
