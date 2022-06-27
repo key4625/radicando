@@ -56,7 +56,7 @@ class ProductController
                 $curr_ten = "generale";
             } else $curr_ten = $curr_ten->name;
             $extension = $request->file('file_upload')->extension();
-            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten, str_replace(' ','-',$request->name) . '.' .  $extension);
+            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten."products/", str_replace(' ','-',$request->name) . '.' .  $extension);
 
             $request->request->add(['image' => $path]);
         }
@@ -80,11 +80,12 @@ class ProductController
                 $curr_ten = "generale";
             } else $curr_ten = $curr_ten->name;       
             $extension = $request->file('file_upload')->extension();
-            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten, str_replace(' ','-',$request->name) . '.' .  $extension);
+            Storage::delete($tmpProd->image);
+            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten."products/", str_replace(' ','-',$request->name) . '.' .  $extension);
 
             $request->request->add(['image' => $path]);
             //dd($tmpProd->image);
-            Storage::delete($tmpProd->image);
+           
         }
         $request->merge(['price' => str_replace(',', '.', $request->price)]);
         $tmpProd->update($request->except(['_token', '_method','file_upload' ]));

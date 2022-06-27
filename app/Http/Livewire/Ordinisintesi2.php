@@ -54,7 +54,7 @@ class Ordinisintesi2 extends Component
                 if($trovato != 99){
                     $arr_plants[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
-                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->image, 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
+                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
                     array_push($arr_plants, $new_item);
                 }        
             }   
@@ -71,7 +71,7 @@ class Ordinisintesi2 extends Component
                 if($trovato != 99){
                     $arr_products[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
-                    $new_item = array('item_id'=>$single_item->id, 'type'=>'product','name' => $single_item->name, 'image' => $single_item->image, 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
+                    $new_item = array('item_id'=>$single_item->id, 'type'=>'product','name' => $single_item->name, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
                     array_push($arr_products, $new_item);
                 }        
             }   

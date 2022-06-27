@@ -73,7 +73,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($order->products()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','desc')->get() as $tmp_item_order)
+                                @foreach($order->products()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
                                     <tr> 
                                         <td>{{$tmp_item_order->name}}</td>
                                         <td>{{ $tmp_item_order->pivot->quantity}} {{ $tmp_item_order->pivot->quantity_um}}</td>

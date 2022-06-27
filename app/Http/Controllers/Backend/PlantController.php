@@ -45,7 +45,6 @@ class PlantController
         $request->validate([
             'nome' => 'required',
             'price' => 'required',
-            'abbreviazione' => 'unique:plants'
         ]);
         if($request->has('file_upload')!=null){
             $curr_ten = app('currentTenant');
@@ -74,7 +73,6 @@ class PlantController
         $request->validate([
             'nome' => 'required',
             'price' => 'required',
-            'abbreviazione' => 'unique:plants'  
         ]);
         $tmpPlant = Plant::where('id',$id)->first();
         if($request->has('file_upload')!=null){
@@ -83,11 +81,9 @@ class PlantController
                 $curr_ten = "generale";
             } else $curr_ten = $curr_ten->name;       
             $extension = $request->file('file_upload')->extension();
-            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten.'/plants', str_replace(' ','-',$request->nome) . '.' .  $extension);
-
-            $request->request->add(['image' => $path]);
-            //dd($tmpPlant->image);
             Storage::delete($tmpPlant->image);
+            $path = $request->file('file_upload')->storeAs('public/tenant/'.$curr_ten.'/plants', str_replace(' ','-',$request->nome) . '.' .  $extension);
+            $request->request->add(['image' => $path]);   
         }
         if($request->abbreviazione==null){
             $request->merge(['abbreviazione' => substr(trim($request->nome),0,5)]);

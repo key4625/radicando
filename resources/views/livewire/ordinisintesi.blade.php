@@ -38,13 +38,7 @@
                                 <li class="list-group-item">
                                     <div class="row g-3 align-items-center">
                                         <div class="col-3">
-                                            
-                                            @if($tmp_plant->image != null)
-                                                <img class="img-responsive" style="max-height:40px;" src="{{$tmp_plant->image}}" alt="{{$tmp_plant->nome}}">
-                                            @else 
-                                                <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_plant->nome}}">
-                                            @endif   
-                                            
+                                            <img class="img-responsive" style="max-height:40px;" src="{{$tmp_plant->getImage()}}" alt="{{$tmp_plant->nome}}"> 
                                         </div>
                                         <div class="col-3">
                                             <label for="nome" class="col-form-label">{{$tmp_plant->nome}}</label>
