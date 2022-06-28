@@ -14,9 +14,9 @@
             <p class="grigetto">{{App\Models\Setting::find('app_ordini_descrizione')->value}}</p>
         </div>
      
-        <div class="new-app-banner-bg-shape"><img src="/img/maschera-desktop.png" alt="image" style="width:100%;"></div>
+        <div class="new-app-banner-bg-shape"><img src="/img/maschera-desktop.png" alt="image"></div>
     </div>
-    <div class="d-block d-md-none py-5 px-3">
+    <div class="d-block d-md-none pt-4 pb-3 px-3">
         {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
         <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
