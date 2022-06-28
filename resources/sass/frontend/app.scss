@@ -1,3 +1,7 @@
+// Coreui
+@import '~@coreui/coreui/scss/coreui';
+@import '~@coreui/icons/css/free.min.css';
+
 @import "../global";
 @import "global";
 
@@ -5,13 +9,7 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-@import "../global";
-
-// Coreui
-@import '~@coreui/coreui/scss/coreui';
-@import '~@coreui/icons/css/free.min.css';
+//@import '~bootstrap/scss/bootstrap';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
 
@@ -28,153 +26,6 @@ div#app {
     height: 50px;
 }
 
-.page-item.active .page-link {
-    z-index: 3;
-    color: #fff;
-    background-color: #48984e;
-    border-color: #48984e;
-}
-.page-link {
-    color: #48984e;
-}
-.btn-primary{
-    color: #fff;
-    background-color: #48984e;
-    border-color: #48984e;
-}
-.btn-primary:hover, .btn-outline-primary:hover {
-    color: #fff;
-    background-color: #3a7a42;
-    border-color: #3a7a42;
-}
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #3a7a42;
-    border-color: #3a7a42;
-}
-.btn-primary.disabled, .btn-primary:disabled {
-    color: #282828;
-    background-color: #d5d5d5;
-    border-color: #46ac4c;
-}
-.btn-primary:focus, .btn-primary.focus {
-    color: #fff;
-    background-color: #3a7a42;
-    border-color: #3a7a42;
-    box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 50%);
-}
-.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #3a7a42;
-    border-color: #3a7a42;
-}
-.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 50%) !important;
-}
-.btn-outline-primary {
-    color: #3a7a42;
-    border-color: #3a7a42;
-}
-a {
-    color: #3a7a42;
-}
-a:hover {
-    text-decoration: underline;
-    color: #3a7a42;
-}
-.btn-link {
-    color: #3a7a42;
-}
-.btn-link:hover {
-    color: #3a7a42;
-}
-.btn:focus, .btn.focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 25%);
-}
-.form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #3a7a42;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgb(198 11 13 / 25%);
-}
-
-.senzabordo {
-    border:none;
-}
-.bordotondo {
-    border-radius: 0.5rem;
-}
-/** COLORI ***/
-.bg-red{ 
-    background-color:#48984e;
-    color: white;
-}
-.bg-verdolino {
-    background-color:#e0ebc4;
-    color:#383838;
-}
-.bg-white {
-    background-color:#fff;
-    color:#383838;
-}
-.bg-lightgreen {
-    background-color:#91cd79;
-}
-.bg-green {
-    background-color:#3a7a42;
-    color: white;
-}
-.bg-orange {
-    background-color: #f7ab39;
-    color: white;
-}
-.green {
-    color:#3a7a42;
-}
-.mid-green {
-    color: #63a958;
-}
-.lightgreen{
-    color:#91cd79;
-}
-a.lightgreen:hover {
-    color: white;
-}
-.grigetto {
-    color:#383838; 
-}
-.orange {
-    color: #f7ab39;
-}
-/** FINE COLORI ***/
-
-/** TITOLI ***/
-.titolo-h1 {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 3.5rem;
-    line-height: 3.5rem;
-}
-.h5, h5 {
-    font-size: 1.025rem;
-}
-/** FINE TITOLI ***/
-
-/** BOTTONI ***/
-.btn-rotondo {
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn-passo{
-    text-transform: uppercase;
-}
-/** FINE BOTTONI ***/
 
 img.img-copertina {
     max-height: 90vh;
@@ -239,17 +90,14 @@ img.img-copertina {
     bottom:100px;
 }
 
-li.list-group-item.list-ordini {
-    margin: 10px 0px;
-    border: none;
-    border-radius: 20px;
-}
+
 .titolo-1 {
     font-size:2.5rem;
 }
 .sottotitolo-1 {
     font-size:2rem;
 }
+
 .card-home {
     background:transparent;
     border:none;
@@ -260,69 +108,9 @@ li.list-group-item.list-ordini {
     /* text-align: center; */
     margin: 0 auto;
 }
-.bg-lightgrey {
-    background-color: #f3f3f3;
-    color: #4e4e4e;
-}
-.card-flip-container {
-    background-color: transparent;
-    border: none;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
-.flipcard {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-}
-.card-flip {
-    position: relative;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    -webkit-transition: transform 0.8s;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    border-radius: 25px;
-    border: none;
-    box-shadow: 2px 2px 6px 0px #dbd9d9;
-}
-.front {
-    backface-visibility: hidden;
-    background: transparent;
-    color: #333;
-    text-align:center;   
-}
-.back {
-    backface-visibility: hidden;
-    background: #919191;
-    color: white;
-    text-align:center;   
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    border-radius: 25px;
-    border: none;
-    box-shadow: 2px 2px 6px 0px #dbd9d9;
-}
 
-.nav-product button.nav-link {
-      margin: 0px;
-      margin: 0 auto;
-      border: none;
-      padding: 7px 40px;
-      border-radius: 10px;
-      border: 1px solid #63a958;
-}
-.nav-product button.nav-link.active {
-    background-color: #63a958;
-    border:none;
-    color: white;
-}
-.nav-product button.nav-link:hover {
-    background-color: #63a958;
-    color: white;
-}
-.nav-product button.nav-link.active:hover {
-    background-color: #91cd79;
-}
+
+
 
 @media only screen and (min-width: 769px) {
     .clip-me {  

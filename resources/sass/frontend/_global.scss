@@ -5,3 +5,103 @@
 .alert.header-message {
     border-radius: 0 !important;
 }
+
+/** COLORI ***/
+.bg-red{ 
+    background-color:#48984e;
+    color: white;
+}
+.bg-verdolino {
+    background-color:#e0ebc4;
+    color:#383838;
+}
+.bg-white {
+    background-color:#fff;
+    color:#383838;
+}
+.bg-lightgreen {
+    background-color:#91cd79;
+}
+.bg-green {
+    background-color:#3a7a42;
+    color: white;
+}
+.bg-orange {
+    background-color: #f7ab39;
+    color: white;
+}
+.green {
+    color:#3a7a42;
+}
+.mid-green {
+    color: #63a958;
+}
+.lightgreen{
+    color:#91cd79;
+}
+a.lightgreen:hover {
+    color: white;
+}
+.grigetto {
+    color:#383838; 
+}
+.orange {
+    color: #f7ab39;
+}
+/** FINE COLORI ***/
+
+/** BOTTONI ***/
+.btn-rotondo {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-passo{
+    text-transform: uppercase;
+}
+
+/** FINE BOTTONI ***/
+
+/** FLIP CARD **/ 
+.card-flip-container {
+    background-color: transparent;
+    border: none;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flipcard {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+.card-flip {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    -webkit-transition: transform 0.8s;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 2px 2px 6px 0px #dbd9d9;
+}
+.front {
+    backface-visibility: hidden;
+    background: transparent;
+    color: #333;
+    text-align:center;   
+}
+.back {
+    backface-visibility: hidden;
+    background: #919191;
+    color: white;
+    text-align:center;   
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    border-radius: 25px;
+    border: none;
+    box-shadow: 2px 2px 6px 0px #dbd9d9;
+}
+/** FINE FLIP **/
