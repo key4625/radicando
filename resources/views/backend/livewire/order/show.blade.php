@@ -141,9 +141,9 @@
     <div class="card my-4">
         <div class="row">
             <div class="col-12 mt-4">
-              
-                <button wire:click="viewProd(0)" class="float-right btn btn-primary">Indietro</button>
-             
+                <div class="clearfix">
+                    <button wire:click="viewProd(0)" class="float-right mr-4 btn"><i class="fas fa-times"></i></button>
+                </div>
                 <h1 class="text-center green">AGGIUNGI PRODOTTO</h1>
                 <ul class="nav nav-pills nav-fill nav-product">
                     <li class="nav-item">      
@@ -243,8 +243,8 @@
                         </div>
                     </div>
                 </div> 
-                <div class="text-center my-4">                          
-                    <button class="btn btn-primary bordotondo px-4"  wire:click="$set('passo', '1')">Avanti <i class="fas fa-forward"></i></button>
+                <div class="text-center mb-4">
+                    <button wire:click="viewProd(0)" class="btn btn-outline-primary"><i class="fas fa-times"></i> Chiudi</button>
                 </div>
             </div>
         </div>

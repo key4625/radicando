@@ -271,6 +271,7 @@ li.list-group-item.list-ordini {
 }
 .flipcard {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 .card-flip {
     position: relative;
@@ -294,6 +295,7 @@ li.list-group-item.list-ordini {
     color: white;
     text-align:center;   
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     border-radius: 25px;
     border: none;
     box-shadow: 2px 2px 6px 0px #dbd9d9;
