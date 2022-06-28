@@ -21,8 +21,8 @@
         <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
         <div class="row align-items-center ">
-            <div class="col-5 text-center"> <img class="logo-landlord" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value)}}"></div>
-            <div class="col-7">
+            <div class="col-12 text-center"> <img class="logo-landlord" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value)}}"></div>
+            <div class="col-12 text-center">
                 <h1 class="mt-3 titolo-1 green font-weight-bold">{{App\Models\Setting::find('app_ordini_titolo')->value}}</h1>
                 <h5 class="mt-3 titolo-2 mid-green">{{App\Models\Setting::find('app_ordini_sottotitolo')->value}}</h5>
                 <p class="grigetto">{{App\Models\Setting::find('app_ordini_descrizione')->value}}</p>

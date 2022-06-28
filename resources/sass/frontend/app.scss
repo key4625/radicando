@@ -91,12 +91,7 @@ img.img-copertina {
 }
 
 
-.titolo-1 {
-    font-size:2.5rem;
-}
-.sottotitolo-1 {
-    font-size:2rem;
-}
+
 
 .card-home {
     background:transparent;
@@ -127,6 +122,12 @@ img.img-copertina {
     .logo-landlord {
         max-height:120px;
     }
+    .titolo-1 {
+        font-size:2.5rem;
+    }
+    .sottotitolo-1 {
+        font-size:2rem;
+    }
 }
 @media only screen and (max-width: 768px) {
     .clip-me {  
@@ -140,5 +141,11 @@ img.img-copertina {
     }
     .logo-landlord {
         max-height:120px;
+    }
+    .titolo-1 {
+        font-size:2.2rem;
+    }
+    .sottotitolo-1 {
+        font-size:2rem;
     }
 }
