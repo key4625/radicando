@@ -160,13 +160,10 @@
                                     @endif
                                     <li class="list-group-item list-ordini">
                                         <div class="row g-3 align-items-center">
+                                            <div class="col">
+                                                <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->getImage()}}" alt="{{$tmp_item->nome}}"> 
+                                            </div>
                                             <div class="col-4">
-                                            
-                                                @if($tmp_item->image != null)
-                                                    <img class="img-responsive" style="max-height:40px;" src="{{$tmp_item->getImage()}}" alt="{{$tmp_item->nome}}">
-                                                @else 
-                                                    <img class="img-responsive" style="max-height:40px;" src="/img/img-placeholder.png" alt="{{$tmp_item->nome}}">
-                                                @endif   
                                                 <label for="nome" class="col-form-label">@if($item_ord['type'] == "vegetable") {{$tmp_item->nome}} @else {{$tmp_item->name}} @endif</label>
                                             </div>
                                             <div class="col-3 ">
@@ -176,17 +173,16 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-3 ">
+                                            <div class="col">
                                                 @if($item_ord['quantity_um']==$item_ord['price_um'])
                                                     {{$item_ord['quantity']*$item_ord['price'] }} €
                                                 @else 
                                                    - 
                                                 @endif
+                                                <button class="btn btn-danger-outline" wire:click="remove({{$key}})"><i class="fas fa-trash"></i></button>
                                             </div>
                                          
-                                            <div class="col">
-                                                <button class="btn btn-danger-outline" wire:click="remove({{$key}})"><i class="fas fa-trash"></i></button>
-                                            </div>       
+                                           
                                         </div>    
                                     </li>
                                 @endforeach
