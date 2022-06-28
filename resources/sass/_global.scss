@@ -93,11 +93,15 @@ a.lightgreen:hover {
     -webkit-transform-style: preserve-3d;
     border-radius: 25px;
     border: none;
+    background-color:transparent;
     box-shadow: 2px 2px 6px 0px #dbd9d9;
 }
 .front {
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    background: transparent;
+    background: white !important;
+    border-radius: 25px;
+    border: none;
     color: #333;
     text-align:center;   
 }
@@ -207,7 +211,7 @@ a:hover {
     border-radius: 10px;
     border: 1px solid #63a958;
 }
-.nav-product button.nav-link.active {
+.nav-product button.nav-link.active, .nav-product button.nav-link.focus {
   background-color: #63a958;
   border:none;
   color: white;
