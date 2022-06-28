@@ -278,7 +278,9 @@ li.list-group-item.list-ordini {
     height: 100%;
     text-align: center;
     transition: transform 0.8s;
+    -webkit-transition: transform 0.8s;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     border-radius: 25px;
     border: none;
     box-shadow: 2px 2px 6px 0px #dbd9d9;
