@@ -17,6 +17,12 @@
 	x-ref="container"
 	class="print:text-black relative"
 >
+<style type="text/css">
+    table { page-break-inside:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
+</style>
 	@isset($printButton)
 		{{ $printButton }}
 	@else
