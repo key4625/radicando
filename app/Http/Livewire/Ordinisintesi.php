@@ -34,7 +34,7 @@ class Ordinisintesi extends Component
             $orders_list->whereDate("data",">=",Carbon::now()->toDateString());
             $orders_list->whereDate("data","<",Carbon::now()->adddays(7)->toDateString());
         }*/
-        $orders_list->orderby('created_at')->paginate(25);
-        return view('livewire.ordinisintesi',['orders' => $orders_list]);
+        $prova = $orders_list->orderby('created_at')->paginate(25);
+        return view('livewire.ordinisintesi',['orders' => $prova]);
     }
 }

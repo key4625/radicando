@@ -83,7 +83,7 @@
                 </tr>
             @endforeach
         </table>
-        {{ $orders->links() }}
+        <div class="text-center">{{$orders->links()}}</div>
     @endif
    
     @include('backend.livewire.order.print')

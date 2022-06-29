@@ -13,7 +13,7 @@
         </select>--}}
     </div>
     <div id="accordion">
-        @foreach($orders->get() as $order)
+        @foreach($orders as $order)
             <div class="card mb-1">
                 <div class="card-header p-2" id="heading-{{$order->id}}">
                     <h5 class="mb-0">
@@ -81,4 +81,5 @@
             </div>
         @endforeach
     </div>
+    <div class="text-center">{{$orders->links()}}</div>
 </div>
