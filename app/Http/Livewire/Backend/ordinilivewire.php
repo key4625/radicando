@@ -86,7 +86,7 @@ class ordinilivewire extends Component
         if($this->filter_pagato=="da_pagare") $orders_list->where("pagato",0);
         if($this->filter_pagato=="pagati") $orders_list->where("pagato",1);
         if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
-        $prova = $orders_list->orderby('data')->paginate(25);
+        $prova = $orders_list->orderby('created_at')->paginate(25);
 
         return view('backend.livewire.order', [
             'orders' => $prova,'plants_available' => $plants_available, 'products_available' => $products_available
