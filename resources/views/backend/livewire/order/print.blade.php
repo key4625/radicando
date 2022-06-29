@@ -17,12 +17,7 @@
 	x-ref="container"
 	class="print:text-black relative"
 >
-<style type="text/css">
-    table { page-break-inside:auto }
-    tr    { page-break-inside:avoid; page-break-after:auto }
-    thead { display:table-header-group }
-    tfoot { display:table-footer-group }
-</style>
+
 	@isset($printButton)
 		{{ $printButton }}
 	@else
@@ -39,10 +34,10 @@
                     <h5  class="d-inline">{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </h5>
                     <p>Tel. {{$order->telefono}} - Indirizzo {{$order->citta}} {{$order->indirizzo}}</p>
                     @if($order->plants()->count()>0)
-                        <table class="table table-sm table-bordered w-full" style="page-break-inside:auto">
-                            <thead style="display:table-header-group">
+                        <table class="table table-sm table-bordered w-full">
+                            <thead>
                                 <tr><td colspan="4" class="text-bold">Frutta e verdura</td></tr>
-                                <tr style="page-break-inside:avoid; page-break-after:auto">
+                                <tr>
                                     <td>Nome</td>
                                     <td>Quantità</td>
                                     <td>Prezzo</td>
@@ -51,7 +46,7 @@
                             </thead>
                             <tbody>
                                 @foreach($order->plants()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
-                                    <tr  style="page-break-inside:avoid; page-break-after:auto"> 
+                                    <tr> 
                                         <td>{{$tmp_item_order->nome}}</td>
                                         <td>{{ $tmp_item_order->pivot->quantity}} {{ $tmp_item_order->pivot->quantity_um}}</td>
                                         <td>{{$tmp_item_order->pivot->price}}€ / {{$tmp_item_order->pivot->price_um}}</td>
@@ -68,10 +63,10 @@
                     @endif
                     
                     @if($order->products()->count()>0)
-                        <table class="table table-sm table-bordered w-full" style="page-break-inside:auto">
-                            <thead style="display:table-header-group">
+                        <table class="table table-sm table-bordered w-full">
+                            <thead>
                                 <tr><td colspan="4" class="text-bold">Prodotti</td></tr>
-                                <tr  style="page-break-inside:avoid; page-break-after:auto">
+                                <tr>
                                     <td>Nome</td>
                                     <td>Quantità</td>
                                     <td>Prezzo</td>
@@ -80,7 +75,7 @@
                             </thead>
                             <tbody>
                                 @foreach($order->products()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
-                                    <tr  style="page-break-inside:avoid; page-break-after:auto"> 
+                                    <tr> 
                                         <td>{{$tmp_item_order->name}}</td>
                                         <td>{{ $tmp_item_order->pivot->quantity}} {{ $tmp_item_order->pivot->quantity_um}}</td>
                                         <td>{{$tmp_item_order->pivot->price}}€ / {{$tmp_item_order->pivot->price_um}}</td>
