@@ -7,10 +7,6 @@
 @media print
 {
   table { page-break-inside:avoid; }
-  tr    { page-break-inside:avoid; page-break-after:auto }
-  td    { page-break-inside:avoid; page-break-after:auto }
-  thead { display:table-header-group }
-  tfoot { display:table-footer-group }
 }
 </style>
 @endpush
