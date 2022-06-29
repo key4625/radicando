@@ -52,7 +52,7 @@
         <table class="table  table-striped table-hover">
             <th>Consegna</th><th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-center">Consegnato</th><th class="d-none d-lg-table-cell  text-center">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
            
-            @foreach($orders->get() as $order)
+            @foreach($orders as $order)
                 <tr>
                     <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @else <i class="fas fa-store"></i> @endif</td>
                     <td>{{$order->nome}}  {{$order->cognome}}</td>
@@ -83,8 +83,9 @@
                 </tr>
             @endforeach
         </table>
+        {{ $orders->links() }}
     @endif
-    {{ $orders->links() }}
+   
     @include('backend.livewire.order.print')
 </div>
 

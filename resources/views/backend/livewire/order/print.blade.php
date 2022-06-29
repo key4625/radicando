@@ -27,7 +27,7 @@
 
     <div id="dastampare" style="display:none;">
         <div class="row">
-            @foreach($orders->get() as $order)
+            @foreach($orders as $order)
                 <div class="col-6">
                     <h3 class="d-inline">{{$order->nome}} {{$order->cognome}}</h3>
                     <h5  class="d-inline">{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </h5>
