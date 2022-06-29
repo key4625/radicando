@@ -29,12 +29,12 @@
     <div id="dastampare" style="display:none;">
         <div class="row">
             @foreach($orders as $order)
-                <div class="col-6">
+                <div class="col-6" style="page-break-inside:avoid;">
                     <h3 class="d-inline">{{$order->nome}} {{$order->cognome}}</h3>
                     <h5  class="d-inline">{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </h5>
                     <p>Tel. {{$order->telefono}} - Indirizzo {{$order->citta}} {{$order->indirizzo}}</p>
                     @if($order->plants()->count()>0)
-                        <table class="table table-sm table-bordered w-full" style="page-break-inside:avoid;">
+                        <table class="table table-sm table-bordered w-full">
                             
                                
                            
@@ -64,7 +64,7 @@
                     @endif
                     
                     @if($order->products()->count()>0)
-                        <table class="table table-sm table-bordered w-full"  style="page-break-inside:avoid;">
+                        <table class="table table-sm table-bordered w-full"  >
                            
                            
                            
