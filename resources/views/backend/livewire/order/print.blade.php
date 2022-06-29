@@ -36,6 +36,9 @@
                     @if($order->plants()->count()>0)
                         <table class="table table-sm table-bordered w-full" style="page-break-inside:avoid;">
                             
+                               
+                           
+                            <tbody>
                                 <tr><td colspan="4" class="text-bold">Frutta e verdura</td></tr>
                                 <tr>
                                     <td>Nome</td>
@@ -43,8 +46,6 @@
                                     <td>Prezzo</td>
                                     <td>Totale</td>
                                 </tr>
-                           
-                            <tbody>
                                 @foreach($order->plants()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
                                     <tr> 
                                         <td>{{$tmp_item_order->nome}}</td>
@@ -65,15 +66,16 @@
                     @if($order->products()->count()>0)
                         <table class="table table-sm table-bordered w-full"  style="page-break-inside:avoid;">
                            
-                            <tr><td colspan="4" class="text-bold">Prodotti</td></tr>
-                            <tr>
-                                <td>Nome</td>
-                                <td>Quantità</td>
-                                <td>Prezzo</td>
-                                <td>Totale</td>
-                            </tr>
+                           
                            
                             <tbody>
+                                <tr><td colspan="4" class="text-bold">Prodotti</td></tr>
+                                <tr>
+                                    <td>Nome</td>
+                                    <td>Quantità</td>
+                                    <td>Prezzo</td>
+                                    <td>Totale</td>
+                                </tr>
                                 @foreach($order->products()->withPivot('quantity','quantity_um','price','price_um')->orderby('fragile','asc')->get() as $tmp_item_order)
                                     <tr> 
                                         <td>{{$tmp_item_order->name}}</td>
