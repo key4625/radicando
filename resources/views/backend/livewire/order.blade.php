@@ -84,7 +84,7 @@
             @endforeach
         </table>
     @endif
-
+    {{ $orders->links() }}
     @include('backend.livewire.order.print')
 </div>
 
