@@ -245,7 +245,7 @@
                                     <label class="form-check-label" for="consegna_domicilio">Consegna a domicilio</label>
                                 </div>
                                 @if($consegna_domicilio)
-                                    <div class="form-group col-12 offset-md-4 col-md-4">
+                                    <div class="form-group col-12 offset-md-4 col-md-4" style="display: none;">
                                         <label for="indirizzo" class="col-form-label">Data di consegna</label>
                                         <input type="date" class="form-control senzabordo bordotondo" wire:model="data_consegna">
                                         @error('indirizzo') <span class="error text-danger">Data non valida</span> @enderror
