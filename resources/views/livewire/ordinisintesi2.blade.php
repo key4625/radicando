@@ -1,10 +1,8 @@
 <div>
-    <div class="text-center my-2">
-        <h3>Da preparare</h3>
-        <span>dal </span>
-        <input type="date" wire:model="filter_data" class="form-control">
-        <span>al </span>
-        <input type="date" wire:model="filter_data2" class="form-control">
+    <div class="my-2 row form-inline">
+        <div class="col-12 text-center"><h3>Da preparare</h3></div>
+        <div class="col-12 col-md-6 text-center text-md-right"><span>dal </span><input type="date" wire:model="filter_data" class="form-control"></div>
+        <div class="col-12 col-md-6 text-center text-md-left"> <span>al </span><input type="date" wire:model="filter_data2" class="form-control"></div>
     </div>
     @if(count($plants)>0)
         <h6 class="text-center">Verdure</h6>
