@@ -50,7 +50,14 @@
         </div>
          
         <table class="table  table-striped table-hover">
-            <th>Consegna</th><th>Nome</th><th class="">Per quando</th><th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-center">Consegnato</th><th class="d-none d-lg-table-cell  text-center">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
+            <th>Consegna</th><th>Nome</th><th class="">Per quando</th>
+            <th class="d-none d-lg-table-cell" wire:click="sortBy('citta')">Città 
+                @if(($sortedby =="citta")&&( $sortdir == "asc"))<i class="fas fa-sort-up green"></i>
+                @elseif(($sortedby =="citta")&&( $sortdir == "desc"))<i class="fas fa-sort-down green"></i>
+                @else <i class="fas fa-sort"></i>
+                @endif
+            </th>
+            <th class="d-none d-lg-table-cell">Importo</th><th class="d-none d-lg-table-cell text-center">Consegnato</th><th class="d-none d-lg-table-cell  text-center">Pagato</th><th class="text-right" style="min-width: 110px;">Azioni</th>      
            
             @foreach($orders as $order)
                 <tr>
@@ -66,6 +73,7 @@
                         </td>
                     @else
                         <td >{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </td>
+                        <td class="d-none d-lg-table-cell">{{$order->citta}}</td>
                         <td class="d-none d-lg-table-cell">{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
                         <td class="d-none d-lg-table-cell text-center">
                             @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" wire:click="setEvaso({{$order->id}},0,false)"><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}},1,false)"><i class="far fa-flag"></i></button> @endif

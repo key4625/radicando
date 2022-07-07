@@ -26,6 +26,7 @@ class ordinilivewire extends Component
     public $showQuant, $idQuant, $typeQuant;
     public $filter_consegnato, $filter_pagato, $filter_data;
     public $showPrintDiv = false;
+    public $sortedby, $sortdir ;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -86,7 +87,9 @@ class ordinilivewire extends Component
         if($this->filter_pagato=="da_pagare") $orders_list->where("pagato",0);
         if($this->filter_pagato=="pagati") $orders_list->where("pagato",1);
         if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
-        $prova = $orders_list->orderby('data')->paginate(25);
+        $orders_list = $orders_list->orderby('data');
+        if($this->sortedby !=null) $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
+        $prova = $orders_list->paginate(25);
 
         return view('backend.livewire.order', [
             'orders' => $prova,'plants_available' => $plants_available, 'products_available' => $products_available
@@ -96,6 +99,17 @@ class ordinilivewire extends Component
         $this->showProd = $val;
     }
 
+    public function sortBy($term){
+        $this->sortedby = $term;
+        if($this->sortdir == null) { 
+            $this->sortdir = "asc";
+        } elseif($this->sortdir == "asc") { 
+            $this->sortdir = "desc";
+        } else {
+            $this->sortedby = null;
+            $this->sortdir = null;
+        }
+    }
     public function setEvaso(int $id, int $num, $isInternal){
         $order = Order::where('id',$id)->first();
         $order->evaso = $num;
