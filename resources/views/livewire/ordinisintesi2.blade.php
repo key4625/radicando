@@ -2,9 +2,9 @@
     <div class="text-center my-2">
         <h3>Da preparare</h3>
         <span>dal </span>
-        <input type="date" wire:model="filter_data" class="form-control d-inline w-auto">
+        <input type="date" wire:model="filter_data" class="form-control d-inline">
         <span>al </span>
-        <input type="date" wire:model="filter_data2" class="form-control d-inline w-auto">
+        <input type="date" wire:model="filter_data2" class="form-control d-inline">
     </div>
     @if(count($plants)>0)
         <h6 class="text-center">Verdure</h6>
