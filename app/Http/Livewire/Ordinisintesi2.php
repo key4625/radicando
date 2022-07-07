@@ -7,10 +7,14 @@ use Arr;
 use Carbon\Carbon;
 use DB;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 class Ordinisintesi2 extends Component
 {
     public $filter_consegnato, $filter_pagato, $filter_data,$filter_data2, $datafilter;
     public $tmparray, $tmparray2;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function mount()
     {

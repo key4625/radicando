@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Order;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Ordinisintesi extends Component
 {
     public $filter_consegnato, $filter_pagato, $filter_data, $filter_data2, $datafilter;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public function mount()
     {
