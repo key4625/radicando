@@ -96,14 +96,16 @@ class ordinilivewire extends Component
         $this->showProd = $val;
     }
 
-    public function setEvaso(int $id){
+    public function setEvaso(int $id, int $num, $isInternal){
         $order = Order::where('id',$id)->first();
-        $order->evaso = 1;
+        $order->evaso = $num;
+        if($isInternal) $this->sel_order->evaso = $num;
         $order->save();
     }
-    public function setPagato(int $id){
+    public function setPagato(int $id, int $num, $isInternal){
         $order = Order::where('id',$id)->first();
-        $order->pagato = 1;
+        $order->pagato = $num;
+        if($isInternal)  $this->sel_order->pagato = $num;
         $order->save();
     }
     public function toggleInsert(){

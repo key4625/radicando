@@ -10,7 +10,11 @@
         <div class="my-4" style="border-top: 0.13rem solid #c1c1c1;"> </div>
         <div class="container">
             <div class="row">
-                <div class="col-12"><span>Id ordine: {{$this->sel_order->id}}</span></div>
+                <div class="col-12 col-md-6"><span>Id ordine: {{$this->sel_order->id}}</span></div>
+                <div class="form-group col-12 col-md-6 text-right">
+                    @if($this->sel_order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" wire:click="setEvaso({{$this->sel_order->id}},0,true)"><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$this->sel_order->id}},1,true)"><i class="far fa-flag"></i></button> @endif
+                    @if($this->sel_order->pagato) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Pagato" wire:click="setPagato({{$this->sel_order->id}},0,true)"><i class="fas fa-coins"></i></span> @else <button class="btn btn-warning text-white rounded-circle mr-2" wire:click="setPagato({{$this->sel_order->id}},1,true)"><i class="fas fa-coins"></i></button> @endif
+                </div>
                 <div class="form-group col-12 col-md-6">
                     <label for="nome" class="col-form-label">Nome</label>
                     <input type="text" class="form-control senzabordo bordotondo" wire:model="nome" required>

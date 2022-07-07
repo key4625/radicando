@@ -68,10 +68,10 @@
                         <td >{{Carbon\Carbon::create($order->data)->translatedFormat('D d M')}} </td>
                         <td class="d-none d-lg-table-cell">{{$order->prezzo_tot}} € @if($order->sconto_perc > 0)  ({{$order->sconto_perc}}%) @endif</td>
                         <td class="d-none d-lg-table-cell text-center">
-                            @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" ><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}})"><i class="far fa-flag"></i></button> @endif
+                            @if($order->evaso) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Evaso" wire:click="setEvaso({{$order->id}},0,false)"><i class="fas fa-flag"></i></span> @else <button class="btn btn-primary rounded-circle mr-2" wire:click="setEvaso({{$order->id}},1,false)"><i class="far fa-flag"></i></button> @endif
                         </td>
                         <td class="d-none d-lg-table-cell text-center">
-                            @if($order->pagato) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Pagato" ><i class="fas fa-coins"></i></span> @else <button class="btn btn-warning text-white rounded-circle mr-2" wire:click="setPagato({{$order->id}})"><i class="fas fa-coins"></i></button> @endif
+                            @if($order->pagato) <span class="mr-2" data-toggle="tooltip"  title data-original-title="Pagato" wire:click="setPagato({{$order->id}},0,false)" ><i class="fas fa-coins"></i></span> @else <button class="btn btn-warning text-white rounded-circle mr-2" wire:click="setPagato({{$order->id}},1,false)"><i class="fas fa-coins"></i></button> @endif
                         </td>
                         <td class="text-right" style="min-width: 160px;">
                             <button class="btn btn-primary" wire:click="toggleShow({{$order->id}})"><i class="fas fa-edit"></i></button>
@@ -84,8 +84,9 @@
             @endforeach
         </table>
         <div class="text-center">{{$orders->links()}}</div>
+        @include('backend.livewire.order.print')
     @endif
    
-    @include('backend.livewire.order.print')
+ 
 </div>
 
