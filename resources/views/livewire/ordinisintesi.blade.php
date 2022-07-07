@@ -1,5 +1,5 @@
 <div>
-    <div class="text-center my-2 row">
+    <div class="text-center my-2 row form-inline">
         <div class="col-12"><h3>Ordini</h3></div>
         <div class="col-12 col-md-6"><span>dal </span><input type="date" wire:model="filter_data" class="form-control d-inline w-auto"></div>
         <div class="col-12 col-md-6"> <span>al </span><input type="date" wire:model="filter_data2" class="form-control d-inline w-auto"></div>
