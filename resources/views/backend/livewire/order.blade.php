@@ -67,7 +67,7 @@
                         <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @else <i class="fas fa-store"></i> @endif</td>
                         <td>{{$order->nome}}  {{$order->cognome}}</td>
                         @if($confirming===$order->id)
-                            <td colspan="5" class="text-right">
+                            <td colspan="6" class="text-right">
                                 Vuoi cancellare?
                                 <div class="btn-group ml-2" role="group" aria-label="Basic example">
                                     <button wire:click="delete({{ $order->id }})" class="btn btn-danger hover:bg-red-600">Si</button>

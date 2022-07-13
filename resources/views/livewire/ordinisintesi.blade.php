@@ -24,7 +24,8 @@
                 </div>
                 <div id="collapse-{{$order->id}}" class="collapse" aria-labelledby="heading-{{$order->id}}" data-parent="#accordion">
                     <div class="card-body p-0">
-                        <div class="w-100 text-center p-2">{{ $order->indirizzo }}</div>
+                        @if(($order->indirizzo != null)&&($order->indirizzo != ""))<div class="w-100 text-center p-2">{{ $order->indirizzo }}</div>@endif
+                        @if(($order->notes != null)&&($order->notes != ""))<div class="w-100 text-center p-2">NOTE: {{ $order->notes }}</div>@endif
                         <ul class="list-group list-group-flush"> 
                             @foreach($order->plants()->get() as $tmp_plant)           
                                 <li class="list-group-item">

@@ -49,16 +49,18 @@ class Ordinisintesi2 extends Component
         $arr_plants = array();
         foreach($orders_list->get() as $single_order){
             foreach($single_order->plants()->get() as $single_item){
-                $trovato = 99;
+                $trovato = 999;
                 foreach($arr_plants as $key=>$value){
                      if(($value['item_id'] == $single_item->id)&&($value['quantity_um'] == $single_item->pivot->quantity_um)){
                         $trovato = $key;   
                     }
                 }
-                if($trovato != 99){
+                if($trovato != 999){
+                    array_push($arr_plants[$trovato]['order_user_list'] , $single_order->nome." ".$single_order->cognome); 
                     $arr_plants[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
-                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
+                    $lista_clienti_piante = array($single_order->nome." ".$single_order->cognome);
+                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price,'order_user_list' => $lista_clienti_piante);
                     array_push($arr_plants, $new_item);
                 }        
             }   
@@ -66,13 +68,13 @@ class Ordinisintesi2 extends Component
         $arr_products = array();
         foreach($orders_list->get() as $single_order){
             foreach($single_order->products()->get() as $single_item){
-                $trovato = 99;
+                $trovato = 999;
                 foreach($arr_products as $key=>$value){
                      if(($value['item_id'] == $single_item->id)&&($value['quantity_um'] == $single_item->pivot->quantity_um)){
                         $trovato = $key;   
                     }
                 }
-                if($trovato != 99){
+                if($trovato != 999){
                     $arr_products[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
                     $new_item = array('item_id'=>$single_item->id, 'type'=>'product','name' => $single_item->name, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);

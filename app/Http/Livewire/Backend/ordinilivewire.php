@@ -31,7 +31,8 @@ class ordinilivewire extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $rules = [
-        'nome' => 'required'   
+        'nome' => 'required',  
+        'cognome' => 'required'      
     ];
 
     protected $listeners = ['prezzo_da_ricalcolare' => 'ricalcolaPrezzo'];
@@ -125,6 +126,7 @@ class ordinilivewire extends Component
     public function toggleInsert(){
         $this->sel_order = Order::create(['nome'=>'Ordine']);
         $this->nome = "Ordine";
+        $this->cognome = "";
         $this->showMode = 1;    
         $this->data = Carbon::now()->toDateString(); 
         $this->ora = Carbon::now()->toTimeString(); 
@@ -132,6 +134,7 @@ class ordinilivewire extends Component
     public function toggleShow(int $id){
         $this->sel_order = Order::where('id',$id)->first();
         $this->nome = $this->sel_order->nome;
+        $this->cognome = $this->sel_order->cognome;
         $this->email = $this->sel_order->email;
         $this->indirizzo = $this->sel_order->indirizzo;
         $this->citta = $this->sel_order->citta;
@@ -207,6 +210,7 @@ class ordinilivewire extends Component
     {       
         $this->validate();
         $this->sel_order->nome = $this->nome;
+        $this->sel_order->cognome = $this->cognome;
         $this->sel_order->email = $this->email;
         $this->sel_order->indirizzo = $this->indirizzo;
         $this->sel_order->citta = $this->citta;
@@ -238,6 +242,7 @@ class ordinilivewire extends Component
             $this->resetInputFields();
             $this->sel_order = Order::create(['nome'=>'Ordine']);
             $this->nome = "Ordine";
+           
             $this->showMode = 1;      
         }
        
