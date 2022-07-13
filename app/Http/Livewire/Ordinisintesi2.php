@@ -56,10 +56,10 @@ class Ordinisintesi2 extends Component
                     }
                 }
                 if($trovato != 999){
-                    array_push($arr_plants[$trovato]['order_user_list'] , $single_order->nome." ".$single_order->cognome); 
+                    array_push($arr_plants[$trovato]['order_user_list'] , $single_order->nome." ".$single_order->cognome." - ".$single_order->citta); 
                     $arr_plants[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
-                    $lista_clienti_piante = array($single_order->nome." ".$single_order->cognome);
+                    $lista_clienti_piante = array($single_order->nome." ".$single_order->cognome." - ".$single_order->citta);
                     $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price,'order_user_list' => $lista_clienti_piante);
                     array_push($arr_plants, $new_item);
                 }        
