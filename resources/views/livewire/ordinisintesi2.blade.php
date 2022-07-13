@@ -32,9 +32,11 @@
                 </div>
                 <div id="collapse-{{$tmp_plant['item_id']}}" class="collapse" aria-labelledby="heading-{{$tmp_plant['item_id']}}" data-parent="#accordion">
                     <div class="card-body p-2">
-                        @foreach($tmp_plant['order_user_list'] as $single_user)
-                            {{ $single_user }}
-                        @endforeach
+                        <ul class="list-group bg-white">
+                            @foreach($tmp_plant['order_user_list'] as $single_user)
+                                <li class="list-group-item">{{ $single_user }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
