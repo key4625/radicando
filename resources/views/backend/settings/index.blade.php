@@ -179,6 +179,12 @@
                             <input type="number" id="order_open_from_day" class="form-control ml-2" name="order_open_from_day" @if(isset($settings['order_open_from_day'])) value="{{$settings['order_open_from_day']}}" @else value="10" @endif> gg prima
                         </div>
                     </div>
+                    <div class="form-group form-inline">
+                        <label for="order_close_from_day">Chiudi ordine </label>
+                        <div>
+                            <input type="number" id="order_close_from_day" class="form-control ml-2" name="order_close_from_day" @if(isset($settings['order_close_from_day'])) value="{{$settings['order_close_from_day']}}" @else value="10" @endif> gg prima
+                        </div>
+                    </div>
                     <h5 class="mb-3">Seleziona i giorni di consegna</h5>
                     <div class="form-group form-check">
                         <input type='hidden' value='off' name='order_day_1'>
