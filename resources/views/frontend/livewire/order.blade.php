@@ -248,6 +248,7 @@
                                     <div class="form-group col-12 offset-md-4 col-md-4">
                                         <label for="indirizzo" class="col-form-label">Data di consegna</label>
                                         <select class="form-control" wire:model="data_consegna">
+                                            <option value="null">-- Seleziona una data</option>
                                             @foreach($array_date_possibili as $sng_data)
                                                 <option value="{{$sng_data[0]}}">{{ $sng_data[1] }}</option>
                                             @endforeach
