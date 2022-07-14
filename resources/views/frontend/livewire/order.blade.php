@@ -245,10 +245,15 @@
                                     <label class="form-check-label" for="consegna_domicilio">Consegna a domicilio</label>
                                 </div>
                                 @if($consegna_domicilio)
-                                    <div class="form-group col-12 offset-md-4 col-md-4" style="display: none;">
+                                    <div class="form-group col-12 offset-md-4 col-md-4">
                                         <label for="indirizzo" class="col-form-label">Data di consegna</label>
-                                        <input type="date" class="form-control senzabordo bordotondo" wire:model="data_consegna">
-                                        @error('indirizzo') <span class="error text-danger">Data non valida</span> @enderror
+                                        <select class="form-control" wire:model="data_consegna">
+                                            @foreach($array_date_possibili as $sng_data)
+                                                <option value="{{$sng_data[0]}}">{{ $sng_data[1] }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{--<input type="date" class="form-control senzabordo bordotondo" wire:model="data_consegna">--}}
+                                        @error('data_consegna') <span class="error text-danger">Data non valida</span> @enderror
                                     </div>
                                     <div class="form-group  col-12 col-md-6">
                                         <label for="indirizzo" class="col-form-label">Indirizzo di spedizione</label>

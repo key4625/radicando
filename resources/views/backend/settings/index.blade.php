@@ -166,32 +166,70 @@
         <div class="tab-pane p-4 fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
           
             <div class="row">
-                <div class="col-12">         
+                <div class="col-12 col-md-6">         
                     <h5 class="mb-3">Al pubblico vuoi mostrare</h5>
                     <div class="form-group form-check">
                         <input type='hidden' value='off' name='view_only_order'>
                         <input type="checkbox" class="form-check-input" id="view_only_order" name="view_only_order" @if($settings['view_only_order']=="on") checked @endif>
                         <label class="form-check-label" for="view_only_order">Solo la pagina degli ordini</label>
                     </div>
+                    <div class="form-group form-inline">
+                        <label for="order_open_from_day">Apri ordine </label>
+                        <div>
+                            <input type="number" id="order_open_from_day" class="form-control ml-2" name="order_open_from_day" @if(isset($settings['order_open_from_day'])) value="{{$settings['order_open_from_day']}}" @else value="10" @endif> gg prima
+                        </div>
+                    </div>
+                    <h5 class="mb-3">Seleziona i giorni di consegna</h5>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_1'>
+                        <input type="checkbox" class="form-check-input" id="order_day_1" name="order_day_1" @if(isset($settings['order_day_1'])&&($settings['order_day_1']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_1">Lunedì</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_2'>
+                        <input type="checkbox" class="form-check-input" id="order_day_2" name="order_day_2" @if(isset($settings['order_day_2'])&&($settings['order_day_2']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_2">Martedì</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_3'>
+                        <input type="checkbox" class="form-check-input" id="order_day_3" name="order_day_3" @if(isset($settings['order_day_3'])&&($settings['order_day_3']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_3">Mercoledì</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_4'>
+                        <input type="checkbox" class="form-check-input" id="order_day_4" name="order_day_4" @if(isset($settings['order_day_4'])&&($settings['order_day_4']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_4">Giovedì</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_5'>
+                        <input type="checkbox" class="form-check-input" id="order_day_5" name="order_day_5" @if(isset($settings['order_day_5'])&&($settings['order_day_5']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_5">Venerdì</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_6'>
+                        <input type="checkbox" class="form-check-input" id="order_day_6" name="order_day_6" @if(isset($settings['order_day_6'])&&($settings['order_day_6']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_6">Sabato</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type='hidden' value='off' name='order_day_7'>
+                        <input type="checkbox" class="form-check-input" id="order_day_7" name="order_day_7" @if(isset($settings['order_day_7'])&&($settings['order_day_7']=="on")) checked @endif>
+                        <label class="form-check-label" for="order_day_7">Domenica</label>
+                    </div>
                 </div>
-                <div class="col-sm-12">    
+                <div class="col-12 col-md-6">    
                     <h5 class="mb-3">Informazioni Pagina ordini</h5>
                     <div class="form-group">
-                        <label for="app_ordini_descrizione">Titolo</label>
+                        <label for="app_ordini_titolo">Titolo</label>
                         <div>
                             <input type="text" id="app_ordini_titolo" class="form-control" name="app_ordini_titolo" value="@if(isset($settings['app_ordini_titolo'])){{$settings['app_ordini_titolo']}}@endif">
                         </div>
                     </div>
-                </div>   
-                <div class="col-sm-12">    
                     <div class="form-group">
                         <label for="app_ordini_sottotitolo">Sottotitolo</label>
                         <div>
                             <input type="text" id="app_ordini_sottotitolo" class="form-control" name="app_ordini_sottotitolo" value="@if(isset($settings['app_ordini_sottotitolo'])){{$settings['app_ordini_sottotitolo']}}@endif">
                         </div>
                     </div>
-                </div>   
-                <div class="col-sm-12">    
                     <div class="form-group">
                         <label for="app_ordini_descrizione">Descrizione breve</label>
                         <div>
@@ -199,8 +237,6 @@
                         </div>
                     </div>
                 </div>   
-              
-               
             </div>
         </div>
         <div class="tab-pane p-4 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">

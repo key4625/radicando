@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Plant;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Setting;
 use Arr;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -21,22 +23,25 @@ class orderlivewire extends Component
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
     public $passo;
+    public $array_date_possibili;
 
     protected $rules = [
         'nome' => 'required' ,  
         'cognome' => 'required',
-        'citta' =>'required_if:consegna_domicilio,1'
+        'citta' =>'required_if:consegna_domicilio,1',
+        'data_consegna' => 'required'
     ];
 
     public function mount()
     {
 
         //$this->item_ordered = array();
+        
         $this->ordine = array();
         $this->showProd = 0;
         $this->showQuant = 0;
         $this->passo = 0;
-        $this->data_consegna = date('Y-m-d');
+        $this->data_consegna = null;
         $this->consegna_domicilio = 1;
         $this->nome = session()->get('name_order');
         $this->cognome = session()->get('surname_order');
@@ -51,6 +56,9 @@ class orderlivewire extends Component
         if($tmpordered != null) {
             $this->item_ordered = $tmpordered;
         } else $this->item_ordered = array();
+        $this->calc_date_possibili();
+        
+        
         $this->resetQuantity();
     }
     public function resetInputFields(){
@@ -63,6 +71,7 @@ class orderlivewire extends Component
         $this->ordine = array();
         $this->showMode = false;  
         $this->passo = 0;
+        $this->data_consegna = null;
         session()->put('items_in_order', null);
         $this->resetQuantity();
       
@@ -192,5 +201,47 @@ class orderlivewire extends Component
         session()->flash('message', 'Grazie per il tuo ordine!');
     }
 
+    public function calc_date_possibili() {
+        $this->array_date_possibili = array();
+        $settings = Setting::all()->pluck('value','name');
+        for($i=0; $i<$settings['order_open_from_day']; $i++){
+            $data_tmp = Carbon::now()->addDays($i);
+            if($settings['order_day_1'] == "on"){
+                if($data_tmp->dayOfWeek == 1){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->format('l jS \\of F')));
+                }
+            }
+            if($settings['order_day_2'] == "on"){
+                if($data_tmp->dayOfWeek == 2){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+            if($settings['order_day_3'] == "on"){
+                if($data_tmp->dayOfWeek == 3){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+            if($settings['order_day_4'] == "on"){
+                if($data_tmp->dayOfWeek == 4){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+            if($settings['order_day_5'] == "on"){
+                if($data_tmp->dayOfWeek == 5){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+            if($settings['order_day_6'] == "on"){
+                if($data_tmp->dayOfWeek == 6){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+            if($settings['order_day_7'] == "on"){
+                if($data_tmp->dayOfWeek == 7){
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
+                }
+            }
+        }
+    }
 
 }
