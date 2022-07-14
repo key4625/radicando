@@ -90,10 +90,9 @@ class ordinilivewire extends Component
         if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
         $orders_list = $orders_list->orderby('data');
         if($this->sortedby !=null) $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
-        $prova = $orders_list->paginate(25);
 
         return view('backend.livewire.order', [
-            'orders' => $prova,'plants_available' => $plants_available, 'products_available' => $products_available
+            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list->get(),'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
     }
     public function viewProd($val){
@@ -206,6 +205,7 @@ class ordinilivewire extends Component
         //$this->prezzo_tot_consigliato->refresh();
         
     }
+  
     public function ordina($azione)
     {       
         $this->validate();

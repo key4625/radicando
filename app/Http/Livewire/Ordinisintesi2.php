@@ -48,6 +48,9 @@ class Ordinisintesi2 extends Component
         $orders_list->orderby('data');
         $arr_plants = array();
         foreach($orders_list->get() as $single_order){
+            $str_info = $single_order->nome." ".$single_order->cognome." - ".$single_order->citta;
+            if(($single_order->notes != null)&&($single_order->notes != ''))  $str_info .=" - <span style='font-size: .8rem;' ><b>note</b>: ".$single_order->notes."</span>";
+
             foreach($single_order->plants()->get() as $single_item){
                 $trovato = 999;
                 foreach($arr_plants as $key=>$value){
@@ -56,17 +59,20 @@ class Ordinisintesi2 extends Component
                     }
                 }
                 if($trovato != 999){
-                    array_push($arr_plants[$trovato]['order_user_list'] , $single_order->nome." ".$single_order->cognome." - ".$single_order->citta." - note: ".$single_order->notes); 
+                    array_push($arr_plants[$trovato]['order_user_list'] , $str_info); 
                     $arr_plants[$trovato]['quantity'] += $single_item->pivot->quantity;
-                } else {
-                    $lista_clienti_piante = array($single_order->nome." ".$single_order->cognome." - ".$single_order->citta." - note: ".$single_order->notes);
-                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price,'order_user_list' => $lista_clienti_piante);
+                } else { 
+                    $new_item = array('item_id'=>$single_item->id, 'type'=>'vegetable','name' => $single_item->nome, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price,'order_user_list' =>  array($str_info));
                     array_push($arr_plants, $new_item);
                 }        
             }   
         }
         $arr_products = array();
         foreach($orders_list->get() as $single_order){
+
+            $str_info = $single_order->nome." ".$single_order->cognome." - ".$single_order->citta;
+            if(($single_order->notes != null)&&($single_order->notes != ''))  $str_info .=" - <span style='font-size: .8rem;' ><b>note</b>: ".$single_order->notes."</span>";
+            
             foreach($single_order->products()->get() as $single_item){
                 $trovato = 999;
                 foreach($arr_products as $key=>$value){
@@ -75,9 +81,10 @@ class Ordinisintesi2 extends Component
                     }
                 }
                 if($trovato != 999){
+                    array_push($arr_products[$trovato]['order_user_list'] , $str_info); 
                     $arr_products[$trovato]['quantity'] += $single_item->pivot->quantity;
                 } else {
-                    $new_item = array('item_id'=>$single_item->id, 'type'=>'product','name' => $single_item->name, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price);
+                    $new_item = array('item_id'=>$single_item->id, 'type'=>'product','name' => $single_item->name, 'image' => $single_item->getImage(), 'quantity'=> $single_item->pivot->quantity, 'quantity_um'=> $single_item->pivot->quantity_um, 'price_um'=> $single_item->pivot->price_um,'price'=>$single_item->pivot->price,'order_user_list' =>  array($str_info));
                     array_push($arr_products, $new_item);
                 }        
             }   
