@@ -208,7 +208,7 @@ class orderlivewire extends Component
             $data_tmp = Carbon::now()->addDays($i);
             if($settings['order_day_1'] == "on"){
                 if($data_tmp->dayOfWeek == 1){
-                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->format('l jS \\of F')));
+                    array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
                 }
             }
             if($settings['order_day_2'] == "on"){
@@ -237,7 +237,7 @@ class orderlivewire extends Component
                 }
             }
             if($settings['order_day_7'] == "on"){
-                if($data_tmp->dayOfWeek == 7){
+                if($data_tmp->dayOfWeek == 0){
                     array_push($this->array_date_possibili, array($data_tmp->toDateString(),$data_tmp->translatedFormat('l j F')));
                 }
             }
