@@ -204,7 +204,7 @@ class orderlivewire extends Component
     public function calc_date_possibili() {
         $this->array_date_possibili = array();
         $settings = Setting::all()->pluck('value','name');
-        for($i=0; $i<$settings['order_open_from_day']; $i++){
+        for($i=0; $i<=$settings['order_open_from_day']; $i++){
             $data_tmp = Carbon::now()->addDays($i);
             if($settings['order_day_1'] == "on"){
                 if($data_tmp->dayOfWeek == 1){
