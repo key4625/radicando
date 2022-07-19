@@ -11,7 +11,7 @@
             <div class="card mb-1">
                 <div class="card-header p-2" id="heading-{{$tmp_plant['item_id']}}">
                     <h5 class="mb-0">
-                        <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse-{{$tmp_plant['item_id']}}" aria-expanded="true" aria-controls="collapse-{{$tmp_plant['item_id']}}">
+                        <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse2-{{$tmp_plant['item_id']}}" aria-expanded="true" aria-controls="collapse2-{{$tmp_plant['item_id']}}">
                             
                             <div >
                                 @if($tmp_plant['image'] != null)
@@ -30,7 +30,7 @@
                         </button>
                     </h5>
                 </div>
-                <div id="collapse-{{$tmp_plant['item_id']}}" class="collapse" aria-labelledby="heading-{{$tmp_plant['item_id']}}" data-parent="#accordion">
+                <div id="collapse2-{{$tmp_plant['item_id']}}" class="collapse" aria-labelledby="heading-{{$tmp_plant['item_id']}}" data-parent="#accordion">
                     <div class="card-body p-2">
                         <ul class="list-group bg-white">
                             @foreach($tmp_plant['order_user_list'] as $single_user)
@@ -80,7 +80,7 @@
             <div class="card mb-1">
                 <div class="card-header p-2" id="heading-{{$tmp_plant['item_id']}}">
                     <h5 class="mb-0">
-                        <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse-{{$tmp_prod['item_id']}}" aria-expanded="true" aria-controls="collapse-{{$tmp_prod['item_id']}}">
+                        <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse2prod-{{$tmp_prod['item_id']}}" aria-expanded="true" aria-controls="collapse2prod-{{$tmp_prod['item_id']}}">
                             
                             <div >
                                 @if($tmp_prod['image'] != null)
@@ -99,7 +99,7 @@
                         </button>
                     </h5>
                 </div>
-                <div id="collapse-{{$tmp_prod['item_id']}}" class="collapse" aria-labelledby="heading-{{$tmp_prod['item_id']}}" data-parent="#accordion">
+                <div id="collapse2prod-{{$tmp_prod['item_id']}}" class="collapse" aria-labelledby="heading-{{$tmp_prod['item_id']}}" data-parent="#accordion">
                     <div class="card-body p-2">
                         <ul class="list-group bg-white">
                             @foreach($tmp_prod['order_user_list'] as $single_user)

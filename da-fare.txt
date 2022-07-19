@@ -1,12 +1,14 @@
-Inserire data e ora in ordine livewire
-Inserire nella schermata di modifica ordine pagato ed evaso o simili
-Sistemare meglio i campi tel ed email
+Per creare nuovo tenant:
+Craere nuovo database radicando_nome_db
+Inserire dentro db landlord_radicando_db nuova riga su tabella tenant
+php artisan tenants:artisan "migrate --database=tenant --seed" --tenant=num_tenant
+
 
 Per migrare Landlord
 php artisan migrate --path=database/migrations/landlord --database=landlord
 
 Per migrare i Tenant
-php artisan tenants:artisan "migrate --path=database/migrations/tenant --database=tenant" 
+//php artisan tenants:artisan "migrate --path=database/migrations/tenant --database=tenant" 
 
 php artisan tenants:artisan "migrate --database=tenant"
 

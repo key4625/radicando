@@ -30,7 +30,5 @@
         </div>
     </div>
     <livewire:orderlivewire />
-  
-
 @endsection
 
