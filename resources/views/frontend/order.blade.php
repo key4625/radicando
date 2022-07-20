@@ -8,10 +8,10 @@
         <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
         <div class="container-xxl">
-            <img class="logo-landlord" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value)}}">
-            <h1 class="mt-3 titolo-1 green font-weight-bold w-50">{{App\Models\Setting::find('app_ordini_titolo')->value}}</h1>
-            <h5 class="mt-3 titolo-2 mid-green  w-50">{{App\Models\Setting::find('app_ordini_sottotitolo')->value}}</h5>
-            <p class="grigetto  w-50">{{App\Models\Setting::find('app_ordini_descrizione')->value}}</p>
+            <img class="logo-landlord" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
+            <h1 class="mt-3 titolo-1 green font-weight-bold w-50">{!! App\Models\Setting::find('app_ordini_titolo')->value !!}</h1>
+            <h5 class="mt-3 titolo-2 mid-green  w-50">{!! App\Models\Setting::find('app_ordini_sottotitolo')->value !!}</h5>
+            <p class="grigetto  w-50">{!! App\Models\Setting::find('app_ordini_descrizione')->value !!}</p>
         </div>
      
         <div class="new-app-banner-bg-shape"><img src="/img/maschera-desktop.png" alt="image"></div>

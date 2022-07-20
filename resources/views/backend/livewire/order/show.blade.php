@@ -136,9 +136,9 @@
     </div> 
     <div class="col-12 mt-4 text-center">
             
-        <button wire:click="ordina(1)" class="btn btn-primary">Salva</button>
-        <button wire:click="ordina(2)" class="btn btn-primary">Salva e Nuovo</button>
-        <button wire:click="ordina(3)" class="btn btn-primary">Salva e Rimani</button>
+        <button wire:click="$emit('triggerOrdina',[1,{{$totaleDifferente}},{{$prezzo_tot_consigliato}},{{$prezzo_tot}}])" class="btn btn-primary">Salva</button>
+        <button wire:click="$emit('triggerOrdina',[2,{{$totaleDifferente}},{{$prezzo_tot_consigliato}},{{$prezzo_tot}}])" class="btn btn-primary">Salva e Nuovo</button>
+        <button wire:click="$emit('triggerOrdina',[3,{{$totaleDifferente}},{{$prezzo_tot_consigliato}},{{$prezzo_tot}}])" class="btn btn-primary">Salva e Rimani</button>
     </div>
 </div>
 @else
@@ -159,7 +159,7 @@
                 </ul>
                 <div class="tab-content my-4 py-4" style="border-top: 0.13rem solid #c1c1c1;">
                     <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
-                        <div class="card-deck card-flip-container">
+                        <div class="card-deck card-flip-container row">
                             @foreach($products_available as $product)
                                 <div class="col-6 col-lg-4 col-xl-3 mb-4">
                                     <div class="card card-flip mb-4  @if(($showQuant==1)&&($idQuant==$product->id)&&($typeQuant=='product')) flipcard @endif ">
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div class="tab-pane  @if($showProd == 2) show active fade @endif" wire:loading.class="fade">
-                        <div class="card-deck">
+                        <div class="card-deck card-flip-container row">
                             @foreach($plants_available as $plant)
                                 <div class="col-6 col-lg-4 col-xl-3  mb-4">
                                     <div class="card card-flip mb-4 @if(($showQuant==1)&&($idQuant==$plant->id)&&($typeQuant=='vegetable')) flipcard @endif ">

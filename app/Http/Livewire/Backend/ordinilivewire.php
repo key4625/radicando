@@ -27,6 +27,8 @@ class ordinilivewire extends Component
     public $filter_consegnato, $filter_pagato, $filter_data;
     public $showPrintDiv = false;
     public $sortedby, $sortdir ;
+    public $totaleDifferente;
+    public $sel_stampa;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
@@ -46,6 +48,7 @@ class ordinilivewire extends Component
         $this->filter_pagato = "tutti";
         $this->filter_data = null;
         $this->item_ordered = array();
+        $this->sel_stampa = 0;
     }
     public function resetInputFields(){
         $this->item_ordered = array(); 
@@ -72,6 +75,10 @@ class ordinilivewire extends Component
     { 
         if( $this->showMode ==1 ) $this->ricalcolaPrezzo();
 
+        if($this->prezzo_tot != $this->prezzo_tot_consigliato_scontato) {
+            $this->totaleDifferente = 1; 
+        } else  $this->totaleDifferente = 0; 
+
         $plants_available = Plant::where('vendibile',1)->get();
         /*$plant_filtered = Arr::where( $this->item_ordered, function ($value, $key) {
             return $value['type'] == "vegetable";
@@ -90,9 +97,9 @@ class ordinilivewire extends Component
         if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
         $orders_list = $orders_list->orderby('data');
         if($this->sortedby !=null) $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
-
+      
         return view('backend.livewire.order', [
-            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list->get(),'plants_available' => $plants_available, 'products_available' => $products_available
+            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list->get() ,'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
     }
     public function viewProd($val){
@@ -206,8 +213,9 @@ class ordinilivewire extends Component
         
     }
   
-    public function ordina($azione)
+    public function ordina($azione,$aggiorno_tot)
     {       
+        $this->dispatchBrowserEvent('swal', ['title' => 'hello from Livewire']);
         $this->validate();
         $this->sel_order->nome = $this->nome;
         $this->sel_order->cognome = $this->cognome;
@@ -216,7 +224,10 @@ class ordinilivewire extends Component
         $this->sel_order->citta = $this->citta;
         $this->sel_order->tel = $this->tel;
         if(($this->prezzo_tot == null)||($this->prezzo_tot == 0)) $this->prezzo_tot = $this->prezzo_tot_consigliato_scontato;
-        $this->sel_order->prezzo_tot = $this->prezzo_tot;
+        if($aggiorno_tot == 1) {
+            $this->prezzo_tot = $this->prezzo_tot_consigliato_scontato;
+            $this->sel_order->prezzo_tot = $this->prezzo_tot_consigliato_scontato;
+        } else $this->sel_order->prezzo_tot = $this->prezzo_tot;
         $this->sel_order->tipo_cliente = $this->tipo_cliente;
         $this->sel_order->sconto_perc = $this->sconto_perc;
         $this->sel_order->data = $this->data;

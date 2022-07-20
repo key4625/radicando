@@ -50,7 +50,7 @@
         </div>
         <div class="table-responsive">
             <table class="table  table-striped table-hover">
-                <th>Consegna</th><th>Nome</th><th class="">Per quando</th>
+                <th>N°</th><th>Consegna</th><th>Nome</th><th class="">Per quando</th>
                 <th wire:click="sortBy('citta')" style="cursor:pointer;">Città 
                     @if(($sortedby =="citta")&&( $sortdir == "asc"))<i class="fas fa-sort-up green"></i>
                     @elseif(($sortedby =="citta")&&( $sortdir == "desc"))<i class="fas fa-sort-down green"></i>
@@ -64,6 +64,7 @@
             
                 @foreach($orders as $order)
                     <tr>
+                        <td>{{$order->id}}</td>
                         <td>@if($order->consegna_domicilio) <i class="fas fa-home"></i> @else <i class="fas fa-store"></i> @endif</td>
                         <td>{{$order->nome}}  {{$order->cognome}}</td>
                         @if($confirming===$order->id)
@@ -98,7 +99,41 @@
         <div class="text-center">{{$orders->links()}}</div>
         @include('backend.livewire.order.print')
     @endif
-   
- 
 </div>
+
+@push('after-scripts')
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+
+            @this.on('triggerOrdina', azione => {
+                if(azione[1] == 1){
+                    Swal.fire({
+                        title: 'Aggiornare il totale?',
+                        text: 'Il totale ordine calcolato di '+ azione[2] +'€ è diverso da quello indicato di '+ azione[3] + '€ , aggiornarlo?',
+                        type: "warning",
+                        showCancelButton: true,
+                      
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        //if user clicks on salva prezzo
+                        if (result.value) {
+                            // calling destroy method to delete
+                            @this.call('ordina',azione[0],1)
+                            // success response
+                            responseAlert({title: session('message'), type: 'success'});
+                            
+                        } else {
+                            @this.call('ordina',azione[0],0)
+                            responseAlert({
+                                title: 'Operation Cancelled!',
+                                type: 'success'
+                            });
+                        }
+                    });
+                } else  @this.call('ordina',azione[0],0)
+            });
+        })
+    </script>
+@endpush
 
