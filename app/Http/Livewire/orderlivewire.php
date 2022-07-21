@@ -10,7 +10,7 @@ use App\Models\Setting;
 use Arr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use Mail;
 
 use function PHPUnit\Framework\isNull;
 
@@ -43,14 +43,13 @@ class orderlivewire extends Component
         $this->passo = 0;
         $this->data_consegna = null;
         $this->consegna_domicilio = 1;
-        $this->nome = session()->get('name_order');
-        $this->cognome = session()->get('surname_order');
-        $this->email = session()->get('name_email');
-        $this->tel = session()->get('name_tel');
-        $this->indirizzo = session()->get('name_indir');
-        $this->citta = session()->get('name_citta');
-        $this->citta = session()->get('consegna_domicilio');
-        $this->notes = session()->get('notes');
+        $this->nome = session()->get('order_name');
+        $this->cognome = session()->get('order_surname');
+        $this->email = session()->get('order_email');
+        $this->tel = session()->get('order_tel');
+        $this->indirizzo = session()->get('order_indir');
+        $this->citta = session()->get('order_citta');
+        $this->notes = session()->get('order_notes');
         $tmpordered = session()->get('items_in_order');
         //session()->put('items_in_order', null);
         if($tmpordered != null) {
@@ -130,13 +129,13 @@ class orderlivewire extends Component
             
             array_push($this->item_ordered, $new_item);
             session()->put('items_in_order', $this->item_ordered);
-            session()->put('name_order', $this->nome);
-            session()->put('surname_order', $this->cognome);
-            session()->put('name_email', $this->email);
-            session()->put('name_tel', $this->tel);
-            session()->put('name_indir', $this->indirizzo);
-            session()->put('name_citta', $this->citta);
-            session()->put('notes', $this->notes);
+            session()->put('order_name', $this->nome);
+            session()->put('order_surname', $this->cognome);
+            session()->put('order_email', $this->email);
+            session()->put('order_tel', $this->tel);
+            session()->put('order_indir', $this->indirizzo);
+            session()->put('order_citta', $this->citta);
+            session()->put('order_notes', $this->notes);
             $this->resetQuantity();
         }
     }
@@ -176,13 +175,15 @@ class orderlivewire extends Component
         $ordine->sconto_perc = 0;
         $ordine->tipo_cliente = 'privato';
         $ordine->save();
-        session()->put('name_order', $this->nome);
-        session()->put('surname_order', $this->cognome);
-        session()->put('name_email', $this->email);
-        session()->put('name_tel', $this->tel);
-        session()->put('name_indir', $this->indirizzo);
-        session()->put('name_citta', $this->citta);
-      
+        session()->put('items_in_order', $this->item_ordered);
+        session()->put('order_name', $this->nome);
+        session()->put('order_surname', $this->cognome);
+        session()->put('order_email', $this->email);
+        session()->put('order_tel', $this->tel);
+        session()->put('order_indir', $this->indirizzo);
+        session()->put('order_citta', $this->citta);
+        session()->put('order_notes', $this->notes);
+        
         foreach ($this->item_ordered as $tmp_item_ordered) {
             if($tmp_item_ordered['type']=="vegetable"){
                 $tmp_plant = Plant::where('id',$tmp_item_ordered['item_id'])->first();
@@ -198,9 +199,16 @@ class orderlivewire extends Component
         }  
         $this->resetInputFields();
         $this->passo = 3;
+        $this->inviaMail($ordine);
         session()->flash('message', 'Grazie per il tuo ordine!');
     }
 
+    public function inviaMail($ordine){
+        $details  = [
+            'ordine' => $ordine
+        ];
+        \Mail::to($ordine->email)->send(new \App\Mail\ConfermaOrdineMail($details));
+    }
     public function calc_date_possibili() {
         $this->array_date_possibili = array();
         $settings = Setting::all()->pluck('value','name');
