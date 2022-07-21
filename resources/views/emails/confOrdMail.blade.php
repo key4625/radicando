@@ -5,7 +5,7 @@
 </head>
 <body>
     <div style="text-align:center;">
-        <img style="max-height:200px;" src="https://{{$_SERVER['SERVER_NAME'];}}/{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
+        <img style="max-height:100px;" src="https://{{$_SERVER['SERVER_NAME'];}}/{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
         <h3 >{{App\Models\Setting::find('app_company_name')->value}}</h3>
     </div>
     <div>
@@ -20,7 +20,7 @@
         
     
         @if( $details['ordine']->plants()->count()>0)
-            <table>
+            <table border=1>
                 <tbody>
                     <tr><td colspan="4"><b>Frutta e verdura</b></td></tr>
                     <tr>
@@ -46,7 +46,7 @@
             </table>
         @endif
         @if($details['ordine']->products()->count()>0)
-            <table>
+            <table border=1>
                 <tbody>
                     <tr><td colspan="4" ><b>Prodotti</b></td></tr>
                     <tr>
