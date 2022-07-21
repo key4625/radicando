@@ -28,6 +28,7 @@ class orderlivewire extends Component
     protected $rules = [
         'nome' => 'required' ,  
         'cognome' => 'required',
+        'email' => 'required',
         'citta' =>'required_if:consegna_domicilio,1',
         'data_consegna' => 'required'
     ];
