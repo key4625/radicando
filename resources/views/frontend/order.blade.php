@@ -3,7 +3,7 @@
 @section('Ordina', __('Ordina'))
 
 @section('content')
-    <div class="d-none d-md-block new-app-main-banner-area ordina-main-banner-area" style="background-image:url('{{ Storage::url(App\Models\Setting::find('app_img_copertina')->value)}}');">
+    <div class="d-none d-md-flex new-app-main-banner-area ordina-main-banner-area" style="background-image:url('{{ Storage::url(App\Models\Setting::find('app_img_copertina')->value)}}');">
         {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
         <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 

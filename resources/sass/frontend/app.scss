@@ -48,7 +48,7 @@ img.img-copertina {
     right: -1px;
     bottom: -3px;
     z-index: -1;
-    width: 100%;
+    height: 102%;
 }
 .new-app-banner-bg-shape img {
     min-width: 102%; 
@@ -58,15 +58,17 @@ img.img-copertina {
     background-position: bottom center;
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 180px;
-    padding-bottom: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     position: relative;
     z-index: 1;
     overflow: hidden;
 }
 .ordina-main-banner-area {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    /*padding-top: 100px;
+    padding-bottom: 100px;*/
+    min-height: 450px;
+    align-items: center;
 }
 .swiper {
     width: 100%;

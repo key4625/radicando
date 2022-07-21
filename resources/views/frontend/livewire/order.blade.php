@@ -167,8 +167,8 @@
                                             <div class="col-4">
                                                 <label for="nome" class="col-form-label">@if($item_ord['type'] == "vegetable") {{$tmp_item->nome}} @else {{$tmp_item->name}} @endif</label>
                                             </div>
-                                            <div class="col-3 ">
-                                                <div class="input-group">
+                                            <div class="col-3 px-0">
+                                                <div class="input-group  input-group-sm">
                                                     <input class="form-control" type="number" wire:model="item_ordered.{{$key}}.quantity" default="0">
                                                     <div class="input-group-append"><span class="input-group-text">{{$item_ord['quantity_um']}}</span></div>
                                                 </div>

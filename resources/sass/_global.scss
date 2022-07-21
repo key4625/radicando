@@ -37,6 +37,9 @@
 .bg-dark {
     background-color: #3a7a42 !important;
 }
+.dark-green {
+    color: #0e6634;
+}
 .green {
     color:#3a7a42;
 }
@@ -239,7 +242,77 @@ li.list-group-item.list-ordini {
     font-size: 3.5rem;
     line-height: 3.5rem;
 }
+.titolo-h2 {
+    font-weight: bold;
+    font-size: 2.8rem;
+    line-height: 2.8rem;
+}
 .h5, h5 {
     font-size: 1.025rem;
 }
+
+.card-ribbon{
+    width: 25rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 4px 4px 15px rgba(#000, 0.15);
+    position : relative;
+    color: #434343;
+  }
+  
+  .card-ribbon .card__container{
+    padding : 2rem;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 1rem;
+    position: relative;
+  }
+  
+  .card-ribbon::before{
+    position: absolute;
+    top:2rem;
+    right:-0.5rem;
+    content: '';
+    background: #283593;
+    height: 28px;
+    width: 28px;
+    transform : rotate(45deg);
+  }
+  
+  .card-ribbon::after{
+    position: absolute;
+    content: attr(data-label);
+    top: 11px;
+    right: -14px;
+    padding: 0.5rem;
+    width: 10rem;
+    background: #3949ab;
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
+  }
+  .card-ribbon.orange::after{
+    background: #f7ab39;
+  }
+  .card-ribbon.orange::before{
+    background: #f7ab39;
+  }
+  .card-ribbon.green::after{
+    background: #3a7a42;
+  }
+  .card-ribbon.green::before{
+    background: #0e6634;
+  }
 /** FINE TITOLI ***/
+@media only screen and (min-width: 769px) {
+    .trans-md-50-y {
+        transform: translate(0%, -50%);
+    }
+}
+@media only screen and (max-width: 768px) {
+    .trans-md-50-y {
+        padding:25px 0px;
+    }
+}
