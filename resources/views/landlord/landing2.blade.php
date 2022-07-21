@@ -11,7 +11,7 @@
 {{--@section('Ordina', __('Ordina'))--}}
 
 @section('content')
-<div class="div-copertina new-app-main-banner-area" style="background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
+<div class="div-copertina new-app-main-banner-area align-items-center" style="min-height: 500px; background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
     {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
     <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
