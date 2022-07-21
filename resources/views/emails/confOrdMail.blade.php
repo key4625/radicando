@@ -5,16 +5,16 @@
 </head>
 <body>
     <div style="text-align:center;">
-        <img style="max-height:200px;" src="{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
+        <img style="max-height:200px;" src="https://{{$_SERVER['SERVER_NAME'];}}/{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
         <h3 >{{App\Models\Setting::find('app_company_name')->value}}</h3>
     </div>
     <div>
         <h4>Riepilogo ordine</h4>
         <p>{{ $details['ordine']->nome." ".$details['ordine']->cognome }}</p>
         <p>{{ $details['ordine']->email }} - {{ $details['ordine']->tel }}</p>
-        <p>Data ordine: {{Carbon\Carbon::create($details['ordine']->data)->translatedFormat('D d M')}}</p>
+        <p><b>Data ordine</b>: {{Carbon\Carbon::create($details['ordine']->data)->translatedFormat('D d M')}}</p>
         @if($details['ordine']->consegna_domicilio == 1)
-            <p>Luogo spedizione:{{ $details['ordine']->citta }} - {{ $details['ordine']->indirizzo }}</p>
+            <p><b>Luogo spedizione</b>: {{ $details['ordine']->citta }} - {{ $details['ordine']->indirizzo }}</p>
         @endif
       
         
