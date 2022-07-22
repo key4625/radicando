@@ -15,7 +15,7 @@
     {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
     <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
-    <div class="container">
+    <div class="container mt-2 mt-md-5">
         <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
         <h3 class="mt-3 titolo-1">Agricoltura innovativa</h3>
         <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
@@ -27,7 +27,7 @@
         
         </div>
     </div>
-    <div class="new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda.png" alt="image"></div>
+    <div class="new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda2.png" alt="image"></div>
 </div>
 <div class="bg-white">
     <div class="container-fluid p-5">
@@ -131,7 +131,7 @@
     </div>
 </div>
 <div class="bg-white">
-    <div class="container-xxl py-5">
+    <div class="container py-5">
         <h5 class="orange pt-5">VENDI i tuoi prodotti</h5>
         <h2 class="titolo-h2">Una sezione dedicata agli ordini</h2>
       
@@ -158,19 +158,19 @@
                         pensa a tutto.</p>
                 </div>
             </div>
-           <div class="col-12 col-md-6"></div>
+           <div class="col-12 col-md-6"><img class="img-fluid" src="/img/presentazione/computer.jpg" style="width:80%" ></div>
         </div>
         <div class="d-none d-md-block" style="min-height:150px;"></div>
    
     </div>
 </div>
 <div class="bg-green">
-    <div class="container-xxl">
+    <div class="container" style="max-width: 900px; margin: auto;">
         <div class="row trans-md-50-y">
-            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/coltivazioni.png" ></div>
-            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/coltivazioni.png" ></div>
-            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/coltivazioni.png" ></div>
-            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/coltivazioni.png" ></div>
+            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/tel_1.png" ></div>
+            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/tel_2.png" ></div>
+            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/tel_3.png" ></div>
+            <div class="col-6 col-md-3 text-center"><img class="img-fluid" src="/img/presentazione/tel_4.png" ></div>
         </div>
     </div>
 </div>
@@ -205,10 +205,17 @@
         
         </div>
     </div>
-    <div class="container-xxl">
-        <!-- Slider main container -->
-       
+</div>
+<div class="bg-white p-5">
+    <div class="card bg-green m-auto" style="max-width:600px;">
+        <div class="card-body">
+            <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
+            <h1 class="titolo-h2 text-center">Contattaci</h1>
+        </div>
     </div>
+</div>
+<div class="container">
+    <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
 </div>
 @endsection
 
