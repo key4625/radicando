@@ -64,9 +64,9 @@ class Statistica1 extends Component
                 if($tmp_totprice > 0){
                     //dd($data->orders());
                     //return $columnChartModel->addColumn($title, $value, $data->color);
-                    $columnChartModel->addSeriesColumn("Totale €", $title,  $tmp_totprice, $data->color);
-                    $columnChartModel->addSeriesColumn("Quantità", $title,  $tmp_totqnt, $data->color);
-                    $columnChartModel->addSeriesColumn("Quantità non prezzata", $title,  $tmp_totqnt_und, $data->color);
+                    $columnChartModel->addSeriesColumn("Totale €", $title,  round($tmp_totprice,2), $data->color);
+                    $columnChartModel->addSeriesColumn("Quantità", $title,   round($tmp_totqnt,2), $data->color);
+                    $columnChartModel->addSeriesColumn("Quantità non prezzata", $title,   round($tmp_totqnt_und,2), $data->color);
                    
                     return $columnChartModel;
                 } else return $columnChartModel;
