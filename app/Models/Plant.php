@@ -20,7 +20,7 @@ class Plant extends Model
 
     public function orders()
     {
-        return $this->morphToMany(Order::class, 'orderable')->withPivot('quantity','quantity_um','price','price_um');;
+        return $this->morphToMany(Order::class, 'orderable')->withPivot('quantity','quantity_um','price','price_um');
     }
     public function plantcategory()
     {
@@ -71,14 +71,14 @@ class Plant extends Model
     }
     public static function piante_semina_mese($actual_month) 
     {
-        return Plant::whereJsonContains('semina',$actual_month)->get();
+        return Plant::whereJsonContains('semina',strval($actual_month))->get();
     }
     public static function piante_semina_out_mese($actual_month) 
     {
-        return Plant::whereJsonContains('semina_out',$actual_month)->get();
+        return Plant::whereJsonContains('semina_out',strval($actual_month))->get();
     }
     public static function piante_trapianto_mese($actual_month) 
     {
-        return Plant::whereJsonContains('trapianto',$actual_month)->get();
+        return Plant::whereJsonContains('trapianto',strval($actual_month))->get();
     }
 }

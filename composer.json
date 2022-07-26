@@ -11,6 +11,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "arcanedev/log-viewer": "8.x",
+        "asantibanez/livewire-charts": "^2.4",
         "darkghosthunter/laraguard": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
