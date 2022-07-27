@@ -15,6 +15,10 @@
     background-color:#e0ebc4;
     color:#383838;
 }
+.card.bg-verdolino {
+    border: none;
+    box-shadow: #d3d3d3 1px 1px 4px 1px;
+}
 .bg-white {
     background-color:#fff;
     color:#383838;
@@ -61,20 +65,6 @@ a.lightgreen:hover {
 
 /** FINE COLORI ***/
 
-/** BOTTONI ***/
-.btn-rotondo {
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn-passo{
-    text-transform: uppercase;
-}
-
-/** FINE BOTTONI ***/
 
 /** FLIP CARD **/ 
 .card-flip-container {
@@ -122,6 +112,27 @@ a.lightgreen:hover {
 /** FINE FLIP **/
 
 /** BOTTONI **/ 
+.btn-rotondo {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-passo{
+    text-transform: uppercase;
+}
+.btn-orange {
+    background-color:#f7ab39;
+    color:white;
+}
+.btn-orange:hover, .btn-orange:active {
+    background-color:#bb7f26;
+    color:white;
+}
+
+
 .btn-primary {
     color: #fff;
     background-color: #48984e;
@@ -305,7 +316,21 @@ li.list-group-item.list-ordini {
   .card-ribbon.green::before{
     background: #0e6634;
   }
-/** FINE TITOLI ***/
+/**FINE TITOLI ***/
+
+/** FOOTER **/ 
+footer {
+    line-height: .75rem;
+    font-size: .75rem;
+}
+footer a {
+    color:#f7ab39;
+}
+footer a:hover {
+    color:rgb(204, 136, 8);
+}
+/** FINE FOOTER **/ 
+
 @media only screen and (min-width: 769px) {
     .trans-md-50-y {
         transform: translate(0%, -50%);
