@@ -30,7 +30,15 @@
     <meta name="theme-color" content="#ffffff">
 
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFC8Z06FYC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-ZFC8Z06FYC');
+    </script>
+    
     @stack('after-styles')
 </head>
 <body>
@@ -47,7 +55,12 @@
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/frontend.js') }}"></script>
-
+    <script type="text/javascript">
+        var _iub = _iub || [];
+        _iub.csConfiguration = {"ccpaAcknowledgeOnDisplay":true,"consentOnContinuedBrowsing":false,"countryDetection":true,"enableCcpa":true,"floatingPreferencesButtonDisplay":"bottom-right","invalidateConsentWithoutLog":true,"perPurposeConsent":true,"siteId":2750476,"whitelabel":false,"cookiePolicyId":17494189,"lang":"it", "banner":{ "acceptButtonDisplay":true,"closeButtonDisplay":false,"customizeButtonDisplay":true,"explicitWithdrawal":true,"listPurposes":true,"position":"float-top-center","rejectButtonDisplay":true }};
+        </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/ccpa/stub.js"></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
     @stack('after-scripts')
 </body>
 </html>

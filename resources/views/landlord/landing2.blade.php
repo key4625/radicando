@@ -40,8 +40,8 @@
             <h2 class="mt-3 titolo-h2">Agricoltura innovativa</h2>
             <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
             <div class="my-3">
-                <a class="btn btn-orange bordotondomolto text-uppercase p-2 mr-2" href="#">Pagina ordini</a>
-                <a class="btn btn-orange bordotondomolto text-uppercase p-2 " href="#">Demo gestionale</a>
+                <a class="btn btn-orange bordotondomolto text-uppercase p-2 mr-2" target="blank" href="https://demo.radicando.it/">Pagina ordini</a>
+                <a class="btn btn-orange bordotondomolto text-uppercase p-2" target="blank" href="https://demo.radicando.it/login">Demo gestionale</a>
             </div>
         </div>
     </div>
