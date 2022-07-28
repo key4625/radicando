@@ -39,7 +39,7 @@ class ContactController extends Controller
              array(
                  'name' => $request->get('name'),
                  'email' => $request->get('email'),
-                 'subject' => $request->get('subject'),
+                 'subject' => "Nuova richiesta di contatto da Radicando",
                  'phone_number' => $request->get('phone_number'),
                  'user_message' => $request->get('message'),
              ), function($message) use ($request)

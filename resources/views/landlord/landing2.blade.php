@@ -233,7 +233,7 @@
         <div class="card-body text-center">
             <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
             <h1 class="titolo-h2 text-center">Contattaci</h1>
-            <form method="post" action="landing2#contatti">
+            <form method="post" action="landing#contatti">
                 {{csrf_field()}}
                 <div class="form-group">
                     <input type="text" class="form-control @error('name') is-invalid @enderror mx-auto mt-3" name="name" placeholder="Nome e Cognome" style="max-width:400px">
@@ -281,7 +281,8 @@
             <img class="logo-landlord my-4" src="img/logotipo_1.png" height="60" style="margin-left:-10px; "><br />
             <p><b>Radicando</b> - agricoltura online.</p>
             <p>www.radicando.it - info@radicando.it</p><br/>
-            <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone<br />P.IVA 02517400426</p>
+            <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone</p>
+            <p>02517400426</p>
             <div>
                 <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
                 <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-2x mr-3"></i></a>

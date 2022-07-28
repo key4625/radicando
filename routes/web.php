@@ -17,10 +17,11 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 
 Route::domain('radicando.it')->group(function () {
     
-    Route::view('/','landlord.landing' );
-    Route::view('/landing','landlord.landing2' );
-    Route::get('/landing2', [ContactController::class, 'index']);
-    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
+    Route::get('/',[ContactController::class, 'index'] );
+    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::view('/landing','landlord.landing2' );
+    Route::get('/landing', [ContactController::class, 'index']);
+    Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -29,10 +30,11 @@ Route::domain('radicando.it')->group(function () {
 });
 Route::domain('www.radicando.it')->group(function () {
     
-    Route::view('/','landlord.landing' );
-    Route::view('/landing','landlord.landing2' );
-    Route::get('/landing2', [ContactController::class, 'index']);
-    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
+    Route::get('/',[ContactController::class, 'index'] );
+    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::view('/landing','landlord.landing2' );
+    Route::get('/landing', [ContactController::class, 'index']);
+    Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -41,10 +43,11 @@ Route::domain('www.radicando.it')->group(function () {
 });
 Route::domain('straorto')->group(function () {
     
-    Route::view('/','landlord.landing' );
-    Route::view('/landing','landlord.landing2' );
-    Route::get('/landing2', [ContactController::class, 'index']);
-    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
+    Route::get('/',[ContactController::class, 'index'] );
+    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::view('/landing','landlord.landing2' );
+    Route::get('/landing', [ContactController::class, 'index']);
+    Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
