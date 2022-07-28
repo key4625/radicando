@@ -28,8 +28,8 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
+    {{-- GOOGLE Analytics --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFC8Z06FYC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,6 +38,7 @@
     
       gtag('config', 'G-ZFC8Z06FYC');
     </script>
+     {{-- FINE GOOGLE Analytics --}}
 
     @stack('after-styles')
 </head>
