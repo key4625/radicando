@@ -233,16 +233,45 @@
         <div class="card-body text-center">
             <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
             <h1 class="titolo-h2 text-center">Contattaci</h1>
-            <div class="form-group">
-                <input type="text" class="form-control mx-auto mt-3" name="nome" placeholder="Nome e Cognome" style="max-width:400px">
-                <input type="email" class="form-control mx-auto mt-3" name="nome" placeholder="Email" style="max-width:400px">
-                <textarea class="form-control mx-auto mt-3" name="descrizione" placeholder="Cosa vorresti sapere?" style="max-width:400px"></textarea>
-                <div class="form-check mt-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
-                    <label class="form-check-label" for="exampleCheck1">Accetto la Privacy policy</label>
-                </div> 
-                <input type="submit" class="btn btn-orange bordotondomolto  mt-3 px-4" value="Invia">
-            </div>
+            <form method="post" action="landing2#contatti">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror mx-auto mt-3" name="name" placeholder="Nome e Cognome" style="max-width:400px">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert"><strong>Nome non valido</strong></span>
+                    @enderror
+                    <input type="email" class="form-control @error('email') is-invalid @enderror mx-auto mt-3" name="email" placeholder="Email" style="max-width:400px">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert"><strong>Email non valida</strong></span>
+                    @enderror
+                    <input type="text" class="form-control @error('phone_number') is-invalid @enderror mx-auto mt-3" name="phone_number" placeholder="Telefono" style="max-width:400px">
+                    @error('phone_number')
+                        <span class="invalid-feedback" role="alert"><strong>Numero di telefono non valido</strong></span>
+                    @enderror
+                    {{--<input type="text" class="form-control @error('subject') is-invalid @enderror mx-auto mt-3" name="subject" placeholder="Titolo" style="max-width:400px">
+                    @error('subject')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror--}}
+                    <textarea class="form-control textarea @error('message') is-invalid @enderror mx-auto mt-3" name="message" placeholder="Cosa vorresti sapere?" style="max-width:400px"></textarea>
+                    @error('message')
+                        <span class="invalid-feedback" role="alert"><strong>Inserisci un messagio</strong></span>
+                    @enderror
+                    <div class="form-check mt-3">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
+                        <label class="form-check-label" for="exampleCheck1">Accetto la Privacy policy</label>
+                    </div> 
+                    @error('privacy')
+                        <span class="invalid-feedback" role="alert"><strong>Devi accettare la privacy</strong></span>
+                    @enderror
+                    <button type="submit" class="btn btn-orange bordotondomolto  mt-3 px-4">Invia</button>
+                </div>
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+               
+            </form>
         </div>
     </div>
 </div>
@@ -252,7 +281,7 @@
             <img class="logo-landlord my-4" src="img/logotipo_1.png" height="60" style="margin-left:-10px; "><br />
             <p><b>Radicando</b> - agricoltura online.</p>
             <p>www.radicando.it - info@radicando.it</p><br/>
-            <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone</p>
+            <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone<br />P.IVA 02517400426</p>
             <div>
                 <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
                 <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-2x mr-3"></i></a>
@@ -268,5 +297,6 @@
     </div>
 </footer>
 @endsection
+
 
 

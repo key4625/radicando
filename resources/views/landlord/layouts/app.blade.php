@@ -36,7 +36,7 @@
 <body>
     <div id="app" >
         {{--@include('landlord.includes.nav')--}}
-        @include('includes.partials.messages')
+        {{--@include('includes.partials.messages')--}}
 
         <main>
             @yield('content')

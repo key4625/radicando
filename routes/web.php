@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocaleController;
-
+use App\Http\Controllers\ContactController;
 /*
  * Global Routes
  *
@@ -19,6 +19,8 @@ Route::domain('radicando.it')->group(function () {
     
     Route::view('/','landlord.landing' );
     Route::view('/landing','landlord.landing2' );
+    Route::get('/landing2', [ContactController::class, 'index']);
+    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -29,6 +31,8 @@ Route::domain('www.radicando.it')->group(function () {
     
     Route::view('/','landlord.landing' );
     Route::view('/landing','landlord.landing2' );
+    Route::get('/landing2', [ContactController::class, 'index']);
+    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -39,6 +43,8 @@ Route::domain('straorto')->group(function () {
     
     Route::view('/','landlord.landing' );
     Route::view('/landing','landlord.landing2' );
+    Route::get('/landing2', [ContactController::class, 'index']);
+    Route::post('/landing2', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {

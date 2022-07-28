@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ConfermaOrdineMail extends Mailable
+class ContattoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,7 @@ class ConfermaOrdineMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Conferma ordine da '.Setting::find('app_company_name')->value)
+        return $this->subject('Mail di contatto'.Setting::find('app_company_name')->value)
                     ->view('emails.confOrdMail');
     }
 }
