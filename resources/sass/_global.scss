@@ -273,7 +273,7 @@ li.list-group-item.list-ordini {
 }
 
 .card-ribbon{
-    width: 25rem;
+    max-width: 25rem;
     border-radius: 0.25rem;
     background: white;
     box-shadow: 4px 4px 15px rgba(#000, 0.15);
@@ -330,8 +330,8 @@ li.list-group-item.list-ordini {
 /**FINE TITOLI ***/
 
 /** FOOTER **/ 
-footer {
-    line-height: .5rem;
+footer p {
+    margin-bottom: .2rem;
     /*font-size: .75rem;*/
 }
 footer a {

@@ -10,8 +10,8 @@
     {{--<div class="container mt-2 mt-md-5 d-flex justify-content-between">
         <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
     </div>--}}
-    <div class="container" >
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(224,235, 196, .95);">
+   
+        <nav class="navbar navbar-expand-lg navbar-light fixed-md-top" style="background-color: rgba(224,235, 196, .95);">
             <div class="container">
                 <a class="navbar-brand" href="#"> <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-10px;"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,19 +35,20 @@
                 </div>
             </div>
         </nav>
+    <div class="container text-center text-md-left" >
         <div class="header-copertina mt-2 mt-md-5">
             <h2 class="mt-3 titolo-h2">Agricoltura innovativa</h2>
             <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
             <div class="my-3">
-                <a class="btn btn-orange bordotondomolto text-uppercase mr-2" href="#">Pagina ordini</a>
-                <a class="btn btn-orange bordotondomolto text-uppercase" href="#">Demo gestionale</a>
+                <a class="btn btn-orange bordotondomolto text-uppercase p-2 mr-2" href="#">Pagina ordini</a>
+                <a class="btn btn-orange bordotondomolto text-uppercase p-2 " href="#">Demo gestionale</a>
             </div>
         </div>
     </div>
-    <div class="new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda2.png" alt="image"></div>
+    <div class="d-none d-md-block new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda2.png" alt="image"></div>
 </div>
 <div class="bg-white" id="progetto">
-    <div class="container py-3">
+    <div class="container py-3 px-2">
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <img src="/img/presentazione/esagono.jpg" class="img-fluid p-4" style="max-height:530px;">  
@@ -282,7 +283,7 @@
             <p><b>Radicando</b> - agricoltura online.</p>
             <p>www.radicando.it - info@radicando.it</p><br/>
             <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone</p>
-            <p>02517400426</p>
+            <p>P.IVA 02517400426</p>
             <div>
                 <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>
                 <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-2x mr-3"></i></a>
