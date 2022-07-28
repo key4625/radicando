@@ -292,7 +292,7 @@
                         <h5 class="text-center orange">Hai completato il processo</h5>
                         <h1 class="text-center green">GRAZIE PER LA TUA PRENOTAZIONE</h1>
                         <div class="my-4" style="border-top: 0.13rem solid #c1c1c1;"></div>
-                        <div> Una email riepilogativa è stata inviata all'indirizzo di posta indicato</div>
+                        <div class="text-center"> Una email riepilogativa è stata inviata all'indirizzo di posta indicato</div>
                     </div>
                 </div>
             @endif 
