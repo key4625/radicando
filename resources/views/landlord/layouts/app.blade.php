@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Radicando | Agricoltura online</title>
     <meta name="description" content="Gestire la tua azienda agricola non è mai stato così semplice!">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+    <meta name="author" content="@yield('meta_author', 'Key Soluzioni e Esseppi multimedia')">
     @yield('meta')
 
     @stack('before-styles')
