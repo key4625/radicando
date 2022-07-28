@@ -3,53 +3,54 @@
 {{--@section('Ordina', __('Ordina'))--}}
 
 @section('content')
-<div class="div-copertina new-app-main-banner-area align-items-center" style="min-height: 500px; background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
+<div id="home" class="div-copertina new-app-main-banner-area align-items-center" style="min-height: 550px; background-image:url('{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}');">
     {{--<img class="img-copertina clip-me" src="{{ Storage::url('public/tenant/demo/profilo/copertina.jpg')}}">--}}
     <!--<div class="clip-me div-sfondo-home" style=""></div>-->
 
     {{--<div class="container mt-2 mt-md-5 d-flex justify-content-between">
         <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;">
     </div>--}}
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="#"> <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-23px;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#progetto">Il progetto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#funzioni">Funzioni</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#prezzi">Prezzi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contatti">Contatti</a></li>
-                </ul>
+    <div class="container" >
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(224,235, 196, .95);">
+            <div class="container">
+                <a class="navbar-brand" href="#"> <img class="logo-landlord" src="img/logotipo_1.png" style="margin-left:-10px;"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#progetto">Il progetto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#funzioni">Funzioni</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#prezzi">Prezzi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contatti">Contatti</a></li>
+                        <div class="d-flex align-items-center ml-3">
+                            <a href="https://www.facebook.com/" target="blank" class="d-flex align-items-center green"><i class="fab fa-facebook-square fa-2x mr-2"></i></a>
+                            <a href="https://www.instagram.com/" target="blank" class="d-flex align-items-center green"><i class="fab fa-instagram-square fa-2x mr-2"></i></a>
+                            <a href="mailto:info@radicando.it" target="blank" class="d-flex align-items-center green"> <i class="fas fa-envelope-square fa-2x mr-2"></i></a>
+                            <a href="tel:+393384533261" target="blank" class="d-flex align-items-center green"> <i class="fab fa-whatsapp-square fa-2x"></i></a>
+                        
+                        </div>
+                    </ul>
+                </div>
             </div>
         </nav>
-        <div class="mt-2 mt-md-5">
-            <h3 class="mt-3 titolo-1">Agricoltura innovativa</h3>
+        <div class="header-copertina mt-2 mt-md-5">
+            <h2 class="mt-3 titolo-h2">Agricoltura innovativa</h2>
             <p class="sottotitolo-1">Gestire la tua azienda agricola non è <br />mai stato così semplice!</p>
             <div class="my-3">
-                <a class="btn btn-orange" href="#">Demo lato pubblico</a>
-                <a class="btn btn-orange" href="#">Demo lato gestionale</a>
-            </div>
-            <div>
-                <h5>Visita i nostri canali, o contattaci</h5>
-                <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-3x mr-3"></i></a>
-                <a href="https://www.instagram.com/" target="blank" class="green"><i class="fab fa-instagram-square fa-3x mr-3"></i></a>
-                <a href="mailto:info@radicando.it" target="blank" class="green"> <i class="fas fa-envelope-square fa-3x mr-3"></i></a>
-                <a href="tel:+393384533261" target="blank" class="green"> <i class="fab fa-whatsapp-square fa-3x"></i></a>
-            
+                <a class="btn btn-orange bordotondomolto text-uppercase mr-2" href="#">Pagina ordini</a>
+                <a class="btn btn-orange bordotondomolto text-uppercase" href="#">Demo gestionale</a>
             </div>
         </div>
     </div>
     <div class="new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda2.png" alt="image"></div>
 </div>
 <div class="bg-white" id="progetto">
-    <div class="container-fluid p-5">
+    <div class="container py-3">
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
-                <img src="/img/presentazione/esagono.jpg" class="img-fluid p-4" style="max-height:580px;">  
+                <img src="/img/presentazione/esagono.jpg" class="img-fluid p-4" style="max-height:530px;">  
             </div>
             <div class="col-12 col-md-6">   
                 <h4 class="orange">LA NOSTRA VISIONE</h4>
@@ -73,40 +74,40 @@
     <div class="py-5" style="max-width: 900px; margin: auto;">
         <div class="row">
             <div class="col-6 col-md-3">
-                <div class="card bg-verdolino">
+                <div class="card bordotondomolto bg-verdolino">
                   
                     <div class="card-body text-center dark-green p-3">
-                        <img class="mb-3" src="/img/presentazione/icona_foglia.png" style="max-width:100px;">
+                        <img class="mb-4" src="/img/presentazione/icona_foglia.png" style="max-width:85px;">
                         <h4>MONITORAGGIO</h4>
                         <h6>COLTIVAZIONI ed<br />ALLEVAMENTI</h6>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="card bg-verdolino">
+                <div class="card bordotondomolto bg-verdolino">
                   
                     <div class="card-body text-center dark-green p-3">
-                        <img class="mb-3" src="/img/presentazione/icona_diario.png" style="max-width:100px;">
+                        <img class="mb-4" src="/img/presentazione/icona_diario.png" style="max-width:85px;">
                         <h4>COMPILAZIONE</h4>
                         <h6>DIARIO e<br />MAGAZZINO</h6>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="card bg-verdolino">
+                <div class="card bordotondomolto bg-verdolino">
                    
                     <div class="card-body text-center dark-green p-3">
-                        <img class="mb-3" src="/img/presentazione/icona_negozio.png" style="max-width:100px;">
+                        <img class="mb-4" src="/img/presentazione/icona_negozio.png" style="max-width:85px;">
                         <h4>VENDITA</h4>
                         <h6>PRODUZIONE ed<br />ORDINI</h6>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="card bg-verdolino">
+                <div class="card bordotondomolto bg-verdolino">
                 
                     <div class="card-body text-center dark-green p-3">
-                        <img class="mb-3" src="/img/presentazione/statistiche.png" style="max-width:100px;">
+                        <img class="mb-4" src="/img/presentazione/statistiche.png" style="max-width:85px;">
                         <h4>STATISTICHE</h4>
                         <h6>COSTI, RESI e<br />RICAVI</h6>
                     </div>
@@ -117,8 +118,9 @@
 </div>
 <div class="bg-verdolino" id="funzioni">
     <div class="container-xxl py-5">
-        <h1 class="titolo-h1 text-center pt-5">Coltiviamo insieme</h1>
-        <h5 class="text-center orange">Ti aiutiamo a decidere cosa, devo e quando piantare</h5>
+        <h5 class="text-center orange pt-5">Ti aiutiamo a decidere cosa, devo e quando piantare</h5>
+        <h2 class="titolo-h2 text-center">Coltiviamo insieme</h2>
+       
         <div class="row py-4">
             <div class="col-12 col-md-4">
                 <div class="card card-home m-4">
@@ -178,7 +180,7 @@
                         pensa a tutto.</p>
                 </div>
             </div>
-           <div class="col-12 col-md-6"><img class="img-fluid" src="/img/presentazione/computer.jpg" style="width:80%" ></div>
+           <div class="col-12 col-md-6"><img class="img-fluid" src="/img/presentazione/computer2.jpg" style="width:80%" ></div>
         </div>
         <div class="d-none d-md-block" style="min-height:150px;"></div>
    
@@ -202,22 +204,22 @@
         <div class="row py-4">
             <div class="col-12 col-md-6">
                 <div class="container">
-                    <div class="card card-ribbon green m-auto" data-label="MENSILE">
+                    <div class="card bordotondomolto  card-ribbon green m-auto" data-label="MENSILE">
                         <div class="card__container mt-5 text-center">
                             <h4>In promozione fino al 31/10</h4>
-                            <span class="h1 font-weight-bold orange"><s>39€</s> </span><span class="font-weight-bold green">/mese</span>
-                            <span class="h1 font-weight-bold orange">29€ </span><span class="font-weight-bold green">/mese</span>
+                            <span class="h1 font-weight-bold green"><s>39€</s> </span><span class="font-weight-bold green">/mese</span>
+                            <span class="h1 font-weight-bold orange" style="font-size: 3.5rem;">29€ </span><span class="font-weight-bold green">/mese</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="container">
-                    <div class="card card-ribbon orange m-auto" data-label="ANNUALE">
+                    <div class="card bordotondomolto card-ribbon orange m-auto" data-label="ANNUALE">
                         <div class="card__container mt-5 text-center">
                             <h4>In promozione fino al 31/10</h4>
-                            <span class="h1 font-weight-bold orange"><s>449€</s> </span><span class="font-weight-bold green">/anno</span>
-                            <span class="h1 font-weight-bold orange">299€ </span><span class="font-weight-bold green">/anno</span>
+                            <span class="h1 font-weight-bold green"><s>449€</s> </span><span class="font-weight-bold green">/anno</span>
+                            <span class="h1 font-weight-bold orange" style="font-size: 3.5rem;">299€ </span><span class="font-weight-bold green">/anno</span>
                         </div>
                     </div>
                 </div>
@@ -227,7 +229,7 @@
     </div>
 </div>
 <div class="bg-white p-5" id="contatti">
-    <div class="card bg-green m-auto" style="max-width:600px;">
+    <div class="card bordotondomolto bg-green my-5 mx-auto" style="max-width:600px;">
         <div class="card-body text-center">
             <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
             <h1 class="titolo-h2 text-center">Contattaci</h1>
@@ -239,7 +241,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
                     <label class="form-check-label" for="exampleCheck1">Accetto la Privacy policy</label>
                 </div> 
-                <input type="submit" class="btn btn-orange mt-3 px-4" value="Invia">
+                <input type="submit" class="btn btn-orange bordotondomolto  mt-3 px-4" value="Invia">
             </div>
         </div>
     </div>
@@ -247,9 +249,9 @@
 <footer>
     <div class="div-copertina new-app-main-banner-area align-items-center bg-verdolino">
         <div class="container my-4">
-            <img class="logo-landlord mb-3" src="img/logotipo_1.png" height="60" style="margin-left:-10px; "><br />
-            <p>Radicando - agricoltura online.</p>
-            <p>www.radicando.it - info@radicando.it</p>
+            <img class="logo-landlord my-4" src="img/logotipo_1.png" height="60" style="margin-left:-10px; "><br />
+            <p><b>Radicando</b> - agricoltura online.</p>
+            <p>www.radicando.it - info@radicando.it</p><br/>
             <p>Un progetto di Key Soluzioni di Cappannari Michele e ESSEPPI multimedia di Pianesi Simone</p>
             <div>
                 <a href="https://www.facebook.com/" target="blank" class="green"><i class="fab fa-facebook-square fa-2x mr-3"></i></a>

@@ -178,7 +178,14 @@ a.lightgreen:hover {
 .btn-link:hover {
     color: #3a7a42;
 }
-
+.navbar a.nav-link {
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+a.nav-link:hover {
+    text-decoration: underline;
+}
 /** FINE BOTTONI **/
 
 .page-item.active .page-link {
@@ -214,6 +221,9 @@ a:hover {
 }
 .bordotondo {
     border-radius: 0.5rem;
+}
+.bordotondomolto {
+    border-radius: .75rem !important;
 }
 
 
@@ -302,6 +312,7 @@ li.list-group-item.list-ordini {
     color: white;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    border-radius: 3px 0px 0px 3px;
     box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
   }
   .card-ribbon.orange::after{
@@ -320,8 +331,8 @@ li.list-group-item.list-ordini {
 
 /** FOOTER **/ 
 footer {
-    line-height: .75rem;
-    font-size: .75rem;
+    line-height: .5rem;
+    /*font-size: .75rem;*/
 }
 footer a {
     color:#f7ab39;
@@ -334,6 +345,9 @@ footer a:hover {
 @media only screen and (min-width: 769px) {
     .trans-md-50-y {
         transform: translate(0%, -50%);
+    }
+    .header-copertina  {
+        margin-top: 200px !important;
     }
 }
 @media only screen and (max-width: 768px) {
