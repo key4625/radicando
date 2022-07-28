@@ -48,7 +48,7 @@
     <div class="d-none d-md-block new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_onda2.png" alt="image"></div>
 </div>
 <div class="bg-white" id="progetto">
-    <div class="container py-3 px-2">
+    <div class="container py-3">
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <img src="/img/presentazione/esagono.jpg" class="img-fluid p-4" style="max-height:530px;">  
@@ -71,51 +71,52 @@
             </div>     
          
         </div>
-    </div>
-    <div class="py-5" style="max-width: 900px; margin: auto;">
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <div class="card bordotondomolto bg-verdolino">
-                  
-                    <div class="card-body text-center dark-green p-3">
-                        <img class="mb-4" src="/img/presentazione/icona_foglia.png" style="max-width:85px;">
-                        <h4>MONITORAGGIO</h4>
-                        <h6>COLTIVAZIONI ed<br />ALLEVAMENTI</h6>
+        <div class="py-5" style="max-width: 900px; margin: auto;">
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <div class="card bordotondomolto bg-verdolino">
+                      
+                        <div class="card-body text-center dark-green p-3">
+                            <img class="img-fluid mb-4" src="/img/presentazione/icona_foglia.png" style="max-width:85px;">
+                            <h4>MONITORAGGIO</h4>
+                            <h6>COLTIVAZIONI ed<br />ALLEVAMENTI</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="card bordotondomolto bg-verdolino">
-                  
-                    <div class="card-body text-center dark-green p-3">
-                        <img class="mb-4" src="/img/presentazione/icona_diario.png" style="max-width:85px;">
-                        <h4>COMPILAZIONE</h4>
-                        <h6>DIARIO e<br />MAGAZZINO</h6>
+                <div class="col-6 col-md-3">
+                    <div class="card bordotondomolto bg-verdolino">
+                      
+                        <div class="card-body text-center dark-green p-3">
+                            <img class="img-fluid mb-4" src="/img/presentazione/icona_diario.png" style="max-width:85px;">
+                            <h4>COMPILAZIONE</h4>
+                            <h6>DIARIO e<br />MAGAZZINO</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="card bordotondomolto bg-verdolino">
-                   
-                    <div class="card-body text-center dark-green p-3">
-                        <img class="mb-4" src="/img/presentazione/icona_negozio.png" style="max-width:85px;">
-                        <h4>VENDITA</h4>
-                        <h6>PRODUZIONE ed<br />ORDINI</h6>
+                <div class="col-6 col-md-3">
+                    <div class="card bordotondomolto bg-verdolino">
+                       
+                        <div class="card-body text-center dark-green p-3">
+                            <img class="img-fluid mb-4" src="/img/presentazione/icona_negozio.png" style="max-width:85px;">
+                            <h4>VENDITA</h4>
+                            <h6>PRODUZIONE ed<br />ORDINI</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="card bordotondomolto bg-verdolino">
-                
-                    <div class="card-body text-center dark-green p-3">
-                        <img class="mb-4" src="/img/presentazione/statistiche.png" style="max-width:85px;">
-                        <h4>STATISTICHE</h4>
-                        <h6>COSTI, RESI e<br />RICAVI</h6>
+                <div class="col-6 col-md-3">
+                    <div class="card bordotondomolto bg-verdolino">
+                    
+                        <div class="card-body text-center dark-green p-3">
+                            <img class="img-fluid mb-4" src="/img/presentazione/statistiche.png" style="max-width:85px;">
+                            <h4>STATISTICHE</h4>
+                            <h6>COSTI, RESI e<br />RICAVI</h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 <div class="bg-verdolino" id="funzioni">
     <div class="container-xxl py-5">
@@ -181,7 +182,7 @@
                         pensa a tutto.</p>
                 </div>
             </div>
-           <div class="col-12 col-md-6"><img class="img-fluid" src="/img/presentazione/computer2.jpg" style="width:80%" ></div>
+           <div class="col-12 col-md-6 text-center"><img class="img-fluid" src="/img/presentazione/computer2.jpg" style="width:80%" ></div>
         </div>
         <div class="d-none d-md-block" style="min-height:150px;"></div>
    
@@ -205,7 +206,7 @@
         <div class="row py-4">
             <div class="col-12 col-md-6">
                 <div class="container">
-                    <div class="card bordotondomolto  card-ribbon green m-auto" data-label="MENSILE">
+                    <div class="card bordotondomolto  card-ribbon green mb-3 mx-auto" data-label="MENSILE">
                         <div class="card__container mt-5 text-center">
                             <h4>In promozione fino al 31/10</h4>
                             <span class="h1 font-weight-bold green"><s>39€</s> </span><span class="font-weight-bold green">/mese</span>
@@ -216,7 +217,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="container">
-                    <div class="card bordotondomolto card-ribbon orange m-auto" data-label="ANNUALE">
+                    <div class="card bordotondomolto card-ribbon orange mb-3 mx-auto" data-label="ANNUALE">
                         <div class="card__container mt-5 text-center">
                             <h4>In promozione fino al 31/10</h4>
                             <span class="h1 font-weight-bold green"><s>449€</s> </span><span class="font-weight-bold green">/anno</span>
@@ -229,7 +230,7 @@
         </div>
     </div>
 </div>
-<div class="bg-white p-5" id="contatti">
+<div class="bg-white p-3 p-md-5" id="contatti">
     <div class="card bordotondomolto bg-green my-5 mx-auto" style="max-width:600px;">
         <div class="card-body text-center">
             <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
@@ -292,7 +293,7 @@
             
             </div>
         </div>
-        <div class="new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_footer.png" alt="image"></div>
+        <div class="d-none d-md-block new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_footer.png" alt="image"></div>
     </div>
     <div class="bg-green p-3 text-center">
         Copyright © 2022 Radicando - <span class="orange">Agricoltura online</span> - Tutti i diritti riservati | <a href="">Cookie Policy</a> | <a href="">Privacy Policy</a>
