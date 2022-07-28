@@ -260,7 +260,7 @@
                     @enderror
                     <div class="form-check mt-3">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="privacy">
-                        <label class="form-check-label" for="exampleCheck1">Accetto la Privacy policy</label>
+                        <label class="form-check-label" for="exampleCheck1">Accetto la <a href="https://www.iubenda.com/privacy-policy/17494189" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a></label>
                     </div> 
                     @error('privacy')
                         <span class="invalid-feedback" role="alert"><strong>Devi accettare la privacy</strong></span>
@@ -296,7 +296,10 @@
         <div class="d-none d-md-block new-app-banner-bg-shape"><img src="/img/presentazione/sagoma_footer.png" alt="image"></div>
     </div>
     <div class="bg-green p-3 text-center">
-        Copyright © 2022 Radicando - <span class="orange">Agricoltura online</span> - Tutti i diritti riservati | <a href="">Cookie Policy</a> | <a href="">Privacy Policy</a>
+      
+        Copyright © 2022 Radicando - <span class="orange">Agricoltura online</span> - Tutti i diritti riservati 
+        <a href="https://www.iubenda.com/privacy-policy/17494189" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a>
+        
     </div>
 </footer>
 @endsection

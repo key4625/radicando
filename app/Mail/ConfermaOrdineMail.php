@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContattoMail extends Mailable
+class ConfermaOrdineMail extends Mailable
 {
     use Queueable, SerializesModels;
 

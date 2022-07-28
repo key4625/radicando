@@ -18,7 +18,7 @@ class orderlivewire extends Component
 {
     public $item_ordered;
     public $quantity, $quantity_um, $plant_sel_id;
-    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $notes, $price, $ordine_tot;
+    public $ordine, $nome, $cognome, $email, $tel, $indirizzo, $citta, $data_consegna, $consegna_domicilio, $notes, $price, $ordine_tot, $privacy;
     public $ordine_non_completo = false;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
@@ -28,6 +28,7 @@ class orderlivewire extends Component
     protected $rules = [
         'nome' => 'required' ,  
         'cognome' => 'required',
+        'privacy' => 'required',
         'email' => 'required',
         'citta' =>'required_if:consegna_domicilio,1',
         'data_consegna' => 'required'

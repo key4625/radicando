@@ -267,7 +267,17 @@
                                         <input type="text" class="form-control senzabordo bordotondo" wire:model="citta">
                                         @error('citta') <span class="error text-danger">Città non valida</span> @enderror
                                     </div>
+                                   
                                 @endif
+                                <div class="form-group  col-12 text-center">
+                                    <div class="form-check text-center mt-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" wire:model="privacy">
+                                        <label class="form-check-label" for="exampleCheck1">Accetto la <a href="https://www.iubenda.com/privacy-policy/17494189" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " target="blank" title="Privacy Policy ">Privacy Policy</a></label>
+                                    </div> 
+                                    @error('privacy')
+                                        <span class="error text-danger" role="alert"><strong>Devi accettare la privacy</strong></span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="mt-4 text-center"> 
@@ -281,7 +291,8 @@
                     <div class="col-12 my-4">
                         <h5 class="text-center orange">Hai completato il processo</h5>
                         <h1 class="text-center green">GRAZIE PER LA TUA PRENOTAZIONE</h1>
-                        <div class="my-4" style="border-top: 0.13rem solid #c1c1c1;"> </div>
+                        <div class="my-4" style="border-top: 0.13rem solid #c1c1c1;"></div>
+                        <div> Una email riepilogativa è stata inviata all'indirizzo di posta indicato</div>
                     </div>
                 </div>
             @endif 
