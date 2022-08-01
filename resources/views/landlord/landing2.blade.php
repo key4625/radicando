@@ -126,8 +126,8 @@
         <div class="row py-4">
             <div class="col-12 col-md-4">
                 <div class="card card-home m-4">
-                    <img src="/img/presentazione/piante.png" alt="" class="card-img-top">
                     <div class="card-body">
+                        <img src="/img/presentazione/schermate/elenco_piante.png" alt="" class="img-fluid">
                         <h5 class="card-title">Elenco Piante</h5>
                         <p class="card-text">Non un semplice elenco ma una vera e propria guida alla coltivazione.</p>
                     </div>
@@ -135,17 +135,17 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="card card-home m-4">
-                    <img src="/img/presentazione/terreni.png" alt="" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">Gestione Terreni</h5>
+                        <img src="/img/presentazione/schermate/coltivazioni.png" alt="" class="img-fluid">
+                        <h5 class="card-title">Gestione Terreni e Coltivazioni</h5>
                         <p class="card-text">Vedi tutte le proprietà in una sola schermata, fai il punto delle coltivazioni presenti.</p>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="card card-home m-4">
-                    <img src="/img/presentazione/coltivazioni.png" alt="" class="card-img-top">
                     <div class="card-body">
+                        <img src="/img/presentazione/schermate/diario.png" alt="" class="img-fluid">
                         <h5 class="card-title">Gestione attività</h5>
                         <p class="card-text">Tieni il registro degli interventi e dei trattamenti, scegli quando seminare e monitora il raccolto e le rese.</p>
                     </div>
