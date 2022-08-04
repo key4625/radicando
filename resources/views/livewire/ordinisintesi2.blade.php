@@ -78,7 +78,7 @@
 
             <div id="accordion">
                 @foreach($products as $tmp_prod)    
-                <div class="card mb-1">
+                <div class="card mb-1 border-0">
                     <div class="card-header p-2" id="heading-{{$tmp_plant['item_id']}}">
                         <h5 class="mb-0">
                             <button class="btn btn-link  w-100 d-flex justify-content-between" data-toggle="collapse" data-target="#collapse2prod-{{$tmp_prod['item_id']}}" aria-expanded="true" aria-controls="collapse2prod-{{$tmp_prod['item_id']}}">

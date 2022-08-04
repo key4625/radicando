@@ -89,6 +89,8 @@ class Ordinisintesi2 extends Component
                 }        
             }   
         }
+        $arr_plants = collect($arr_plants)->sortByDesc('name')->reverse()->toArray();
+        $arr_products = collect($arr_products)->sortByDesc('name')->reverse()->toArray();
         //$query_sql = 'select sum(orderables.quantity), plants.* from plants inner join orderables on `orderables`.`orderable_id` = `plants`.`id` where orderables.order_id in (select id from orders where data = "2022-05-31") group by orderable_id, orderables.quantity_um';
         //$query_sql = 'SELECT sum(`single_item`.quantity), orderable_id, plants.* FROM `orderables` as `single_item` INNER JOIN `plants` on orderable_id = `plants`.id where order_id in (select id from orders where data = "'.Carbon::now()->toDateString().'") group by orderable_id, quantity_um';
        
