@@ -12,7 +12,7 @@
                             Questa è una versione DEMO.
                         </div>
                         <div class="card-body">
-                            Per accedere autenticati come <br />user <b>demo</b><br />pass <b>demo</b>
+                            Per accedere autenticati come <br />user <b>demo@demo.com</b><br />pass <b>demo</b>
                         </div>
                     </div>
                     
