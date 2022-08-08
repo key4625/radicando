@@ -6,6 +6,17 @@
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if(str_contains(app('currentTenant')->name, "demo"))
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Questa è una versione DEMO.
+                        </div>
+                        <div class="card-body">
+                            Per accedere autenticati come <br />user <b>demo</b><br />pass <b>demo</b>
+                        </div>
+                    </div>
+                    
+                @endif
                 <x-frontend.card>
                     <x-slot name="header">
                         @lang('Login')
@@ -49,15 +60,14 @@
                                     </div><!--col-->
                                 </div><!--row-->
                             @endif
-
+                         
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button class="btn btn-primary" type="submit">@lang('Login')</button>
-
                                     <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
                                 </div>
                             </div><!--form-group-->
-
+                          
                             <div class="text-center">
                                 @include('frontend.auth.includes.social')
                             </div>

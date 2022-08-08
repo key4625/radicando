@@ -161,20 +161,15 @@
       
         <div class="row py-4">
            <div class="col-12 col-md-6">
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore.</p>
-                <div class="clearfix mt-3">
+               <p>Soprattutto nella gestione degli ordini di orticole ma anche per la prenotazione dei prodotti, quando si tratta di organizzare le cose Radicando ti aiuta! Puoi ordinare per data di ordine o per luogo di consegna ed inoltre puoi fare la somma dei singoli prodotti richiesti per valutare da subito il giusto quantitativo da raccogliere o da preparare.</p>
+                <div class="clearfix mt-4">
                     <img class="float-left mr-4" src="/img/presentazione/ordini.png" height="100px">
                     <h4 class="text-bold">SEMPLIFICA LE VENDITE</h4>
                     <p>Finalmente ora è tutto più semplice, con Radicando puoi gestire
                         la tua attività direttamente online grazie ad un software che
                         pensa a tutto.</p>
                 </div>
-                <div class="clearfix  mt-3">
+                <div class="clearfix  mt-4">
                     <img class="float-left mr-4" src="/img/presentazione/vetrina_ordini.png" height="100px">
                     <h4 class="text-bold">OTTIMIZZA L'ORGANIZZAZIONE</h4>
                     <p>Finalmente ora è tutto più semplice, con Radicando puoi gestire
@@ -208,7 +203,7 @@
                 <div class="container">
                     <div class="card bordotondomolto  card-ribbon green mb-3 mx-auto" data-label="MENSILE">
                         <div class="card__container mt-5 text-center">
-                            <h4>In promozione fino al 31/10</h4>
+                            <h4>In promozione fino al 31/12</h4>
                             <span class="h1 font-weight-bold green"><s>39€</s> </span><span class="font-weight-bold green">/mese</span>
                             <span class="h1 font-weight-bold orange" style="font-size: 3.5rem;">29€ </span><span class="font-weight-bold green">/mese</span>
                         </div>
@@ -219,7 +214,7 @@
                 <div class="container">
                     <div class="card bordotondomolto card-ribbon orange mb-3 mx-auto" data-label="ANNUALE">
                         <div class="card__container mt-5 text-center">
-                            <h4>In promozione fino al 31/10</h4>
+                            <h4>In promozione fino al 31/12</h4>
                             <span class="h1 font-weight-bold green"><s>449€</s> </span><span class="font-weight-bold green">/anno</span>
                             <span class="h1 font-weight-bold orange" style="font-size: 3.5rem;">299€ </span><span class="font-weight-bold green">/anno</span>
                         </div>
