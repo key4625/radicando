@@ -23,6 +23,11 @@ body {
     color: #fff;
     background: #3a7a42;
 }
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active, .dropdown-item:active {
+    text-decoration: none;
+    color: #f3f3f3;
+    background-color: #48984e;
+}
 .generi-list a {
     font-weight: bold;
     text-decoration: underline;

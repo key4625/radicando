@@ -40,10 +40,12 @@
             </x-utils.link>
 
             <div class="dropdown-menu dropdown-menu-right pt-0">
+                <x-utils.link class="dropdown-item" icon="c-icon mr-2 cil-home" href="/" >Homepage</x-utils.link>
+
                 <div class="dropdown-header bg-light py-2">
                     <strong>@lang('Account')</strong>
                 </div>
-
+               
                 <x-utils.link
                     class="dropdown-item"
                     icon="c-icon mr-2 cil-account-logout"
