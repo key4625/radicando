@@ -35,10 +35,16 @@
     <div class="tab-content" id="settingstab">  
         <div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">        
             <div class="row">
-                <div class="col-12">         
+                <div class="col-12 col-md-6">         
                     <div class="form-group">
                         <label for="app_company_name">Nome azienda</label>
-                        <input type="text" id="app_company_name"class="form-control" name="app_company_name" value="{{$settings['app_company_name']}}">   
+                        <input type="text" id="app_company_name"class="form-control" name="app_company_name" @if($settings->has('app_company_name')) value="{{$settings['app_company_name']}}" @endif>   
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">         
+                    <div class="form-group">
+                        <label for="app_company_email">Email azienda</label>
+                        <input type="email" id="app_company_email" class="form-control" name="app_company_email" @if($settings->has('app_company_email')) value="{{$settings['app_company_email']}}" @else value="" @endif>   
                     </div>
                 </div>
                 <div class="col-12 col-md-4 ">         
@@ -72,7 +78,7 @@
                     <div class="form-group">
                         <label for="app_descrizione">Descrizione breve</label>
                         <div>
-                            <textarea id="app_descrizione_breve" rows="2" class="form-control" name="app_descrizione_breve">{{$settings['app_descrizione_breve']}}</textarea>
+                            <textarea id="app_descrizione_breve" rows="2" class="form-control" name="app_descrizione_breve">@if($settings->has('app_descrizione_breve')) {{$settings['app_descrizione_breve']}} @endif</textarea>
                         </div>
                         
                     </div>
@@ -81,7 +87,7 @@
                     <div class="form-group">
                         <label for="app_descrizione">Descrizione generale</label>
                         <div>
-                            <textarea id="app_descrizione" rows="4" class="form-control" name="app_descrizione">{{$settings['app_descrizione']}}</textarea>
+                            <textarea id="app_descrizione" rows="4" class="form-control" name="app_descrizione">@if($settings->has('app_descrizione'))  {{$settings['app_descrizione']}} @endif</textarea>
                         </div>
                         
                     </div>

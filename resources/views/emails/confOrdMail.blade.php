@@ -5,9 +5,10 @@
 </head>
 <body>
     <div style="text-align:center;">
-        <img style="max-height:100px;" src="https://{{$_SERVER['SERVER_NAME'];}}/{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
+        <img style="max-height:100px; height:100px;" src="https://{{$_SERVER['SERVER_NAME'];}}/{{ Storage::url(App\Models\Setting::find('app_logo')->value) }}">
         <h3 >{{App\Models\Setting::find('app_company_name')->value}}</h3>
     </div>
+    
     <div>
         <h4>Riepilogo ordine</h4>
         <p>{{ $details['ordine']->nome." ".$details['ordine']->cognome }}</p>
@@ -75,7 +76,7 @@
 
         <p><b>NOTE</b>: {{$details['ordine']->notes}} </p>     
         <h5>TOTALE: {{$details['ordine']->prezzo_tot}} €</h5>   
-    
+        <p>PER COMUNICAZIONI PREGO SCRIVERE A {{App\Models\Setting::find('app_company_email')->value}}</p>
         <p>Grazie!</p>
     </div>
 </body>

@@ -32,6 +32,6 @@ class ConfermaOrdineMail extends Mailable
     public function build()
     {
         return $this->subject('Conferma ordine da '.Setting::find('app_company_name')->value)
-                    ->view('emails.confOrdMail');
+                    ->view('emails.confOrdMail')->replyTo(Setting::find('app_company_email')->value, Setting::find('app_company_name')->value);
     }
 }
