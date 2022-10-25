@@ -41,6 +41,12 @@
                     <input wire:model="filter_data" type="date" class="form-control">
                 </div>
             </div>
+            <div class="col  my-3">
+                <div class="form-group">
+                    <label>al </label>
+                    <input wire:model="filter_data_al" type="date" class="form-control">
+                </div>
+            </div>
             <div class="col my-3">
                 <div class="form-group float-right">
                     <label>&nbsp;</label>
