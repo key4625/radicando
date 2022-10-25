@@ -101,7 +101,7 @@ class ordinilivewire extends Component
         if($this->sortedby !=null) $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
         $orders_list_raw = $orders_list;
         return view('backend.livewire.order', [
-            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list_raw->get() ,'plants_available' => $plants_available, 'products_available' => $products_available
+            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list_raw->paginate(999) ,'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
     }
     public function viewProd($val){
