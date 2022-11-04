@@ -25,7 +25,7 @@
 		<div id="buttonstampa" class="print:hidden absolute top-3 right-4 form-inline" style="display:block;">
             <select class="form-control" wire:model="sel_stampa">
                 <option value="0">tutti</option>
-                @foreach($orders as $order)
+                @foreach($ordersprintable as $order)
                     <option value="{{$order->id}}">{{$order->id}} - {{$order->nome}} {{$order->cognome}}</option>
                 @endforeach
             </select>
