@@ -91,17 +91,41 @@ class ordinilivewire extends Component
         $products_available = Product::where('vendibile',1)->get();
         //$products_available = $products_available->diff(Product::whereIn('id', $product_filtered->pluck('id_num'))->get());    
         $orders_list = Order::query();
-        if($this->filter_consegnato=="da_consegnare") $orders_list->where("evaso",0);
-        if($this->filter_consegnato=="consegnati") $orders_list->where("evaso",1);
-        if($this->filter_pagato=="da_pagare") $orders_list->where("pagato",0);
-        if($this->filter_pagato=="pagati") $orders_list->where("pagato",1);
-        if($this->filter_data!=null) $orders_list->whereDate("data",">=",$this->filter_data);
-        if($this->filter_data_al!=null) $orders_list->whereDate("data","<",$this->filter_data_al);
+        $orders_printable = Order::query();
+        if($this->filter_consegnato=="da_consegnare") {
+            $orders_list->where("evaso",0);
+            $orders_printable->where("evaso",0);
+        }
+        if($this->filter_consegnato=="consegnati") {
+            $orders_list->where("evaso",1);
+            $orders_printable->where("evaso",1);
+        }
+        if($this->filter_pagato=="da_pagare") {
+            $orders_list->where("pagato",0);
+            $orders_printable->where("pagato",0);
+        }
+        if($this->filter_pagato=="pagati") {
+            $orders_list->where("pagato",1);
+            $orders_printable->where("pagato",1);
+        }
+        if($this->filter_data!=null) {
+            $orders_list->whereDate("data",">=",$this->filter_data);
+            $orders_printable->whereDate("data",">=",$this->filter_data);
+        }
+        if($this->filter_data_al!=null) {
+            $orders_list->whereDate("data","<",$this->filter_data_al);
+            $orders_printable->whereDate("data","<",$this->filter_data_al);
+        }
         $orders_list = $orders_list->orderby('data');
-        if($this->sortedby !=null) $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
-        $orders_list_raw = $orders_list;
+        $orders_printable = $orders_printable->orderby('data');
+        
+        if($this->sortedby !=null) {
+            $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
+            $orders_printable = $orders_printable->orderby($this->sortedby,$this->sortdir); 
+        }
+        
         return view('backend.livewire.order', [
-            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_list_raw->get() ,'plants_available' => $plants_available, 'products_available' => $products_available
+            'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_printable->get() ,'plants_available' => $plants_available, 'products_available' => $products_available
         ]);
     }
     public function viewProd($val){
