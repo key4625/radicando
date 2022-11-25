@@ -208,7 +208,7 @@ class ordinilivewire extends Component
         if($this->quantity != 0){
             $new_item = array('id_num'=>count($this->item_ordered),'item_id'=>$item_id,'type'=>$type,'quantity'=> $this->quantity, 'quantity_um'=> $this->quantity_um, 'price_um'=> $price_um,'price'=>$price);
             array_push($this->item_ordered, $new_item);
-            $this->showProd = 0;
+            //$this->showProd = 0;
             $this->resetQuantity();
             $this->ricalcolaPrezzo(); 
         }
