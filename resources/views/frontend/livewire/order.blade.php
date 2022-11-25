@@ -38,12 +38,13 @@
                         <h5 class="text-center orange">Scegli tra una selezione dei</h5>
                         <h1 class="text-center green">NOSTRI PRODOTTI</h1>
                         <ul class="nav nav-pills nav-fill nav-product">
-                            <li class="nav-item">
-                                <button class="nav-link @if($showProd == 1) active @endif" wire:click="viewProd(1)">Verdure</button>   
-                            </li>
                             <li class="nav-item">      
                                 <button class="nav-link @if($showProd == 0) active @endif" wire:click="viewProd(0)">Prodotti</button>
                             </li>
+                            <li class="nav-item">
+                                <button class="nav-link @if($showProd == 1) active @endif" wire:click="viewProd(1)">Verdure</button>   
+                            </li>
+                         
                          
                         </ul>
                         <div class="tab-content my-4 py-4" style="border-top: 0.13rem solid #c1c1c1;">

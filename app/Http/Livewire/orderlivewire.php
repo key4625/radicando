@@ -40,7 +40,7 @@ class orderlivewire extends Component
         //$this->item_ordered = array();
         
         $this->ordine = array();
-        $this->showProd = 1;
+        $this->showProd = 0;
         $this->showQuant = 0;
         $this->passo = 0;
         $this->data_consegna = null;

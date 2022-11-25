@@ -18,7 +18,7 @@ class Ordinisintesi2 extends Component
 
     public function mount()
     {
-        $this->filter_consegnato="da_consegnare";
+        $this->filter_consegnato="tutti";
         $this->filter_data=Carbon::now()->toDateString();
         $this->filter_data2=Carbon::now()->toDateString();
     }
