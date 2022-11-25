@@ -73,6 +73,7 @@ class Statistica1 extends Component
             }, (new ColumnChartModel())
                 ->setTitle('Venduti in totale')
                 ->multiColumn()
+                ->setHorizontal(true)
                 ->setAnimated($this->firstRun)
                 ->withOnColumnClickEventName('onColumnClick')
             );
