@@ -116,7 +116,7 @@
                 </ul>
             @endif 
                
-            <button class="btn btn-warning bordorotondo senzabordo btn-sm w-100 text-light my-2" wire:click="viewProd(1)">INSERISCI PRODOTTI</button>
+            <button class="btn btn-warning bordorotondo senzabordo btn-sm w-100 text-light my-2" wire:click="viewProd(2)">INSERISCI PRODOTTI</button>
             <div class="form-group row my-3">                  
                 <label for="price_order" class="col-sm-4 col-form-label">Importo totale consigliato: {{$prezzo_tot_consigliato}}€ 
                     @if($sconto_perc > 0)<br> Con sconto {{$sconto_perc}}%: {{$prezzo_tot_consigliato_scontato}}€ @endif</label>
@@ -150,12 +150,13 @@
                 </div>
                 <h1 class="text-center green">AGGIUNGI PRODOTTO</h1>
                 <ul class="nav nav-pills nav-fill nav-product">
-                    <li class="nav-item">      
-                        <button class="nav-link @if($showProd == 1) active @endif" wire:click="viewProd(1)">Prodotti</button>
-                    </li>
                     <li class="nav-item">
                         <button class="nav-link @if($showProd == 2) active @endif" wire:click="viewProd(2)">Verdure</button>   
                     </li>
+                    <li class="nav-item">      
+                        <button class="nav-link @if($showProd == 1) active @endif" wire:click="viewProd(1)">Prodotti</button>
+                    </li>
+                 
                 </ul>
                 <div class="tab-content my-4 py-4" style="border-top: 0.13rem solid #c1c1c1;">
                     <div class="tab-pane  @if($showProd == 1) show active fade @endif" wire:loading.class="fade">
