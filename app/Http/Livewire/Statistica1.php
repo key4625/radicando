@@ -18,6 +18,7 @@ class Statistica1 extends Component
         '2' => '#fc8181'
     ];
     public $firstRun = true;
+    public $numCol = 0;
     protected $listeners = [
         'onPointClick' => 'handleOnPointClick',
         'onSliceClick' => 'handleOnSliceClick',
@@ -56,18 +57,12 @@ class Statistica1 extends Component
                         }
                        
                     }
-                  
-                    //$tot_euro = $data->orders()->sum('price');
-                    //$tot_qnt = $data->orders()->sum('quantity');
-                }
-               
+                }              
                 if($tmp_totprice > 0){
-                    //dd($data->orders());
-                    //return $columnChartModel->addColumn($title, $value, $data->color);
                     $columnChartModel->addSeriesColumn("Totale €", $title,  round($tmp_totprice,2), $data->color);
                     $columnChartModel->addSeriesColumn("Quantità", $title,   round($tmp_totqnt,2), $data->color);
-                    $columnChartModel->addSeriesColumn("Quantità non prezzata", $title,   round($tmp_totqnt_und,2), $data->color);
-                   
+                    $columnChartModel->addSeriesColumn("Quantità non prezzata", $title,   round($tmp_totqnt_und,2), $data->color);  
+                    $this->numCol++;
                     return $columnChartModel;
                 } else return $columnChartModel;
             }, (new ColumnChartModel())
