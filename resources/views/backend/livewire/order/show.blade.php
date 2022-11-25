@@ -212,7 +212,7 @@
                                                 <div class="d-flex align-items-center justify-content-center">
                                                     <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                     @if($plant->price!=null)
-                                                        <span class="prezzo">{{$plant->price}}€/kg </span>
+                                                        <br><span class="prezzo">{{$plant->price}}€/kg </span>
                                                     @endif
                                                 </div>
                                                 <div class="input-group my-4">
@@ -238,7 +238,7 @@
                                                 </div>
                                                 <h5 class="mt-3 text-uppercase">{{$plant->nome}}</h5>
                                                 @if($plant->price!=null)
-                                                    <span class="prezzo">{{$plant->price}}€/kg </span>
+                                                    <br><span class="prezzo">{{$plant->price}}€/kg </span>
                                                 @endif
                                             </div>
                                         @endif

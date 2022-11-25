@@ -29,6 +29,8 @@ class orderlivewire extends Component
         'nome' => 'required' ,  
         'cognome' => 'required',
         'privacy' => 'required',
+        'tel' => 'required',
+        'indirizzo' => 'required:consegna_domicilio,1',
         'email' => 'required',
         'citta' =>'required_if:consegna_domicilio,1',
         'data_consegna' => 'required'

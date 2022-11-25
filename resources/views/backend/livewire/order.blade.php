@@ -47,6 +47,12 @@
                     <input wire:model="filter_data_al" type="date" class="form-control">
                 </div>
             </div>
+            <div class="col  my-3">
+                <div class="form-group">
+                    <label>cerca </label>
+                    <input wire:model="filter_testo" type="text" class="form-control">
+                </div>
+            </div>
             <div class="col my-3">
                 <div class="form-group float-right">
                     <label>&nbsp;</label>

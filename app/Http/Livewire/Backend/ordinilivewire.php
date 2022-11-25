@@ -24,7 +24,7 @@ class ordinilivewire extends Component
     public $item_ordered;
     public $showProd;
     public $showQuant, $idQuant, $typeQuant;
-    public $filter_consegnato, $filter_pagato, $filter_data, $filter_data_al;
+    public $filter_consegnato, $filter_pagato, $filter_data, $filter_testo, $filter_data_al;
     public $showPrintDiv = false;
     public $sortedby, $sortdir ;
     public $totaleDifferente;
@@ -47,6 +47,7 @@ class ordinilivewire extends Component
         $this->filter_consegnato = "da_consegnare";
         $this->filter_pagato = "tutti";
         $this->filter_data = null;
+        $this->filter_testo = null;
         $this->filter_data_al = null;
         $this->item_ordered = array();
         $this->sel_stampa = 0;
@@ -116,6 +117,9 @@ class ordinilivewire extends Component
             $orders_list->whereDate("data","<",$this->filter_data_al);
             $orders_printable->whereDate("data","<",$this->filter_data_al);
         }
+        if($this->filter_testo!=null) {
+            $orders_list->where("nome","like","%".$this->filter_testo."%");
+        }
         $orders_list = $orders_list->orderby('data');
         $orders_printable = $orders_printable->orderby('data');
         
@@ -123,6 +127,7 @@ class ordinilivewire extends Component
             $orders_list = $orders_list->orderby($this->sortedby,$this->sortdir); 
             $orders_printable = $orders_printable->orderby($this->sortedby,$this->sortdir); 
         }
+   
         
         return view('backend.livewire.order', [
             'orders' => $orders_list->paginate(25),'ordersprintable' => $orders_printable->get() ,'plants_available' => $plants_available, 'products_available' => $products_available

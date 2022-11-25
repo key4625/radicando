@@ -119,7 +119,9 @@
                                                                 </select>
                                                             @endif
                                                         </div>
-                                                        <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price}},'{{$plant->price_um}}')">Aggiungi</button>
+                                                        @if(count($array_date_possibili)>0)
+                                                            <button class="btn btn-primary" wire:click="add({{$plant->id}},'vegetable',{{$plant->price}},'{{$plant->price_um}}')">Aggiungi</button>
+                                                        @endif
                                                     </div>
                                                 @else 
                                                     <div class="card-body text-center front" wire:click="selProd({{$plant->id}},'vegetable','{{$plant->price_um}}','{{$plant->quantity_um}}')" >
