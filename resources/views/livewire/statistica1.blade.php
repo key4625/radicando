@@ -27,7 +27,7 @@
         </li>
     </ul>
     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-        <div class="shadow rounded p-4 border bg-white flex-1" style="height: 32rem;">
+        <div class="shadow rounded p-4 border bg-white flex-1" style="max-height: 1000px;">
             <livewire:livewire-column-chart
                 key="{{ $columnChartModel->reactiveKey() }}"
                 :column-chart-model="$columnChartModel"
