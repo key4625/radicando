@@ -119,6 +119,7 @@ class ordinilivewire extends Component
         }
         if($this->filter_testo!=null) {
             $orders_list->where("nome","like","%".$this->filter_testo."%");
+            $orders_list->orwhere("cognome","like","%".$this->filter_testo."%");
         }
         $orders_list = $orders_list->orderby('data');
         $orders_printable = $orders_printable->orderby('data');

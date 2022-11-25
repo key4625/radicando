@@ -97,6 +97,13 @@ a.lightgreen:hover {
     border: none;
     color: #333;
     text-align:center;   
+    padding: 0rem !important;
+}
+.front img {
+    border-radius: 25px 25px 0px 0px;
+}
+.front h5, .front .prezzo {
+    margin: 10px;
 }
 .back {
     backface-visibility: hidden;

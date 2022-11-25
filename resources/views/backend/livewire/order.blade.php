@@ -49,7 +49,7 @@
             </div>
             <div class="col  my-3">
                 <div class="form-group">
-                    <label>cerca </label>
+                    <label>cerca</label>
                     <input wire:model="filter_testo" type="text" class="form-control">
                 </div>
             </div>
