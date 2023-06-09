@@ -113,6 +113,7 @@ return [
     'unique' => ':attribute è già stato utilizzato.',
     'url' => 'Il formato di :attribute non è valido.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'productcategories_id' => 'Il prodotto deve essere associato ad una categoria',
 
     /*
     |--------------------------------------------------------------------------
@@ -128,6 +129,13 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'productcategories_id' => [
+            'min' => 'Il prodotto deve essere associato ad una categoria',
+            'integer' => 'Il prodotto deve essere associato ad una categoria',
+        ],
+        'name' => [
+            'required' => 'Il nome è richiesto',
         ],
     ],
 

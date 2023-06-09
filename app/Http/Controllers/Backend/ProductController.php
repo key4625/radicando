@@ -48,6 +48,7 @@ class ProductController
         $request->validate([
             'name' => 'required|max:128',
             'file_upload' => 'image|max:5000',
+            'dimension' => 'numeric',
             'productcategories_id' => 'required|integer|min:1'
         ]);
         if($request->has('file_upload')!=null){

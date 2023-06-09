@@ -87,7 +87,7 @@
                     <div class="col-4 col-md-2">
                         <div class="form-group">
                             <label>Dimensioni (kg o litri)</label>
-                            <input type="number" name="dimension" @if(isset($product)) value="{{$product->dimension}}" @else value=0 @endif class="form-control" placeholder="0.0">
+                            <input type="text" name="dimension" @if(isset($product)) value="{{$product->dimension}}" @else value="0" @endif class="form-control" placeholder="0.0">
                         </div>
                     </div> 
                    
