@@ -211,6 +211,7 @@
                     </div>
                 </div>
             </div>
+            {{--
             <div class="col-12 col-md-6">
                 <div class="container">
                     <div class="card bordotondomolto card-ribbon orange mb-3 mx-auto" data-label="ANNUALE">
@@ -222,6 +223,7 @@
                     </div>
                 </div>
             </div>
+            --}}
         
         </div>
        
