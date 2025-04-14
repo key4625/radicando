@@ -234,9 +234,10 @@
 <div class="bg-white p-3 p-md-5" id="contatti">
     <div class="card bordotondomolto bg-green my-5 mx-auto" style="max-width:600px;">
         <div class="card-body text-center">
-            <h5 class="text-center orange pt-5">PER INFORMAZIONI</h5>
+            <h5 class="text-center orange pt-4">PER INFORMAZIONI</h5>
             <h1 class="titolo-h2 text-center">Contattaci</h1>
-            <form method="post" action="landing#contatti">
+            <h3 class="text-center pb-4">info@radicando.it</h3>
+            {{--<form method="post" action="landing#contatti">
                 {{csrf_field()}}
                 <div class="form-group">
                     <input type="text" class="form-control @error('name') is-invalid @enderror mx-auto mt-3" name="name" placeholder="Nome e Cognome" style="max-width:400px">
@@ -251,10 +252,7 @@
                     @error('phone_number')
                         <span class="invalid-feedback" role="alert"><strong>Numero di telefono non valido</strong></span>
                     @enderror
-                    {{--<input type="text" class="form-control @error('subject') is-invalid @enderror mx-auto mt-3" name="subject" placeholder="Titolo" style="max-width:400px">
-                    @error('subject')
-                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror--}}
+                   
                     <textarea class="form-control textarea @error('message') is-invalid @enderror mx-auto mt-3" name="message" placeholder="Cosa vorresti sapere?" style="max-width:400px"></textarea>
                     @error('message')
                         <span class="invalid-feedback" role="alert"><strong>Inserisci un messagio</strong></span>
@@ -266,6 +264,7 @@
                     @error('privacy')
                         <span class="invalid-feedback" role="alert"><strong>Devi accettare la privacy</strong></span>
                     @enderror
+                    
                     <button type="submit" class="btn btn-orange bordotondomolto  mt-3 px-4">Invia</button>
                 </div>
                 @if(session()->has('success'))
@@ -274,7 +273,7 @@
                     </div>
                 @endif
                
-            </form>
+            </form>--}}
         </div>
     </div>
 </div>
