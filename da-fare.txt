@@ -1,6 +1,6 @@
 Per creare nuovo tenant:
 Craere nuovo database radicando_nome_db
-Inserire dentro db landlord_radicando_db nuova riga su tabella tenant
+Inserire dentro db landlord_radicando nuova riga su tabella tenant
 php artisan tenants:artisan "migrate --database=tenant --seed" --tenant=num_tenant
 
 
