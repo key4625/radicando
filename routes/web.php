@@ -18,23 +18,23 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 Route::domain('radicando.it')->group(function () {
     
     Route::get('/',[ContactController::class, 'index'] );
-    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::post('/', [ContactController::class, 'save'])->name('contact.store');
     //Route::view('/landing','landlord.landing2' );
     Route::get('/landing', [ContactController::class, 'index']);
-    Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
+    //Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
         abort(404);
     })->where('any', '.*');
 });
-/*Route::domain('www.radicando.it')->group(function () {
+Route::domain('www.radicando.it')->group(function () {
     
     Route::get('/',[ContactController::class, 'index'] );
-    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::post('/', [ContactController::class, 'save'])->name('contact.store');
     //Route::view('/landing','landlord.landing2' );
     Route::get('/landing', [ContactController::class, 'index']);
-    Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
+    //Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
     
     // Catch All Route
     Route::any('{any}', function () {
@@ -44,7 +44,7 @@ Route::domain('radicando.it')->group(function () {
 Route::domain('straorto')->group(function () {
     
     Route::get('/',[ContactController::class, 'index'] );
-    Route::post('/', [ContactController::class, 'save'])->name('contact.store');
+    //Route::post('/', [ContactController::class, 'save'])->name('contact.store');
     //Route::view('/landing','landlord.landing2' );
     Route::get('/landing', [ContactController::class, 'index']);
     Route::post('/landing', [ContactController::class, 'save'])->name('contact.store');
@@ -53,7 +53,7 @@ Route::domain('straorto')->group(function () {
     Route::any('{any}', function () {
         abort(404);
     })->where('any', '.*');
-});*/
+});
 
 
     Route::group(['as' => 'frontend.'], function () {
